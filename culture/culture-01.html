@@ -630,5 +630,179 @@ if ("serviceWorker" in navigator && location.protocol !== "file:") {
 })();
 </script>
 <!--/gradeui-->
+<!--zoomui-->
+<style>
+  .zm-target{cursor:zoom-in;}
+  #zmov{position:fixed; inset:0; z-index:80; display:none; background:rgba(14,12,9,.93);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Noto Sans JP",sans-serif;}
+  #zmov.on{display:block;}
+  #zmstage{position:absolute; inset:0; overflow:hidden; touch-action:none; cursor:grab;}
+  #zmstage.drag{cursor:grabbing;}
+  #zminner{position:absolute; left:0; top:0; transform-origin:0 0; will-change:transform;}
+  #zminner svg, #zminner img{display:block; background:#fdfaf3; border-radius:8px;}
+  #zmcap{position:absolute; left:.9em; top:.8em; right:4em; color:#f2ede3; font-size:.82em;
+    text-shadow:0 1px 3px rgba(0,0,0,.6); pointer-events:none; line-height:1.5;}
+  #zmclose{position:absolute; right:.6em; top:.6em; width:2.6em; height:2.6em; border-radius:50%;
+    border:none; background:rgba(255,255,255,.14); color:#fff; font-size:1.1em; font-weight:800;
+    cursor:pointer; z-index:2;}
+  #zmclose:hover{background:rgba(255,255,255,.28);}
+  #zmbar{position:absolute; left:50%; bottom:1em; transform:translateX(-50%); z-index:2;
+    display:flex; align-items:center; gap:.4em; background:rgba(24,20,16,.78);
+    border:1px solid rgba(255,255,255,.18); border-radius:999px; padding:.3em .5em;}
+  #zmbar button{width:2.3em; height:2.3em; border-radius:50%; border:none; cursor:pointer;
+    background:rgba(255,255,255,.12); color:#fff; font-size:1em; font-weight:800;}
+  #zmbar button:hover{background:rgba(255,255,255,.26);}
+  #zmpct{color:#e8dfd0; font-size:.78em; min-width:3.4em; text-align:center;}
+  #zmhint{position:absolute; left:50%; bottom:3.8em; transform:translateX(-50%); color:#cfc6b6;
+    font-size:.72em; pointer-events:none; opacity:.85; white-space:nowrap;}
+</style>
+<div id="zmov" role="dialog" aria-modal="true" aria-label="図版の拡大表示">
+  <div id="zmstage"><div id="zminner"></div></div>
+  <div id="zmcap"></div>
+  <button id="zmclose" aria-label="閉じる">×</button>
+  <div id="zmhint">ピンチ／ホイールで拡大縮小・ドラッグで移動・ダブルタップで切替</div>
+  <div id="zmbar">
+    <button id="zmminus" aria-label="縮小">−</button>
+    <span id="zmpct">100%</span>
+    <button id="zmplus" aria-label="拡大">＋</button>
+    <button id="zmreset" aria-label="全体表示" style="width:auto; border-radius:999px; padding:0 .8em; font-size:.78em; white-space:nowrap;">全体</button>
+  </div>
+</div>
+<script>
+(function(){
+  var SEL = 'svg.mapsvg, svg.tlsvg, svg[role="img"], img.zoomable';
+  var targets = Array.prototype.slice.call(document.querySelectorAll(SEL))
+    .filter(function(el){ return !el.closest('#zmov'); });
+  if (!targets.length) return;
+
+  var ov = document.getElementById('zmov'), stage = document.getElementById('zmstage'),
+      inner = document.getElementById('zminner'), cap = document.getElementById('zmcap'),
+      pct = document.getElementById('zmpct');
+  var s = 1, tx = 0, ty = 0, baseW = 0, baseH = 0;
+  var MAXS = 8;
+
+  function apply(){
+    inner.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + s + ')';
+    pct.textContent = Math.round(s * 100) + '%';
+  }
+  function center(){
+    tx = (stage.clientWidth - baseW * s) / 2;
+    ty = (stage.clientHeight - baseH * s) / 2;
+    apply();
+  }
+  function reset(){ s = 1; fit(); }
+  function fit(){
+    var vw = stage.clientWidth * 0.92, vh = stage.clientHeight * 0.86;
+    var r = Math.min(vw / rawW, vh / rawH);
+    baseW = rawW * r; baseH = rawH * r;
+    var node = inner.firstChild;
+    if (node){ node.style.width = baseW + 'px'; node.style.height = baseH + 'px'; node.style.maxWidth = 'none'; }
+    center();
+  }
+  var rawW = 0, rawH = 0;
+
+  function dims(el){
+    if (el.tagName.toLowerCase() === 'svg'){
+      var vb = (el.getAttribute('viewBox') || '').split(/[ ,]+/);
+      if (vb.length === 4) return [parseFloat(vb[2]), parseFloat(vb[3])];
+      var bb = el.getBoundingClientRect(); return [bb.width || 600, bb.height || 400];
+    }
+    return [el.naturalWidth || 800, el.naturalHeight || 600];
+  }
+
+  function open(el){
+    var clone = el.cloneNode(true);
+    clone.classList.remove('zm-target');
+    clone.removeAttribute('id');
+    var d = dims(el); rawW = d[0]; rawH = d[1];
+    inner.innerHTML = '';
+    inner.appendChild(clone);
+    cap.textContent = el.getAttribute('aria-label') || '';
+    ov.classList.add('on');
+    document.body.style.overflow = 'hidden';
+    s = 1; fit();
+  }
+  function close(){
+    ov.classList.remove('on');
+    inner.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+
+  targets.forEach(function(el){
+    el.classList.add('zm-target');
+    el.addEventListener('click', function(){ open(el); });
+  });
+
+  document.getElementById('zmclose').addEventListener('click', close);
+  document.getElementById('zmplus').addEventListener('click', function(){ zoomAt(stage.clientWidth/2, stage.clientHeight/2, 1.4); });
+  document.getElementById('zmminus').addEventListener('click', function(){ zoomAt(stage.clientWidth/2, stage.clientHeight/2, 1/1.4); });
+  document.getElementById('zmreset').addEventListener('click', reset);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && ov.classList.contains('on')) close(); });
+
+  function zoomAt(px, py, f){
+    var s2 = Math.min(MAXS, Math.max(1, s * f));
+    if (s2 === s) return;
+    tx = px - (px - tx) * (s2 / s);
+    ty = py - (py - ty) * (s2 / s);
+    s = s2;
+    if (s === 1){ center(); } else { apply(); }
+  }
+
+  stage.addEventListener('wheel', function(e){
+    e.preventDefault();
+    zoomAt(e.clientX, e.clientY, e.deltaY < 0 ? 1.18 : 1/1.18);
+  }, {passive:false});
+
+  // ポインタ操作: 1本=ドラッグ移動 / 2本=ピンチ
+  var pts = new Map(), lastTap = 0, tapX = 0, tapY = 0, moved = false;
+  stage.addEventListener('pointerdown', function(e){
+    stage.setPointerCapture(e.pointerId);
+    pts.set(e.pointerId, {x: e.clientX, y: e.clientY});
+    moved = false;
+    if (pts.size === 1) stage.classList.add('drag');
+  });
+  stage.addEventListener('pointermove', function(e){
+    if (!pts.has(e.pointerId)) return;
+    var p = pts.get(e.pointerId);
+    if (pts.size === 1){
+      var dx = e.clientX - p.x, dy = e.clientY - p.y;
+      if (Math.abs(dx) + Math.abs(dy) > 3) moved = true;
+      tx += dx; ty += dy; apply();
+      p.x = e.clientX; p.y = e.clientY;
+    } else if (pts.size === 2){
+      moved = true;
+      var arr = Array.from(pts.values());
+      var other = (arr[0] === p) ? arr[1] : arr[0];
+      var d0 = Math.hypot(p.x - other.x, p.y - other.y);
+      p.x = e.clientX; p.y = e.clientY;
+      var d1 = Math.hypot(p.x - other.x, p.y - other.y);
+      if (d0 > 0){
+        zoomAt((p.x + other.x)/2, (p.y + other.y)/2, d1 / d0);
+      }
+    }
+  });
+  function up(e){
+    if (!pts.has(e.pointerId)) return;
+    pts.delete(e.pointerId);
+    if (!pts.size) stage.classList.remove('drag');
+    if (!moved && !pts.size){
+      var now = Date.now();
+      if (now - lastTap < 320 && Math.hypot(e.clientX - tapX, e.clientY - tapY) < 40){
+        // ダブルタップ: 2.5倍⇔全体
+        if (s > 1.01){ reset(); } else { zoomAt(e.clientX, e.clientY, 2.5); }
+        lastTap = 0;
+      } else {
+        lastTap = now; tapX = e.clientX; tapY = e.clientY;
+        // シングルタップ（背景）で閉じる: 等倍時のみ
+        if (s <= 1.01 && e.target === stage) setTimeout(function(){ if (lastTap) close(); }, 330);
+      }
+    }
+  }
+  stage.addEventListener('pointerup', up);
+  stage.addEventListener('pointercancel', function(e){ pts.delete(e.pointerId); if(!pts.size) stage.classList.remove('drag'); });
+  window.addEventListener('resize', function(){ if (ov.classList.contains('on')) fit(); });
+})();
+</script>
+<!--/zoomui-->
 </body>
 </html>
