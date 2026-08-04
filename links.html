@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>リンク集｜新しい一問一答 —世界をつなぐ、過去と現在をつなぐ—</title>
+<meta name="description" content="実物に会いに行ける美術館・博物館と、信頼できるデジタルアーカイブのリンク集。">
+<!--sitepwa-->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="theme-color" content="#faf6ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#181511" media="(prefers-color-scheme: dark)">
+<!--/sitepwa-->
+<style>
+  :root{
+    --bg:#faf6ee; --fg:#33302a; --sub:#6f695e;
+    --card:#ffffff; --amber:#e8a020; --amber-deep:#c9861a;
+    --teal:#2f9e94; --coral:#e0584f; --navy:#3d5a80;
+    --line:#eadfc8; --shadow:0 2px 10px rgba(120,95,40,.10);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#181511; --fg:#efe9df; --sub:#b0a898;
+      --card:#221e18; --amber:#e8a020; --amber-deep:#f0b23c;
+      --teal:#4db8ae; --coral:#e8776f; --navy:#8fb0d8;
+      --line:#3a332a; --shadow:0 2px 10px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:0 0 4em 0; background:var(--bg); color:var(--fg);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Noto Sans JP",sans-serif;
+    line-height:1.85; -webkit-text-size-adjust:100%;
+  }
+  .topbar{height:6px; background:linear-gradient(90deg, var(--coral), var(--amber), var(--teal));}
+  nav.topnav{
+    position:sticky; top:0; z-index:20; background:var(--card);
+    border-bottom:1px solid var(--line); box-shadow:var(--shadow);
+  }
+  nav.topnav .ninner{
+    max-width:720px; margin:0 auto; display:flex; gap:.2em;
+    overflow-x:auto; white-space:nowrap; padding:0 .6em; -webkit-overflow-scrolling:touch;
+  }
+  nav.topnav a, nav.topnav span.soon{
+    display:inline-block; padding:.7em .8em; font-size:.85em; font-weight:700;
+    color:var(--fg); text-decoration:none;
+  }
+  nav.topnav a:hover{color:var(--teal);}
+  nav.topnav a.active{color:var(--amber-deep); border-bottom:3px solid var(--amber);}
+  nav.topnav span.soon{opacity:.4; cursor:default;}
+  nav.topnav span.soon small{font-size:.7em; margin-left:.2em;}
+  .wrap{max-width:720px; margin:0 auto; padding:1.4em 1.1em;}
+  header.page{text-align:center; padding:1.6em 1em .6em;}
+  h1{font-size:1.4em; font-weight:800; margin:.2em 0;}
+  .lead{color:var(--sub); font-size:.9em;}
+  h2.section{
+    font-size:1.05em; font-weight:800; margin:2em 0 .8em; display:flex; align-items:center; gap:.5em;
+  }
+  h2.section::before{content:""; width:.55em; height:.55em; border-radius:3px; background:var(--teal); transform:rotate(45deg);}
+  ul.links{list-style:none; margin:.6em 0; padding:0;}
+  ul.links li{
+    margin:.7em 0; padding:.9em 1.1em; background:var(--card);
+    border-radius:14px; border:1px solid var(--line); box-shadow:var(--shadow);
+  }
+  ul.links a{color:var(--fg); text-decoration:none; font-weight:700;}
+  ul.links a:hover{color:var(--teal);}
+  ul.links .desc{display:block; font-size:.82em; color:var(--sub); margin-top:.2em;}
+  /* 枠ごとタップ領域化（stretched link）※外部リンクは別タブで開く */
+  ul.links li{position:relative; transition:transform .08s ease, border-color .15s ease;}
+  ul.links li > a::after{content:""; position:absolute; inset:0; border-radius:14px;}
+  ul.links li:hover{border-color:var(--teal); transform:translateY(-1px);}
+  ul.links li:active{transform:translateY(1px);}
+  .note{font-size:.78em; color:var(--sub); margin-top:2em;}
+  #totop{
+    position:fixed; right:1em; bottom:1.2em; z-index:30; width:2.9em; height:2.9em;
+    border-radius:50%; border:none; background:var(--amber); color:#fff; font-size:1em;
+    font-weight:800; cursor:pointer; box-shadow:0 3px 8px rgba(0,0,0,.25); display:none;
+  }
+</style>
+</head>
+<body>
+<div class="topbar"></div>
+<nav class="topnav"><div class="ninner">
+  <a href="index.html">ホーム</a>
+  <a href="daily.html">毎日の一問一答</a>
+  <a href="culture.html">文化史</a>
+  <a href="atlas.html">資料集</a>
+  <a href="features.html">特集<small>β</small></a>
+  <a href="links.html" class="active">リンク集</a>
+  <a href="contact.html">お問い合わせ</a>
+</div></nav>
+<div class="wrap">
+
+<header class="page">
+  <h1>リンク集 — 実物に会いに行く</h1>
+  <div class="lead">一問一答に登場した遺物や史料の多くは、実際に見に行けます。<br>暗記した知識は、実物の前に立ったとき経験に変わります。</div>
+</header>
+
+<h2 class="section">日本の博物館</h2>
+<ul class="links">
+  <li><a href="https://www.tnm.jp/" target="_blank" rel="noopener">東京国立博物館</a><span class="desc">日本最大の博物館。埴輪・銅鐸・金印など教科書の実物が揃う</span></li>
+  <li><a href="https://www.rekihaku.ac.jp/" target="_blank" rel="noopener">国立歴史民俗博物館（千葉・佐倉）</a><span class="desc">通称「歴博」。弥生時代の開始年代（歴博説）を提唱した研究拠点。原始〜現代の通史展示</span></li>
+  <li><a href="https://www.kyohaku.go.jp/" target="_blank" rel="noopener">京都国立博物館</a><span class="desc">京都の社寺に伝わる美術・工芸の宝庫</span></li>
+  <li><a href="https://www.narahaku.go.jp/" target="_blank" rel="noopener">奈良国立博物館</a><span class="desc">仏教美術の殿堂。毎秋の正倉院展はここ</span></li>
+  <li><a href="https://www.kyuhaku.jp/" target="_blank" rel="noopener">九州国立博物館（太宰府）</a><span class="desc">「日本文化の形成をアジア史的観点から捉える」がテーマ。大陸との交流史に強い</span></li>
+  <li><a href="https://sakitama-muse.spec.ed.jp/" target="_blank" rel="noopener">埼玉県立さきたま史跡の博物館</a><span class="desc">稲荷山古墳出土の金象嵌115文字の鉄剣（国宝）はここで見られる</span></li>
+  <li><a href="https://www.izm.ed.jp/" target="_blank" rel="noopener">島根県立古代出雲歴史博物館</a><span class="desc">荒神谷遺跡の銅剣358本・加茂岩倉遺跡の銅鐸39個（いずれも国宝）を展示</span></li>
+</ul>
+
+<h2 class="section">デジタルアーカイブ（家から見られる）</h2>
+<ul class="links">
+  <li><a href="https://emuseum.nich.go.jp/" target="_blank" rel="noopener">e国宝</a><span class="desc">国立文化財機構の国宝・重要文化財を高精細画像で。江田船山の銀象嵌銘大刀もここで確認できる</span></li>
+  <li><a href="https://colbase.nich.go.jp/" target="_blank" rel="noopener">ColBase（国立博物館所蔵品統合検索）</a><span class="desc">東京・京都・奈良・九州の国立博物館の所蔵品を横断検索</span></li>
+</ul>
+
+<h2 class="section">世界の博物館</h2>
+<ul class="links">
+  <li><a href="https://www.metmuseum.org/" target="_blank" rel="noopener">メトロポリタン美術館（ニューヨーク）</a><span class="desc">古代オリエント・エジプトの一大コレクション。所蔵品画像の多くをパブリックドメインで公開</span></li>
+  <li><a href="https://www.britishmuseum.org/" target="_blank" rel="noopener">大英博物館（ロンドン）</a><span class="desc">ロゼッタ=ストーン、アッシリアのレリーフ、ウルのスタンダードの本物がある</span></li>
+  <li><a href="https://www.louvre.fr/" target="_blank" rel="noopener">ルーヴル美術館（パリ）</a><span class="desc">ハンムラビ法典碑の実物はここ</span></li>
+</ul>
+
+<p class="note">※リンクはすべて公式サイトです（2026年8月時点で接続確認済み）。展示内容・開館情報は各館の最新情報をご確認ください。</p>
+
+</div>
+<button id="totop" aria-label="トップへ戻る" title="トップへ戻る">↑</button>
+<script>
+(function(){
+  var b = document.getElementById("totop");
+  window.addEventListener("scroll", function(){
+    b.style.display = window.scrollY > 500 ? "block" : "none";
+  }, {passive:true});
+  b.addEventListener("click", function(){ window.scrollTo({top:0, behavior:"smooth"}); });
+})();
+</script>
+<!--sitesw-->
+<script>
+if ("serviceWorker" in navigator && location.protocol !== "file:") {
+  navigator.serviceWorker.register("sw.js");
+}
+</script>
+<!--/sitesw-->
+</body>
+</html>

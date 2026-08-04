@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>歴史テスト Day 001 — 文明が始まった日、列島は森だった</title>
+<!--sitepwa-->
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<meta name="theme-color" content="#f7f3ec" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#12100e" media="(prefers-color-scheme: dark)">
+<!--/sitepwa-->
+<style>
+  :root{
+    --bg:#12100e; --fg:#efe9df; --panel:#1c1814; --panel2:#211c17;
+    --gold:#c9a227; --teal:#6fa3a0; --terra:#c47b6a; --green:#7d9b6a;
+    --border:#3a332a;
+  }
+  @media (prefers-color-scheme: light){
+    :root{
+      --bg:#f7f3ec; --fg:#25201a; --panel:#efe8db; --panel2:#e9e1d2;
+      --border:#d8cdb8;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:0 0 4em 0;
+    background:var(--bg); color:var(--fg);
+    font-family:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+    line-height:1.85;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:1.4em 1.1em;}
+  header.day{
+    text-align:center; padding:1.6em 1em 1.8em; border-bottom:1px solid var(--border);
+    margin-bottom:1.6em;
+  }
+  .daynum{color:var(--gold); letter-spacing:.15em; font-size:.85em;}
+  .date{opacity:.7; font-size:.85em; margin-top:.3em;}
+  h1.title{
+    font-size:1.35em; margin:.6em 0 .9em; font-weight:600; line-height:1.6;
+  }
+  .chips{display:flex; flex-wrap:wrap; gap:.5em; justify-content:center; margin-top:.6em;}
+  .chip{
+    font-size:.78em; border:1px solid var(--gold); color:var(--gold);
+    padding:.3em .7em; border-radius:999px; opacity:.9;
+  }
+  h2.section{
+    font-size:1.15em; color:var(--gold); border-bottom:2px solid var(--gold);
+    padding-bottom:.35em; margin-top:2.4em; letter-spacing:.05em;
+  }
+  .progress{
+    font-size:.82em; opacity:.75; margin:.5em 0 1.4em; padding:.5em .8em;
+    background:var(--panel2); border-radius:4px; border-left:3px solid var(--teal);
+  }
+  .q{
+    margin:1.1em 0; padding:1em 1.1em; background:var(--panel);
+    border-left:3px solid var(--gold); border-radius:6px;
+  }
+  .qhead{display:flex; align-items:baseline; gap:.5em; margin-bottom:.5em; flex-wrap:wrap;}
+  .qn{font-weight:700; color:var(--gold); font-size:1.05em;}
+  .badge{font-size:.68em; padding:.15em .55em; border-radius:3px; color:#fff; letter-spacing:.03em;}
+  .badge.basic{background:var(--teal);}
+  .badge.adv{background:var(--terra);}
+  .badge.doc{background:var(--gold); color:#221d15;}
+  .badge.map{background:#7d8fa0;}
+  .qtext{margin:.2em 0 .3em;}
+  details{margin-top:.5em;}
+  summary{
+    cursor:pointer; color:var(--teal); font-weight:600; font-size:.92em;
+    padding:.3em 0;
+  }
+  .answer{margin-top:.5em; font-weight:700; color:var(--gold);}
+  .explanation{margin-top:.4em; font-size:.88em; opacity:.88; line-height:1.8;}
+  svg.mapsvg{width:100%; height:auto; max-width:280px; display:block; margin:.6em auto;}
+  .col{
+    margin-top:2em; padding:1.2em 1.1em; background:var(--panel2);
+    border-radius:8px; border:1px solid var(--border);
+  }
+  .col.fieldnote{border-color:var(--green);}
+  .col h3{
+    margin:0 0 .7em; font-size:1.02em; color:var(--terra);
+  }
+  .col.fieldnote h3{color:var(--green);}
+  .col.linkcol h3{color:var(--teal);}
+  .col.story h3{color:var(--gold);}
+  .col.geo{border-color:#7d8fa0;}
+  .col.geo h3{color:#7d8fa0;}
+  table.tl{width:100%; border-collapse:collapse; margin:.8em 0; font-size:.85em;}
+  table.tl th, table.tl td{border:1px solid var(--border); padding:.5em .5em; text-align:left; vertical-align:top;}
+  table.tl th{background:var(--panel); color:var(--gold); font-weight:600;}
+  .viewpoint{margin-top:.8em; padding-top:.6em; border-top:1px dashed var(--border); font-size:.9em; color:var(--teal);}
+  footer.next{
+    margin-top:2.4em; padding:1em; text-align:center; font-size:.85em;
+    border-top:1px solid var(--border); opacity:.85;
+  }
+  .credit{text-align:center; font-size:.7em; opacity:.5; margin-top:1.2em;}
+
+  /* --- 統一テンプレート互換追加（Day001/002由来の要素・2026-08-03） --- */
+  blockquote{margin:.8em 0; padding:.7em .9em; border-left:2px solid var(--teal); background:var(--panel2); font-size:.92em;}
+  blockquote cite{display:block; margin-top:.5em; font-size:.8em; opacity:.7; font-style:normal;}
+  .caution{display:block; margin-top:.5em; color:var(--terra); font-size:.92em;}
+  .cite{margin-top:.8em; padding-top:.6em; border-top:1px dashed var(--border); font-size:.78em; opacity:.7;}
+  .note{margin-top:.8em; padding:.6em .8em; background:var(--panel); border-radius:6px; font-size:.88em; border-left:3px solid var(--teal);}
+  .col table{width:100%; border-collapse:collapse; margin:.8em 0; font-size:.85em;}
+  .col table th, .col table td{border:1px solid var(--border); padding:.5em; text-align:left; vertical-align:top;}
+  .col table th{background:var(--panel); color:var(--gold); font-weight:600;}
+  .col .sub{font-weight:700; color:var(--teal); margin-top:1em; font-size:.9em;}
+  .col .keys{font-size:.8em; opacity:.75; border-top:1px dotted var(--border); padding-top:.7em; margin-top:1em;}
+  .col .hook{color:var(--teal); font-style:italic;}
+  footer.next .label{color:var(--gold); font-weight:600;}
+  .q > svg:not(.mapsvg), .col > svg:not(.mapsvg){width:100%; height:auto; display:block; margin:.8em auto;}
+  /* Day001の実測SVG互換エイリアス */
+  :root{--ink:var(--fg); --sea:var(--teal); --rose:var(--terra); --leaf:var(--green); --line:var(--border); --dim:#a89c8c;}
+  @media (prefers-color-scheme: light){ :root{--dim:#7a6f60;} }
+</style>
+<!--gradecss-->
+<style>
+  :root{
+    --sg-panel:#fffdf9; --sg-track:#f0e9dc; --sg-border:#e0d8c9; --sg-ink:#25201a;
+    --sg-gold:#9c7d13; --sg-goldbright:#c9a227; --sg-green:#527040; --sg-terra:#a4523f; --sg-teal:#3f6f6c;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --sg-panel:#1b1815; --sg-track:#12100e; --sg-border:#332e28; --sg-ink:#efe9df;
+      --sg-gold:#c9a227; --sg-goldbright:#c9a227; --sg-green:#7d9b6a; --sg-terra:#c47b6a; --sg-teal:#6fa3a0;
+    }
+  }
+  .grade, #scorebar, #resultfx{
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Noto Sans JP",sans-serif;
+  }
+  .grade{display:flex; align-items:center; gap:.6em; margin:.6em 0 .4em; font-size:.8em; color:var(--sg-ink); opacity:.92;}
+  .grade > span{opacity:.65;}
+  .grade button{
+    font-family:inherit; font-size:.95em; padding:.32em 1em; border-radius:999px;
+    background:transparent; color:var(--sg-ink); border:1.5px solid var(--sg-border); cursor:pointer;
+  }
+  .grade button.on-ok{background:var(--sg-green); border-color:var(--sg-green); color:#fff;}
+  .grade button.on-ng{background:var(--sg-terra); border-color:var(--sg-terra); color:#fff;}
+  #scorebar{
+    position:fixed; left:0; right:0; bottom:0; z-index:9;
+    background:var(--sg-panel); border-top:1px solid var(--sg-border);
+    padding:.45em 1em .55em; font-size:.82em; color:var(--sg-ink);
+    box-shadow:0 -2px 10px rgba(0,0,0,.08);
+  }
+  #scorebar .inner{max-width:720px; margin:0 auto; display:flex; align-items:center; gap:.8em; flex-wrap:wrap;}
+  #scorebar .num{color:var(--sg-gold); font-weight:700;}
+  #scorebar .track{flex:1; min-width:90px; height:7px; background:var(--sg-track); border-radius:99px; overflow:hidden; border:1px solid var(--sg-border);}
+  #scorebar .fill{height:100%; width:0; background:linear-gradient(90deg, var(--sg-teal), var(--sg-goldbright)); transition:width .25s;}
+  #scorebar button{
+    font-family:inherit; font-size:.78em; padding:.2em .8em; border-radius:999px;
+    background:transparent; color:var(--sg-ink); opacity:.7; border:1px solid var(--sg-border); cursor:pointer;
+  }
+  #scorebar .sb-sec{white-space:nowrap; font-weight:700;}
+  .fx-p{position:fixed; pointer-events:none; z-index:60; will-change:transform,opacity;}
+  .q.shake{animation:qshake .4s;}
+  @keyframes qshake{
+    0%,100%{transform:translateX(0);}
+    20%{transform:translateX(-5px);} 40%{transform:translateX(4px);}
+    60%{transform:translateX(-3px);} 80%{transform:translateX(2px);}
+  }
+  #resultfx{
+    position:fixed; inset:0; z-index:50; display:flex; align-items:center; justify-content:center;
+    background:rgba(0,0,0,.45); cursor:pointer;
+  }
+  #resultfx[hidden]{display:none;}
+  .rf-card{
+    background:var(--sg-panel); border:1px solid var(--sg-gold); border-radius:14px;
+    padding:1.6em 2.2em; text-align:center; max-width:85vw;
+    animation:rfpop .45s cubic-bezier(.2,1.6,.4,1);
+  }
+  @keyframes rfpop{0%{transform:scale(.6); opacity:0;} 100%{transform:scale(1); opacity:1;}}
+  .rf-title{color:var(--sg-gold); font-size:1.05em; letter-spacing:.12em;}
+  .rf-score{font-size:2.1em; font-weight:700; color:var(--sg-ink); margin:.25em 0;}
+  .rf-score .rf-den{font-size:.5em; opacity:.6;}
+  .rf-msg{font-size:.95em; color:var(--sg-teal); margin-bottom:.6em;}
+  .rf-close{font-size:.72em; opacity:.5; color:var(--sg-ink);}
+</style>
+<!--/gradecss-->
+</head>
+<body>
+<!--sitenav-->
+<style>
+  /* サイト共通ナビ（トップページと同一仕様・自己完結。2026-08-03 UI統一） */
+  :root{
+    --nv-card:#ffffff; --nv-line:#eadfc8; --nv-fg:#33302a; --nv-teal:#2f9e94;
+    --nv-amber:#e8a020; --nv-coral:#e0584f; --nv-shadow:0 2px 10px rgba(120,95,40,.10);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --nv-card:#221e18; --nv-line:#3a332a; --nv-fg:#efe9df; --nv-teal:#4db8ae;
+      --nv-amber:#e8a020; --nv-coral:#e8776f; --nv-shadow:0 2px 10px rgba(0,0,0,.35);
+    }
+  }
+  .sitebar{height:6px; background:linear-gradient(90deg, var(--nv-coral), var(--nv-amber), var(--nv-teal));}
+  nav.topnav{
+    position:sticky; top:0; z-index:40; background:var(--nv-card);
+    border-bottom:1px solid var(--nv-line); box-shadow:var(--nv-shadow);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Noto Sans JP",sans-serif;
+  }
+  nav.topnav .ninner{
+    max-width:720px; margin:0 auto; display:flex; gap:.2em;
+    overflow-x:auto; white-space:nowrap; padding:0 .6em; -webkit-overflow-scrolling:touch;
+  }
+  nav.topnav a, nav.topnav span.soon{
+    display:inline-block; padding:.7em .8em; font-size:.85em; font-weight:700;
+    color:var(--nv-fg); text-decoration:none;
+  }
+  nav.topnav a:hover{color:var(--nv-teal);}
+  nav.topnav span.soon{opacity:.4; cursor:default;}
+  nav.topnav span.soon small{font-size:.7em; margin-left:.2em;}
+  #totop{
+    position:fixed; right:1em; bottom:5.5em; z-index:30; width:2.9em; height:2.9em;
+    border-radius:50%; border:none; background:var(--nv-amber); color:#fff; font-size:1em;
+    font-weight:800; cursor:pointer; box-shadow:0 3px 8px rgba(0,0,0,.25); display:none;
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Noto Sans JP",sans-serif;
+  }
+</style>
+<div class="sitebar"></div>
+<nav class="topnav"><div class="ninner">
+  <a href="../index.html">ホーム</a>
+  <a href="../daily.html">毎日の一問一答</a>
+  <a href="../culture.html">文化史</a>
+  <a href="../atlas.html">資料集</a>
+  <a href="../features.html">特集<small>β</small></a>
+  <a href="../links.html">リンク集</a>
+  <a href="../contact.html">お問い合わせ</a>
+</div></nav>
+<!--/sitenav-->
+<div class="wrap">
+
+<header class="day">
+  <div class="daynum">DAY 001</div>
+  <div class="date">2026年8月1日（土）</div>
+  <h1 class="title">文明が始まった日、列島は森だった</h1>
+  <div class="chips">
+    <span class="chip">世界史：文明の誕生／古代オリエント（メソポタミア・エジプト）</span>
+    <span class="chip">日本史：文化の始まり（旧石器・縄文）その1</span>
+  </div>
+</header>
+
+<h2 class="section">世界史（18問）</h2>
+<div class="progress">単元：文明の誕生 ／ 古代オリエント文明とその周辺（メソポタミア・エジプト）</div>
+
+<div class="q">
+    <div class="qhead"><span class="qn">1</span><span class="badge basic">基本</span></div>
+    <div class="qtext">東アフリカ・南アフリカで発見された、猿人の代表例とされる化石人類は何か。</div>
+    <details><summary>解答を見る</summary>
+      <div class="answer">解答：アウストラロピテクス</div>
+      <div class="explanation">解説：最古の人類（猿人）は約700万年前にアフリカに現れたとされ、チャドで発見されたサヘラントロプスがその例。アウストラロピテクスは約420万年前に現れた猿人の代表例で、直立二足歩行を行い、礫石器を用いた。
+        <span class="caution">注意：「猿人→原人→旧人→新人」は進化の段階区分であって一直線の系譜ではない。現行の教科書は、いくつもの系統が誕生と絶滅を繰り返し、旧人と新人が共存した時期もあったと記述している。</span></div>
+    </details>
+  </div>
+
+<div class="q">
+    <div class="qhead"><span class="qn">2</span><span class="badge basic">基本</span></div>
+    <div class="qtext">ハンドアックス（握斧）などの打製石器を用い、火や言語を使い始めたとされる、北京原人・ジャワ原人に代表される人類の段階を何というか。</div>
+    <details><summary>解答を見る</summary>
+      <div class="answer">解答：原人（ホモ＝エレクトゥス）</div>
+      <div class="explanation">解説：北京原人・ジャワ原人はホモ＝エレクトゥスに分類される代表例。
+        <span class="caution">誤答注意：打製石器そのものは猿人段階（礫石器）から用いられている。原人の指標は「打製石器の使用」ではなく、ハンドアックスなどより発達した石器と、火・言語の使用である。</span></div>
+    </details>
+  </div>
+
+<div class="q">
+    <div class="qhead"><span class="qn">3</span><span class="badge basic">基本</span></div>
+    <div class="qtext">打製石器を用いた時代を旧石器時代というのに対し、磨製石器の使用と農耕・牧畜の開始によって特徴づけられる時代を何というか。</div>
+    <details><summary>解答を見る</summary>
+      <div class="answer">解答：新石器時代</div>
+      <div class="explanation">解説：新石器時代の指標は磨製石器・土器だけでなく、農耕と牧畜の開始そのものにある。石器の技術革新と生活様式の転換が同時に進んだ点をセットで押さえたい。旧石器と新石器の間に中石器時代を置く区分もある。</div>
+    </details>
+  </div>
+
+<div class="q">
+    <div class="qhead"><span class="qn">4</span><span class="badge basic">基本</span></div>
+    <div class="qtext">農耕と牧畜が始まり、人類が食料を自ら生産するようになったことを何と呼ぶか。</div>
+    <details><summary>解答を見る</summary>
+      <div class="answer">解答：食料生産革命（新石器革命）</div>
+      <div class="explanation">解説：それまでの獲得経済（狩猟・採集）から生産経済への転換を指す。西アジアの「肥沃な三日月地帯」で麦類の栽培や羊・山羊の家畜化が始まり、定住・人口増加・階級分化の出発点となった。教科書本文の見出しは「農耕・牧畜の開始」で、この語は用語集レベル。</div>
+    </details>
+  </div>
+
+<div class="q">
+    <div class="qhead"><span class="qn">5</span><span class="badge basic">基本</span></div>
+    <div class="qtext">新石器時代に作られた、彩色文様を持つ土器を何というか。</div>
+    <details><summary>解答を見る</summary>
+      <div class="answer">解答：彩文土器（彩陶）</div>
+      <div class="explanation">解説：彩文土器は新石器時代の農耕文化を特徴づける遺物で、中国の仰韶文化の彩陶などが有名。磨製石器とあわせて新石器時代の指標として問われやすい。</div>
+    </details>
+  </div>
+
+<div class="q">
+    <div class="qhead"><span class="qn">6</span><span class="badge adv">発展</span></div>
+    <div class="qtext">農業生産の発展にともない社会に生じた、支配者と被支配者の区分を何というか。</div>
+    <details><summary>解答を見る</summary>
+      <div class="answer">解答：階級（階級分化）</div>
+      <div class="explanation">解説：余剰生産物の蓄積と管理を背景に、指導者層と一般成員の格差が拡大し、階級や国家が生まれた。神殿や灌漑施設の建設・維持といった共同作業の統率も、権力の集中を後押しした。平等な共同体から階層社会への移行は、のちの都市国家・帝国形成の前提となる。</div>
+    </details>
+  </div>
+
+<div class="q">
+    <div class="qhead"><span class="qn">7</span><span class="badge basic">基本</span></div>
+    <div class="qtext">西アジアで灌漑農業が発達し、余剰生産物を背景に成立した集住地を何というか。</div>
+    <details><summary>解答を見る</summary>
+      <div class="answer">解答：都市</div>
+      <div class="explanation">解説：ティグリス・ユーフラテス両河の下流域では灌漑農業により生産力が高まり、神殿を中心とする都市が形成された。余剰生産物の管理・分配が階級や国家の形成につながった点が重要。</div>
+    </details>
+  </div>
+
+<div class="q">
+    <div class="qhead"><span class="qn">8</span><span class="badge adv">発展</span></div>
+    <div class="qtext">前3000年頃までに西アジアで実用化され、武器や祭器に使われた金属器を何というか。</div>
+    <details><summary>解答を見る</summary>
+      <div class="answer">解答：青銅器</div>
+      <div class="explanation">解説：青銅器は銅と錫の合金で、鉄器より早く普及した。鉄製武器を早くから本格的に用いたのはヒッタイトとされる。
+        <span class="caution">注意：「ヒッタイトが鉄器を発明し独占した」という説明は近年見直されている。アナトリアではヒッタイト以前の鉄器も確認されており、断定は避けたい。「青銅器→鉄器」という普及の順序を押さえるのが要点。</span></div>
+    </details>
+  </div>
+
+<div class="q">
+    <div class="qhead"><span class="qn">9</span><span class="badge basic">基本</span></div>
+    <div class="qtext">文字の発明以降を「歴史時代」、それ以前を「先史時代」と呼ぶ。シュメール人が用いた、西アジア最古の文字体系は何か。</div>
+    <details><summary>解答を見る</summary>
+      <div class="answer">解答：楔形文字</div>
+      <div class="explanation">解説：シュメール人の絵文字から発展し、粘土板に葦の茎で刻まれた楔形文字が、現存する最古の文字体系のひとつとされる。「文字の有無」が歴史時代と先史時代を分ける基準である点を押さえておく。</div>
+    </details>
+  </div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">10</span><span class="badge basic">基本</span></div>
+  <div class="qtext">前3500年頃、ティグリス川とユーフラテス川の下流域にウル・ウルクなどの都市国家を築き、楔形文字を生み出した民族は。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：シュメール人</div>
+    <div class="explanation">解説：系統不明の民族。前24世紀にアッカド人のサルゴン（教科書では「サルゴン1世」とも表記）に征服されるが、楔形文字・六十進法・太陰暦（実際は閏月で季節を調整する太陰太陽暦）はその後のオリエント世界に受け継がれた。「1時間＝60分」は今も彼らの発明の中で生きている。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">11</span><span class="badge basic">基本</span></div>
+  <div class="qtext">前18世紀、メソポタミア全域を統一し、「目には目を」の原則で知られる法典を発布したバビロン第1王朝の王は。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：ハンムラビ王</div>
+    <div class="explanation">解説：法典の原碑はルーヴル美術館にある玄武岩の石柱。頂部には太陽神シャマシュから王が王権の象徴を授かる場面が浮き彫りにされている。「神から授かった法」という体裁が王権の正当化装置だった。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">12</span><span class="badge adv">発展</span><span class="badge doc">史料</span></div>
+  <blockquote>
+    第196条　もしアウィールムがアウィールム仲間の目を損なったならば、彼の目を損なわなければならない。<br>
+    第198条　もし彼がムシュケーヌムの目を損なったか、（略）骨を折ったならば、銀1マナを支払わなければならない。<br>
+    第199条　もし彼がアウィールムの奴隷の目を損なったか、（略）骨を折ったならば、その（奴隷の）価格の半分を支払わなければならない。
+    <cite>——『ハンムラビ法典』（部分・現代語訳）</cite>
+  </blockquote>
+  <div class="qtext">(1) 第196条にみられる、加害と同等の報復を科す原則を何というか。<br>(2) 第198・199条から読み取れる、この法典の身分に関する特徴を簡潔に述べよ。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：(1) 同害復讐法（タリオの原則）<br>(2) 被害者の身分によって刑罰が異なり、平民（ムシュケーヌム）や奴隷（ワルドゥム）への加害は金銭賠償で済むなど、身分制に立脚した不平等な内容になっている。</div>
+    <div class="explanation">解説：見落としやすいのは「同害復讐は野蛮ではなく制限だった」という点。復讐の際限ないエスカレートを「同じ分まで」で止める法である。共通テストの正誤問題では「すべての人に平等に適用された」という誤文が定番。アウィールム（上層自由人）／ムシュケーヌム（従属自由人）／ワルドゥム（奴隷）の三身分は書けるように。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">13</span><span class="badge basic">基本</span></div>
+  <div class="qtext">古代エジプトで、死者が冥界の審判を無事通過できるよう、呪文や図解を記してミイラとともに埋葬されたパピルス文書は。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：『死者の書』</div>
+    <div class="explanation">解説：中心場面は「心臓の計量」。死者の心臓を天秤の一方に、真理の女神マアトの羽根をもう一方に載せ、釣り合えば来世へ、重ければ怪物アメミトに食われて消滅する。死は終わりではなく、審査のある入国審査だった。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">14</span><span class="badge basic">基本</span></div>
+  <div class="qtext">ナイル川の定期的な氾濫を予測する必要から古代エジプトで用いられた暦は。また、「エジプトはナイルのたまもの」と記したギリシア人歴史家とその著作は。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：太陽暦／ヘロドトス『歴史』</div>
+    <div class="explanation">解説：氾濫後の土地を測り直す必要から測地術（幾何学の語源 geo-metria＝土地測量）が発達した。〈エジプト＝太陽暦・測地術・十進法〉／〈メソポタミア＝太陰暦・六十進法・占星術〉の対比は頻出。ヘロドトスは「歴史の父」と呼ばれ、ペルシア戦争を主題とする。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">15</span><span class="badge basic">基本</span></div>
+  <div class="qtext">エジプトの神聖文字（ヒエログリフ）を解読したフランス人は。また、その手がかりとなった、ナポレオンのエジプト遠征中に発見された石碑は。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：シャンポリオン／ロゼッタ＝ストーン</div>
+    <div class="explanation">解説：石碑には同一内容が神聖文字・民用文字（デモティック）・ギリシア文字の3種で刻まれていた。ギリシア文字が読めたことが突破口になった。エジプト文字は3種類（神聖文字・神官文字・民用文字）と押さえる。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">16</span><span class="badge basic">基本</span></div>
+  <div class="qtext">エジプト新王国時代、従来の多神教を廃してアテン神一神への信仰を強制し、都をテル＝エル＝アマルナに移した王は。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：アメンホテプ4世（イクナートン／アクエンアテン）</div>
+    <div class="explanation">解説：改革には、強大化したテーベのアメン神官団の力を削ぐ政治闘争の側面があったと考えられている。この時期に生まれた写実的な「アマルナ美術」も頻出。改革は一代で挫折し、まもなく即位したツタンカーメン（トゥトアンクアメン）の時にアメン信仰へ戻る——王名の「アテン→アメン」の変化がそれを物語る。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">17</span><span class="badge basic">基本</span></div>
+  <div class="qtext">エジプト文明は都の所在などから大きく古王国・中王国・新王国の3時代に区分される。このうちピラミッドが最も盛んに造営されたのはどの時代か。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：古王国（時代）</div>
+    <div class="explanation">解説：古王国（前27〜前22世紀頃、都メンフィス）はクフ王のギザの大ピラミッドに代表される造営最盛期。中王国（都はテーベ、第12王朝でイチタウイに遷都）はヒクソス侵入で混乱、新王国（都テーベ）はアメンホテプ4世やラメス2世が出た対外発展期、と都と特徴をセットで区別すると整理しやすい。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">18</span><span class="badge basic">基本</span></div>
+  <div class="qtext">前17世紀頃、馬と戦車を伴ってエジプトのデルタ地帯に侵入し一時的に支配した西アジア系の異民族は何と呼ばれるか。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：ヒクソス</div>
+    <div class="explanation">解説：ヒクソスの支配は中王国の混乱に乗じたもので、新王国の王がこれを撃退して統一を回復した。この経験がのちの新王国による積極的な対外進出（シリア方面への遠征）につながったとされる。「異民族支配への反動が対外拡張を生む」構図として押さえたい。なお近年の考古学研究（人骨の同位体分析など）では、数世代かけてデルタ地帯に移住した人々が内部から権力を握ったとする見方が有力になっており、「馬と戦車を伴う侵入」は教科書的な慣行表記である。</div>
+  </details>
+</div>
+
+<h2 class="section">日本史（10問）</h2>
+<div class="progress">単元：文化の始まり（旧石器・縄文）その1</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">19</span><span class="badge basic">基本</span></div>
+  <div class="qtext">1946年、群馬県の岩宿遺跡で関東ローム層中から打製石器を発見し、日本列島の旧石器文化の存在を初めて実証した人物は。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：相沢忠洋</div>
+    <div class="explanation">解説：彼は納豆の行商をしながら独学で遺跡を歩いた在野の研究者だった。それまで学界は「日本に旧石器時代はない」と考えており、この発見が日本史の始まりを一気に数万年さかのぼらせた。正式調査は明治大学が担当した（1949年）。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">20</span><span class="badge basic">基本</span></div>
+  <div class="qtext">後期旧石器時代の終わり頃に登場した、木や骨の軸に多数はめ込んで刃とした、小型で規格的な石器を何というか。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：細石器（細石刃）</div>
+    <div class="explanation">解説：旧石器の変遷は〈打製石斧・ナイフ形石器 → 尖頭器（ポイント） → 細石器〉の順。小型化・規格化が進むのは、獲物が大型獣から中小動物へ移り、素早い動物を仕留める投槍の効率が求められたため。シベリアから北海道経由で伝わったとされる。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">21</span><span class="badge basic">基本</span></div>
+  <div class="qtext">縄文時代の人々が、地面を数十センチ掘り下げて床とし、柱を立てて屋根をかけた代表的な住居を何というか。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：竪穴住居</div>
+    <div class="explanation">解説：床を掘り下げるのは断熱のため。土は温度変化が小さく、冬は暖かく夏は涼しい。この形式は縄文から古墳時代を経て、地方では中世まで使われ続けた、日本史上もっとも長寿な建築である。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">22</span><span class="badge basic">基本</span></div>
+  <div class="qtext">縄文人が食料の残滓などを捨てた場所が堆積した遺跡を何というか。また、1877年に東京の大森貝塚を発掘した、日本近代考古学の出発点とされるアメリカ人動物学者は。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：貝塚／モース（エドワード・S・モース）</div>
+    <div class="explanation">解説：貝殻のカルシウム分が土壌を中和するため、通常なら溶けてしまう骨・角・牙の道具や人骨が残る。つまり貝塚は「ゴミ捨て場」であると同時に、当時を知る最良のタイムカプセルである。頻出の貝塚は大森（東京）・加曽利（千葉、日本最大級）・鳥浜（福井、低湿地で植物質遺物が残存）。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">23</span><span class="badge basic">基本</span></div>
+  <div class="qtext">縄文時代に、多産や豊穣を祈る呪術的目的で作られたと考えられている、多くは女性をかたどった土製品は。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：土偶</div>
+    <div class="explanation">解説：出土する土偶は、脚や腕がわざと折られたと考えられる状態で見つかることが多い。古墳時代の「埴輪」と混同しやすいので、〈土偶＝縄文・呪術・女性像〉／〈埴輪＝古墳・墳丘に並べる〉と対で押さえる。男性器を象った石棒も同系の祭祀具。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">24</span><span class="badge basic">基本</span></div>
+  <div class="qtext">縄文時代の埋葬法で、遺体の手足を折り曲げて葬るものを何というか。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：屈葬</div>
+    <div class="explanation">解説：死者の霊が戻ってこないよう封じたとする説、胎児の姿勢に戻して再生を願ったとする説などがある。弥生時代になると手足を伸ばす伸展葬が増える。〈縄文＝屈葬／弥生＝伸展葬〉の対比で覚える。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">25</span><span class="badge basic">基本</span></div>
+  <div class="qtext">縄文時代に、成人になる際などの通過儀礼として健康な歯を抜いた風習を何というか。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：抜歯</div>
+    <div class="explanation">解説：抜く歯の本数や位置に規則性があり、集団内での地位や出自を示す記号だったと考えられている。ほかに前歯を叉状に削る叉状研歯も見つかっている。土偶・石棒・屈葬・抜歯は「縄文の呪術的習俗」としてまとめて問われる。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">26</span><span class="badge adv">発展</span></div>
+  <div class="qtext">青森県にある、直径1メートル級の栗材による大型掘立柱建物跡が出土し、クリの管理栽培も裏づけられた縄文前期〜中期の大規模集落遺跡は。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：三内丸山遺跡</div>
+    <div class="explanation">解説：約1700年にわたり継続した定住集落で、「縄文＝移動する狩猟採集民」というイメージを塗り替えた。2021年に「北海道・北東北の縄文遺跡群」として世界文化遺産に登録。ほかの縄文遺跡では、大湯環状列石（秋田・ストーンサークル）、尖石遺跡（長野）も押さえておきたい。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">27</span><span class="badge adv">発展</span><span class="badge map">地図</span></div>
+  <svg viewBox="0 0 440 667" style="max-width:380px" role="img" aria-label="縄文時代の交易品産地略図">
+    <path d="M158 315 L152 315 L150 315 L154 313 L154 309 L157 303 L157 301 L152 301 L152 294 L156 287 L166 277 L168 275 L169 279 L166 290 L165 294 L173 295 L168 309 L158 315 Z M230 569 L229 572 L226 572 L224 569 L225 565 L228 565 L230 569 Z M513 -200 L522 -200 L525 -200 L531 -199 L556 -186 L563 -185 L571 -185 L577 -186 L581 -189 L596 -204 L612 -218 L614 -217 L614 -213 L612 -209 L606 -197 L598 -180 L596 -171 L599 -163 L604 -156 L607 -146 L612 -133 L618 -132 L621 -131 L627 -135 L633 -140 L638 -141 L644 -140 L637 -137 L630 -132 L624 -124 L622 -123 L616 -123 L612 -123 L605 -120 L598 -116 L592 -111 L585 -109 L577 -108 L566 -104 L558 -104 L544 -107 L538 -106 L523 -99 L509 -88 L498 -76 L488 -61 L484 -53 L481 -45 L481 -39 L480 -34 L478 -30 L475 -27 L467 -29 L454 -36 L428 -48 L401 -65 L385 -74 L357 -72 L329 -55 L327 -56 L316 -68 L311 -72 L305 -74 L301 -73 L297 -73 L290 -67 L288 -62 L286 -58 L286 -54 L287 -51 L292 -43 L300 -38 L303 -36 L310 -37 L313 -36 L325 -25 L337 -14 L340 -11 L335 -7 L330 -5 L324 -6 L318 -7 L308 -12 L304 -8 L297 0 L293 9 L290 13 L283 18 L275 20 L271 20 L268 16 L266 12 L265 8 L267 -2 L271 -11 L272 -20 L269 -32 L267 -35 L259 -42 L255 -50 L254 -58 L254 -63 L256 -74 L258 -80 L262 -82 L266 -83 L273 -87 L280 -92 L287 -98 L293 -105 L297 -113 L291 -122 L290 -128 L291 -133 L297 -136 L303 -134 L316 -126 L319 -125 L327 -125 L339 -123 L346 -124 L349 -125 L355 -131 L357 -140 L356 -151 L356 -161 L359 -170 L369 -184 L372 -192 L373 -212 L377 -221 L380 -230 L381 -249 L377 -267 L373 -276 L368 -285 L369 -293 L373 -301 L373 -303 L374 -305 L381 -307 L384 -308 L387 -312 L391 -314 L394 -312 L396 -308 L406 -299 L422 -283 L441 -257 L452 -245 L465 -234 L479 -223 L493 -213 L502 -209 L509 -201 L513 -200 Z M345 25 L348 26 L360 22 L357 35 L356 47 L357 68 L358 78 L360 87 L365 94 L372 98 L382 113 L387 131 L391 140 L394 150 L394 154 L395 158 L394 164 L395 169 L394 184 L389 201 L389 210 L385 211 L383 215 L381 217 L378 219 L375 219 L373 221 L372 226 L371 230 L368 234 L366 238 L364 249 L363 260 L361 268 L354 270 L347 269 L337 273 L335 275 L328 288 L326 296 L326 305 L328 315 L330 325 L333 344 L330 373 L328 382 L323 389 L320 391 L317 395 L313 404 L306 423 L306 428 L306 433 L304 439 L303 445 L304 453 L306 460 L315 477 L318 482 L322 487 L307 492 L304 494 L295 504 L292 514 L292 524 L291 528 L288 531 L286 534 L276 538 L269 543 L263 551 L260 554 L255 553 L252 550 L255 545 L254 540 L256 527 L254 522 L259 518 L262 512 L267 506 L271 502 L272 498 L268 494 L265 492 L260 492 L255 492 L252 496 L250 501 L251 504 L250 506 L243 513 L244 520 L246 524 L249 526 L248 528 L244 534 L242 535 L237 526 L231 522 L224 522 L217 523 L211 529 L209 534 L208 538 L208 550 L206 559 L202 568 L199 571 L194 577 L190 577 L187 575 L185 571 L188 556 L188 548 L194 544 L189 538 L182 536 L173 539 L171 543 L169 547 L164 553 L158 559 L152 568 L148 579 L134 576 L127 575 L119 575 L106 574 L91 576 L75 580 L76 577 L90 570 L90 569 L89 565 L85 565 L77 566 L73 565 L71 561 L68 560 L67 561 L67 569 L65 570 L63 568 L63 562 L62 553 L61 548 L64 543 L61 541 L58 542 L54 544 L51 548 L43 563 L41 573 L46 580 L61 590 L63 593 L63 597 L61 602 L57 604 L41 607 L27 614 L23 620 L11 646 L1 664 L-14 670 L-29 665 L-33 658 L-36 651 L-42 644 L-47 636 L-51 627 L-50 613 L-52 604 L-50 602 L-42 597 L-39 594 L-34 587 L-32 583 L-32 578 L-36 575 L-46 575 L-56 576 L-63 574 L-73 567 L-76 565 L-86 565 L-93 566 L-100 569 L-108 570 L-110 571 L-119 580 L-126 585 L-132 588 L-145 588 L-151 590 L-158 593 L-160 593 L-167 597 L-175 600 L-179 603 L-187 601 L-203 607 L-211 608 L-219 605 L-226 599 L-233 601 L-238 609 L-240 625 L-243 633 L-244 641 L-248 640 L-269 624 L-270 624 L-287 626 L-292 628 L-297 631 L-303 632 L-308 630 L-314 626 L-318 627 L-324 630 L-325 607 L-324 604 L-321 599 L-318 596 L-310 595 L-301 596 L-295 594 L-290 590 L-285 583 L-279 578 L-271 573 L-263 569 L-256 562 L-249 554 L-243 549 L-237 544 L-227 533 L-213 521 L-208 512 L-205 509 L-194 504 L-178 500 L-171 501 L-164 509 L-160 508 L-156 505 L-149 504 L-141 506 L-133 506 L-125 505 L-110 502 L-102 499 L-94 495 L-66 492 L-48 485 L-45 486 L-42 487 L-41 492 L-44 498 L-41 501 L-38 503 L-20 504 L-15 505 L-7 501 L0 497 L7 490 L12 483 L7 475 L6 465 L10 455 L16 446 L23 441 L29 435 L42 418 L51 404 L55 387 L53 366 L61 351 L68 349 L84 342 L92 340 L93 343 L93 347 L81 359 L74 365 L70 366 L66 368 L64 373 L70 380 L72 386 L72 391 L72 396 L79 401 L87 403 L90 403 L93 401 L102 389 L104 386 L130 377 L143 370 L150 368 L156 365 L171 350 L177 344 L182 337 L186 328 L189 319 L193 313 L217 300 L224 293 L227 289 L229 279 L231 268 L234 260 L238 252 L243 244 L249 236 L253 229 L258 210 L260 200 L261 196 L264 193 L266 190 L268 185 L269 181 L270 168 L269 157 L265 149 L262 146 L258 146 L253 147 L249 143 L250 140 L254 140 L257 138 L259 135 L264 126 L266 116 L266 111 L263 103 L260 93 L260 88 L263 82 L267 77 L271 76 L275 75 L278 74 L282 71 L284 68 L287 59 L288 55 L286 42 L288 38 L290 36 L294 38 L298 38 L302 38 L306 39 L307 42 L309 64 L311 67 L314 69 L317 69 L320 65 L322 61 L326 60 L338 65 L342 61 L345 56 L347 47 L346 38 L343 35 L340 36 L338 38 L335 39 L317 44 L317 34 L321 20 L323 16 L326 14 L333 16 L337 18 L345 25 Z" fill="var(--ink)" fill-opacity="0.06" stroke="var(--ink)" stroke-width="1" stroke-opacity="0.6" stroke-linejoin="round"/>
+    <text x="110" y="170" font-size="10.5" fill="var(--sea)" text-anchor="middle" font-family="serif">日本海</text>
+    <text x="369" y="579" font-size="10.5" fill="var(--sea)" text-anchor="middle" font-family="serif">太平洋</text>
+    <path d="M311 65 l5.5 10 l-11 0 Z" fill="var(--gold)" stroke="var(--ink)" stroke-width="0.5"/>
+    <text x="303" y="62" fill="var(--ink)" font-size="10" text-anchor="end" font-family="serif">青森・三内丸山</text>
+    <text x="303" y="73" fill="var(--dim)" font-size="8.5" text-anchor="end" font-family="serif">（各地の産物が集まる集落）</text>
+    <circle cx="127" cy="380" r="5" fill="var(--rose)"/>
+    <text x="118" y="374" fill="var(--dim)" font-size="10" text-anchor="end" font-family="serif">新潟・姫川（ヒスイ）</text>
+    <circle cx="290" cy="145" r="5" fill="var(--leaf)"/>
+    <text x="281" y="148" fill="var(--dim)" font-size="10" text-anchor="end" font-family="serif">秋田（アスファルト）</text>
+    <circle cx="207" cy="317" r="5" fill="var(--leaf)"/>
+    <text x="198" y="327" fill="var(--dim)" font-size="10" text-anchor="end" font-family="serif">新潟（アスファルト）</text>
+    <circle cx="145" cy="450" r="5" fill="var(--sea)"/>
+    <text x="136" y="454" fill="var(--dim)" font-size="10" text-anchor="end" font-family="serif">長野・和田峠（黒曜石）</text>
+    <circle cx="210" cy="610" r="5" fill="var(--sea)"/>
+    <text x="219" y="614" fill="var(--dim)" font-size="10" font-family="serif">伊豆諸島・神津島（黒曜石）</text>
+    <text x="8" y="16" fill="var(--dim)" font-size="9" font-family="serif">●＝黒曜石　●＝ヒスイ　●＝アスファルトの産地（いずれも代表点）　▲＝三内丸山</text>
+    <text x="8" y="661" fill="var(--dim)" font-size="8.5" font-family="serif">※海岸線は実測データ（簡略化）。産地は代表的な地点を示す</text>
+  </svg>
+  <div class="qtext">長野県和田峠や伊豆諸島の神津島を産地とし、鋭利な刃物の材料として列島各地へ運ばれた火山ガラスは。また、神津島産のものが本州で出土することから読み取れる、縄文人の技術上の到達点を一つ挙げよ。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：黒曜石／神津島は本州から約50km離れた外洋の島であり、丸木舟で黒潮を横切る外洋航海術をもっていたことがわかる。</div>
+    <div class="explanation">解説：神津島産の黒曜石は3万年前の遺跡からすでに出土しており、世界最古級の外洋航海の証拠とされる。本州との距離は現在約50km、海面が低下していた旧石器時代でも約40kmあった。なお3万年前（旧石器時代）の渡海手段は未解明で、丸木舟の実物が確認できるのは縄文時代からである。交易品の三点セットは〈黒曜石＝刃物／新潟・姫川のヒスイ＝装身具／秋田・新潟など日本海側産のアスファルト＝接着剤〉。それぞれの産地とセットで覚えること。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">28</span><span class="badge adv">発展</span></div>
+  <div class="qtext">更新世（氷河時代）に日本列島がアジア大陸と陸続きだったことを示す大型動物の化石のうち、南方系のものを2つ、北方系のものを1つ挙げよ。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：南方系：ナウマンゾウ、オオツノジカ（トウヨウゾウも可）／北方系：マンモス（ヘラジカも可）</div>
+    <div class="explanation">解説：氷期には海面は現在より100m以上低く、大陸と陸橋でつながった。南から入った動物は本州以南へ、北から入ったマンモスなどは北海道までしか到達しなかった。この境界は現在の生物分布境界（ブラキストン線）と重なる。長野県の野尻湖遺跡はナウマンゾウの化石と石器・骨器が同時に出土することで知られる。</div>
+  </details>
+</div>
+
+<div class="col">
+  <h3>コラム｜歴史の裏話</h3>
+  <p><strong>「目には目を」は、実は優しい法だった</strong></p>
+  <p>この一句は今日、残酷な報復法の代名詞として使われる。しかし前18世紀のメソポタミアに置き直すと、意味が反転する。</p>
+  <p>法が存在しない社会で身内を傷つけられたとき、人はどう動くか。相手を殺し、その一族が報復し、報復が報復を呼ぶ。血讐の連鎖である。ハンムラビ法典が国家の名で宣言したのは、「目を損なった者からは、目までしか取ってはならない」という<b>上限</b>だった。復讐を許可する条文ではなく、復讐を打ち切る条文なのだ。</p>
+  <p>もっとも、その平等は同じ身分のあいだでしか成立しない。平民の目は銀1マナで、奴隷の目は「その価格の半分」で決済された。人類最古級の成文法は、暴力を制御する知恵と、身分を固定する装置とを、同じ石柱の上に彫り込んでいる。</p>
+</div>
+
+<div class="col linkcol">
+  <h3>コラム｜世界史 ↔ 日本史</h3>
+  <p><strong>ピラミッドと三内丸山は、同じ時代に建っていた</strong></p>
+  <p>世界史と日本史を別々に習うと、どうしても時間感覚がずれる。並べてみると景色が変わる。</p>
+  <svg style="max-width:100%" viewBox="0 0 680 264" xmlns="http://www.w3.org/2000/svg" font-family="serif" role="img" aria-label="世界史と日本列島の対照年表">
+  <line x1="34" y1="132" x2="646" y2="132" stroke="var(--line)" stroke-width="1.5"/>
+  <line x1="56.7" y1="129" x2="56.7" y2="135" stroke="var(--line)" stroke-width="1"/>
+  <text x="56.7" y="124" font-size="8.5" fill="var(--ink)" opacity="0.55" text-anchor="middle">前4000</text>
+  <line x1="170.0" y1="129" x2="170.0" y2="135" stroke="var(--line)" stroke-width="1"/>
+  <text x="170.0" y="124" font-size="8.5" fill="var(--ink)" opacity="0.55" text-anchor="middle">前3500</text>
+  <line x1="283.3" y1="129" x2="283.3" y2="135" stroke="var(--line)" stroke-width="1"/>
+  <text x="283.3" y="124" font-size="8.5" fill="var(--ink)" opacity="0.55" text-anchor="middle">前3000</text>
+  <line x1="396.7" y1="129" x2="396.7" y2="135" stroke="var(--line)" stroke-width="1"/>
+  <text x="396.7" y="124" font-size="8.5" fill="var(--ink)" opacity="0.55" text-anchor="middle">前2500</text>
+  <line x1="510.0" y1="129" x2="510.0" y2="135" stroke="var(--line)" stroke-width="1"/>
+  <text x="510.0" y="124" font-size="8.5" fill="var(--ink)" opacity="0.55" text-anchor="middle">前2000</text>
+  <line x1="623.3" y1="129" x2="623.3" y2="135" stroke="var(--line)" stroke-width="1"/>
+  <text x="623.3" y="124" font-size="8.5" fill="var(--ink)" opacity="0.55" text-anchor="middle">前1500</text>
+  <rect x="34.0" y="140" width="249.3" height="26" fill="var(--leaf)" opacity="0.18"/>
+  <rect x="283.3" y="140" width="226.7" height="26" fill="var(--leaf)" opacity="0.28"/>
+  <rect x="510.0" y="140" width="136.0" height="26" fill="var(--leaf)" opacity="0.38"/>
+  <text x="158.65" y="156.5" font-size="10" fill="var(--ink)" text-anchor="middle">縄文前期</text>
+  <text x="396.65" y="156.5" font-size="10" fill="var(--ink)" text-anchor="middle">縄文中期</text>
+  <text x="578.0" y="156.5" font-size="10" fill="var(--ink)" text-anchor="middle">縄文後期</text>
+  <rect x="79.3" y="176" width="385.4" height="7" rx="3.5" fill="var(--gold)" opacity="0.75"/>
+  <text x="79.3" y="197" font-size="9.5" fill="var(--gold)" text-anchor="start">三内丸山の集落（前3900〜前2200頃・約1700年間）</text>
+  <circle cx="566.7" cy="166" r="3.5" fill="var(--rose)"/>
+  <text x="566.7" y="214" font-size="9.5" fill="var(--rose)" text-anchor="middle">大湯環状列石などの記念物の時代（前2000〜前1500頃）</text>
+  <line x1="170.0" y1="56" x2="170.0" y2="128" stroke="var(--gold)" stroke-width="1" opacity="0.45" stroke-dasharray="2 3"/>
+  <circle cx="170.0" cy="128" r="3.5" fill="var(--gold)"/>
+  <text x="170.0" y="42" font-size="10" fill="var(--gold)" text-anchor="middle" font-weight="bold">シュメール</text>
+  <text x="170.0" y="54" font-size="9" fill="var(--ink)" opacity="0.8" text-anchor="middle">都市国家の成立（前3500頃）</text>
+  <line x1="383.1" y1="92" x2="383.1" y2="128" stroke="var(--gold)" stroke-width="1" opacity="0.45" stroke-dasharray="2 3"/>
+  <circle cx="383.1" cy="128" r="3.5" fill="var(--gold)"/>
+  <text x="383.1" y="78" font-size="10" fill="var(--gold)" text-anchor="middle" font-weight="bold">クフ王</text>
+  <text x="383.1" y="90" font-size="9" fill="var(--ink)" opacity="0.8" text-anchor="middle">大ピラミッド建造（前2560頃）</text>
+  <line x1="566.7" y1="56" x2="566.7" y2="128" stroke="var(--gold)" stroke-width="1" opacity="0.45" stroke-dasharray="2 3"/>
+  <circle cx="566.7" cy="128" r="3.5" fill="var(--gold)"/>
+  <text x="566.7" y="42" font-size="10" fill="var(--gold)" text-anchor="middle" font-weight="bold">ハンムラビ法典</text>
+  <text x="566.7" y="54" font-size="9" fill="var(--ink)" opacity="0.8" text-anchor="middle">発布（前1750頃）</text>
+  <line x1="383.1" y1="136" x2="383.1" y2="224" stroke="var(--sea)" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="383.1" y="236" font-size="9" fill="var(--sea)" text-anchor="middle" font-family="serif">ピラミッドと三内丸山は同じ時代</text>
+  <circle cx="38" cy="252" r="3.5" fill="var(--gold)"/>
+  <text x="46" y="256" font-size="8.5" fill="var(--ink)" opacity="0.75">世界史（今日の範囲）</text>
+  <rect x="152" y="248" width="9" height="9" fill="var(--leaf)" opacity="0.3"/>
+  <text x="165" y="256" font-size="8.5" fill="var(--ink)" opacity="0.75">日本列島（縄文時代）</text>
+  <text x="646" y="256" font-size="8" fill="var(--ink)" opacity="0.5" text-anchor="end">※横軸は実時間スケール。時代境界は概略</text>
+  </svg>
+  <p style="margin-top:14px">注意したいのは、「向こうは文明、こちらは原始」という単純な優劣ではないということ。メソポタミアは麦作の余剰が階級と国家と文字を生んだ社会であり、縄文は堅果・魚介の豊かさゆえに<b>本格的な農耕なしにおよそ一万年の定住を成立させた</b>社会である。文明の道筋は一本ではない——という視点は、そのまま論述のネタになる。</p>
+</div>
+
+<div class="col fieldnote">
+  <h3>フィールドノート</h3>
+  <p><strong>なぜ、わざわざ島まで石を取りに行くのか</strong></p>
+  <p>受験の答案では、黒曜石やヒスイの広域分布は「交易の証拠」と書けば正解になる。だが人類学は、そこで一度立ち止まる。<b>刃物を作るだけなら、近くのチャートや安山岩でも用は足りる</b>のだ。にもかかわらず、彼らは丸木舟で黒潮を渡り、五十キロ先の島の石を取りに行った。効率で説明がつかない行動には、たいてい別の論理がある。</p>
+  <p>マルセル・モース（大森貝塚を発掘したE・S・モースとは別人）が『贈与論』で示したのは、未開とされた社会における交換が、モノの受け渡しではなく<b>関係の締結</b>だったということである。贈られた側は返す義務を負い、返せば相手がまた負う。決済されない負債が延々と続くこと、それ自体が集団同士をつなぎとめる。マリノフスキが記録したトロブリアンド諸島のクラ交易では、赤い首飾りと白い腕輪が、島から島へ何年もかけて逆向きに回り続ける。実用価値はない。回すことに意味がある。</p>
+  <p>この目で見ると、姫川のヒスイが東北の墓から、神津島の黒曜石が内陸の集落から出土するという事実は、色が変わる。それは「原始的な物々交換のネットワーク」ではなく、<b>遠さそのものを価値に変える装置</b>だったのかもしれない。遠い石を持っている——それは、遠くの人とつながっているという証明である。</p>
+  <p>そして今日の世界史とつなげるなら、ここに分岐点がある。メソポタミアでは余剰が蓄えられ、数えられ、階級と文字を生んだ。縄文では余剰が回され、贈られ、返された。<b>溜める社会と、回す社会</b>。国家が生まれるかどうかは、豊かさの有無ではなく、豊かさをどう扱うかの違いだったのではないか。</p>
+  <p class="keys">今日の鍵語：モース『贈与論』／互酬性／マリノフスキとクラ交易　＊「余剰＝国家の起源」という図式には反論も多く、ピエール・クラストルは、国家を持たない社会は遅れているのではなく国家を拒んでいるのだ、と論じた（『国家に抗する社会』）。この論点はまた別の日に。</p>
+</div>
+
+<div class="col story">
+  <h3>連載「時の回廊」第1話｜粘土と、クリの木</h3>
+  <p>前2500年、ウルの書記見習いは、湿った粘土板に葦のペンを押し当てていた。記していたのは詩でも祈りでもない。大麦の受領量である。誰が、いつ、どれだけ神殿に納めたか。文字は最初、美しいもののためではなく、<b>数えるため</b>に生まれた。数えねばならないほど余剰があり、余剰があるから、数える人間と数えられる人間に世界は分かれた。</p>
+  <p>同じ頃、八千キロ東の陸奥湾の岸で、ひとりの縄文人が斧を握っていた。切るのではない。<b>切らない木を選んでいた</b>。実のよく生る樹を残し、まわりを払う。世代を超えて手入れされた林から、秋ごとに栗が落ちる。彼らは記録を残さなかった。数える必要が、なかったのだろう。分けあえば、足りたのだろう。</p>
+  <p class="hook">——文字を持った社会と、持たなかった社会。やがて列島にも、海の向こうから穂の重い植物が運ばれてくる。それは食べ物であると同時に、「余る」という災いを運んでくることになる。（第2話へ続く）</p>
+  <p style="font-size:.78em; opacity:.7; border-top:1px dashed var(--line); padding-top:.7em; margin-top:1em;">※史実に取材した創作コラムです。書記見習いや縄文人の情景は創作を含みます。大麦の受領記録の粘土板と文字の会計起源説、三内丸山のクリ林の管理（DNA分析による裏づけ）は考古学の標準的な知見に拠ります。縄文社会が「数えなかった」ことの理由づけは本コラムの見立てです。</p>
+</div>
+
+<footer class="next">
+  <span class="label">次回予告：</span>世界史はオリエントの統一と「王の道」へ、日本史は水田稲作のはじまりへ。連載「時の回廊」は、海を渡ってくる穂の行方を追う。
+</footer>
+
+<div class="credit">高校歴史探究・教科書レベル準拠｜Day 001</div>
+
+</div>
+<!--gradeui-->
+<div id="scorebar" hidden>
+  <div class="inner">
+    <span class="sb-sec">世界史 <span class="num" id="sb-s0">0</span>/<span class="sb-n"></span></span>
+    <div class="track"><div class="fill" id="sb-f0"></div></div>
+    <span class="sb-sec">日本史 <span class="num" id="sb-s1">0</span>/<span class="sb-n"></span></span>
+    <div class="track"><div class="fill" id="sb-f1"></div></div>
+    <button id="sb-reset" type="button">リセット</button>
+  </div>
+</div>
+<div id="resultfx" hidden>
+  <div class="rf-card">
+    <div class="rf-title" id="rf-title"></div>
+    <div class="rf-score" id="rf-score"></div>
+    <div class="rf-msg" id="rf-msg"></div>
+    <div class="rf-close">タップで閉じる</div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = "selfgrade-v4:" + location.pathname;
+  // 科目の帰属は h2.section 見出し（世界史/日本史）で判定する（問数可変対応・2026-08-04）
+  var qs = [], secOf = [], counts = [0, 0], cur = -1;
+  Array.prototype.forEach.call(document.querySelectorAll("h2.section, .q"), function(el){
+    if (el.tagName === "H2") {
+      var t = el.textContent;
+      cur = t.indexOf("世界史") !== -1 ? 0 : (t.indexOf("日本史") !== -1 ? 1 : -1);
+    } else if (cur >= 0) {
+      secOf.push(cur); counts[cur]++; qs.push(el);
+    }
+  });
+  if (!counts[0] || !counts[1]) return;
+  var SEC = [
+    { name: "世界史", n: counts[0] },
+    { name: "日本史", n: counts[1] }
+  ];
+  var sbn = document.querySelectorAll(".sb-n");
+  sbn[0].textContent = counts[0];
+  sbn[1].textContent = counts[1];
+  var COLORS = ["#c9a227", "#6fa3a0", "#c47b6a", "#7d9b6a", "#e8a020"];
+  var state = { g: {}, c: [false, false] };
+  try {
+    var raw = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (raw && raw.g) state = raw;
+  } catch(e){}
+
+  var bar = document.getElementById("scorebar");
+  bar.hidden = false;
+  document.body.style.paddingBottom = "5.5em";
+  var fx = document.getElementById("resultfx");
+  fx.hidden = true;
+
+  function save(){
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){}
+    // 「前回の続きから」用の最終採点ページ記録（ホームが読む・2026-08-04）
+    try {
+      var done = 0, ok = 0;
+      for (var i = 0; i < qs.length; i++){
+        if (state.g[i] === 1){ ok++; done++; }
+        else if (state.g[i] === 0){ done++; }
+      }
+      localStorage.setItem("selfgrade-last", JSON.stringify({
+        path: location.pathname, title: document.title,
+        done: done, ok: ok, total: qs.length, ts: Date.now()
+      }));
+    } catch(e){}
+  }
+
+  function secStats(si){
+    var ok = 0, done = 0;
+    for (var i = 0; i < qs.length; i++){
+      if (secOf[i] !== si) continue;
+      if (state.g[i] === 1){ ok++; done++; }
+      else if (state.g[i] === 0){ done++; }
+    }
+    return { ok: ok, done: done };
+  }
+
+  function render(){
+    qs.forEach(function(q, i){
+      var btns = q.querySelectorAll(".grade button");
+      if (btns.length === 2){
+        btns[0].className = (state.g[i] === 1) ? "on-ok" : "";
+        btns[1].className = (state.g[i] === 0) ? "on-ng" : "";
+      }
+    });
+    SEC.forEach(function(s, si){
+      var st = secStats(si);
+      document.getElementById("sb-s" + si).textContent = st.ok;
+      document.getElementById("sb-f" + si).style.width = (st.done / s.n * 100) + "%";
+    });
+  }
+
+  function burst(x, y, n, spread){
+    for (var i = 0; i < n; i++){
+      var p = document.createElement("div");
+      p.className = "fx-p";
+      var sz = 5 + Math.random() * 6;
+      p.style.cssText = "left:" + x + "px;top:" + y + "px;width:" + sz + "px;height:" + (sz * (Math.random() > .5 ? 1 : .45)) + "px;background:" + COLORS[i % COLORS.length] + ";border-radius:" + (Math.random() > .5 ? "50%" : "2px") + ";";
+      document.body.appendChild(p);
+      var ang = Math.random() * Math.PI * 2;
+      var dist = spread * (0.4 + Math.random() * 0.9);
+      var dx = Math.cos(ang) * dist;
+      var dy = Math.sin(ang) * dist - spread * 0.5;
+      p.animate([
+        { transform: "translate(0,0) rotate(0deg)", opacity: 1 },
+        { transform: "translate(" + dx + "px," + (dy + spread) + "px) rotate(" + (Math.random() * 540 - 270) + "deg)", opacity: 0 }
+      ], { duration: 700 + Math.random() * 500, easing: "cubic-bezier(.15,.6,.4,1)" }).onfinish = function(){ this.effect.target.remove(); };
+    }
+  }
+
+  function missFx(q, btn){
+    q.classList.remove("shake");
+    void q.offsetWidth;
+    q.classList.add("shake");
+    var r = btn.getBoundingClientRect();
+    var p = document.createElement("div");
+    p.className = "fx-p";
+    p.style.cssText = "left:" + (r.left + r.width / 2) + "px;top:" + (r.top) + "px;color:#7d8fa0;font-size:14px;font-weight:bold;";
+    p.textContent = "ドンマイ";
+    document.body.appendChild(p);
+    p.animate([
+      { transform: "translate(-50%,0)", opacity: 1 },
+      { transform: "translate(-50%,-34px)", opacity: 0 }
+    ], { duration: 900, easing: "ease-out" }).onfinish = function(){ p.remove(); };
+  }
+
+  function tier(ok, total){
+    if (ok === total)                  return { t: "全問正解！", m: "完璧。今日の範囲は君のものだ", n: 160 };
+    if (ok >= Math.ceil(total * 0.8)) return { t: "素晴らしい！", m: "合格ライン余裕。取りこぼしだけ復習しよう", n: 90 };
+    if (ok >= Math.ceil(total * 0.5)) return { t: "よく健闘！", m: "土台はできてる。×の問題を明日もう一度", n: 40 };
+    return                              { t: "伸びしろしかない", m: "今日のまちがいは明日の得点。解説を読み直そう", n: 0 };
+  }
+
+  function celebrate(si){
+    var s = SEC[si], st = secStats(si), tr = tier(st.ok, s.n);
+    document.getElementById("rf-title").textContent = s.name + " 採点完了";
+    document.getElementById("rf-score").innerHTML = st.ok + '<span class="rf-den">/' + s.n + '</span>';
+    document.getElementById("rf-msg").textContent = tr.t + "　" + tr.m;
+    fx.hidden = false;
+    var cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+    if (tr.n){
+      burst(cx, cy - 60, tr.n, Math.min(260, window.innerWidth * 0.45));
+      if (st.ok === s.n) setTimeout(function(){ burst(cx - 100, cy, 60, 180); burst(cx + 100, cy, 60, 180); }, 350);
+    }
+  }
+  fx.addEventListener("click", function(){ fx.hidden = true; });
+
+  function onGrade(i, val, btn, q){
+    var prev = state.g[i];
+    state.g[i] = (prev === val) ? undefined : val;
+    var si = secOf[i];
+    if (state.g[i] === 1){
+      var r = btn.getBoundingClientRect();
+      burst(r.left + r.width / 2, r.top + r.height / 2, 22, 90);
+    } else if (state.g[i] === 0){
+      missFx(q, btn);
+    }
+    var st = secStats(si);
+    if (st.done === SEC[si].n && !state.c[si]){
+      state.c[si] = true;
+      setTimeout(function(){ celebrate(si); }, state.g[i] === 1 ? 500 : 250);
+    }
+    if (st.done < SEC[si].n) state.c[si] = false;
+    save(); render();
+  }
+
+  qs.forEach(function(q, i){
+    var box = q.querySelector("details");
+    if (!box) return;
+    var g = document.createElement("div");
+    g.className = "grade";
+    g.innerHTML = '<span>自己採点：</span><button type="button">○ 正解</button><button type="button">× 不正解</button>';
+    var btns = g.querySelectorAll("button");
+    btns[0].addEventListener("click", function(){ onGrade(i, 1, btns[0], q); });
+    btns[1].addEventListener("click", function(){ onGrade(i, 0, btns[1], q); });
+    box.appendChild(g);
+  });
+  document.getElementById("sb-reset").addEventListener("click", function(){
+    state = { g: {}, c: [false, false] }; save(); render();
+  });
+  render();
+})();
+</script>
+<!--/gradeui-->
+<!--sitesw-->
+<script>
+if ("serviceWorker" in navigator && location.protocol !== "file:") {
+  navigator.serviceWorker.register("../sw.js");
+}
+</script>
+<!--/sitesw-->
+<!--sitetotop-->
+<button id="totop" aria-label="トップへ戻る" title="トップへ戻る">↑</button>
+<script>
+(function(){
+  var b = document.getElementById("totop");
+  window.addEventListener("scroll", function(){
+    b.style.display = window.scrollY > 500 ? "block" : "none";
+  }, {passive:true});
+  b.addEventListener("click", function(){ window.scrollTo({top:0, behavior:"smooth"}); });
+})();
+</script>
+<!--/sitetotop-->
+</body>
+</html>

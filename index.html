@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新しい一問一答 —世界をつなぐ、過去と現在をつなぐ— 毎日の歴史一問一答（世界史・日本史）</title>
+<meta name="description" content="世界史と日本史を同じ日に並べて解く歴史一問一答を毎日配信。単元で区切る可変構成＋読み物コラム。出典照合の検証工程つき。">
+<!-- GA4: 公開時に測定IDを挿入（プロパティ作成は手順書参照） -->
+<!--sitepwa-->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="theme-color" content="#faf6ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#181511" media="(prefers-color-scheme: dark)">
+<!--/sitepwa-->
+<style>
+  :root{
+    --bg:#faf6ee; --fg:#33302a; --sub:#6f695e;
+    --card:#ffffff; --card2:#fff8ea;
+    --amber:#e8a020; --amber-deep:#c9861a;
+    --teal:#2f9e94; --coral:#e0584f; --navy:#3d5a80;
+    --line:#eadfc8; --shadow:0 2px 10px rgba(120,95,40,.10);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#181511; --fg:#efe9df; --sub:#b0a898;
+      --card:#221e18; --card2:#262017;
+      --amber:#e8a020; --amber-deep:#f0b23c;
+      --teal:#4db8ae; --coral:#e8776f; --navy:#8fb0d8;
+      --line:#3a332a; --shadow:0 2px 10px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:0 0 4em 0;
+    background:var(--bg); color:var(--fg);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Noto Sans JP",sans-serif;
+    line-height:1.85;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:1.4em 1.1em;}
+  .topbar{height:6px; background:linear-gradient(90deg, var(--coral), var(--amber), var(--teal));}
+  nav.topnav{
+    position:sticky; top:0; z-index:20; background:var(--card);
+    border-bottom:1px solid var(--line); box-shadow:var(--shadow);
+  }
+  nav.topnav .ninner{
+    max-width:720px; margin:0 auto; display:flex; gap:.2em;
+    overflow-x:auto; white-space:nowrap; padding:0 .6em; -webkit-overflow-scrolling:touch;
+  }
+  nav.topnav a, nav.topnav span.soon{
+    display:inline-block; padding:.7em .8em; font-size:.85em; font-weight:700;
+    color:var(--fg); text-decoration:none;
+  }
+  nav.topnav a:hover{color:var(--teal);}
+  nav.topnav a.active{color:var(--amber-deep); border-bottom:3px solid var(--amber);}
+  nav.topnav span.soon{opacity:.4; cursor:default;}
+  nav.topnav span.soon small{font-size:.7em; margin-left:.2em;}
+  #totop{
+    position:fixed; right:1em; bottom:1.2em; z-index:30; width:2.9em; height:2.9em;
+    border-radius:50%; border:none; background:var(--amber); color:#fff; font-size:1em;
+    font-weight:800; cursor:pointer; box-shadow:0 3px 8px rgba(0,0,0,.25); display:none;
+  }
+  header.site{text-align:center; padding:2.2em 1em 1.6em;}
+  .sitename{
+    font-size:1.75em; font-weight:800; letter-spacing:.06em; line-height:1.4;
+  }
+  .sitename .stroke{
+    background:linear-gradient(transparent 62%, color-mix(in srgb, var(--amber) 45%, transparent) 62%);
+    padding:0 .1em;
+  }
+  .subname{color:var(--amber-deep); letter-spacing:.35em; font-size:.88em; font-weight:700; margin-top:.5em;}
+  .tagline{color:var(--sub); font-size:.92em; margin-top:.9em; line-height:1.9;}
+  .chips{display:flex; flex-wrap:wrap; gap:.5em; justify-content:center; margin-top:1.1em;}
+  .chip{
+    font-size:.78em; font-weight:700; padding:.35em .9em; border-radius:999px;
+  }
+  .chip.c1{background:color-mix(in srgb, var(--coral) 14%, var(--card)); color:var(--coral); border:1.5px solid var(--coral);}
+  .chip.c2{background:color-mix(in srgb, var(--amber) 16%, var(--card)); color:var(--amber-deep); border:1.5px solid var(--amber);}
+  .chip.c3{background:color-mix(in srgb, var(--teal) 14%, var(--card)); color:var(--teal); border:1.5px solid var(--teal);}
+  /* 前回の続きカード（採点データが残っているときだけJSで表示） */
+  .resume{margin:1.2em 0 0;}
+  .resume a{
+    display:flex; align-items:center; gap:.8em; flex-wrap:wrap;
+    padding:.8em 1.1em; background:var(--card); border:1.5px solid var(--teal);
+    border-radius:14px; box-shadow:var(--shadow); text-decoration:none; color:var(--fg);
+    transition:transform .08s ease;
+  }
+  .resume a:hover{transform:translateY(-1px);}
+  .resume .r-label{
+    background:var(--teal); color:#fff; font-size:.72em; font-weight:800;
+    letter-spacing:.14em; padding:.25em .8em; border-radius:999px; white-space:nowrap;
+  }
+  .resume .r-title{
+    flex:1; min-width:0; font-weight:700; font-size:.9em;
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  }
+  .resume .r-prog{color:var(--sub); font-size:.8em; white-space:nowrap;}
+  .today{
+    margin:1.2em 0; padding:1.4em 1.3em; background:var(--card);
+    border-radius:16px; box-shadow:var(--shadow); border:1px solid var(--line);
+    position:relative; overflow:hidden;
+  }
+  .today::before{
+    content:""; position:absolute; left:0; top:0; bottom:0; width:6px;
+    background:linear-gradient(180deg, var(--amber), var(--coral));
+  }
+  .today .label{
+    display:inline-block; background:var(--coral); color:#fff; font-size:.72em; font-weight:800;
+    letter-spacing:.14em; padding:.25em .8em; border-radius:999px;
+  }
+  .today.culture::before{background:linear-gradient(180deg, var(--teal), var(--navy));}
+  .today.culture .label{background:var(--teal);}
+  .today .ttl{font-size:1.15em; font-weight:800; margin:.6em 0 .4em; line-height:1.6;}
+  .today .units{font-size:.82em; color:var(--sub);}
+  a.btn{
+    display:inline-block; margin-top:.9em; padding:.7em 1.6em;
+    background:var(--amber); color:#fff; text-decoration:none; font-weight:800;
+    border-radius:999px; font-size:.95em; letter-spacing:.06em;
+    box-shadow:0 3px 0 var(--amber-deep); transition:transform .08s;
+  }
+  a.btn:hover{transform:translateY(2px); box-shadow:0 1px 0 var(--amber-deep);}
+  a.btn.ghost{
+    background:var(--card); color:var(--teal); box-shadow:none; border:2px solid var(--teal);
+  }
+  a.btn.ghost:hover{background:color-mix(in srgb, var(--teal) 10%, var(--card));}
+  h2.section{
+    font-size:1.05em; font-weight:800; margin:2.2em 0 .8em; display:flex; align-items:center; gap:.5em;
+  }
+  h2.section::before{content:""; width:.55em; height:.55em; border-radius:3px; background:var(--teal); transform:rotate(45deg);}
+  ul.archive{list-style:none; margin:.6em 0; padding:0;}
+  ul.archive li{
+    margin:.7em 0; padding:.9em 1.1em; background:var(--card);
+    border-radius:14px; border:1px solid var(--line); box-shadow:var(--shadow);
+    display:flex; flex-wrap:wrap; align-items:center; gap:.8em;
+  }
+  ul.archive .day{
+    background:var(--navy); color:#fff; font-weight:800; font-size:.72em;
+    padding:.3em .7em; border-radius:8px; letter-spacing:.08em; white-space:nowrap;
+  }
+  ul.archive .date{color:var(--sub); font-size:.8em; white-space:nowrap;}
+  ul.archive a{color:var(--fg); text-decoration:none; font-weight:600; line-height:1.7;}
+  ul.archive a:hover{color:var(--teal);}
+  ul.archive li.soon{opacity:.55; box-shadow:none;}
+  /* 枠ごとタップ領域化（stretched link） */
+  ul.archive li{position:relative; transition:transform .08s ease, border-color .15s ease;}
+  ul.archive li > a::after{content:""; position:absolute; inset:0; border-radius:14px;}
+  ul.archive li:has(> a):hover{border-color:var(--teal); transform:translateY(-1px);}
+  ul.archive li:has(> a):active{transform:translateY(1px);}
+  .today a.btn::after{content:""; position:absolute; inset:0;}
+  .about{
+    margin-top:1.6em; padding:1.3em 1.3em; background:var(--card);
+    border-radius:16px; border:1px solid var(--line); box-shadow:var(--shadow); font-size:.9em;
+  }
+  .about h3{margin:0 0 .6em; font-size:1em; font-weight:800; color:var(--teal);}
+  .about .more-toggle{
+    display:inline-block; border:none; background:transparent; font-family:inherit;
+    cursor:pointer; color:var(--teal); font-weight:700; font-size:1em;
+    padding:.1em 0; user-select:none;
+  }
+  .about.feedback h3{color:var(--coral);}
+  .notice{
+    margin-top:1.4em; padding:.9em 1.2em; font-size:.82em; color:var(--sub);
+    background:var(--card2); border-radius:12px; border:1px dashed var(--amber);
+  }
+  footer.site{
+    margin-top:2.6em; padding:1.2em 1em 0; text-align:center; font-size:.75em;
+    border-top:1px solid var(--line); color:var(--sub); line-height:2;
+  }
+  #a2hs{
+    position:fixed; left:50%; transform:translateX(-50%); bottom:1em; z-index:50;
+    width:min(92%, 480px); background:var(--card); border:1.5px solid var(--amber);
+    border-radius:16px; box-shadow:0 6px 18px rgba(0,0,0,.22);
+    padding:.9em 1.1em; display:none; font-size:.86em; line-height:1.7;
+  }
+  #a2hs.show{display:flex; gap:.9em; align-items:center;}
+  #a2hs img{width:2.9em; height:2.9em; border-radius:10px; flex:none;}
+  #a2hs .a2hs-body{flex:1; min-width:0;}
+  #a2hs .a2hs-title{font-weight:800;}
+  #a2hs .a2hs-sub{color:var(--sub); font-size:.9em;}
+  #a2hs .a2hs-btns{display:flex; flex-direction:column; gap:.4em; flex:none;}
+  #a2hs button{
+    border:none; border-radius:999px; padding:.5em 1.1em; font-weight:800;
+    font-size:.92em; cursor:pointer; font-family:inherit;
+  }
+  #a2hs .a2hs-install{background:var(--amber); color:#fff; box-shadow:0 2px 0 var(--amber-deep);}
+  #a2hs .a2hs-close{background:transparent; color:var(--sub);}
+</style>
+</head>
+<body>
+<div class="topbar"></div>
+<nav class="topnav"><div class="ninner">
+  <a href="index.html" class="active">ホーム</a>
+  <a href="daily.html">毎日の一問一答</a>
+  <a href="culture.html">文化史</a>
+  <a href="atlas.html">資料集</a>
+  <a href="features.html">特集<small>β</small></a>
+  <a href="links.html">リンク集</a>
+  <a href="contact.html">お問い合わせ</a>
+</div></nav>
+<div class="wrap">
+
+<header class="site">
+  <div class="sitename"><span class="stroke">新しい一問一答</span></div>
+  <div class="subname">—世界をつなぐ、過去と現在をつなぐ—</div>
+  <div class="tagline">毎日の歴史一問一答 — 世界史＋日本史（単元で区切る可変構成）＋読み物コラム。<br>すべての設問は出典照合の検証工程を通してから公開しています。</div>
+  <div class="chips">
+    <span class="chip c1">毎日更新</span>
+    <span class="chip c2">高校歴史探究・教科書レベル準拠</span>
+    <span class="chip c3">検証工程つき</span>
+  </div>
+</header>
+
+<div class="resume" id="resume" hidden>
+  <a id="resume-link" href="#">
+    <span class="r-label">前回の続きから</span>
+    <span class="r-title" id="resume-title"></span>
+    <span class="r-prog" id="resume-prog"></span>
+  </a>
+</div>
+
+<div class="today">
+  <span class="label">最新号 — DAY 003</span>
+  <div class="ttl">都市は謎を残し、稲は濠と女王を連れてきた</div>
+  <div class="units">世界史：南アジアの古代文明 その1<br>日本史：農耕社会の成立（弥生・小国の分立）</div>
+  <a class="btn" href="days/day003.html">今日の一問一答を解く →</a>
+</div>
+
+<div class="today culture">
+  <span class="label">文化史 最新集 — 第1集</span>
+  <div class="ttl">文明のはじまりの文化 — オリエント・インダス／旧石器〜古墳</div>
+  <div class="units">世界史10問＋日本史10問。単元をまたいで問われやすい文化史をテーマ別に</div>
+  <a class="btn" href="culture/culture-01.html">文化史を解く →</a>
+</div>
+
+<h2 class="section">コンテンツ</h2>
+<ul class="archive">
+  <li><span class="day">毎日</span><a href="daily.html">毎日の一問一答</a><span class="date" style="width:100%">世界史と日本史を同じ日に並べて解く。Day 001〜003 公開中</span></li>
+  <li><span class="day">テーマ</span><a href="culture.html">文化史一問一答</a><span class="date" style="width:100%">美術・宗教・文字・建築をテーマ別に整理。第1集 公開中</span></li>
+  <li><span class="day">資料</span><a href="atlas.html">資料集</a><span class="date" style="width:100%">実測データから作成した歴史地図とビジュアル年表 11点</span></li>
+  <li><span class="day">特集</span><a href="features.html">特集（β）— 歴史から読む現代</a><span class="date" style="width:100%">現代の諸問題を歴史の線でたどる。第1回 パレスチナ問題 公開中</span></li>
+</ul>
+
+<div class="about">
+  <h3>このサイトについて</h3>
+  <p>このサイトは、歴史好きの作者が、自身の大学受験の学習経験をもとに「自分が欲しかった一問一答」を設計・作成しているものです。基本〜発展の設問に加え、史料問題・地図問題・歴史の裏話・両史をつなぐ対照年表と連載読み物を毎日収録しています。受験生はもちろん、歴史を学びなおしたい大人の方にも楽しんでいただけるよう、設問の先にある「つながり」まで読める作りにしています。</p>
+  <div id="about-more" hidden>
+  <p>サイト名の「つなぐ」には、二つの意味を込めています。ひとつは、<strong>世界史と日本史をつなぐ</strong>こと。二つの歴史をあえて同じ日に並べているのは、つなげて眺めたとき、世界への認識が一段広がるからです。同じ「前7世紀」に、西アジアの市場とこの列島では何が起きていたか——並べてはじめて見える遠近感があります。世界史選択・日本史選択の方は、どちらか片方だけを解いても完結するように作っています。</p>
+  <p>もうひとつは、<strong>過去と現在をつなぐ</strong>こと。定住に適した土地の偏りが遊牧という生き方を生み、豊かな土地を求める移動が次の時代の引き金になる——歴史の出来事は、一つひとつが連関し、その線は現在まで延びています。ニュースで目にする現代の諸問題の多くは、教科書で学ぶ条約や宣言と一本の線でつながっています。設問・年表・コラムに加えて、現代の諸問題を歴史の線でたどる特集ページも公開しています（β版として継続更新中）。</p>
+  <p>本サイトのコンテンツは、AI（生成AI）を全面的に活用して制作しています。そのうえで、正確性の担保は二段構えです。すべての号は、制作とは独立した検証工程（複数系統による原文・出典照合）を通し、必要な修正を適用します。最後に作者自身が一問ずつ検品してから公開しています。検証で確認できなかった事項は本文中にその旨を明記します。</p>
+  </div>
+  <button class="more-toggle" id="about-toggle" type="button" aria-expanded="false" aria-controls="about-more">続きを読む ▾</button>
+</div>
+
+<div class="about feedback">
+  <h3>誤りのご指摘・ご意見</h3>
+  <p>正確性を最優先していますが、誤りにお気づきの際はフォームからお知らせください。原文と照合のうえ、誤りが確認できた場合は該当号を修正し、更新履歴に記載します。</p>
+  <a class="btn ghost" href="https://docs.google.com/forms/d/e/1FAIpQLSeVj-fSWufcmWVt-hexKZkqh3NUvgFV4Y8t8puScY3Yqka1nA/viewform" target="_blank" rel="noopener">指摘フォームを開く</a>
+</div>
+
+<footer class="site">
+  高校歴史探究・教科書レベル準拠<br>
+  <a href="legal.html" style="color:inherit;">著作権・転載について</a><br>
+  © 2026 新しい一問一答 —世界をつなぐ、過去と現在をつなぐ—
+</footer>
+
+</div>
+<button id="totop" aria-label="トップへ戻る" title="トップへ戻る">↑</button>
+<script>
+(function(){
+  // 前回の続きカード: 採点UI(selfgrade-last)の記録を読み、未完了のときだけ表示
+  try {
+    var d = JSON.parse(localStorage.getItem("selfgrade-last") || "null");
+    if (d && d.path && d.done > 0 && d.done < d.total) {
+      document.getElementById("resume-title").textContent = (d.title || d.path).split("｜")[0];
+      document.getElementById("resume-prog").textContent = "採点 " + d.done + "/" + d.total + " 問";
+      document.getElementById("resume-link").href = d.path;
+      document.getElementById("resume").hidden = false;
+    }
+  } catch(e){}
+})();
+(function(){
+  // 「このサイトについて」の開閉: 閉=第1段落直下「続きを読む」／開=本文最下部「折りたたむ」
+  var more = document.getElementById("about-more");
+  var btn = document.getElementById("about-toggle");
+  btn.addEventListener("click", function(){
+    var open = more.hidden;
+    more.hidden = !open;
+    btn.textContent = open ? "折りたたむ ▴" : "続きを読む ▾";
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+})();
+(function(){
+  var b = document.getElementById("totop");
+  window.addEventListener("scroll", function(){
+    b.style.display = window.scrollY > 500 ? "block" : "none";
+  }, {passive:true});
+  b.addEventListener("click", function(){ window.scrollTo({top:0, behavior:"smooth"}); });
+})();
+</script>
+
+<div id="a2hs" role="dialog" aria-label="ホーム画面に追加">
+  <img src="icons/icon-192.png" alt="">
+  <div class="a2hs-body">
+    <div class="a2hs-title">ホーム画面に追加できます</div>
+    <div class="a2hs-sub" id="a2hs-sub">アプリのように毎日サッと開けます。</div>
+  </div>
+  <div class="a2hs-btns">
+    <button class="a2hs-install" id="a2hs-install">追加する</button>
+    <button class="a2hs-close" id="a2hs-close">閉じる</button>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = "a2hs-dismissed";
+  var banner = document.getElementById("a2hs");
+  var sub = document.getElementById("a2hs-sub");
+  var installBtn = document.getElementById("a2hs-install");
+  var deferred = null;
+
+  var standalone = window.matchMedia("(display-mode: standalone)").matches
+                   || window.navigator.standalone === true;
+  if (standalone || localStorage.getItem(KEY)) return;
+
+  var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+              || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+  function show(){ banner.classList.add("show"); }
+  function hide(){ banner.classList.remove("show"); }
+
+  document.getElementById("a2hs-close").addEventListener("click", function(){
+    localStorage.setItem(KEY, "1"); hide();
+  });
+
+  if (isIOS) {
+    // iOS Safariにはインストールプロンプトがないため手順を案内
+    sub.textContent = "共有ボタン（□↑）→「ホーム画面に追加」でアプリのように使えます。";
+    installBtn.style.display = "none";
+    setTimeout(show, 1200);
+    return;
+  }
+
+  window.addEventListener("beforeinstallprompt", function(e){
+    e.preventDefault();
+    deferred = e;
+    show();
+  });
+  installBtn.addEventListener("click", function(){
+    if (!deferred) return;
+    deferred.prompt();
+    deferred.userChoice.then(function(){ deferred = null; hide(); });
+  });
+  window.addEventListener("appinstalled", function(){
+    localStorage.setItem(KEY, "1"); hide();
+  });
+})();
+</script>
+<!--sitesw-->
+<script>
+if ("serviceWorker" in navigator && location.protocol !== "file:") {
+  navigator.serviceWorker.register("sw.js");
+}
+</script>
+<!--/sitesw-->
+</body>
+</html>

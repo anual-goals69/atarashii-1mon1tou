@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>毎日の一問一答｜新しい一問一答 —世界をつなぐ、過去と現在をつなぐ—</title>
+<meta name="description" content="世界史＋日本史を同じ日に並べる一問一答の全号アーカイブ。すべて出典照合の検証工程を通して公開。">
+<!--sitepwa-->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="theme-color" content="#faf6ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#181511" media="(prefers-color-scheme: dark)">
+<!--/sitepwa-->
+<style>
+  :root{
+    --bg:#faf6ee; --fg:#33302a; --sub:#6f695e;
+    --card:#ffffff; --card2:#fff8ea;
+    --amber:#e8a020; --amber-deep:#c9861a;
+    --teal:#2f9e94; --coral:#e0584f; --navy:#3d5a80;
+    --line:#eadfc8; --shadow:0 2px 10px rgba(120,95,40,.10);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#181511; --fg:#efe9df; --sub:#b0a898;
+      --card:#221e18; --card2:#262017;
+      --amber:#e8a020; --amber-deep:#f0b23c;
+      --teal:#4db8ae; --coral:#e8776f; --navy:#8fb0d8;
+      --line:#3a332a; --shadow:0 2px 10px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:0 0 4em 0;
+    background:var(--bg); color:var(--fg);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Noto Sans JP",sans-serif;
+    line-height:1.85; -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:1.4em 1.1em;}
+  .topbar{height:6px; background:linear-gradient(90deg, var(--coral), var(--amber), var(--teal));}
+  nav.topnav{
+    position:sticky; top:0; z-index:20; background:var(--card);
+    border-bottom:1px solid var(--line); box-shadow:var(--shadow);
+  }
+  nav.topnav .ninner{
+    max-width:720px; margin:0 auto; display:flex; gap:.2em;
+    overflow-x:auto; white-space:nowrap; padding:0 .6em; -webkit-overflow-scrolling:touch;
+  }
+  nav.topnav a, nav.topnav span.soon{
+    display:inline-block; padding:.7em .8em; font-size:.85em; font-weight:700;
+    color:var(--fg); text-decoration:none;
+  }
+  nav.topnav a:hover{color:var(--teal);}
+  nav.topnav a.active{color:var(--amber-deep); border-bottom:3px solid var(--amber);}
+  nav.topnav span.soon{opacity:.4; cursor:default;}
+  nav.topnav span.soon small{font-size:.7em; margin-left:.2em;}
+  header.page{text-align:center; padding:1.6em 1em .6em;}
+  h1{font-size:1.4em; font-weight:800; margin:.2em 0;}
+  .lead{color:var(--sub); font-size:.9em;}
+  ul.archive{list-style:none; margin:1.2em 0; padding:0;}
+  ul.archive li{
+    margin:.7em 0; padding:.9em 1.1em; background:var(--card);
+    border-radius:14px; border:1px solid var(--line); box-shadow:var(--shadow);
+    display:flex; flex-wrap:wrap; align-items:center; gap:.8em;
+  }
+  ul.archive .day{
+    background:var(--navy); color:#fff; font-weight:800; font-size:.72em;
+    padding:.3em .7em; border-radius:8px; letter-spacing:.08em; white-space:nowrap;
+  }
+  ul.archive .latest{background:var(--coral);}
+  ul.archive .date{color:var(--sub); font-size:.8em; white-space:nowrap;}
+  ul.archive a{color:var(--fg); text-decoration:none; font-weight:600; line-height:1.7;}
+  ul.archive a:hover{color:var(--teal);}
+  ul.archive .units{width:100%; font-size:.78em; color:var(--sub); margin-top:.1em;}
+  /* 枠ごとタップ領域化（stretched link） */
+  ul.archive li{position:relative; transition:transform .08s ease, border-color .15s ease;}
+  ul.archive li > a::after{content:""; position:absolute; inset:0; border-radius:14px;}
+  ul.archive li:has(> a):hover{border-color:var(--teal); transform:translateY(-1px);}
+  ul.archive li:has(> a):active{transform:translateY(1px);}
+  .notice{
+    margin-top:1.4em; padding:.9em 1.2em; font-size:.82em; color:var(--sub);
+    background:var(--card2); border-radius:12px; border:1px dashed var(--amber);
+  }
+  footer.site{
+    margin-top:2.6em; padding:1.2em 1em 0; text-align:center; font-size:.75em;
+    border-top:1px solid var(--line); color:var(--sub); line-height:2;
+  }
+  #totop{
+    position:fixed; right:1em; bottom:1.2em; z-index:30; width:2.9em; height:2.9em;
+    border-radius:50%; border:none; background:var(--amber); color:#fff; font-size:1em;
+    font-weight:800; cursor:pointer; box-shadow:0 3px 8px rgba(0,0,0,.25); display:none;
+  }
+</style>
+</head>
+<body>
+<div class="topbar"></div>
+<nav class="topnav"><div class="ninner">
+  <a href="index.html">ホーム</a>
+  <a href="daily.html" class="active">毎日の一問一答</a>
+  <a href="culture.html">文化史</a>
+  <a href="atlas.html">資料集</a>
+  <a href="features.html">特集<small>β</small></a>
+  <a href="links.html">リンク集</a>
+  <a href="contact.html">お問い合わせ</a>
+</div></nav>
+<div class="wrap">
+
+<header class="page">
+  <h1>毎日の一問一答</h1>
+  <p class="lead">世界史と日本史を、同じ日に並べて解く。全号アーカイブ（新しい順）。</p>
+</header>
+
+<ul class="archive">
+  <li><span class="day latest">DAY 003</span><span class="date">2026-08-03</span><a href="days/day003.html">都市は謎を残し、稲は濠と女王を連れてきた</a>
+    <span class="units">世界史：南アジアの古代文明 その1　日本史：農耕社会の成立（弥生・小国の分立）</span></li>
+  <li><span class="day">DAY 002</span><span class="date">2026-08-02</span><a href="days/day002.html">海を渡る文字、道を敷く帝国、森に祈る人々</a>
+    <span class="units">世界史：古代オリエント（東地中海の諸民族〜統一）　日本史：文化の始まり（旧石器・縄文）その2</span></li>
+  <li><span class="day">DAY 001</span><span class="date">2026-08-01</span><a href="days/day001.html">文明が始まった日、列島は森だった</a>
+    <span class="units">世界史：文明の誕生／メソポタミア・エジプト　日本史：文化の始まり（旧石器・縄文）その1</span></li>
+</ul>
+
+<div class="notice">
+  アーカイブの無料公開期間は、今後段階的に変更される場合があります。最新号は常に無料でお読みいただけます。
+</div>
+
+<footer class="site">
+  高校歴史探究・教科書レベル準拠<br>
+  © 2026 新しい一問一答 —世界をつなぐ、過去と現在をつなぐ—
+</footer>
+
+</div>
+<button id="totop" aria-label="トップへ戻る" title="トップへ戻る">↑</button>
+<script>
+(function(){
+  var b = document.getElementById("totop");
+  window.addEventListener("scroll", function(){
+    b.style.display = window.scrollY > 500 ? "block" : "none";
+  }, {passive:true});
+  b.addEventListener("click", function(){ window.scrollTo({top:0, behavior:"smooth"}); });
+})();
+</script>
+<!--sitesw-->
+<script>
+if ("serviceWorker" in navigator && location.protocol !== "file:") {
+  navigator.serviceWorker.register("sw.js");
+}
+</script>
+<!--/sitesw-->
+</body>
+</html>

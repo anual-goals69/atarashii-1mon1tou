@@ -1,0 +1,16 @@
+{
+  "name": "新しい一問一答 —世界をつなぐ、過去と現在をつなぐ—",
+  "short_name": "一問一答",
+  "description": "世界史と日本史を同じ日に並べて解く一問一答を毎日配信。単元で区切る可変構成＋読み物コラム。検証工程つき。",
+  "lang": "ja",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#faf6ee",
+  "theme_color": "#e8a020",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
