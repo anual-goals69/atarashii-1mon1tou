@@ -282,7 +282,7 @@
 
 <div class="q">
     <div class="qhead"><span class="qn">5</span><span class="badge basic">基本</span></div>
-    <div class="qtext">新石器時代に作られた、彩色文様を持つ土器を何というか。</div>
+    <div class="qtext">農耕と牧畜が始まった時代に作られた、彩色文様を持つ土器を何というか。</div>
     <details><summary>解答を見る</summary>
       <div class="answer">解答：彩文土器（彩陶）</div>
       <div class="explanation">解説：彩文土器は新石器時代の農耕文化を特徴づける遺物で、中国の仰韶文化の彩陶などが有名。磨製石器とあわせて新石器時代の指標として問われやすい。</div>
@@ -319,7 +319,7 @@
 
 <div class="q">
     <div class="qhead"><span class="qn">9</span><span class="badge basic">基本</span></div>
-    <div class="qtext">文字の発明以降を「歴史時代」、それ以前を「先史時代」と呼ぶ。シュメール人が用いた、西アジア最古の文字体系は何か。</div>
+    <div class="qtext">文字の発明以降を「歴史時代」、それ以前を「先史時代」と呼ぶ。メソポタミア南部で生まれ、粘土板に葦のペンで刻まれた西アジア最古の文字体系は何か。</div>
     <details><summary>解答を見る</summary>
       <div class="answer">解答：楔形文字</div>
       <div class="explanation">解説：シュメール人の絵文字から発展し、粘土板に葦の茎で刻まれた楔形文字が、現存する最古の文字体系のひとつとされる。「文字の有無」が歴史時代と先史時代を分ける基準である点を押さえておく。</div>
@@ -328,7 +328,7 @@
 
 <div class="q">
   <div class="qhead"><span class="qn">10</span><span class="badge basic">基本</span></div>
-  <div class="qtext">前3500年頃、ティグリス川とユーフラテス川の下流域にウル・ウルクなどの都市国家を築き、楔形文字を生み出した民族は。</div>
+  <div class="qtext">前3500年頃、ティグリス川とユーフラテス川の下流域にウル・ウルクなどの都市国家を築いた民族は。</div>
   <details><summary>解答を見る</summary>
     <div class="answer">解答：シュメール人</div>
     <div class="explanation">解説：系統不明の民族。前24世紀にアッカド人のサルゴン（教科書では「サルゴン1世」とも表記）に征服されるが、楔形文字・六十進法・太陰暦（実際は閏月で季節を調整する太陰太陽暦）はその後のオリエント世界に受け継がれた。「1時間＝60分」は今も彼らの発明の中で生きている。</div>
@@ -804,7 +804,13 @@
   #zmstage{position:absolute; inset:0; overflow:hidden; touch-action:none; cursor:grab;}
   #zmstage.drag{cursor:grabbing;}
   #zminner{position:absolute; left:0; top:0; transform-origin:0 0; will-change:transform;}
-  #zminner svg, #zminner img{display:block; background:#fdfaf3; border-radius:8px;}
+  /* 図の背景はページのテーマに合わせる。白に固定すると、SVGの文字色が var(--fg) を
+     参照しているダークモードで淡色文字×白背景になり読めなくなる（2026-08-04 オーナー指摘） */
+  #zminner svg, #zminner img{display:block; background:#1c1814; border-radius:8px;
+    box-shadow:0 0 0 1px rgba(255,255,255,.14);}
+  @media (prefers-color-scheme: light){
+    #zminner svg, #zminner img{background:#fdfaf3; box-shadow:0 0 0 1px rgba(0,0,0,.12);}
+  }
   #zmcap{position:absolute; left:.9em; top:.8em; right:4em; color:#f2ede3; font-size:.82em;
     text-shadow:0 1px 3px rgba(0,0,0,.6); pointer-events:none; line-height:1.5;}
   #zmclose{position:absolute; right:.6em; top:.6em; width:2.6em; height:2.6em; border-radius:50%;

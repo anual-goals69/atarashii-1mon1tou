@@ -493,7 +493,13 @@
   #zmstage{position:absolute; inset:0; overflow:hidden; touch-action:none; cursor:grab;}
   #zmstage.drag{cursor:grabbing;}
   #zminner{position:absolute; left:0; top:0; transform-origin:0 0; will-change:transform;}
-  #zminner svg, #zminner img{display:block; background:#fdfaf3; border-radius:8px;}
+  /* 図の背景はページのテーマに合わせる。白に固定すると、SVGの文字色が var(--fg) を
+     参照しているダークモードで淡色文字×白背景になり読めなくなる（2026-08-04 オーナー指摘） */
+  #zminner svg, #zminner img{display:block; background:#1c1814; border-radius:8px;
+    box-shadow:0 0 0 1px rgba(255,255,255,.14);}
+  @media (prefers-color-scheme: light){
+    #zminner svg, #zminner img{background:#fdfaf3; box-shadow:0 0 0 1px rgba(0,0,0,.12);}
+  }
   #zmcap{position:absolute; left:.9em; top:.8em; right:4em; color:#f2ede3; font-size:.82em;
     text-shadow:0 1px 3px rgba(0,0,0,.6); pointer-events:none; line-height:1.5;}
   #zmclose{position:absolute; right:.6em; top:.6em; width:2.6em; height:2.6em; border-radius:50%;
