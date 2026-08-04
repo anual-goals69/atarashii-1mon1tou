@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>新しい一問一答 —世界をつなぐ、過去と現在をつなぐ— 毎日の歴史一問一答（世界史・日本史）</title>
-<meta name="description" content="世界史と日本史を同じ日に並べて解く歴史一問一答を毎日配信。単元で区切る可変構成＋読み物コラム。">
+<meta name="description" content="世界史と日本史を同じ日に並べて解く歴史一問一答。単元で区切る可変構成＋読み物コラム。現在ベータ公開中で、正式公開は2026年8月10日を予定しています。">
 <!-- GA4: 公開時に測定IDを挿入（プロパティ作成は手順書参照） -->
 <!--sitepwa-->
 <link rel="manifest" href="manifest.webmanifest">
@@ -67,6 +67,13 @@
   .sitename .stroke{
     background:linear-gradient(transparent 62%, color-mix(in srgb, var(--amber) 45%, transparent) 62%);
     padding:0 .1em;
+  }
+  /* ベータ公開バッジ（2026-08-10 の正式公開時に削除。make_beta_banner.py の注記参照） */
+  .sitename .beta{
+    display:inline-block; vertical-align:.42em; margin-left:.35em;
+    font-size:.34em; font-weight:800; letter-spacing:.12em;
+    padding:.3em .8em; border-radius:999px;
+    background:var(--amber); color:#fff; box-shadow:0 1px 0 var(--amber-deep);
   }
   .subname{color:var(--amber-deep); letter-spacing:.35em; font-size:.88em; font-weight:700; margin-top:.5em;}
   .tagline{color:var(--sub); font-size:.92em; margin-top:.9em; line-height:1.9;}
@@ -207,13 +214,44 @@
   <a href="contact.html">お問い合わせ</a>
 </div></nav>
 <div class="wrap">
+<!--betabanner-->
+<style>
+  .bb{
+    --bb-bg:#2a2118; --bb-line:#6b5230; --bb-tag:#e8a020; --bb-tagfg:#1b1509; --bb-fg:#efe4d2;
+    display:flex; align-items:flex-start; gap:.7em; flex-wrap:wrap;
+    margin:0 0 1.4em; padding:.85em 1em; border-radius:10px;
+    background:var(--bb-bg); border:1px solid var(--bb-line);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Noto Sans JP",sans-serif;
+    font-size:.92em; line-height:1.75; color:var(--bb-fg);
+  }
+  @media (prefers-color-scheme: light){
+    .bb{--bb-bg:#fdf3e0; --bb-line:#e6c98d; --bb-fg:#4a3b25;}
+  }
+  .bb-tag{
+    flex:none; background:var(--bb-tag); color:var(--bb-tagfg);
+    border-radius:999px; padding:.15em .85em; font-weight:800; font-size:.9em;
+    letter-spacing:.04em; white-space:nowrap;
+  }
+  .bb-txt{margin:0; flex:1 1 16em; min-width:0;}
+  .bb-txt strong{color:var(--bb-tag);}
+</style>
+<div class="bb">
+  <span class="bb-tag">ベータ公開中</span>
+  <p class="bb-txt"><strong>正式公開は2026年8月10日（月）を予定しています。</strong>
+  新しい号は毎日作成しておりますが、公開は正式公開日にまとめて行います。
+  それまでの間も内容の追加・修正を続けておりますので、構成や表記が変わることがございます。
+  どうぞ気軽にお試しいただけますと幸いです。</p>
+</div>
+<!--/betabanner-->
+
+
 
 <header class="site">
-  <div class="sitename"><span class="stroke">新しい一問一答</span></div>
+  <div class="sitename"><span class="stroke">新しい一問一答</span> <span class="beta" aria-label="ベータ公開中">BETA</span></div>
   <div class="subname">—世界をつなぐ、過去と現在をつなぐ—</div>
   <div class="tagline">毎日の歴史一問一答 — 世界史＋日本史（単元で区切る可変構成）＋読み物コラム。<br>受験生にも、歴史を学びなおしたい大人にも。</div>
   <div class="chips">
-    <span class="chip c1">毎日更新</span>
+    <span class="chip c1">正式公開後 毎日更新</span>
     <span class="chip c2">高校歴史探究・教科書レベル準拠</span>
     <span class="chip c3">大人の学びなおしにも</span>
   </div>

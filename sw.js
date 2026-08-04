@@ -1,8 +1,8 @@
-/* 新しい一問一答 service worker
+﻿/* 新しい一問一答 service worker
    方針: HTML(ナビゲーション)=ネットワーク優先(毎日更新が最優先・オフライン時のみキャッシュ)
          静的資産(アイコン等)=キャッシュ優先
    バージョンを上げると旧キャッシュは activate 時に削除される */
-const CACHE = "ichimon-v10";
+const CACHE = "ichimon-v11";
 const PRECACHE = [
   "./index.html",
   "./legal.html",
