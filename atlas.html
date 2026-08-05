@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>資料集｜新しい一問一答 —世界をつなぐ、過去と現在をつなぐ—</title>
 <meta name="description" content="実測データから作成した歴史地図とビジュアル年表を単元別に収録。">
+<!--sitepwa-->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="icons/logo.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="icons/favicon-48.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="theme-color" content="#faf6ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#181511" media="(prefers-color-scheme: dark)">
+<!--/sitepwa-->
 <style>
   :root{
     --bg:#faf6ee; --fg:#33302a; --sub:#6f695e;
@@ -696,5 +704,12 @@
 })();
 </script>
 <!--/zoomui-->
+<!--sitesw-->
+<script>
+if ("serviceWorker" in navigator && location.protocol !== "file:") {
+  navigator.serviceWorker.register("sw.js");
+}
+</script>
+<!--/sitesw-->
 </body>
 </html>

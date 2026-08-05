@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="新しい一問一答 ロゴ">
+  <style>
+    svg{--amber:#e8a020;--teal:#2f9e94;--coral:#e0584f;}
+    @media (prefers-color-scheme:dark){svg{--teal:#4db8ae;--coral:#e8776f;}}
+    .book{fill:var(--amber);}
+    .arc{stroke:var(--teal);stroke-width:4.5;fill:none;stroke-linecap:round;}
+    .dot{fill:var(--coral);}
+  </style>
+  <!-- 地球のドーム（外周＋経線1本＋緯線1本） -->
+  <path class="arc" d="M16 60 A44 44 0 0 1 104 60"/>
+  <path class="arc" d="M42 60 A18 43 0 0 1 78 60"/>
+  <path class="arc" d="M22 38 A55 16 0 0 0 98 38"/>
+  <!-- 開いた本（下半円） -->
+  <path class="book" d="M17 63 C30 55 46 54 58.5 60 L58.5 103 A44 44 0 0 1 17 63 Z"/>
+  <path class="book" d="M103 63 C90 55 74 54 61.5 60 L61.5 103 A44 44 0 0 0 103 63 Z"/>
+  <!-- 現在地の点（外周経線上） -->
+  <circle class="dot" cx="88" cy="26" r="5.5"/>
+</svg>
