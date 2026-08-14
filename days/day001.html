@@ -181,7 +181,9 @@
 <!--/gradecss-->
 <!--linkcss-->
 <style>
-  .explanation a, .col a, .answer a, .caution a{
+  /* 本文中のリンクはすべて金色にする。コンテナ列挙だと漏れた場所が既定の青になり、
+     暗い背景で読めなくなる（2026-08-04 オーナー指摘）。#77-3 参照 */
+  .wrap a{
     color:var(--gold); text-decoration:underline; text-underline-offset:2px;
   }
 </style>
@@ -231,7 +233,7 @@
   <a href="../daily.html">毎日の一問一答</a>
   <a href="../culture.html">文化史</a>
   <a href="../atlas.html">資料集</a>
-  <a href="../features.html">特集<small>β</small></a>
+  <a href="../features.html">特集</a>
   <a href="../links.html">リンク集</a>
   <a href="../contact.html">お問い合わせ</a>
 </div></nav>
@@ -240,7 +242,7 @@
 
 <header class="day">
   <div class="daynum">DAY 001</div>
-  <div class="date">2026年8月1日（土）</div>
+  <div class="date">2026年8月15日（土）</div>
   <h1 class="title">文明が始まった日、列島は森だった</h1>
   <div class="chips">
     <span class="chip">世界史：文明の誕生／古代オリエント（メソポタミア・エジプト）</span>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>新しい一問一答 —世界をつなぐ、過去と現在をつなぐ— 毎日の歴史一問一答（世界史・日本史）</title>
-<meta name="description" content="世界史と日本史を同じ日に並べて解く歴史一問一答。単元で区切る可変構成＋読み物コラム。現在ベータ公開中で、正式公開は2026年8月15日を予定しています。">
+<meta name="description" content="世界史と日本史を同じ日に並べて解く歴史一問一答。単元で区切る可変構成＋読み物コラム。史料・地図・対照年表つきで毎日1号ずつ公開。">
 <!-- GA4: 公開時に測定IDを挿入（プロパティ作成は手順書参照） -->
 <!--sitepwa-->
 <link rel="manifest" href="manifest.webmanifest">
@@ -71,13 +71,6 @@
   .sitename .stroke{
     background:linear-gradient(transparent 62%, color-mix(in srgb, var(--amber) 45%, transparent) 62%);
     padding:0 .1em;
-  }
-  /* ベータ公開バッジ（2026-08-15 の正式公開時に削除。make_beta_banner.py の注記参照） */
-  .sitename .beta{
-    display:inline-block; vertical-align:.42em; margin-left:.35em;
-    font-size:.34em; font-weight:800; letter-spacing:.12em;
-    padding:.3em .8em; border-radius:999px;
-    background:var(--amber); color:#fff; box-shadow:0 1px 0 var(--amber-deep);
   }
   .subname{color:var(--amber-deep); letter-spacing:.35em; font-size:.88em; font-weight:700; margin-top:.5em;}
   .tagline{color:var(--sub); font-size:.92em; margin-top:.9em; line-height:1.9;}
@@ -213,47 +206,18 @@
   <a href="daily.html">毎日の一問一答</a>
   <a href="culture.html">文化史</a>
   <a href="atlas.html">資料集</a>
-  <a href="features.html">特集<small>β</small></a>
+  <a href="features.html">特集</a>
   <a href="links.html">リンク集</a>
   <a href="contact.html">お問い合わせ</a>
 </div></nav>
 <div class="wrap">
-<!--betabanner-->
-<style>
-  .bb{
-    --bb-bg:#2a2118; --bb-line:#6b5230; --bb-tag:#e8a020; --bb-tagfg:#1b1509; --bb-fg:#efe4d2;
-    display:flex; align-items:flex-start; gap:.7em; flex-wrap:wrap;
-    margin:0 0 1.4em; padding:.85em 1em; border-radius:10px;
-    background:var(--bb-bg); border:1px solid var(--bb-line);
-    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Noto Sans JP",sans-serif;
-    font-size:.92em; line-height:1.75; color:var(--bb-fg);
-  }
-  @media (prefers-color-scheme: light){
-    .bb{--bb-bg:#fdf3e0; --bb-line:#e6c98d; --bb-fg:#4a3b25;}
-  }
-  .bb-tag{
-    flex:none; background:var(--bb-tag); color:var(--bb-tagfg);
-    border-radius:999px; padding:.15em .85em; font-weight:800; font-size:.9em;
-    letter-spacing:.04em; white-space:nowrap;
-  }
-  .bb-txt{margin:0; flex:1 1 16em; min-width:0;}
-  .bb-txt strong{color:var(--bb-tag);}
-</style>
-<div class="bb">
-  <span class="bb-tag">ベータ公開中</span>
-  <p class="bb-txt"><strong>正式公開は2026年8月15日（土）を予定しています。</strong>
-  新しい号は毎日作成しておりますが、公開は正式公開日にまとめて行います。
-  それまでの間も内容の追加・修正を続けておりますので、構成や表記が変わることがございます。
-  どうぞ気軽にお試しいただけますと幸いです。</p>
-</div>
-<!--/betabanner-->
 
 
 
 
 <header class="site">
   <img class="sitelogo" src="icons/logo.svg" alt="" width="76" height="76">
-  <div class="sitename"><span class="stroke">新しい一問一答</span> <span class="beta" aria-label="ベータ公開中">BETA</span></div>
+  <div class="sitename"><span class="stroke">新しい一問一答</span></div>
   <div class="subname">—世界をつなぐ、過去と現在をつなぐ—</div>
   <div class="tagline">毎日の歴史一問一答 — 世界史＋日本史（単元で区切る可変構成）＋読み物コラム。<br>受験生にも、歴史を学びなおしたい大人にも。</div>
   <div class="chips">
@@ -272,10 +236,10 @@
 </div>
 
 <div class="today">
-  <span class="label">最新号 — DAY 003</span>
-  <div class="ttl">都市は謎を残し、稲は濠と女王を連れてきた</div>
-  <div class="units">世界史：南アジアの古代文明 その1<br>日本史：農耕社会の成立（弥生・小国の分立）</div>
-  <a class="btn" href="days/day003.html">今日の一問一答を解く →</a>
+  <span class="label">最新号 — DAY 001</span>
+  <div class="ttl">文明が始まった日、列島は森だった</div>
+  <div class="units">世界史：文明の誕生／古代オリエント（メソポタミア・エジプト）<br>日本史：文化の始まり（旧石器・縄文）その1</div>
+  <a class="btn" href="days/day001.html">今日の一問一答を解く →</a>
 </div>
 
 <div class="today culture">
@@ -287,10 +251,10 @@
 
 <h2 class="section">コンテンツ</h2>
 <ul class="archive">
-  <li><span class="day">毎日</span><a href="daily.html">毎日の一問一答</a><span class="date" style="width:100%">世界史と日本史を同じ日に並べて解く。Day 001〜003 公開中</span></li>
+  <li><span class="day">毎日</span><a href="daily.html">毎日の一問一答</a><span class="date" style="width:100%">世界史と日本史を同じ日に並べて解く。毎日1号ずつ公開</span></li>
   <li><span class="day">テーマ</span><a href="culture.html">文化史一問一答</a><span class="date" style="width:100%">美術・宗教・文字・建築をテーマ別に整理。第1集 公開中</span></li>
   <li><span class="day">資料</span><a href="atlas.html">資料集</a><span class="date" style="width:100%">実測データから作成した歴史地図とビジュアル年表 11点</span></li>
-  <li><span class="day">特集</span><a href="features.html">特集（β）— 歴史から読む現代</a><span class="date" style="width:100%">現代の諸問題を歴史の線でたどる。第1回 パレスチナ問題 公開中</span></li>
+  <li><span class="day">特集</span><a href="features.html">特集 — 歴史から読む現代</a><span class="date" style="width:100%">現代の諸問題を歴史の線でたどる。第2回 歴代総理の歴史認識の変遷 公開</span></li>
 </ul>
 
 <div class="about">
@@ -298,7 +262,7 @@
   <p>このサイトは、歴史好きの作者が、自身の大学受験の学習経験をもとに「自分が欲しかった一問一答」を設計・作成しているものです。基本〜発展の設問に加え、史料問題・地図問題・歴史の裏話・両史をつなぐ対照年表と連載読み物を毎日収録しています。受験生はもちろん、歴史を学びなおしたい大人の方にも楽しんでいただけるよう、設問の先にある「つながり」まで読める作りにしています。</p>
   <div id="about-more" hidden>
   <p>サイト名の「つなぐ」には、二つの意味を込めています。ひとつは、<strong>世界史と日本史をつなぐ</strong>こと。二つの歴史をあえて同じ日に並べているのは、つなげて眺めたとき、世界への認識が一段広がるからです。同じ「前7世紀」に、西アジアの市場とこの列島では何が起きていたか——並べてはじめて見える遠近感があります。世界史選択・日本史選択の方は、どちらか片方だけを解いても完結するように作っています。</p>
-  <p>もうひとつは、<strong>過去と現在をつなぐ</strong>こと。定住に適した土地の偏りが遊牧という生き方を生み、豊かな土地を求める移動が次の時代の引き金になる——歴史の出来事は、一つひとつが連関し、その線は現在まで延びています。ニュースで目にする現代の諸問題の多くは、教科書で学ぶ条約や宣言と一本の線でつながっています。設問・年表・コラムに加えて、現代の諸問題を歴史の線でたどる特集ページも公開しています（β版として継続更新中）。</p>
+  <p>もうひとつは、<strong>過去と現在をつなぐ</strong>こと。定住に適した土地の偏りが遊牧という生き方を生み、豊かな土地を求める移動が次の時代の引き金になる——歴史の出来事は、一つひとつが連関し、その線は現在まで延びています。ニュースで目にする現代の諸問題の多くは、教科書で学ぶ条約や宣言と一本の線でつながっています。設問・年表・コラムに加えて、現代の諸問題を歴史の線でたどる特集ページも公開しています。</p>
   <p>本サイトのコンテンツは、AI（生成AI）を全面的に活用して制作しています。作者が確認のうえ公開していますが、誤りが残る可能性があります。お気づきの点を指摘フォームからお知らせいただけますと、とても助かります。確認のうえ修正し、更新履歴に記載いたします。</p>
   </div>
   <button class="more-toggle" id="about-toggle" type="button" aria-expanded="false" aria-controls="about-more">続きを読む ▾</button>
