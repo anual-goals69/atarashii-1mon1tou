@@ -2,7 +2,7 @@
    方針: HTML(ナビゲーション)=ネットワーク優先(毎日更新が最優先・オフライン時のみキャッシュ)
          静的資産(アイコン等)=キャッシュ優先
    バージョンを上げると旧キャッシュは activate 時に削除される */
-const CACHE = "ichimon-v13";
+const CACHE = "ichimon-v14";
 const PRECACHE = [
   "./index.html",
   "./legal.html",
@@ -11,7 +11,6 @@ const PRECACHE = [
   "./contact.html",
   "./culture.html",
   "./features.html",
-  "./features/feature-01.html",
   "./daily.html",
   "./manifest.webmanifest",
   "./icons/icon-192.png",

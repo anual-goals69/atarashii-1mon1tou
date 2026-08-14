@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>特集｜パレスチナ問題 —— 土地の三千年、紛争の百年</title>
+<title>特集｜歴代総理の歴史認識の変遷 —— 原文でたどる五十年</title>
 <!--sitepwa-->
 <link rel="manifest" href="../manifest.webmanifest">
 <link rel="icon" type="image/svg+xml" href="../icons/logo.svg">
@@ -59,7 +59,6 @@
     background:var(--panel2); border-radius:4px; border-left:3px solid var(--terra);
   }
   .src{font-size:.8em; opacity:.7;}
-  svg.mapsvg{width:100%; height:auto; max-width:340px; display:block; margin:.6em auto;}
   svg.tlsvg{width:100%; height:auto; display:block; margin:.6em auto;}
   .col{
     margin-top:2em; padding:1.2em 1.1em; background:var(--panel2);
@@ -67,31 +66,40 @@
   }
   .col h3{margin:0 0 .7em; font-size:1.02em; color:var(--terra);}
   .col.linkcol h3{color:var(--teal);}
-  .col.geo{border-color:#7d8fa0;}
-  .col.geo h3{color:#7d8fa0;}
   table.tl{width:100%; border-collapse:collapse; margin:.8em 0; font-size:.85em;}
   table.tl th, table.tl td{border:1px solid var(--border); padding:.5em .5em; text-align:left; vertical-align:top;}
   table.tl th{background:var(--panel); color:var(--gold); font-weight:600;}
-  table.tl td.d{white-space:nowrap; color:var(--gold); font-weight:600;}
-  .voice{
-    margin:1em 0; padding:.85em 1em; background:var(--panel);
-    border-left:3px solid var(--teal); border-radius:6px; font-size:.92em;
+  table.tl td.d{color:var(--gold); font-weight:600;}
+  .tscroll{overflow-x:auto; -webkit-overflow-scrolling:touch;}
+  .tscroll table.tl, .tscroll table.wd{min-width:600px;}
+  .scrollhint{font-size:.75em; opacity:.6; margin:.2em 0 -.4em;}
+  @media (min-width:660px){ .scrollhint{display:none;} }
+  table.wd{width:100%; border-collapse:collapse; margin:.8em 0; font-size:.8em;}
+  table.wd th, table.wd td{border:1px solid var(--border); padding:.45em .5em; text-align:left; vertical-align:top;}
+  table.wd th{background:var(--panel); color:var(--gold); font-weight:600; white-space:nowrap;}
+  table.wd td.w{color:var(--teal); font-weight:600; white-space:nowrap;}
+  table.wd td.none{opacity:.5;}
+  .quote{
+    margin:1em 0; padding:.9em 1.05em; background:var(--panel);
+    border-left:3px solid var(--gold); border-radius:6px; font-size:.92em;
   }
-  .voice .who{display:block; color:var(--teal); font-size:.8em; margin-top:.45em;}
-  .voice.il{border-left-color:var(--terra);}
-  .voice.il .who{color:var(--terra);}
-  .voice.un{border-left-color:var(--green);}
-  .voice.un .who{color:var(--green);}
+  .quote .who{display:block; color:var(--gold); font-size:.8em; margin-top:.55em;}
+  .quote.pre{border-left-color:var(--teal);}
+  .quote.pre .who{color:var(--teal);}
   .cite{
     display:block; font-size:.78em; opacity:.72; margin-top:.8em; line-height:1.7;
   }
+  .qa{margin:1.1em 0; border:1px solid var(--border); border-radius:8px; overflow:hidden;}
+  .qa .q, .qa .a{padding:.85em 1em; font-size:.9em;}
+  .qa .q{background:var(--panel2); border-left:3px solid var(--terra);}
+  .qa .a{background:var(--panel); border-left:3px solid var(--gold);}
+  .qa .nm{display:block; font-size:.78em; margin-bottom:.35em; letter-spacing:.03em;}
+  .qa .q .nm{color:var(--terra);}
+  .qa .a .nm{color:var(--gold);}
+  .qasrc{font-size:.78em; opacity:.7; margin:.3em 0 1.6em;}
   a{color:var(--teal);}
   .srclist{font-size:.85em; line-height:2.0; padding-left:1.3em;}
   .srclist .g{color:var(--gold); font-size:.9em; list-style:none; margin-left:-1.3em; margin-top:.6em;}
-  .imgslot{
-    margin:1em auto; padding:1.2em; border:1px dashed var(--border); border-radius:8px;
-    text-align:center; font-size:.8em; opacity:.65; max-width:420px;
-  }
   footer.next{
     margin-top:2.4em; padding:1em; text-align:center; font-size:.85em;
     border-top:1px solid var(--border); opacity:.85;
@@ -161,187 +169,507 @@
 
 <header class="day">
   <div class="daynum">特集 第1回</div>
-  <h1 class="title">パレスチナ問題<br>—— 土地の三千年、紛争の百年</h1>
-  <div class="date">更新日: 2026年8月4日</div>
+  <h1 class="title">歴代総理の歴史認識の変遷<br>—— 原文でたどる五十年</h1>
+  <div class="date">更新日: 2026年8月15日</div>
   <div class="chips">
     <span class="chip">過去と現在をつなぐ</span>
-    <span class="chip">世界史</span>
-    <span class="chip">地理の視点</span>
+    <span class="chip">日本史</span>
+    <span class="chip">一次資料で読む</span>
   </div>
 </header>
 
 <div class="caution">
-  この特集は、ニュースの速報や論評ではありません。現代の出来事を歴史の線でたどるための整理です。
-  事実関係は国連の決議本文・国連機関の発表・日本の外務省などの公的資料と複数の報道で確認し、
-  統計の数字と発言には出どころを明記しています。<strong>どちらが正しいかという是非の判断は、書いていません。</strong>
+  この特集は、日本政府が先の大戦についてどう述べてきたかを、<strong>公的な文書の原文と出典だけでたどる</strong>ものです。
+  どの談話が正しいか、どれが優れているか、誰が何を欠いていたか —— そうした<strong>評価・是非の判断は一切書いていません</strong>。
+  引用はすべて首相官邸・外務省・国会会議録検索システム・国立国会図書館WARPなどの公的な出典に当たり、リンクを付けています。
+  読んだうえでどう考えるかは、読む人のものです。
 </div>
 
-<div class="caution" style="border-left-color:var(--gold)">
-  状況が動いているテーマのため、新しい事実の確認・検証が済み次第、順次追記・更新していきます。各回の変更はページ末尾の「更新履歴」に記録します。出典は、当事者双方の英語メディア（イスラエル系・アラブ系）、第三国の報道、国際機関の一次資料の三系統を照合する方針です。
+<h2 class="section">① なぜ、この特集を作ったか</h2>
+
+<p>この国の政府が、先の大戦をどう認識しているのか。そしてそれは、どう変わってきたのか。<strong>投票権を持つ一人として、それは知っておく必要があることだと考えています。</strong></p>
+
+<p>政権を率いる人の歴史認識は、その人が下す政治の決定に反映されうるものです。そして決定は、めぐりめぐって私たちの生活に返ってきます。遠い過去についての言葉に見えて、実際には、いま自分が投じる一票と地続きのところにあります。</p>
+
+<p>ところが、その認識の中身にあたる文書は、名前ほどには読まれていません。「村山談話」「安倍談話」という名前はニュースでも教科書でも見かけますし、八月になれば議論も流れてきます。けれども、その談話に<strong>実際にどんな言葉が並んでいるのかを、最初から最後まで読んだことがある人</strong>は、そう多くありません。</p>
+
+<p>読まないまま議論だけが流れてくると、「あの談話はこういうものだ」という<strong>要約された像</strong>だけが手元に残ります。要約は、誰かが選んだ言葉でできています。選ばれなかった言葉は、そこには入っていません。判断の材料としては、心もとない。</p>
+
+<p>だからこの特集を作りました。解説を最小限にして、<strong>文書そのものを並べます</strong>。このサイトが目指しているのは答えを配ることではなく、歴史を学ぶことを通じて<strong>自分がこの世界の一員だと感じられるところまで案内すること</strong>です。結論を渡すより、結論の材料を渡す。歴史認識のように受け取り方が大きく分かれる主題なら、なおさらそうすべきだと考えています。</p>
+
+<div class="caution" style="border-left-color:var(--teal)">
+  <strong>この特集が扱う範囲について。</strong>この特集は、政府の歴史認識に関する文書の<strong>全史ではありません</strong>。収録の基準は次の三つです。<br>
+  (1) 戦後50年・60年・70年・80年の節目に内閣総理大臣が発した談話・所感・式辞は、<strong>すべて</strong>収録する（④）。<br>
+  (2) その前史として、④の文書の核心の語（植民地支配・侵略・反省・お詫び）が政府の公式文書に現れた<strong>主要な先例</strong>を収録する（⑤）。これは系譜を示すための代表例であり、網羅ではありません。<br>
+  (3) 現内閣の発言は、国会会議録と官邸の会見記録を発言者と関連語で<strong>機械的に検索</strong>し、歴史認識について問われて答えた質疑をすべて収録する（③）。個別の発言をこちらの判断で選ぶことはしていません。<br>
+  この基準の外にある文書 —— 各国との共同宣言や国会の決議、歴史認識に触れた個別の決定、憲法解釈や安全保障の法制との関係など —— は、この特集では扱っていません。あらためて別の回で取り上げます。
 </div>
 
-<h2 class="section">① いま、何が起きているか（2026年8月4日時点）</h2>
+<h2 class="section">② この特集の三つの制約</h2>
 
-<p>地中海の東岸、ガザ地区とヨルダン川西岸をめぐる紛争は、2023年10月に始まった戦争が2025年10月の停戦合意でいったん区切りを迎え、いまは「停戦をどう定着させるか」——とりわけ<a href="https://ja.wikipedia.org/wiki/ハマース" target="_blank" rel="noopener">ハマス</a>の武装解除とイスラエル軍の撤退をどの順序で進めるか——が焦点になっています。</p>
+<p>並べるにあたって、自分たちに三つの制約を設けています。守れているかどうかは、読みながら確かめてください。</p>
 
-<table class="tl">
-  <tr><th>日付</th><th>出来事</th></tr>
-  <tr><td class="d">2023.10.7</td><td>ハマスなどがイスラエルを攻撃。イスラエル政府の発表では約1,200人が殺害され、約250人が人質として連行された。イスラエルはガザで大規模軍事作戦を開始</td></tr>
-  <tr><td class="d">〜2025.10</td><td>約2年の戦闘。ガザ保健当局の集計では死者は7万人を超えたと発表（国連機関の報告でも引用され、2026年1月にはイスラエル軍もこの規模をおおむね妥当と認めたと報じられた）</td></tr>
-  <tr><td class="d">2025.9.29</td><td>米国が20項目の和平計画を発表</td></tr>
-  <tr><td class="d">2025.10.10</td><td>停戦が発効。10月13日、生存していた人質20人が解放される</td></tr>
-  <tr><td class="d">2025.11.17</td><td>国連安保理が<strong><a href="https://worldjpn.net/documents/texts/docs/20251117.O1J.html" target="_blank" rel="noopener">決議2803</a></strong>を採択（賛成13・反対0・棄権2〈中国・ロシア〉）。「平和評議会」を歓迎し、国際安定化部隊（ISF）の設置を承認。日本政府は翌18日に<a href="https://www.mofa.go.jp/mofaj/fp/unp/pageit_000001_02580.html" target="_blank" rel="noopener">外務大臣談話</a>で採択を歓迎</td></tr>
-  <tr><td class="d">2026.1</td><td>停戦「第1段階」が完了したと報じられ（イスラエル側は人質遺体の未返還などを理由に異議も表明）、平和評議会が正式に発足</td></tr>
-  <tr><td class="d">2026.7.30</td><td>仲介国（米・エジプト・カタール・トルコ）がまとめた段階的武装解除のロードマップにハマスが合意したと発表される</td></tr>
-  <tr><td class="d">2026.8.1-2</td><td>イスラエル側は「真の武装解除なくして撤退はない」として提案に「深刻な懸念」を表明。実施の行方は流動的</td></tr>
-</table>
-
-<h3 class="sub">対立の構図 —— 何が合意を止めているのか</h3>
-
-<p>最大の争点は、<strong>「ハマスの武装解除」と「イスラエル軍の撤退」のどちらを先に実行するか</strong>という順序の問題です。2026年7月30日に発表されたロードマップは、区域ごとに「武装解除→検証→撤退」を繰り返す段階的な同時進行を提案しています（米側は7〜8ヶ月規模の工程を想定していると報じられています）。それぞれの立場を、当事者自身の言葉とともに整理します。</p>
-
-<table class="tl">
-  <tr><th>立場</th><th>求めるもの</th><th>当事者の言葉</th></tr>
-  <tr><td>ハマス</td><td>イスラエル軍の撤退が先。撤退の履行が実施の条件</td><td>「イスラエルが（撤退の）義務を履行しない限り、合意のいかなる部分も実施しない」——交渉団のガジ・ハマド氏（2026年7月31日・<a href="https://www.aljazeera.com/news/2026/7/31/gaza-board-of-peace-announces-hamas-disarmament-agreement-what-we-know" target="_blank" rel="noopener">Al Jazeera報道</a>）</td></tr>
-  <tr><td>イスラエル</td><td>ハマスの完全な武装解除・ガザの非武装化が先</td><td>「（15項目の提案は）ガザの完全な非武装化という要求を満たしていない」——首相府声明（7月30日・<a href="https://www.timesofisrael.com/board-of-peace-said-nearing-deal-with-hamas-on-disarmament-but-israel-opposes-offer/" target="_blank" rel="noopener">The Times of Israel報道</a>）。8月2日には「深刻な安全保障上の懸念」を米側に伝達（<a href="https://www.washingtontimes.com/news/2026/aug/2/israel-expresses-serious-concerns-hamas-disarmament-deal/" target="_blank" rel="noopener">The Washington Times報道</a>）</td></tr>
-  <tr><td>仲介側<br>（平和評議会・米・エジプト・カタール・トルコ）</td><td>段階的な同時進行（区域ごとに武装解除→検証→撤退）</td><td>「ハマスとガザの全武装組織の完全な武装解除に関する歴史的な合意に達した」——トランプ米大統領（平和評議会議長）のSNS投稿（7月30日・<a href="https://www.cnn.com/2026/07/30/politics/hamas-disarmament-agreement-trump-board-of-peace" target="_blank" rel="noopener">CNN</a>／<a href="https://www.axios.com/2026/07/30/hamas-weapons-gaza-deal-israel-board-peace" target="_blank" rel="noopener">Axios</a>報道）</td></tr>
-</table>
-
-<p class="src">※発言はいずれも報道で確認できたものを、立場を示す証拠として引用しています。発言の網羅や変遷の記録はこのページの目的ではありません。</p>
-
-<h3 class="sub">人道状況</h3>
-
-<p>交渉が続く間も、ガザの人道状況は深刻なままです。国連機関が参加する<a href="https://www.un.org/unispal/document/gaza-strip-ipc-reports-19dec25/" target="_blank" rel="noopener">IPC（統合食料安全保障レベル分類）</a>の2025年12月公表の分析（現状評価期間は同年10月16日〜11月30日）では、分析対象人口約210万人のうち<strong>約160万人（77%）</strong>が「危機」以上の急性食料不安にあると評価されました。フォルカー・トゥルク国連人権高等弁務官は2026年4月、「停戦の発表から半年を経ても、ガザ全域のパレスチナ人は依然として安全ではない」と述べ（<a href="https://www.ohchr.org/en/press-releases/2026/04/palestinians-across-gaza-unsafe-six-months-ceasefire-announcement-says-turk" target="_blank" rel="noopener">OHCHR発表</a>）、トム・フレッチャー国連事務次長（人道問題担当）は同年6月の安保理ブリーフィングに関連して、停戦は「破綻しつつある」——飢餓、ネズミ、瓦礫が日常を支配している——と警告しています（<a href="https://www.arabnews.com/node/2647761/middle-east" target="_blank" rel="noopener">Arab News報道</a>）。</p>
-
-<h3 class="sub">停戦後の枠組み（決議2803が定めたもの）</h3>
-
-<table class="tl">
-  <tr><th>機関</th><th>役割</th></tr>
-  <tr><td>平和評議会<br>（Board of Peace）</td><td>ガザ暫定統治の監督と復興・資金調整を担う国際機関。議長はトランプ米大統領、メンバーにブレア元英首相ら。2026年1月に正式発足</td></tr>
-  <tr><td>国際安定化部隊<br>（ISF）</td><td>停戦監視・パレスチナ警察の訓練支援・非国家武装組織の武装解除・国境地域の警備・人道回廊の確保など</td></tr>
-  <tr><td><a href="https://ja.wikipedia.org/wiki/パレスチナ自治政府" target="_blank" rel="noopener">パレスチナ自治政府</a><br>（PA）</td><td>改革の実施を条件に、将来のガザ統治への関与が想定される。決議は、改革と復興が進んだのちに「パレスチナ人の自決と国家への信頼できる道筋」の条件が整いうる、という段階的な見取り図を示す</td></tr>
-</table>
-
-<h3 class="sub">連動する戦線（概観・2026年8月4日時点）</h3>
-
-<p>ガザの停戦交渉は、単独で動いているわけではありません。2026年に入り、周辺では別の戦線が大きく動きました。ここでは概観のみを整理します（それぞれの経緯は特集②・③として準備中です）。</p>
-
-<table class="tl">
-  <tr><th>戦線</th><th>経過（報道に基づく概観）</th></tr>
-  <tr><td>イラン</td><td>2025年6月の「12日間戦争」に続き、2026年2月28日に<strong>米国とイスラエル</strong>がイランへの大規模攻撃を開始して戦争が再燃。最高指導者<a href="https://ja.wikipedia.org/wiki/アリー・ハーメネイー" target="_blank" rel="noopener">ハメネイ師</a>が死亡し（イラン政府も3月1日に公式確認）、イランは域内の米軍基地への報復攻撃と、3月上旬からの<a href="https://ja.wikipedia.org/wiki/ホルムズ海峡" target="_blank" rel="noopener">ホルムズ海峡</a>の事実上の封鎖（3月27日に正式な封鎖を宣言）で応じたと報じられている</td></tr>
-  <tr><td>レバノン</td><td>2024年11月の停戦後も違反の応酬が続き（レバノン政府は2026年1月、イスラエルの違反2,036件〈2025年10〜12月分〉を国連に申し立て）、2026年3月2日に<a href="https://ja.wikipedia.org/wiki/ヒズボラ" target="_blank" rel="noopener">ヒズボラ</a>が攻撃を再開（ハメネイ師死亡への対応と報道）。イスラエルは大規模に反攻してリタニ川以南の大部分を占領し（一部はリタニ川を越えて北進と報道）、4月8日の攻撃ではレバノン側の死者357人以上と報じられた。4月16日に敵対行為停止の合意が成立したが、その後も攻撃継続が報じられている（6月にも死者数十人）</td></tr>
-  <tr><td>ヨルダン川西岸</td><td>軍事作戦と入植者による暴力の継続を国連機関が繰り返し報告。イラン戦争のさなかの2026年3月には、ヘブロン近郊で民間人が死亡する攻撃も報じられた</td></tr>
-</table>
-
-<p class="src">※この概観は報道ベースの整理で、各戦線の詳細な検証は特集②（レバノン）・特集③（イラン戦争）で行います。ガザ停戦と各戦線の因果関係については、確立した評価がまだなく、本特集では時系列の事実のみを記載しています。</p>
-
-<h3 class="sub">日本とのかかわり</h3>
-
-<p>この紛争は、日本にとって遠い話ではありません。<a href="https://www.cas.go.jp/jp/seisaku/chyutoujyousei/dai1/pdf/siryou4.pdf" target="_blank" rel="noopener">経済産業省の資料</a>（2026年3月・財務省貿易統計に基づく）によれば、<strong>日本の原油輸入の中東依存度は94.0%、ホルムズ海峡への依存度は93.0%</strong>（いずれも2025年）。2026年のイラン戦争で海峡の封鎖が現実になると、日本政府は率先して石油備蓄の放出を決め（IEA史上最大となる合計4億バレル超の国際協調放出につながりました）、ガソリン小売価格を全国平均170円程度に抑える緊急補助も実施しています（同資料）。地中海東岸とペルシア湾の出来事は、ガソリン価格や電気代を通じて日本の生活に直結しています——1973年の石油危機で「狂乱物価」を経験した構図（③の2参照）が、半世紀を経て再び試されているとも言えます。</p>
-
-<p>外交面では、日本政府は一貫して<strong><a href="https://ja.wikipedia.org/wiki/二国家解決" target="_blank" rel="noopener">二国家解決</a></strong>（イスラエルとパレスチナの共存）を支持し、安保理決議2803の採択を歓迎する外務大臣談話では、ガザの暫定統治メカニズムへの人材派遣にも言及しています。国際機関を通じた人道支援も継続しています。</p>
-
-<h2 class="section">② 前史 —— なぜ「この土地」なのか</h2>
-
-<p>百年におよぶ紛争を理解するには、その前提となる土地の来歴に少しだけ触れておく必要があります。</p>
-
-<p>この地中海東岸——古代には「カナン」と呼ばれた土地には、前1000年頃までにヘブライ人（イスラエル人）の王国が成立し、のちにユダヤ教が形づくられました。ローマ支配下の反乱（66〜70年、132〜135年）ののち、ユダヤ人の離散（<a href="https://ja.wikipedia.org/wiki/ディアスポラ" target="_blank" rel="noopener">ディアスポラ</a>）が決定的に進み、以後この土地では約2000年にわたり、ユダヤ教徒・キリスト教徒、7世紀以降はムスリム（イスラーム教徒）が暮らしを重ねてきました（11〜13世紀には<a href="https://ja.wikipedia.org/wiki/十字軍" target="_blank" rel="noopener">十字軍国家</a>の支配期も挟みます）。エルサレムが三つの宗教の聖地であるのはこのためです。16世紀からは約400年間、<a href="https://ja.wikipedia.org/wiki/オスマン帝国" target="_blank" rel="noopener">オスマン帝国</a>の統治下に置かれ、住民の大多数はアラビア語を話すムスリム・キリスト教徒でした。</p>
-
-<p>転機は19世紀末のヨーロッパで生まれます。ロシア・東欧での<a href="https://ja.wikipedia.org/wiki/ポグロム" target="_blank" rel="noopener">ポグロム</a>（ユダヤ人迫害）やフランスの<a href="https://ja.wikipedia.org/wiki/ドレフュス事件" target="_blank" rel="noopener">ドレフュス事件</a>を背景に、ジャーナリストの<a href="https://ja.wikipedia.org/wiki/テオドール・ヘルツル" target="_blank" rel="noopener">テオドール・ヘルツル</a>は『ユダヤ人国家』（1896年）を著し、1897年にスイスのバーゼルで<strong>第1回シオニスト会議</strong>が開かれました。「ユダヤ人の郷土をパレスチナに建設する」という<a href="https://ja.wikipedia.org/wiki/シオニズム" target="_blank" rel="noopener">シオニズム</a>運動の始まりです。以後、パレスチナへのユダヤ人移民が段階的に増えていきます——ここから、次の「百年」が始まります。</p>
-
-<div class="caution" style="border-left-color:var(--green)">
-  古代のこの土地については、<strong>Day002「海を渡る文字、道を敷く帝国」</strong>（フェニキア・ヘブライ王国）で詳しく扱っています。なお「前1000年頃の統一王国」の実像は聖書の記述に基づく伝統的な理解で、考古学的には議論があります。また、古代の歴史と現代の領土問題を直接結びつける議論は、学問的にも慎重な扱いが必要とされる領域です。この特集では「同じ場所の、異なる時代の層」として扱い、現代の権利関係の根拠としては扱いません。
-</div>
-
-<h2 class="section">③ 紛争の百年 —— ビジュアル年表でたどる</h2>
-
-<div class="tl-slot"><svg class="tlsvg" viewBox="0 0 680 292" xmlns="http://www.w3.org/2000/svg" font-family="serif"><line x1="34" y1="168" x2="646" y2="168" stroke="var(--border)" stroke-width="1.5"/><line x1="34.0" y1="165" x2="34.0" y2="171" stroke="var(--border)" stroke-width="1"/><text x="34.0" y="160" font-size="8.5" fill="var(--fg)" opacity="0.55" text-anchor="middle">1890</text><line x1="187.0" y1="165" x2="187.0" y2="171" stroke="var(--border)" stroke-width="1"/><text x="187.0" y="160" font-size="8.5" fill="var(--fg)" opacity="0.55" text-anchor="middle">1925</text><line x1="296.3" y1="165" x2="296.3" y2="171" stroke="var(--border)" stroke-width="1"/><text x="296.3" y="160" font-size="8.5" fill="var(--fg)" opacity="0.55" text-anchor="middle">1950</text><line x1="405.6" y1="165" x2="405.6" y2="171" stroke="var(--border)" stroke-width="1"/><text x="405.6" y="160" font-size="8.5" fill="var(--fg)" opacity="0.55" text-anchor="middle">1975</text><line x1="514.9" y1="165" x2="514.9" y2="171" stroke="var(--border)" stroke-width="1"/><text x="514.9" y="160" font-size="8.5" fill="var(--fg)" opacity="0.55" text-anchor="middle">2000</text><line x1="624.1" y1="165" x2="624.1" y2="171" stroke="var(--border)" stroke-width="1"/><text x="624.1" y="160" font-size="8.5" fill="var(--fg)" opacity="0.55" text-anchor="middle">2025</text><rect x="34.0" y="176" width="122.4" height="26" fill="var(--green)" opacity="0.22"/><rect x="156.4" y="176" width="131.1" height="26" fill="var(--teal)" opacity="0.28"/><rect x="287.5" y="176" width="135.6" height="26" fill="var(--terra)" opacity="0.26"/><rect x="423.1" y="176" width="192.3" height="26" fill="var(--gold)" opacity="0.22"/><rect x="615.4" y="176" width="30.6" height="26" fill="var(--terra)" opacity="0.4"/><text x="95.2" y="192.5" font-size="10" fill="var(--fg)" text-anchor="middle">オスマン帝国領</text><text x="221.95" y="192.5" font-size="10" fill="var(--fg)" text-anchor="middle">イギリス委任統治</text><text x="355.3" y="192.5" font-size="10" fill="var(--fg)" text-anchor="middle">中東戦争の時代</text><text x="519.25" y="192.5" font-size="10" fill="var(--fg)" text-anchor="middle">和平の模索と分裂</text><text x="630.7" y="214" font-size="8" fill="var(--terra)" text-anchor="end">戦争→停戦</text><line x1="64.6" y1="96" x2="64.6" y2="164" stroke="var(--gold)" stroke-width="1" opacity="0.45" stroke-dasharray="2 3"/><circle cx="64.6" cy="164" r="3.5" fill="var(--gold)"/><text x="34.599999999999994" y="82" font-size="10" fill="var(--gold)" text-anchor="start" font-weight="bold">第1回シオニスト会議</text><text x="34.599999999999994" y="94" font-size="8.5" fill="var(--fg)" opacity="0.8" text-anchor="start">バーゼル 1897</text><line x1="152.0" y1="54" x2="152.0" y2="164" stroke="var(--gold)" stroke-width="1" opacity="0.45" stroke-dasharray="2 3"/><circle cx="152.0" cy="164" r="3.5" fill="var(--gold)"/><text x="152.0" y="40" font-size="10" fill="var(--gold)" text-anchor="middle" font-weight="bold">バルフォア宣言</text><text x="152.0" y="52" font-size="8.5" fill="var(--fg)" opacity="0.8" text-anchor="middle">1917</text><line x1="283.2" y1="96" x2="283.2" y2="164" stroke="var(--gold)" stroke-width="1" opacity="0.45" stroke-dasharray="2 3"/><circle cx="283.2" cy="164" r="3.5" fill="var(--gold)"/><text x="283.2" y="82" font-size="10" fill="var(--gold)" text-anchor="middle" font-weight="bold">国連分割決議</text><text x="283.2" y="94" font-size="8.5" fill="var(--fg)" opacity="0.8" text-anchor="middle">1947</text><line x1="287.5" y1="138" x2="287.5" y2="164" stroke="var(--gold)" stroke-width="1" opacity="0.45" stroke-dasharray="2 3"/><circle cx="287.5" cy="164" r="3.5" fill="var(--gold)"/><text x="287.5" y="124" font-size="10" fill="var(--gold)" text-anchor="middle" font-weight="bold">イスラエル建国</text><text x="287.5" y="136" font-size="8.5" fill="var(--fg)" opacity="0.8" text-anchor="middle">第一次中東戦争 1948</text><line x1="370.6" y1="54" x2="370.6" y2="164" stroke="var(--gold)" stroke-width="1" opacity="0.45" stroke-dasharray="2 3"/><circle cx="370.6" cy="164" r="3.5" fill="var(--gold)"/><text x="370.6" y="40" font-size="10" fill="var(--gold)" text-anchor="middle" font-weight="bold">第三次中東戦争</text><text x="370.6" y="52" font-size="8.5" fill="var(--fg)" opacity="0.8" text-anchor="middle">占領地の拡大 1967</text><line x1="396.8" y1="96" x2="396.8" y2="164" stroke="var(--gold)" stroke-width="1" opacity="0.45" stroke-dasharray="2 3"/><circle cx="396.8" cy="164" r="3.5" fill="var(--gold)"/><text x="396.8" y="82" font-size="10" fill="var(--gold)" text-anchor="middle" font-weight="bold">第四次中東戦争</text><text x="396.8" y="94" font-size="8.5" fill="var(--fg)" opacity="0.8" text-anchor="middle">→石油危機 1973</text><line x1="484.3" y1="138" x2="484.3" y2="164" stroke="var(--gold)" stroke-width="1" opacity="0.45" stroke-dasharray="2 3"/><circle cx="484.3" cy="164" r="3.5" fill="var(--gold)"/><text x="484.3" y="124" font-size="10" fill="var(--gold)" text-anchor="middle" font-weight="bold">オスロ合意</text><text x="484.3" y="136" font-size="8.5" fill="var(--fg)" opacity="0.8" text-anchor="middle">暫定自治へ 1993</text><line x1="545.5" y1="54" x2="545.5" y2="164" stroke="var(--gold)" stroke-width="1" opacity="0.45" stroke-dasharray="2 3"/><circle cx="545.5" cy="164" r="3.5" fill="var(--gold)"/><text x="545.5" y="40" font-size="10" fill="var(--gold)" text-anchor="middle" font-weight="bold">ガザ分裂・封鎖</text><text x="545.5" y="52" font-size="8.5" fill="var(--fg)" opacity="0.8" text-anchor="middle">2007</text><line x1="615.4" y1="96" x2="615.4" y2="164" stroke="var(--gold)" stroke-width="1" opacity="0.45" stroke-dasharray="2 3"/><circle cx="615.4" cy="164" r="3.5" fill="var(--gold)"/><text x="645.4" y="82" font-size="10" fill="var(--gold)" text-anchor="end" font-weight="bold">ガザ戦争</text><text x="645.4" y="94" font-size="8.5" fill="var(--fg)" opacity="0.8" text-anchor="end">2023.10</text><line x1="624.1" y1="138" x2="624.1" y2="164" stroke="var(--gold)" stroke-width="1" opacity="0.45" stroke-dasharray="2 3"/><circle cx="624.1" cy="164" r="3.5" fill="var(--gold)"/><text x="654.1" y="124" font-size="10" fill="var(--gold)" text-anchor="end" font-weight="bold">停戦発効</text><text x="654.1" y="136" font-size="8.5" fill="var(--fg)" opacity="0.8" text-anchor="end">2025.10</text><text x="646" y="228" font-size="8" fill="var(--fg)" opacity="0.75" text-anchor="end">2026.7 段階的武装解除に合意と報道（実施は流動的）</text><line x1="396.8" y1="202" x2="396.8" y2="227" stroke="var(--teal)" stroke-width="1" opacity="0.55" stroke-dasharray="2 3"/><circle cx="396.8" cy="202" r="3" fill="var(--teal)"/><text x="396.8" y="236" font-size="9" fill="var(--teal)" text-anchor="middle">石油危機——狂乱物価・高度成長の終わり（1973）</text><line x1="624.1" y1="202" x2="624.1" y2="249" stroke="var(--teal)" stroke-width="1" opacity="0.55" stroke-dasharray="2 3"/><circle cx="624.1" cy="202" r="3" fill="var(--teal)"/><text x="634.1" y="258" font-size="9" fill="var(--teal)" text-anchor="end">日本、決議2803の採択を歓迎（外相談話）（2025）</text><text x="34" y="222" font-size="8.5" fill="var(--teal)" opacity="0.8">日本との接続</text><text x="34" y="288" font-size="8" fill="var(--fg)" opacity="0.5">※実時間スケール。項目は主要なものに絞った（本文参照）</text></svg></div>
-
-<h3 class="sub">1. ひとつの土地に、複数の約束（1915〜1918）</h3>
-<p>第一次世界大戦中、オスマン帝国と戦うイギリスは、<strong><a href="https://ja.wikipedia.org/wiki/フサイン＝マクマホン協定" target="_blank" rel="noopener">フセイン・マクマホン書簡</a></strong>（1915年）でアラブ人の独立支援を示唆し、<strong><a href="https://avalon.law.yale.edu/20th_century/balfour.asp" target="_blank" rel="noopener">バルフォア宣言</a></strong>（1917年）でユダヤ人の「民族的郷土」建設への支持を表明し、さらに<strong><a href="https://ja.wikipedia.org/wiki/サイクス・ピコ協定" target="_blank" rel="noopener">サイクス・ピコ協定</a></strong>（1916年）でフランスなどと中東の勢力範囲を取り決めました。互いに矛盾をはらむこれらの約束は、日本の教科書で「三枚舌外交」とも呼ばれ、問題の直接の出発点として扱われています。</p>
-
-<div class="voice">
-  「国王陛下の政府は、ユダヤ人のための民族的郷土をパレスチナに建設することを好意をもって見る」——ただし同じ宣言は「パレスチナに現存する非ユダヤ人諸共同体の市民的・宗教的権利を害するものではない」という留保も付けていました。約束の内部にすでに緊張が埋め込まれていたことは、多くの研究者が指摘するところです。
-  <span class="who">—— バルフォア宣言（1917年11月2日）より要旨</span>
-</div>
-
-<h3 class="sub">2. 委任統治から、建国と戦争へ（1920〜1973）</h3>
-<p>大戦後、パレスチナはイギリスの委任統治領となり、ユダヤ人移民の増加とともにアラブ人住民との衝突が繰り返されました。1947年、国連総会は<strong><a href="https://ja.wikipedia.org/wiki/パレスチナ分割決議" target="_blank" rel="noopener">パレスチナ分割決議</a></strong>（決議181）を採択しますが、アラブ側はこれを拒否。1948年5月の<strong>イスラエル建国</strong>宣言の翌日にはアラブ諸国側の軍が侵攻して<strong><a href="https://ja.wikipedia.org/wiki/第一次中東戦争" target="_blank" rel="noopener">第一次中東戦争</a></strong>となり、前年末からの戦闘と合わせて、国連の推計で約70万人のパレスチナ人が難民となりました（パレスチナ側はこれを「<a href="https://ja.wikipedia.org/wiki/ナクバ" target="_blank" rel="noopener">ナクバ</a>（大破局）」と呼びます）。1967年の<strong><a href="https://ja.wikipedia.org/wiki/第三次中東戦争" target="_blank" rel="noopener">第三次中東戦争</a></strong>でイスラエルはガザ地区・ヨルダン川西岸・東エルサレムなどを占領し、国連安保理は<strong><a href="https://ja.wikipedia.org/wiki/国際連合安全保障理事会決議242" target="_blank" rel="noopener">決議242</a></strong>で占領地からの撤退を求めました。1973年の<strong><a href="https://ja.wikipedia.org/wiki/第四次中東戦争" target="_blank" rel="noopener">第四次中東戦争</a></strong>では、アラブ産油国の石油戦略が<strong><a href="https://ja.wikipedia.org/wiki/オイルショック" target="_blank" rel="noopener">第一次石油危機</a></strong>を引き起こし、日本を含む世界経済を揺さぶりました。</p>
-
-<h3 class="sub">3. 和平の模索と、行き詰まり（1973〜2023）</h3>
-<p>1979年、エジプトがアラブ諸国として初めてイスラエルと平和条約を結びます（前年の<a href="https://ja.wikipedia.org/wiki/キャンプ・デービッド合意" target="_blank" rel="noopener">キャンプ・デービッド合意</a>）。占領下では1987年に住民の抵抗運動<strong><a href="https://ja.wikipedia.org/wiki/インティファーダ" target="_blank" rel="noopener">インティファーダ</a></strong>が始まり、同じ年にハマスが結成されました。1993年の<strong><a href="https://ja.wikipedia.org/wiki/オスロ合意" target="_blank" rel="noopener">オスロ合意</a></strong>で、イスラエルと<a href="https://ja.wikipedia.org/wiki/パレスチナ解放機構" target="_blank" rel="noopener">PLO（パレスチナ解放機構）</a>は相互承認とパレスチナ暫定自治に合意し、和平への期待が高まります。しかし<a href="https://ja.wikipedia.org/wiki/イツハク・ラビン" target="_blank" rel="noopener">ラビン首相</a>の暗殺（1995年）や第二次インティファーダ（2000年〜）を経て和平は停滞。2005年にイスラエルはガザから撤退しますが、2006年の選挙でハマスが勝利し、2007年からはガザをハマスが、ヨルダン川西岸をパレスチナ自治政府（<a href="https://ja.wikipedia.org/wiki/ファタハ" target="_blank" rel="noopener">ファタハ</a>主導）が治める分裂状態となりました。以後、ガザは長期の封鎖下に置かれ、断続的な武力衝突が繰り返されます。2012年には国連総会がパレスチナを「オブザーバー国家」に格上げしました。</p>
-
-<h3 class="sub">4. ガザ戦争から、停戦へ（2023〜）</h3>
-<p>2023年10月7日の攻撃に始まる戦争は約2年におよび、ガザの人道状況は国連機関が繰り返し警告する深刻な水準に達しました。2025年10月の停戦合意、11月の安保理決議2803による国際的枠組みの始動を経て、現在は武装解除・撤退・復興・統治のあり方をめぐる交渉が続いています（①参照）。</p>
-
-<h2 class="section">④ 地図で見る</h2>
-
-<div class="map-slot"><svg class="mapsvg" viewBox="0 0 380 454" xmlns="http://www.w3.org/2000/svg" font-family="serif"><path d="M232.0 34.5 L229.9 39.9 L227.9 42.7 L227.2 47.0 L228.5 50.6 L229.2 55.3 L230.8 56.7 L231.4 59.8 L230.0 62.9 L230.6 65.4 L232.4 67.8 L233.6 77.3 L236.0 81.8 L232.1 88.7 L231.4 94.3 L227.4 102.9 L222.9 103.5 L212.4 108.2 L210.9 109.6 L209.1 112.3 L208.7 114.4 L207.2 136.9 L201.5 136.3 L194.5 131.4 L193.1 127.1 L191.0 125.7 L186.0 125.1 L176.6 123.0 L165.6 130.4 L160.9 142.7 L160.0 148.4 L156.3 160.5 L157.6 167.9 L158.2 177.5 L159.2 185.3 L158.2 190.0 L156.1 192.6 L156.7 194.4 L158.6 195.0 L164.6 192.9 L170.9 195.0 L177.0 199.1 L177.5 201.7 L173.2 203.3 L163.0 209.4 L155.9 216.6 L154.0 223.1 L149.2 237.2 L149.8 240.1 L152.2 241.7 L168.7 240.2 L183.7 234.6 L195.0 228.5 L198.6 228.9 L196.2 244.3 L196.3 244.4 L194.3 253.9 L195.1 255.5 L197.6 263.7 L192.8 278.8 L187.4 291.0 L185.5 296.9 L180.3 309.8 L174.9 324.8 L172.1 335.1 L172.7 338.8 L171.4 357.8 L172.2 363.2 L165.9 379.6 L164.6 387.7 L162.1 398.8 L157.8 422.0 L151.9 429.8 L148.9 421.1 L142.2 396.2 L137.4 379.2 L130.8 358.2 L119.8 332.6 L118.8 326.5 L116.4 317.5 L108.8 294.3 L102.6 277.5 L95.5 256.1 L104.3 247.6 L104.4 240.6 L119.4 224.2 L119.3 222.6 L115.3 218.3 L115.9 217.6 L132.5 187.1 L143.3 156.9 L153.4 115.0 L160.5 93.7 L166.6 79.6 L169.3 67.9 L179.2 67.0 L186.5 68.3 L195.2 68.7 L202.3 64.3 L205.6 51.1 L209.6 49.0 L211.6 52.1 L213.7 48.7 L222.9 42.9 L227.4 39.1 L232.0 34.5 Z M115.3 218.3 L119.3 222.6 L119.4 224.2 L104.4 240.6 L104.3 247.6 L95.5 256.1 L92.7 247.7 L91.4 244.6 L107.6 228.4 L115.3 218.3 Z M207.2 136.9 L209.0 152.8 L205.8 166.3 L205.5 178.1 L207.9 200.2 L202.8 209.5 L199.9 220.6 L198.6 228.9 L195.0 228.5 L183.7 234.6 L168.7 240.2 L152.2 241.7 L149.8 240.1 L149.2 237.2 L154.0 223.1 L155.9 216.6 L163.0 209.4 L173.2 203.3 L177.5 201.7 L177.0 199.1 L170.9 195.0 L164.6 192.9 L158.6 195.0 L156.7 194.4 L156.1 192.6 L158.2 190.0 L159.2 185.3 L158.2 177.5 L157.6 167.9 L156.3 160.5 L160.0 148.4 L160.9 142.7 L165.6 130.4 L176.6 123.0 L186.0 125.1 L191.0 125.7 L193.1 127.1 L194.5 131.4 L201.5 136.3 L207.2 136.9 Z M227.4 102.9 L236.6 105.0 L241.9 109.7 L250.7 123.1 L264.4 126.9 L270.0 130.7 L277.5 137.8 L286.6 140.4 L315.7 144.8 L338.8 129.9 L358.4 117.3 L380.6 103.1 L395.7 93.3 L421.6 76.8 L438.6 66.3 L460.9 52.5 L483.0 38.9 L489.1 61.1 L495.1 82.8 L501.3 105.3 L507.3 127.1 L500.8 129.2 L505.9 146.0 L514.4 143.4 L523.6 141.4 L527.4 152.2 L514.8 164.1 L502.1 175.9 L499.1 177.1 L482.7 182.0 L448.9 191.9 L426.3 198.6 L397.4 207.1 L373.4 214.2 L349.7 221.2 L327.7 227.7 L340.2 241.4 L359.4 262.3 L372.2 276.2 L387.3 294.2 L400.8 310.2 L415.1 327.2 L405.1 332.9 L388.5 342.4 L386.8 344.2 L385.4 345.9 L378.6 362.9 L373.2 376.2 L371.4 377.9 L348.3 382.8 L325.0 387.7 L310.3 390.8 L305.9 394.3 L296.3 410.9 L286.4 428.1 L269.8 442.1 L251.5 457.6 L246.9 458.6 L233.7 456.2 L211.0 452.2 L189.1 448.2 L174.1 445.5 L155.8 442.3 L158.5 429.1 L157.8 422.0 L162.1 398.8 L164.6 387.7 L165.9 379.6 L172.2 363.2 L171.4 357.8 L172.7 338.8 L172.1 335.1 L174.9 324.8 L180.3 309.8 L185.5 296.9 L187.4 291.0 L192.8 278.8 L197.6 263.7 L195.1 255.5 L194.3 253.9 L196.3 244.4 L196.2 244.3 L198.6 228.9 L199.9 220.6 L202.8 209.5 L207.9 200.2 L205.5 178.1 L205.8 166.3 L209.0 152.8 L207.2 136.9 L208.7 114.4 L209.1 112.3 L210.9 109.6 L212.4 108.2 L222.9 103.5 L227.4 102.9 Z M243.6 -87.3 L258.6 -87.2 L268.2 -87.6 L271.0 -92.2 L278.5 -90.1 L282.7 -85.7 L278.9 -81.0 L273.6 -75.6 L273.9 -74.3 L277.8 -73.8 L284.6 -70.9 L288.8 -67.5 L295.7 -46.3 L291.4 -37.6 L284.8 -29.8 L281.8 -29.1 L276.0 -25.2 L271.1 -20.0 L269.4 -16.6 L269.8 -13.5 L276.7 -9.6 L276.9 -8.0 L275.5 -6.8 L269.9 -7.6 L262.7 -8.0 L258.4 -8.0 L253.5 -7.2 L247.2 -2.4 L244.4 0.7 L242.9 2.7 L240.7 9.3 L243.2 13.7 L247.9 16.2 L248.6 17.5 L247.5 19.8 L242.9 22.6 L239.3 26.0 L238.3 29.5 L234.4 32.9 L232.0 34.5 L227.4 39.1 L222.9 42.9 L213.7 48.7 L211.6 52.1 L209.6 49.0 L205.6 51.1 L202.3 64.3 L195.2 68.7 L186.5 68.3 L179.2 67.0 L169.3 67.9 L173.3 60.2 L177.5 50.3 L181.6 36.9 L188.8 25.7 L203.8 -12.0 L212.4 -27.3 L215.5 -49.0 L228.9 -68.0 L238.9 -73.6 L243.7 -79.1 L243.6 -87.3 Z M236.4 -216.5 L242.9 -215.8 L256.5 -207.9 L258.8 -208.2 L262.9 -218.6 L266.9 -222.1 L275.4 -225.2 L277.8 -242.0 L281.7 -245.3 L286.5 -247.0 L293.8 -247.3 L300.1 -248.3 L300.5 -251.3 L291.6 -270.8 L292.4 -275.7 L296.7 -295.3 L299.4 -302.9 L302.0 -305.4 L312.1 -304.4 L326.2 -301.0 L330.0 -295.4 L336.9 -290.4 L347.2 -290.7 L359.2 -289.8 L368.6 -289.4 L376.0 -292.9 L392.9 -299.5 L401.2 -301.7 L408.8 -304.6 L433.2 -315.3 L443.0 -314.5 L449.7 -313.1 L454.8 -311.4 L466.3 -304.1 L475.7 -296.6 L482.4 -294.4 L494.4 -294.6 L511.6 -293.2 L532.9 -293.3 L545.3 -295.3 L561.1 -299.0 L589.4 -307.8 L626.5 -326.1 L648.3 -335.0 L657.8 -336.1 L670.0 -336.2 L682.3 -333.8 L696.2 -332.2 L702.6 -332.3 L717.7 -334.2 L737.2 -337.9 L749.4 -340.9 L764.2 -345.9 L773.5 -354.2 L776.5 -355.1 L780.3 -353.6 L782.1 -353.0 L785.9 -348.3 L789.8 -336.1 L789.8 -334.8 L789.1 -331.3 L779.4 -321.3 L766.3 -307.8 L756.9 -299.2 L741.0 -284.8 L729.2 -281.7 L709.2 -276.5 L703.8 -271.5 L698.9 -263.3 L695.9 -252.2 L695.1 -245.2 L694.6 -232.2 L699.2 -218.7 L703.7 -205.8 L704.3 -197.2 L703.8 -188.8 L699.5 -179.8 L694.8 -167.4 L692.1 -153.4 L690.6 -127.2 L690.6 -104.9 L690.2 -101.3 L682.0 -85.6 L672.4 -67.2 L668.0 -62.9 L647.0 -57.4 L624.0 -44.0 L598.4 -28.9 L575.1 -15.2 L550.7 -0.9 L525.3 14.0 L507.2 24.7 L483.0 38.9 L460.9 52.5 L438.6 66.3 L421.6 76.8 L395.7 93.3 L380.6 103.1 L358.4 117.3 L338.8 129.9 L315.7 144.8 L286.6 140.4 L277.5 137.8 L270.0 130.7 L264.4 126.9 L250.7 123.1 L241.9 109.7 L236.6 105.0 L227.4 102.9 L231.4 94.3 L232.1 88.7 L236.0 81.8 L233.6 77.3 L232.4 67.8 L230.6 65.4 L230.0 62.9 L231.4 59.8 L230.8 56.7 L229.2 55.3 L228.5 50.6 L227.2 47.0 L227.9 42.7 L229.9 39.9 L232.0 34.5 L234.4 32.9 L238.3 29.5 L239.3 26.0 L242.9 22.6 L247.5 19.8 L248.6 17.5 L247.9 16.2 L243.2 13.7 L240.7 9.3 L242.9 2.7 L244.4 0.7 L247.2 -2.4 L253.5 -7.2 L258.4 -8.0 L262.7 -8.0 L269.9 -7.6 L275.5 -6.8 L276.9 -8.0 L276.7 -9.6 L269.8 -13.5 L269.4 -16.6 L271.1 -20.0 L276.0 -25.2 L281.8 -29.1 L284.8 -29.8 L291.4 -37.6 L295.7 -46.3 L288.8 -67.5 L284.6 -70.9 L277.8 -73.8 L273.9 -74.3 L273.6 -75.6 L278.9 -81.0 L282.7 -85.7 L278.5 -90.1 L271.0 -92.2 L268.2 -87.6 L258.6 -87.2 L243.6 -87.3 L237.0 -109.6 L236.0 -119.3 L236.2 -130.5 L240.8 -147.0 L238.6 -154.5 L238.4 -159.7 L237.3 -166.7 L225.5 -181.9 L231.9 -209.7 L236.4 -216.5 Z M320.2 1180.7 L292.1 1180.7 L264.0 1180.7 L236.0 1180.7 L207.9 1180.7 L179.8 1180.7 L151.7 1180.7 L123.6 1180.7 L95.6 1180.7 L67.5 1180.7 L39.4 1180.7 L11.3 1180.7 L-16.8 1180.7 L-44.8 1180.8 L-72.9 1180.8 L-101.0 1180.8 L-129.1 1180.8 L-145.1 1180.8 L-142.4 1171.9 L-140.7 1165.5 L-142.5 1161.1 L-148.0 1160.0 L-151.6 1161.4 L-160.0 1180.1 L-164.4 1180.9 L-174.3 1180.9 L-207.0 1180.9 L-239.7 1180.9 L-272.4 1180.8 L-305.1 1180.8 L-337.8 1180.8 L-370.5 1180.8 L-403.2 1180.8 L-435.9 1180.8 L-468.6 1180.8 L-501.3 1180.8 L-534.0 1180.8 L-566.7 1180.8 L-599.4 1180.8 L-632.1 1180.8 L-664.8 1180.8 L-697.5 1180.8 L-697.5 1158.2 L-697.5 1135.7 L-697.5 1113.2 L-697.5 1090.6 L-697.5 1068.1 L-697.5 1045.5 L-697.5 1023.0 L-697.5 1000.4 L-697.5 977.9 L-697.5 955.4 L-697.5 932.8 L-697.5 910.3 L-697.5 887.8 L-697.5 865.2 L-697.5 842.7 L-697.5 820.1 L-697.5 797.6 L-697.5 775.1 L-697.5 752.5 L-697.5 730.0 L-697.5 707.4 L-697.5 684.9 L-697.5 662.4 L-697.5 639.8 L-697.5 617.3 L-697.5 594.7 L-697.5 572.2 L-697.5 549.7 L-697.5 527.1 L-697.5 504.6 L-697.5 482.0 L-697.5 459.5 L-698.2 455.3 L-702.9 440.0 L-707.2 420.5 L-712.0 396.6 L-712.6 388.8 L-720.4 364.2 L-721.2 357.2 L-719.2 352.2 L-706.2 331.5 L-702.4 321.4 L-699.1 309.3 L-698.0 299.4 L-701.8 284.4 L-706.2 270.9 L-707.8 257.0 L-708.4 243.4 L-701.8 234.1 L-693.8 225.4 L-690.9 220.1 L-686.2 214.1 L-682.9 211.3 L-676.5 223.4 L-663.1 225.5 L-619.3 214.7 L-571.0 225.6 L-544.4 229.8 L-503.4 239.1 L-478.4 255.7 L-471.5 257.8 L-453.6 257.4 L-441.8 267.2 L-395.0 271.9 L-370.0 282.8 L-355.8 291.4 L-347.3 294.0 L-339.8 293.6 L-329.6 290.4 L-316.8 284.3 L-302.8 275.8 L-273.9 254.2 L-263.6 250.4 L-256.9 251.3 L-248.8 251.1 L-245.4 245.2 L-241.1 241.2 L-238.4 236.6 L-234.0 231.1 L-219.0 229.5 L-188.8 220.1 L-192.2 224.6 L-219.7 235.2 L-207.9 236.5 L-195.9 232.9 L-182.1 230.6 L-179.6 226.1 L-177.8 217.6 L-175.2 216.4 L-165.7 218.0 L-137.4 231.0 L-130.4 231.3 L-110.5 224.2 L-106.2 222.7 L-99.8 226.6 L-85.1 242.8 L-90.2 242.4 L-105.9 228.6 L-107.3 235.5 L-116.3 247.6 L-105.1 252.9 L-96.0 254.9 L-91.1 261.7 L-88.0 267.7 L-79.0 265.1 L-72.6 256.8 L-75.9 252.3 L-78.2 247.5 L-75.3 247.4 L-69.0 251.3 L-51.1 266.9 L-45.1 270.1 L-38.1 269.6 L-23.6 265.2 L-19.5 265.9 L-0.0 260.1 L2.3 264.3 L5.5 268.5 L21.2 263.9 L45.9 263.9 L66.1 258.8 L89.6 246.5 L91.4 244.6 L92.7 247.7 L95.5 256.1 L102.6 277.5 L108.8 294.3 L116.4 317.5 L118.8 326.5 L119.8 332.6 L130.8 358.2 L137.4 379.2 L142.2 396.2 L148.9 421.1 L151.9 429.8 L147.1 434.4 L137.5 450.6 L127.3 502.0 L112.7 542.3 L111.0 567.4 L108.7 576.5 L101.7 589.3 L93.3 601.8 L78.3 595.3 L53.9 573.3 L39.7 552.5 L24.5 539.0 L10.1 521.1 L6.2 508.3 L6.3 500.1 L0.0 479.9 L-4.6 470.4 L-22.2 449.0 L-27.2 437.6 L-31.1 432.6 L-35.0 425.4 L-41.3 397.6 L-48.3 380.0 L-56.2 384.9 L-54.8 392.3 L-61.7 402.5 L-65.9 414.4 L-62.7 424.2 L-48.3 439.0 L-45.4 445.4 L-42.1 459.5 L-42.6 478.5 L-40.3 485.0 L-29.6 499.2 L-25.7 507.6 L-23.4 514.8 L-19.8 521.4 L-9.2 533.7 L6.2 557.2 L20.7 573.0 L31.2 580.7 L35.7 588.3 L36.7 608.1 L35.9 617.5 L45.1 635.3 L48.6 644.3 L57.5 651.6 L61.6 659.9 L65.3 673.5 L71.0 713.7 L78.7 723.6 L102.6 776.4 L122.8 809.9 L132.6 834.8 L147.5 865.2 L176.7 931.9 L194.0 952.5 L200.9 964.1 L213.5 973.0 L227.1 985.9 L214.1 984.6 L210.9 985.4 L206.3 987.6 L204.1 995.4 L203.2 1001.8 L204.8 1035.6 L208.3 1052.8 L219.8 1085.4 L228.3 1095.2 L232.4 1101.5 L238.2 1106.1 L265.3 1117.2 L281.1 1140.8 L316.6 1170.6 L320.1 1178.8 L320.2 1180.7 Z" fill="var(--fg)" fill-opacity="0.05" stroke="var(--fg)" stroke-width="0.7" stroke-opacity="0.45" stroke-linejoin="round"/><path d="M232.0 34.5 L229.9 39.9 L227.9 42.7 L227.2 47.0 L228.5 50.6 L229.2 55.3 L230.8 56.7 L231.4 59.8 L230.0 62.9 L230.6 65.4 L232.4 67.8 L233.6 77.3 L236.0 81.8 L232.1 88.7 L231.4 94.3 L227.4 102.9 L222.9 103.5 L212.4 108.2 L210.9 109.6 L209.1 112.3 L208.7 114.4 L207.2 136.9 L201.5 136.3 L194.5 131.4 L193.1 127.1 L191.0 125.7 L186.0 125.1 L176.6 123.0 L165.6 130.4 L160.9 142.7 L160.0 148.4 L156.3 160.5 L157.6 167.9 L158.2 177.5 L159.2 185.3 L158.2 190.0 L156.1 192.6 L156.7 194.4 L158.6 195.0 L164.6 192.9 L170.9 195.0 L177.0 199.1 L177.5 201.7 L173.2 203.3 L163.0 209.4 L155.9 216.6 L154.0 223.1 L149.2 237.2 L149.8 240.1 L152.2 241.7 L168.7 240.2 L183.7 234.6 L195.0 228.5 L198.6 228.9 L196.2 244.3 L196.3 244.4 L194.3 253.9 L195.1 255.5 L197.6 263.7 L192.8 278.8 L187.4 291.0 L185.5 296.9 L180.3 309.8 L174.9 324.8 L172.1 335.1 L172.7 338.8 L171.4 357.8 L172.2 363.2 L165.9 379.6 L164.6 387.7 L162.1 398.8 L157.8 422.0 L151.9 429.8 L148.9 421.1 L142.2 396.2 L137.4 379.2 L130.8 358.2 L119.8 332.6 L118.8 326.5 L116.4 317.5 L108.8 294.3 L102.6 277.5 L95.5 256.1 L104.3 247.6 L104.4 240.6 L119.4 224.2 L119.3 222.6 L115.3 218.3 L115.9 217.6 L132.5 187.1 L143.3 156.9 L153.4 115.0 L160.5 93.7 L166.6 79.6 L169.3 67.9 L179.2 67.0 L186.5 68.3 L195.2 68.7 L202.3 64.3 L205.6 51.1 L209.6 49.0 L211.6 52.1 L213.7 48.7 L222.9 42.9 L227.4 39.1 L232.0 34.5 Z" fill="none" stroke="var(--fg)" stroke-width="1.1" stroke-opacity="0.8" stroke-linejoin="round"/><path d="M207.2 136.9 L209.0 152.8 L205.8 166.3 L205.5 178.1 L207.9 200.2 L202.8 209.5 L199.9 220.6 L198.6 228.9 L195.0 228.5 L183.7 234.6 L168.7 240.2 L152.2 241.7 L149.8 240.1 L149.2 237.2 L154.0 223.1 L155.9 216.6 L163.0 209.4 L173.2 203.3 L177.5 201.7 L177.0 199.1 L170.9 195.0 L164.6 192.9 L158.6 195.0 L156.7 194.4 L156.1 192.6 L158.2 190.0 L159.2 185.3 L158.2 177.5 L157.6 167.9 L156.3 160.5 L160.0 148.4 L160.9 142.7 L165.6 130.4 L176.6 123.0 L186.0 125.1 L191.0 125.7 L193.1 127.1 L194.5 131.4 L201.5 136.3 L207.2 136.9 Z" fill="var(--teal)" fill-opacity="0.35" stroke="var(--teal)" stroke-width="1.2"/><path d="M115.3 218.3 L119.3 222.6 L119.4 224.2 L104.4 240.6 L104.3 247.6 L95.5 256.1 L92.7 247.7 L91.4 244.6 L107.6 228.4 L115.3 218.3 Z" fill="var(--terra)" fill-opacity="0.5" stroke="var(--terra)" stroke-width="1.2"/><text x="57.3" y="106.4" font-size="10.5" fill="var(--teal)" text-anchor="middle" opacity="0.9">地中海</text><text x="53.1" y="402.5" font-size="9.5" fill="var(--fg)" opacity="0.6">エジプト</text><text x="322.7" y="317.2" font-size="9.5" fill="var(--fg)" opacity="0.6" text-anchor="end">ヨルダン</text><text x="221.7" y="34.1" font-size="9" fill="var(--fg)" opacity="0.6">レバノン</text><text x="339.8" y="41.1" font-size="9" fill="var(--fg)" opacity="0.6" text-anchor="end">シリア</text><text x="147.2" y="307.1" font-size="10.5" fill="var(--fg)" opacity="0.85" text-anchor="middle">イスラエル</text><line x1="106.4" y1="236.8" x2="75.6" y2="263.0" stroke="var(--terra)" stroke-width="0.8" opacity="0.7"/><text x="61.6" y="275.0" font-size="10" fill="var(--terra)" font-weight="bold">ガザ地区</text><line x1="204.5" y1="141.5" x2="273.6" y2="103.4" stroke="var(--teal)" stroke-width="0.8" opacity="0.7"/><text x="275.6" y="101.4" font-size="10" fill="var(--teal)" font-weight="bold">ヨルダン川西岸</text><circle cx="178.9" cy="198.7" r="3.5" fill="var(--gold)"/><text x="185.9" y="202.7" font-size="9.5" fill="var(--gold)">エルサレム</text><circle cx="141.2" cy="168.6" r="3" fill="var(--fg)" opacity="0.85"/><text x="135.2" y="162.6" font-size="9" fill="var(--fg)" opacity="0.85" text-anchor="end">テルアビブ</text><text x="6" y="438" font-size="7.5" fill="var(--fg)" opacity="0.55">※海岸線・境界は実測データ（Natural Earth・簡略化）。境界は概形であり、分離壁・入植地・</text><text x="6" y="447" font-size="7.5" fill="var(--fg)" opacity="0.55">エルサレムの地位など係争中の詳細は表現していない。</text></svg></div>
-
-<p>ガザ地区は種子島（約444km²）よりひとまわり小さい約365km²の細長い沿岸地域に、200万人以上が暮らす人口密集地です。ヨルダン川西岸とは地理的に分離しており、この「二つに分かれた領域」という条件が、統治の分裂（③の3参照）や移動の制限といった現在の問題の背景にあります。エルサレムはユダヤ教・キリスト教・イスラームの聖地であり、その帰属は<a href="https://www.un.org/unispal/permanent-status-issues/" target="_blank" rel="noopener">最終的地位交渉</a>に委ねられたまま、現在も未解決の争点です。</p>
-
-<h2 class="section">⑤ 教科書との接続</h2>
-
-<div class="col linkcol">
-  <h3>入試につながるポイント</h3>
+<div class="col">
+  <h3>この特集の三つの制約</h3>
   <table class="tl">
-    <tr><th>時代・単元</th><th>定番事項</th></tr>
-    <tr><td>帝国主義の時代</td><td>ドレフュス事件／ポグロム／ヘルツルとシオニズム（第1回シオニスト会議 1897）</td></tr>
-    <tr><td>第一次世界大戦</td><td>フセイン・マクマホン書簡／バルフォア宣言／サイクス・ピコ協定（三枚舌外交）</td></tr>
-    <tr><td>戦間期〜冷戦</td><td>パレスチナ分割決議（1947）／イスラエル建国と第一次中東戦争（1948）／スエズ戦争（1956）</td></tr>
-    <tr><td>冷戦期</td><td>第三次中東戦争（1967・占領地拡大）／第四次中東戦争と石油危機（1973）</td></tr>
-    <tr><td>現代</td><td>キャンプ・デービッド合意／オスロ合意（1993・パレスチナ暫定自治）／インティファーダ</td></tr>
-    <tr><td>日本史・政経</td><td>石油危機→狂乱物価・高度経済成長の終焉（1974年に戦後初のマイナス成長）</td></tr>
+    <tr><th>制約</th><th>具体的には</th></tr>
+    <tr><td class="d">評価しない</td><td>「踏襲した」「後退した」「批判を浴びた」といった評価をふくむ言い方は使いません。書くのは「◯年◯月◯日に、誰が、どの文書で、こう述べた」という形だけです。ある国の政府が抗議したという事実を書く場合も、主体と出典を明記した事実の形にとどめます。</td></tr>
+    <tr><td class="d">原文で示す</td><td>要約ではなく、その文書に実際にある語をそのまま引用します。照合できなかった発言は、この特集には載せていません。</td></tr>
+    <tr><td class="d">位置づけを添える</td><td>同じ「談話」でも、閣議決定を経た内閣総理大臣談話、内閣官房長官談話、追悼式の式辞、総理個人の所感は、文書としての性格が違います。本文では、それぞれが<strong>どの種類の文書なのか</strong>を必ず添えます。</td></tr>
   </table>
 </div>
 
-<div class="col linkcol">
-  <h3>あわせて読む（サイト内）</h3>
-  <ul class="srclist">
-    <li><a href="../days/day002.html">Day002「海を渡る文字、道を敷く帝国」</a> — この特集の舞台となる地中海東岸（カナン）の古代史。フェニキア人の文字・ヘブライ王国</li>
-    <li>特集②「レバノン——ヒズボラと内戦の記憶」（準備中）／特集③「イラン——革命から戦争へ」（準備中）</li>
-  </ul>
+<p>もうひとつ、あらかじめお伝えしておきたいことがあります。このページに載せた文書は、そのほとんどが<strong>いまでもインターネット上の公的サイトで、誰でも全文を読めます</strong>。この特集はその入り口にすぎません。原文にあたる方法は⑧にまとめました。</p>
+
+<h2 class="section">③ いま、政府はどう説明しているか —— 2025年11月の国会質疑</h2>
+
+<p>歴史をさかのぼる前に、現在地から始めます。<strong>いまの内閣は、先の大戦について何と説明しているのか。</strong></p>
+
+<p>ここに載せるのは、国会の会議録と、首相官邸が公開している記者会見の記録です。どちらも発言した人の名前つきで全文が公開されている公的な記録で、誰でも検索して読めます。<strong>質問と答弁を、始まりから終わりまで通しで並べます</strong> —— どの発言が「歴史認識をうかがわせるか」をこちらで選んでしまうと、その選び方自体が判断になるからです。歴史認識を問うた質疑を、まるごと載せます。ひとつの発言が別の議題にまたがっている場合は、該当部分だけを載せ、その旨を名前の横に記しています。</p>
+
+<div class="caution">
+  <strong>読むときの注意。</strong>質問は質問者のものであって、政府の見解ではありません。ここでは「誰が何を聞き、総理が何と答えたか」を記録として並べているだけで、答えが十分かどうか、質問が適切かどうかは書いていません。
 </div>
 
-<h2 class="section">⑥ 主な出典</h2>
+<h3 class="sub">質疑A —— 2025年11月7日 衆議院予算委員会</h3>
+
+<div class="qa">
+  <div class="q"><span class="nm">長妻昭 委員（発言のうち、戦後八十年に関する部分）</span>そして、次に、戦後八十年ということで、節目の年が、もう十一月ですか、暮れようとしているわけでございますけれども、そういう意味では少し、教訓、総括というのが日本はまだなされていないので、その質疑をしたいと思っているんですが、高市総理としては、さきの一連の昭和の戦争というのは日本が植民地支配と侵略をした、こういうふうにお考えでしょうか。</div>
+  <div class="a"><span class="nm">高市早苗 内閣総理大臣</span>これまでの政府見解のとおり、それを踏襲いたしております。</div>
+  <div class="q"><span class="nm">長妻昭 委員</span>ということは、どういうことですか。</div>
+  <div class="a"><span class="nm">高市早苗 内閣総理大臣</span>現在の状況とは違います。当時の国際法の中でウォー・オブ・アグレッションに当たったかどうか、つまり侵攻ですね。パリ平和条約で、侵攻に当たるということになるかどうかというのはそれぞれの国が判断するといった留保がついておりますけれども、これまで、それを侵略とし、そして植民地支配とし、日本は度々謝罪の意を表しておりますので、その考え方を踏襲するものでございます。</div>
+  <div class="q"><span class="nm">長妻昭 委員（質問のうち、村山談話に関する部分）</span>村山談話の肝のところは、「わが国は、遠くない過去の一時期、国策を誤り、戦争への道を歩んで国民を存亡の危機に陥れ、植民地支配と侵略によって、多くの国々、とりわけアジア諸国の人々に対して多大の損害と苦痛を与えました。」「ここにあらためて痛切な反省の意を表し、心からのお詫びの気持ちを表明いたします。」というふうにありますが、これは高市総理の意見と同じということでよろしいんですね。</div>
+  <div class="a"><span class="nm">高市早苗 内閣総理大臣</span>これまでの内閣総理大臣談話を含めて、歴史認識に関する歴代内閣の立場を全体として引き継いでおり、これからも引き継いでいくということでございます。</div>
+</div>
+
+<p class="qasrc">出典: <a href="https://kokkai.ndl.go.jp/txt/121905261X00220251107/216" target="_blank" rel="noopener">国会会議録検索システム（第219回国会 衆議院予算委員会 2025年11月7日・第216〜221発言）</a><br>
+※ 最後の質問は、引用した部分の前に、総理の就任前の発言についての言及があります。その言及のもとになった発言そのものを公的な記録で確認できなかったため、<strong>引用の範囲から外しました</strong>（この特集の制約②「原文で示す」による）。</p>
+
+<h3 class="sub">質疑B —— 2025年11月10日 衆議院予算委員会</h3>
+
+<div class="qa">
+  <div class="q"><span class="nm">中司宏 委員（質問のうち、戦後八十年に関する部分）</span>ところで、今年は戦後八十年の節目の年でありまして、石破前総理は、退任を前にして、なぜあの戦争を避けることができなかったのかという観点から、「戦後八十年に寄せて」と題する所感を公表されました。<br>　同じくこの節目の年に在任されることになった高市総理が戦後八十年という節目をどう受け止めておられるのか、お聞きします。</div>
+  <div class="a"><span class="nm">高市早苗 内閣総理大臣</span>まず、戦後八十年に当たりまして、日本の行く末を心配しながら亡くなったお一人お一人の祈りや願いを感じながら、日本をもう一度世界のてっぺんに、高い位置に押し上げて、そして、やはり強い経済、強い国土、安全な社会を次世代に送るということを決断しております。<br><br>　今、戦後最も厳しく複雑な国際安全保障環境を乗り越えるために、何としても日本列島を強く豊かにしなきゃいけない。誇りある、自立する国家としての歩みを進めるような内政及び外政政策を推進していく考えでございます。<br><br>　なお、戦前から戦後にわたる歴史認識につきましては、安倍内閣による戦後七十年の内閣総理大臣談話でも、「歴代内閣の立場は、今後も、揺るぎないものであります。」と発表されておりますので、高市内閣としても、歴代内閣の立場を全体として引き継いでまいります。</div>
+</div>
+
+<p class="qasrc">出典: <a href="https://kokkai.ndl.go.jp/txt/121905261X00320251110/270" target="_blank" rel="noopener">国会会議録検索システム（第219回国会 衆議院予算委員会 2025年11月10日・第270〜271発言）</a></p>
+
+<h3 class="sub">会見C —— 2026年4月21日 記者会見（靖国神社について問われた説明）</h3>
+
+<p>国会だけでなく、総理大臣の記者会見も、首相官邸が全文を記録として公開しています。靖国神社への参拝について問われた場面を引用します。</p>
+
+<div class="qa">
+  <div class="q"><span class="nm">記者（朝日新聞・富永記者）</span>続いて、靖国神社の春季例大祭についてお尋ねします。本日、総理は真榊を奉納されましたけれども、期間中、靖国神社への参拝は予定されてますでしょうか。</div>
+  <div class="a"><span class="nm">高市早苗 内閣総理大臣</span>私はどの国であれですね、その国のために、命を捧げられた方、国策に殉じられた方に対して敬意を表し、感謝の気持ちを表すということは、普通になされるべきことであろうかと思っております。ですから、私は先般、米国に参りましたときも、アーリントン墓地にお参りをいたしました。他国に参りましても、今後の出張でもそのようにさせていただく、様々な国のために命を捧げられた方に敬意を表する、これはさせていただこうと思っております。靖国神社の参拝に関しましては、これはもうプライベートな日程でございますので、本日ここで申し上げることはございません。</div>
+</div>
+
+<p class="qasrc">出典: <a href="https://www.kantei.go.jp/jp/105/statement/2026/0421kaiken.html" target="_blank" rel="noopener">首相官邸（総理就任半年の振り返り及び防衛装備移転三原則の改正等についての会見・2026年4月21日）</a><br>
+※ この記録から分かるのは、<strong>参拝について問われて本人がどう説明したか</strong>までです。参拝したかどうかは、この記録では分かりません（「本日ここで申し上げることはございません」と述べられているため）。したがってこの特集では、参拝した／しなかったのどちらも書いていません。</p>
+
+<p>総理大臣が靖国神社への参拝についてどう説明したか、という記録は、1970年代から国会答弁や官房長官談話の形で残っています（この特集の収録基準の外にあるため、本文では扱っていません）。</p>
+
+<p>この二つの質疑に出てくる語 ——「政府見解」「これまでの内閣総理大臣談話」「歴代内閣の立場」——は、いずれも<strong>過去の文書を指しています</strong>。つまり、いまの説明を理解するには、指されている過去の文書を読むことになります。④からは、その文書そのものを順に読んでいきます。</p>
+
+<p class="src">※ この特集の収集時点（2026年8月）で、国会会議録から「歴史認識について問われた答弁」として拾えたのは、上記の二つの質疑です。検索は発言者名と歴史認識に関わる語14種の組み合わせで行い、対象期間は2025年10月21日から2026年8月12日までです。同じ検索で出てくる「侵略」の多くはウクライナ情勢や防衛政策についての答弁であり、先の大戦についてのものではありません。記者会見については、首相官邸が公開する高市内閣の会見・演説81件を同じ語で機械的に走査し、該当したものを載せています。</p>
+
+<h2 class="section">④ 節目の談話 —— 五十年・六十年・七十年・八十年</h2>
+
+<p>戦後五十年、六十年、七十年の節目には、いずれも内閣総理大臣の名で談話が発表されました。まず、その三つを発表順に読みます。</p>
+
+<h3 class="sub">戦後五十年 —— 村山内閣総理大臣談話（1995年8月15日）</h3>
+
+<p>文書の種類は<strong>内閣総理大臣談話</strong>。正式な表題は「戦後50周年の終戦記念日にあたって」です。歴史認識に関わる中心の段落を引用します。</p>
+
+<div class="quote">
+  わが国は、遠くない過去の一時期、国策を誤り、戦争への道を歩んで国民を存亡の危機に陥れ、植民地支配と侵略によって、多くの国々、とりわけアジア諸国の人々に対して多大の損害と苦痛を与えました。私は、未来に誤ち無からしめんとするが故に、疑うべくもないこの歴史の事実を謙虚に受け止め、ここにあらためて痛切な反省の意を表し、心からのお詫びの気持ちを表明いたします。また、この歴史がもたらした内外すべての犠牲者に深い哀悼の念を捧げます。
+  <span class="who">村山内閣総理大臣談話（1995年8月15日）／出典: <a href="https://www.mofa.go.jp/mofaj/press/danwa/07/dmu_0815.html" target="_blank" rel="noopener">外務省</a></span>
+</div>
+
+<p>この段落に出てくる「国策を誤り」「植民地支配と侵略」「多大の損害と苦痛」「痛切な反省」「心からのお詫び」という語は、このあとの談話を読むときの手がかりになります。④の最後で、この五つの語がそれぞれの談話にどう現れるかを一覧にします。</p>
+
+<h3 class="sub">戦後六十年 —— 小泉内閣総理大臣談話（2005年8月15日）</h3>
+
+<p>文書の種類は<strong>内閣総理大臣談話</strong>。歴史認識に関わる段落を引用します。</p>
+
+<div class="quote">
+  また、我が国は、かつて植民地支配と侵略によって、多くの国々、とりわけアジア諸国の人々に対して多大の損害と苦痛を与えました。こうした歴史の事実を謙虚に受け止め、改めて痛切な反省と心からのお詫びの気持ちを表明するとともに、先の大戦における内外のすべての犠牲者に謹んで哀悼の意を表します。悲惨な戦争の教訓を風化させず、二度と戦火を交えることなく世界の平和と繁栄に貢献していく決意です。
+  <span class="who">小泉内閣総理大臣談話（2005年8月15日）／出典: <a href="https://warp.ndl.go.jp/web/20190122000000/www.kantei.go.jp/jp/koizumispeech/2005/08/15danwa.html" target="_blank" rel="noopener">首相官邸ページの保存版（国立国会図書館WARP）</a></span>
+</div>
+
+<p class="src">※ この談話のページは、現在の首相官邸サイトには置かれていません（過去の内閣のページは国立国会図書館のWARPに保存されています）。上のリンクはその保存版です。</p>
+
+<h3 class="sub">戦後七十年 —— 安倍内閣総理大臣談話（2015年8月14日）</h3>
+
+<p>文書の種類は<strong>内閣総理大臣談話</strong>で、本文の冒頭に<strong>「閣議決定」</strong>と記されています。前の二つより長い文書のため、歴史認識に関わる部分を三箇所に分けて引用します。</p>
+
+<div class="quote">
+  事変、侵略、戦争。いかなる武力の威嚇や行使も、国際紛争を解決する手段としては、もう二度と用いてはならない。植民地支配から永遠に訣別し、すべての民族の自決の権利が尊重される世界にしなければならない。
+  <span class="who">安倍内閣総理大臣談話（2015年8月14日・閣議決定）／出典: <a href="https://www.kantei.go.jp/jp/topics/2015/150814danwa.pdf" target="_blank" rel="noopener">首相官邸（PDF）</a></span>
+</div>
+
+<div class="quote">
+  我が国は、先の大戦における行いについて、繰り返し、痛切な反省と心からのお詫びの気持ちを表明してきました。その思いを実際の行動で示すため、インドネシア、フィリピンはじめ東南アジアの国々、台湾、韓国、中国など、隣人であるアジアの人々が歩んできた苦難の歴史を胸に刻み、戦後一貫して、その平和と繁栄のために力を尽くしてきました。<br><br>
+  こうした歴代内閣の立場は、今後も、揺るぎないものであります。
+  <span class="who">同上</span>
+</div>
+
+<div class="quote">
+  日本では、戦後生まれの世代が、今や、人口の八割を超えています。あの戦争には何ら関わりのない、私たちの子や孫、そしてその先の世代の子どもたちに、謝罪を続ける宿命を背負わせてはなりません。しかし、それでもなお、私たち日本人は、世代を超えて、過去の歴史に真正面から向き合わなければなりません。謙虚な気持ちで、過去を受け継ぎ、未来へと引き渡す責任があります。
+  <span class="who">同上</span>
+</div>
+
+<p>なお、この談話には「進むべき針路を誤り、戦争への道を進んで行きました」という一節もあります（満州事変と国際連盟脱退に触れた段落）。</p>
+
+<h3 class="sub">戦後八十年 —— 2025年に出された文書</h3>
+
+<p>戦後八十年にあたる2025年は、これまでの三回と<strong>文書の形が異なります</strong>。順を追って、公的な記録で確認できることだけを並べます。</p>
+
+<p>まず2025年8月15日、全国戦没者追悼式で石破内閣総理大臣が<strong>式辞</strong>を述べました（談話ではありません）。</p>
+
+<div class="quote">
+  先の大戦から、８０年が経（た）ちました。今では戦争を知らない世代が大多数となりました。戦争の惨禍を決して繰り返さない。進む道を二度と間違えない。あの戦争の反省と教訓を、今改めて深く胸に刻まねばなりません。
+  <span class="who">令和7年度全国戦没者追悼式 内閣総理大臣式辞（2025年8月15日）／出典: <a href="https://www.kantei.go.jp/jp/103/statement/2025/0815shikiji.html" target="_blank" rel="noopener">首相官邸</a></span>
+</div>
+
+<p>同じ日の記者会見で、戦後八十年のメッセージについて問われた石破総理は、官邸の公式記録に残る形で次のように述べています。</p>
+
+<div class="quote">
+  （戦後）８０年のメッセージと、仮に申し上げますれば、私どもの内閣におきまして、これまでの内閣総理大臣談話を含め、歴史認識に関する歴代内閣の立場を全体として引き継いでおります。これは今後も引き継いでいくものでございます。戦後８０年のメッセージの在り方につきまして、現時点で、具体的に決まっておるものではございませんが、先般、国会でお答えをいたしましたように、今までの談話の積み重ねも踏まえながら、適切に判断をするものであります。
+  <span class="who">全国戦没者追悼式式辞等についての会見（2025年8月15日）／出典: <a href="https://www.kantei.go.jp/jp/103/statement/2025/0815kaiken.html" target="_blank" rel="noopener">首相官邸</a></span>
+</div>
+
+<p>そして2025年10月10日、石破総理は「戦後80年に寄せて」と題する文書を発表しました。この文書の表題には<strong>「（内閣総理大臣所感）」</strong>と記されており、戦後七十年談話のPDFにある「閣議決定」の表記は、この所感のPDFにも官邸の掲載ページにもありません。</p>
+
+<div class="quote">
+  これまで戦後50年、60年、70年の節目に内閣総理大臣談話が発出されており、歴史認識に関する歴代内閣の立場については、私もこれを引き継いでいます。<br><br>
+  過去三度の談話においては、なぜあの戦争を避けることができなかったのかという点にはあまり触れられておりません。戦後70年談話においても、日本は「外交的、経済的な行き詰まりを、力の行使によって解決しようと試みました。国内の政治システムは、その歯止めたりえなかった」という一節がありますが、それ以上の詳細は論じられておりません。<br><br>
+  国内の政治システムは、なぜ歯止めたりえなかったのか。
+  <span class="who">内閣総理大臣所感「戦後80年に寄せて」（2025年10月10日）／出典: <a href="https://www.kantei.go.jp/jp/content/20251010shokan.pdf" target="_blank" rel="noopener">首相官邸（PDF）</a></span>
+</div>
+
+<p>この所感は、そのあとの大部分を<strong>「なぜ戦争を避けられなかったのか」という問いの検討</strong>にあてています。大日本帝国憲法の下で統帥権が独立していたこと、議会の予算審議が機能しなかったこと、メディアの論調が満州事変の頃から変わったこと、情報の収集と分析に問題があったこと —— という順に論じています。その検討を受けて、本文には次の一節があります。</p>
+
+<div class="quote">
+  これら全ての基盤となるのは、歴史に学ぶ姿勢です。過去を直視する勇気と誠実さ、他者の主張にも謙虚に耳を傾ける寛容さを持った本来のリベラリズム、健全で強靭な民主主義が何よりも大切です。
+  <span class="who">同上</span>
+</div>
+
+<h3 class="sub">五つの語は、どう現れたか</h3>
+
+<p>ここまでに引用した文書のなかで、村山談話に出てくる五つの語がどう現れるかを一覧にします。<strong>語を選んだ基準は「村山談話の該当段落に現れる語であること」</strong>で、それ以外の基準は使っていません（語を選ぶこと自体に編集の判断が入るため、基準を先に示しています）。空欄は「その語がその文書に見あたらない」という意味であり、それ以上の意味はありません。</p>
+
+<p class="scrollhint">→ 表は横にスクロールできます</p>
+<div class="tscroll">
+<table class="wd">
+  <tr>
+    <th>語</th>
+    <th>村山談話<br>1995</th>
+    <th>小泉談話<br>2005</th>
+    <th>安倍談話<br>2015</th>
+    <th>石破所感<br>2025</th>
+  </tr>
+  <tr>
+    <td class="w">国策を誤り</td>
+    <td>「国策を誤り、戦争への道を歩んで」</td>
+    <td class="none">—</td>
+    <td>「進むべき針路を誤り、戦争への道を進んで行きました」（同一語ではない）</td>
+    <td class="none">—</td>
+  </tr>
+  <tr>
+    <td class="w">植民地支配</td>
+    <td>「植民地支配と侵略によって」</td>
+    <td>「かつて植民地支配と侵略によって」</td>
+    <td>「植民地支配から永遠に訣別し」</td>
+    <td class="none">—</td>
+  </tr>
+  <tr>
+    <td class="w">侵略</td>
+    <td>「植民地支配と侵略によって」</td>
+    <td>「かつて植民地支配と侵略によって」</td>
+    <td>「事変、侵略、戦争。」</td>
+    <td class="none">—</td>
+  </tr>
+  <tr>
+    <td class="w">痛切な反省</td>
+    <td>「あらためて痛切な反省の意を表し」</td>
+    <td>「改めて痛切な反省と心からのお詫びの気持ちを表明する」</td>
+    <td>「繰り返し、痛切な反省と心からのお詫びの気持ちを表明してきました」</td>
+    <td>（「痛切な反省」の語はなし。「反省」の語は所感に「先の大戦の反省と教訓を」、式辞に「あの戦争の反省と教訓を」）</td>
+  </tr>
+  <tr>
+    <td class="w">心からのお詫び</td>
+    <td>「心からのお詫びの気持ちを表明いたします」</td>
+    <td>「痛切な反省と心からのお詫びの気持ちを表明する」</td>
+    <td>「痛切な反省と心からのお詫びの気持ちを表明してきました」</td>
+    <td class="none">—</td>
+  </tr>
+</table>
+</div>
+
+<p class="src">※ この表は、各文書に<strong>その語があるかどうか</strong>を機械的に対照したものです。語の有無から書き手の意図や姿勢を読み取ることは、この特集ではしていません。石破所感については「歴史認識に関する歴代内閣の立場については、私もこれを引き継いでいます」という一文が本文にあることを、あわせてご確認ください。</p>
+
+<h2 class="section">⑤ 談話の前史 —— 1972年から1995年まで</h2>
+
+<p>村山談話は、突然に現れた文書ではありません。1995年より前にも、政府が過去についてどう述べるかは、外交文書や官房長官談話という形で積み重ねられていました。ここでは四つを年代順に読みます。</p>
+
+<h3 class="sub">1972年 —— 日中共同声明</h3>
+
+<p>文書の種類は<strong>両国政府の共同声明</strong>。田中角栄内閣総理大臣・大平正芳外務大臣と、周恩来国務院総理・姫鵬飛外交部長が署名しています。歴史認識に関わるのは前文の次の段落です。</p>
+
+<div class="quote pre">
+  日本側は、過去において日本国が戦争を通じて中国国民に重大な損害を与えたことについての責任を痛感し、深く反省する。
+  <span class="who">日中共同声明（1972年9月29日・北京）／出典: <a href="https://www.mofa.go.jp/mofaj/area/china/nc_seimei.html" target="_blank" rel="noopener">外務省</a></span>
+</div>
+
+<h3 class="sub">1982年 —— 「歴史教科書」についての官房長官談話</h3>
+
+<p>文書の種類は<strong>内閣官房長官談話</strong>（宮澤喜一内閣官房長官）。教科書の記述をめぐる経緯のなかで出された談話ですが、その第一項は、それまでの政府の認識をまとめる形になっています。</p>
+
+<div class="quote pre">
+  日本政府及び日本国民は、過去において、我が国の行為が韓国・中国を含むアジアの国々の国民に多大の苦痛と損害を与えたことを深く自覚し、このようなことを二度と繰り返してはならないとの反省と決意の上に立って平和国家としての道を歩んで来た。我が国は、韓国については、昭和四十年の日韓共同コミュニケの中において「過去の関係は遺憾であって深く反省している」との認識を、中国については日中共同声明において「過去において日本国が戦争を通じて中国国民に重大な損害を与えたことの責任を痛感し、深く反省する」との認識を述べたが、これも前述の我が国の反省と決意を確認したものであり、現在においてもこの認識にはいささかの変化もない。
+  <span class="who">「歴史教科書」についての官房長官談話（1982年8月26日）／出典: <a href="https://worldjpn.net/documents/texts/JPCH/19820826.S1J.html" target="_blank" rel="noopener">データベース「世界と日本」（東京大学東洋文化研究所 田中明彦研究室）</a></span>
+</div>
+
+<p class="src">※ この談話は外務省の外交青書（昭和58年版・資料編）にも収録されていますが、外務省サイトの当該ページは機械的な取得ができなかったため、上記のデータベース版にリンクしています。引用にあたり、データベース版の読点「，」は「、」に改めました。なお外務省サイト掲載版とデータベース版（鈴木善幸演説集に拠る）の間には「配意する／配慮する」など数箇所の字句の異同があり、この特集の引用は、国会会議録での逐語引用（1983年）と一致するデータベース版に拠っています。</p>
+
+<h3 class="sub">1993年 —— 河野内閣官房長官談話</h3>
+
+<p>文書の種類は<strong>内閣官房長官談話</strong>（河野洋平内閣官房長官）。いわゆる従軍慰安婦の問題についての政府の調査結果の発表にあわせて出されたものです。総理大臣談話ではない点が、④で読んだ三つの談話との文書上の違いです。</p>
+
+<div class="quote pre">
+  いずれにしても、本件は、当時の軍の関与の下に、多数の女性の名誉と尊厳を深く傷つけた問題である。政府は、この機会に、改めて、その出身地のいかんを問わず、いわゆる従軍慰安婦として数多の苦痛を経験され、心身にわたり癒しがたい傷を負われたすべての方々に対し心からお詫びと反省の気持ちを申し上げる。また、そのような気持ちを我が国としてどのように表すかということについては、有識者のご意見なども徴しつつ、今後とも真剣に検討すべきものと考える。<br><br>
+  われわれはこのような歴史の真実を回避することなく、むしろこれを歴史の教訓として直視していきたい。われわれは、歴史研究、歴史教育を通じて、このような問題を永く記憶にとどめ、同じ過ちを決して繰り返さないという固い決意を改めて表明する。
+  <span class="who">慰安婦関係調査結果発表に関する河野内閣官房長官談話（1993年8月4日）／出典: <a href="https://www.mofa.go.jp/mofaj/area/taisen/kono.html" target="_blank" rel="noopener">外務省</a></span>
+</div>
+
+<h3 class="sub">1993年 —— 細川内閣総理大臣の所信表明演説</h3>
+
+<p>文書の種類は<strong>国会（衆議院本会議）における所信表明演説</strong>。国会会議録に全文が残っています。</p>
+
+<div class="quote pre">
+  我々はこの機会に世界に向かって過去の歴史への反省と新たな決意を明確にすることが肝要であると考えます。まずはこの場をかりて、過去の我が国の侵略行為や植民地支配などが多くの人々に耐えがたい苦しみと悲しみをもたらしたことに改めて深い反省とおわびの気持ちを申し述べるとともに、今後一層世界平和のために寄与することによって我々の決意を示していきたいと存じます。
+  <span class="who">細川内閣総理大臣 所信表明演説（1993年8月23日・第127回国会衆議院本会議）／出典: <a href="https://kokkai.ndl.go.jp/txt/112705254X00419930823/3" target="_blank" rel="noopener">国会会議録検索システム</a></span>
+</div>
+
+<p>この演説の約二週間前、1993年8月10日の首相就任記者会見でも、細川総理は先の大戦についての認識を述べています。1993年当時、首相官邸のウェブサイトはまだありませんが、この特集で1980年代の官房長官談話の典拠にも使っているデータベース「世界と日本」に、演説集（『細川内閣総理大臣演説集』）を底本とする会見記録が収録されています。</p>
+
+<div class="quote pre">
+  （記者）戦争への反省とおっしゃるときに、この前の戦争については基本的にどういう戦争であったという御認識なんですか。<br><br>
+  （細川総理）私自身は侵略戦争であった、間違った戦争であったというふうに認識をしております。
+  <span class="who">総理任命に際しての細川内閣総理大臣の記者会見（1993年8月10日）／出典: <a href="https://worldjpn.net/documents/texts/PI/19930810.O2J.html" target="_blank" rel="noopener">データベース「世界と日本」（底本: 細川内閣総理大臣演説集）</a></span>
+</div>
+
+<p>この会見での認識が所信表明と同一であることは、細川総理本人の国会答弁という公的記録からも確認できます。</p>
+
+<div class="quote pre">
+  侵略戦争の認識についてのお尋ねでございましたが、さきの所信表明も、八月十日の記者会見も、いずれも同様に、さきの戦争についての基本的な私の認識、同一の認識をお示しをしたものと御理解をいただきたいと思います。
+  <span class="who">細川内閣総理大臣 答弁（1993年8月26日・衆議院本会議）／出典: <a href="https://kokkai.ndl.go.jp/txt/112705254X00619930826/16" target="_blank" rel="noopener">国会会議録検索システム</a></span>
+</div>
+
+<h2 class="section">⑥ 文書は、前の文書をどう引いたか</h2>
+
+<p>この特集は、変遷を評価しません。けれども、<strong>文書そのものが、前の文書に言及している</strong>ことがあります。それは解釈ではなく、その文書に書いてある事実です。ここでは、政府が自分の言葉で過去の文書とどう関係づけたかを、④と⑤で読んだ本文から抜き出して並べます。</p>
+
+<table class="tl">
+  <tr><th>文書</th><th>先行する文書への言及（本文にある言葉）</th></tr>
+  <tr>
+    <td class="d">日中共同声明<br>1972</td>
+    <td>この特集で扱ういちばん古い文書のため、該当なし。</td>
+  </tr>
+  <tr>
+    <td class="d">宮澤官房長官談話<br>1982</td>
+    <td>日韓共同コミュニケ（昭和四十年）と日中共同声明を名指しで引いたうえで、「これも前述の我が国の反省と決意を確認したものであり、現在においてもこの認識にはいささかの変化もない」。</td>
+  </tr>
+  <tr>
+    <td class="d">細川総理 答弁<br>1993</td>
+    <td>自身の所信表明演説と記者会見について、「いずれも同様に、さきの戦争についての基本的な私の認識、同一の認識をお示しをしたもの」。</td>
+  </tr>
+  <tr>
+    <td class="d">村山談話<br>1995</td>
+    <td>先行する文書への明示的な言及は、本文に見あたりません。</td>
+  </tr>
+  <tr>
+    <td class="d">小泉談話<br>2005</td>
+    <td>先行する談話への明示的な言及は、本文に見あたりません（「植民地支配と侵略によって、多くの国々、とりわけアジア諸国の人々に対して多大の損害と苦痛を与えました」という一節は、村山談話の同じ箇所と語句が重なります）。</td>
+  </tr>
+  <tr>
+    <td class="d">安倍談話<br>2015</td>
+    <td>「我が国は、先の大戦における行いについて、繰り返し、痛切な反省と心からのお詫びの気持ちを表明してきました」と過去の表明に触れたうえで、「こうした歴代内閣の立場は、今後も、揺るぎないものであります」。</td>
+  </tr>
+  <tr>
+    <td class="d">石破総理 会見<br>2025年8月</td>
+    <td>「これまでの内閣総理大臣談話を含め、歴史認識に関する歴代内閣の立場を全体として引き継いでおります。これは今後も引き継いでいくものでございます」。</td>
+  </tr>
+  <tr>
+    <td class="d">石破所感<br>2025年10月</td>
+    <td>「歴史認識に関する歴代内閣の立場については、私もこれを引き継いでいます」。あわせて、「過去三度の談話においては、なぜあの戦争を避けることができなかったのかという点にはあまり触れられておりません」。</td>
+  </tr>
+  <tr>
+    <td class="d">高市総理 答弁<br>2025年11月</td>
+    <td>「これまでの内閣総理大臣談話を含めて、歴史認識に関する歴代内閣の立場を全体として引き継いでおり、これからも引き継いでいくということでございます」。別の質疑では安倍談話から「歴代内閣の立場は、今後も、揺るぎないものであります。」を引用したうえで、「高市内閣としても、歴代内閣の立場を全体として引き継いでまいります」。</td>
+  </tr>
+</table>
+
+<p>この表からわかるのは、<strong>2015年以降の文書と答弁が、いずれも先行する立場を引き継ぐ関係を自分から書いている</strong>ことです。安倍談話（2015）は「揺るぎない」、石破所感（2025年10月）と高市総理の答弁（2025年11月）は「引き継ぐ」——この特集で読んだ三人の総理の文書・答弁のいずれにも、同じ趣旨が本文に記されています（間の内閣の文書は、この特集では扱っていません）。そして2025年の所感は、先行する三つの談話について<strong>何が論じられていないか</strong>を名指しし、その問い —— なぜ戦争を避けられなかったのか —— を自分の文書の主題に据えています。所感の大部分が統帥権・議会・メディア・情報分析の検討にあてられているのは、そのためです。</p>
+
+<p class="src">※ ここに書いたのは、各文書の本文に実際にある言及と、その所感が扱っている主題です。それが前進なのか後退なのか、十分なのか不十分なのかは書いていません。「見あたりません」は、その文書にその言及がないという意味であり、それ以上の意味はありません。</p>
+
+<h2 class="section">⑦ 年表でたどる</h2>
+
+<p>③〜⑥で読んだ文書と質疑を、一本の線に並べます。文書の種類ごとに色を変えています。</p>
+
+<svg class="tlsvg" viewBox="0 0 700 614" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="1972年から2025年までの政府文書・決定・国会答弁の年表">
+  <defs>
+    <style>
+      .ax{stroke:currentColor; opacity:.25;}
+      .tk{stroke:currentColor; opacity:.35;}
+      .yr{fill:#c9a227; font-size:15px; font-weight:600;}
+      .lb{fill:currentColor; font-size:14px;}
+      .kd{fill:currentColor; font-size:11.5px; opacity:.62;}
+      .dot-pm{fill:#c9a227;}
+      .dot-cs{fill:#6fa3a0;}
+      .dot-ot{fill:#7d9b6a;}
+      .lg{fill:currentColor; font-size:11.5px; opacity:.75;}
+    </style>
+  </defs>
+
+  <line class="ax" x1="96" y1="34" x2="96" y2="578" stroke-width="1.5"/>
+
+  <line class="tk" x1="90" y1="52" x2="102" y2="52" stroke-width="1"/>
+  <circle class="dot-ot" cx="96" cy="52" r="5.5"/>
+  <text class="yr" x="34" y="57">1972</text>
+  <text class="lb" x="114" y="49">日中共同声明</text>
+  <text class="kd" x="114" y="67">両国政府の共同声明（田中角栄内閣）</text>
+
+  <line class="tk" x1="90" y1="110" x2="102" y2="110" stroke-width="1"/>
+  <circle class="dot-cs" cx="96" cy="110" r="5.5"/>
+  <text class="yr" x="34" y="115">1982</text>
+  <text class="lb" x="114" y="107">「歴史教科書」についての官房長官談話</text>
+  <text class="kd" x="114" y="125">内閣官房長官談話（宮澤喜一官房長官・鈴木善幸内閣）</text>
+
+  <line class="tk" x1="90" y1="168" x2="102" y2="168" stroke-width="1"/>
+  <circle class="dot-cs" cx="96" cy="168" r="5.5"/>
+  <text class="yr" x="34" y="173">1993</text>
+  <text class="lb" x="114" y="165">河野内閣官房長官談話（8月4日）</text>
+  <text class="kd" x="114" y="183">内閣官房長官談話</text>
+
+  <line class="tk" x1="90" y1="226" x2="102" y2="226" stroke-width="1"/>
+  <circle class="dot-ot" cx="96" cy="226" r="5.5"/>
+  <text class="lb" x="114" y="223">細川内閣総理大臣 所信表明演説（8月23日）</text>
+  <text class="kd" x="114" y="241">国会（衆議院本会議）での演説</text>
+
+  <line class="tk" x1="90" y1="284" x2="102" y2="284" stroke-width="1"/>
+  <circle class="dot-pm" cx="96" cy="284" r="6.5"/>
+  <text class="yr" x="34" y="289">1995</text>
+  <text class="lb" x="114" y="281">村山内閣総理大臣談話（戦後50年）</text>
+  <text class="kd" x="114" y="299">内閣総理大臣談話</text>
+
+  <line class="tk" x1="90" y1="342" x2="102" y2="342" stroke-width="1"/>
+  <circle class="dot-pm" cx="96" cy="342" r="6.5"/>
+  <text class="yr" x="34" y="347">2005</text>
+  <text class="lb" x="114" y="339">小泉内閣総理大臣談話（戦後60年）</text>
+  <text class="kd" x="114" y="357">内閣総理大臣談話</text>
+
+  <line class="tk" x1="90" y1="400" x2="102" y2="400" stroke-width="1"/>
+  <circle class="dot-pm" cx="96" cy="400" r="6.5"/>
+  <text class="yr" x="34" y="405">2015</text>
+  <text class="lb" x="114" y="397">安倍内閣総理大臣談話（戦後70年）</text>
+  <text class="kd" x="114" y="415">内閣総理大臣談話［閣議決定の表記あり］</text>
+
+  <line class="tk" x1="90" y1="458" x2="102" y2="458" stroke-width="1"/>
+  <circle class="dot-ot" cx="96" cy="458" r="5.5"/>
+  <text class="yr" x="34" y="463">2025</text>
+  <text class="lb" x="114" y="455">全国戦没者追悼式 式辞（8月15日）</text>
+  <text class="kd" x="114" y="473">追悼式における総理大臣式辞</text>
+
+  <line class="tk" x1="90" y1="516" x2="102" y2="516" stroke-width="1"/>
+  <circle class="dot-ot" cx="96" cy="516" r="5.5"/>
+  <text class="lb" x="114" y="513">内閣総理大臣所感「戦後80年に寄せて」（10月10日）</text>
+  <text class="kd" x="114" y="531">内閣総理大臣所感［閣議決定の表記なし］</text>
+  <line class="tk" x1="90" y1="574" x2="102" y2="574" stroke-width="1"/>
+  <circle class="dot-ot" cx="96" cy="574" r="5.5"/>
+  <text class="lb" x="114" y="571">高市内閣総理大臣 答弁（11月7日・10日）</text>
+  <text class="kd" x="114" y="589">衆議院予算委員会での答弁</text>
+
+  <circle class="dot-pm" cx="474" cy="30" r="5.5"/>
+  <text class="lg" x="485" y="34">内閣総理大臣談話</text>
+  <circle class="dot-cs" cx="474" cy="52" r="5.5"/>
+  <text class="lg" x="485" y="56">内閣官房長官談話</text>
+  <circle class="dot-ot" cx="474" cy="74" r="5.5"/>
+  <text class="lg" x="485" y="78">その他の文書・演説</text>
+</svg>
+
+<p class="src">※ 上から下へ年代順に並べています。同じ年に複数の文書がある1993年と2025年は行を分けているため、<strong>行の間隔は実際の年数には正確には比例していません</strong>（年数は各行の左に記した年でご確認ください）。この年表には、③〜⑥で原文を引用した文書（声明・談話・演説・式辞・所感）と国会答弁を載せています。記者会見は年表には含めず、③と⑤で原文を読めます。</p>
+
+<h2 class="section">⑧ 原文は、自分で読める</h2>
+
+<p>この特集で引用した文書は、すべて次のいずれかで公開されています。使い方を一言ずつ添えます。</p>
+
+<div class="col linkcol">
+  <h3>一次資料を自分でさがす四つの入り口</h3>
+  <table class="tl">
+    <tr><th>入り口</th><th>何が読めるか</th></tr>
+    <tr><td class="d"><a href="https://www.kantei.go.jp/" target="_blank" rel="noopener">首相官邸</a></td><td>現在および近い時期の内閣の談話・式辞・記者会見の記録。談話のPDFには「閣議決定」の有無が記されていることがあります。</td></tr>
+    <tr><td class="d"><a href="https://www.mofa.go.jp/mofaj/" target="_blank" rel="noopener">外務省</a></td><td>条約・共同声明などの外交文書と、歴史認識に関わる主な談話。日本語のほか英語・中国語・韓国語の版が置かれている文書もあります。</td></tr>
+    <tr><td class="d"><a href="https://kokkai.ndl.go.jp/" target="_blank" rel="noopener">国会会議録検索システム</a></td><td>帝国議会・国会の会議録の全文。総理大臣の所信表明演説や答弁を、発言単位で検索して読めます。この特集の細川総理の演説・答弁もここから引用しました。</td></tr>
+    <tr><td class="d"><a href="https://warp.ndl.go.jp/" target="_blank" rel="noopener">国立国会図書館インターネット資料収集保存事業（WARP）</a></td><td>過去に公開され、いまは削除されたウェブページの保存版。小泉談話のように、官邸サイトから移された文書を読むときに使います。</td></tr>
+  </table>
+</div>
+
+<h2 class="section">⑨ 主な出典</h2>
 
 <ul class="srclist">
-  <li class="g">■ 決議・公文書</li>
-  <li>国連安保理決議2803号（2025年11月17日採択）本文 — <a href="https://worldjpn.net/documents/texts/docs/20251117.O1J.html" target="_blank" rel="noopener">データベース『世界と日本』（日本語訳）</a>／<a href="https://documents.un.org/doc/undoc/gen/n25/316/35/pdf/n2531635.pdf" target="_blank" rel="noopener">国連公式文書</a>／<a href="https://www.securitycouncilreport.org/un-documents/document/s-res-2803.php" target="_blank" rel="noopener">Security Council Report</a></li>
-  <li>2026年7月の武装解除合意文書の全文 — <a href="https://www.timesofisrael.com/full-text-of-board-of-peace-deal-for-hamas-to-disarm-israel-to-withdraw-from-gaza/" target="_blank" rel="noopener">The Times of Israel（英文全文掲載）</a></li>
-  <li>バルフォア宣言 原文（1917年11月2日） — <a href="https://avalon.law.yale.edu/20th_century/balfour.asp" target="_blank" rel="noopener">イェール大学 Avalon Project</a>／決議2803採択時の安保理会合記録 — <a href="https://press.un.org/en/2025/sc16225.doc.htm" target="_blank" rel="noopener">国連プレス（2025年11月17日）</a></li>
-  <li class="g">■ 日本政府</li>
-  <li><a href="https://www.mofa.go.jp/mofaj/me_a/me1/palestine/page22_001217.html" target="_blank" rel="noopener">外務省「ガザ情勢」</a>／<a href="https://www.mofa.go.jp/mofaj/fp/unp/pageit_000001_02580.html" target="_blank" rel="noopener">決議2803採択についての外務大臣談話（2025年11月18日）</a></li>
-  <li class="g">■ 国連機関・国際機関</li>
-  <li><a href="https://www.unocha.org/publications/report/occupied-palestinian-territory/gaza-humanitarian-response-situation-report-no-67" target="_blank" rel="noopener">OCHA（国連人道問題調整事務所）ガザ人道対応報告</a></li>
-  <li><a href="https://www.ohchr.org/en/press-releases/2026/04/palestinians-across-gaza-unsafe-six-months-ceasefire-announcement-says-turk" target="_blank" rel="noopener">OHCHR（国連人権高等弁務官事務所）トゥルク高等弁務官声明（2026年4月10日）</a></li>
-  <li><a href="https://www.un.org/unispal/document/gaza-strip-ipc-reports-19dec25/" target="_blank" rel="noopener">IPC 急性食料不安分析（2025年12月19日・UNISPAL掲載）</a>／<a href="https://www.who.int/news/item/19-12-2025-un-agencies-welcome-news-that-famine-has-been-pushed-back-in-the-gaza-strip-but-warn-fragile-gains-could-be-reversed-without-increased-and-sustained-support" target="_blank" rel="noopener">WHO等国連機関共同声明（同日）</a></li>
-  <li><a href="https://www.un.org/unispal/document/sg-statement-13oct25-2" target="_blank" rel="noopener">国連事務総長声明（2025年10月13日・人質解放）</a>／<a href="https://www.un.org/unispal/permanent-status-issues/" target="_blank" rel="noopener">国連「最終的地位問題」解説（エルサレムの地位）</a></li>
-  <li class="g">■ 報道（2026年7〜8月・武装解除合意とその後）</li>
-  <li><a href="https://www.aljazeera.com/news/2026/7/31/gaza-board-of-peace-announces-hamas-disarmament-agreement-what-we-know" target="_blank" rel="noopener">Al Jazeera</a>／<a href="https://www.npr.org/2026/07/31/g-s1-136500/trump-hamas-gaza" target="_blank" rel="noopener">NPR</a>／<a href="https://www.cnn.com/2026/07/31/middleeast/trump-hamas-disarmament-announcement-intl" target="_blank" rel="noopener">CNN</a>／<a href="https://www.cnn.com/2026/07/30/politics/hamas-disarmament-agreement-trump-board-of-peace" target="_blank" rel="noopener">CNN（トランプ発表）</a>／<a href="https://www.axios.com/2026/07/30/hamas-weapons-gaza-deal-israel-board-peace" target="_blank" rel="noopener">Axios</a>／<a href="https://www.washingtonpost.com/world/2026/07/31/israel-hamas-gaza-trump-disarmament-palestinians-board-of-peace-mladenov/4b825c80-8cee-11f1-8912-d71e69d679d7_story.html" target="_blank" rel="noopener">The Washington Post</a></li>
-  <li>イスラエル側の反応 — <a href="https://www.timesofisrael.com/board-of-peace-said-nearing-deal-with-hamas-on-disarmament-but-israel-opposes-offer/" target="_blank" rel="noopener">The Times of Israel</a>／<a href="https://www.washingtontimes.com/news/2026/aug/2/israel-expresses-serious-concerns-hamas-disarmament-deal/" target="_blank" rel="noopener">The Washington Times（2026年8月2日）</a></li>
-  <li class="g">■ 日本語の報道・公的資料</li>
-  <li><a href="https://www.nikkei.com/article/DGXZQOGN180680Y5A111C2000000/" target="_blank" rel="noopener">日本経済新聞（決議2803採択）</a>／<a href="https://news.web.nhk/newsweb/na/na-k10015023291000" target="_blank" rel="noopener">NHK（ガザ停戦3か月・和平計画の現在地）</a>／<a href="https://www.jetro.go.jp/biznews/2025/11/ef0cf26684c9bee9.html" target="_blank" rel="noopener">JETRO ビジネス短信（決議2803の各国の反応）</a></li>
-  <li><a href="https://www.cas.go.jp/jp/seisaku/chyutoujyousei/dai1/pdf/siryou4.pdf" target="_blank" rel="noopener">経済産業省「中東情勢を踏まえた燃料油・石油製品の安定供給確保」（2026年3月24日・内閣官房掲載）</a></li>
-  <li class="g">■ 報道・解説（経緯・人道状況）</li>
-  <li><a href="https://www.cnn.com/2026/01/30/middleeast/israeli-military-gaza-killed-numbers-intl" target="_blank" rel="noopener">CNN（死者数・イスラエル軍の認識 2026年1月30日）</a>／<a href="https://www.arabnews.com/node/2647761/middle-east" target="_blank" rel="noopener">Arab News（フレッチャー国連事務次長の警告）</a>／<a href="https://press.un.org/en/2026/sc16390.doc.htm" target="_blank" rel="noopener">安保理ブリーフィング記録（2026年6月）</a></li>
-  <li><a href="https://commonslibrary.parliament.uk/research-briefings/cbp-10492/" target="_blank" rel="noopener">英下院図書館ブリーフィング（停戦の経過）</a>／<a href="https://www.chathamhouse.org/2025/11/what-security-council-resolution-2803-and-what-does-it-mean-trump-gaza-plan" target="_blank" rel="noopener">Chatham House（決議2803の解説）</a></li>
-  <li><a href="https://www.aljazeera.com/amp/news/2023/11/10/israel-revises-death-toll-from-october-7-hamas-attack-to-1200-people" target="_blank" rel="noopener">Al Jazeera（2023年10月7日の犠牲者数・イスラエル政府発表）</a>／<a href="https://www.britannica.com/summary/Gaza-Strip" target="_blank" rel="noopener">Britannica（ガザ地区の面積・人口）</a></li>
+  <li class="g">■ 内閣総理大臣談話</li>
+  <li>村山内閣総理大臣談話「戦後50周年の終戦記念日にあたって」（1995年8月15日）— <a href="https://www.mofa.go.jp/mofaj/press/danwa/07/dmu_0815.html" target="_blank" rel="noopener">外務省</a></li>
+  <li>小泉内閣総理大臣談話（2005年8月15日）— <a href="https://warp.ndl.go.jp/web/20190122000000/www.kantei.go.jp/jp/koizumispeech/2005/08/15danwa.html" target="_blank" rel="noopener">首相官邸ページの保存版（国立国会図書館WARP）</a></li>
+  <li>安倍内閣総理大臣談話（2015年8月14日・閣議決定）— <a href="https://www.kantei.go.jp/jp/topics/2015/150814danwa.pdf" target="_blank" rel="noopener">首相官邸（PDF）</a>／<a href="https://www.mofa.go.jp/mofaj/a_o/rp/page24_000177.html" target="_blank" rel="noopener">外務省</a></li>
+  <li class="g">■ 戦後80年（2025年）</li>
+  <li>令和7年度全国戦没者追悼式 内閣総理大臣式辞（2025年8月15日）— <a href="https://www.kantei.go.jp/jp/103/statement/2025/0815shikiji.html" target="_blank" rel="noopener">首相官邸</a></li>
+  <li>全国戦没者追悼式式辞等についての会見（2025年8月15日）— <a href="https://www.kantei.go.jp/jp/103/statement/2025/0815kaiken.html" target="_blank" rel="noopener">首相官邸</a></li>
+  <li>内閣総理大臣所感「戦後80年に寄せて」（2025年10月10日）— <a href="https://www.kantei.go.jp/jp/content/20251010shokan.pdf" target="_blank" rel="noopener">首相官邸（PDF）</a>／発表当日の記者会見 — <a href="https://www.kantei.go.jp/jp/103/statement/2025/1010kaiken.html" target="_blank" rel="noopener">首相官邸</a></li>
+  <li>高市内閣総理大臣 答弁（2025年11月7日 衆議院予算委員会・第216〜221発言）— <a href="https://kokkai.ndl.go.jp/txt/121905261X00220251107/216" target="_blank" rel="noopener">国会会議録検索システム</a>／同（2025年11月10日 衆議院予算委員会・第270〜271発言）— <a href="https://kokkai.ndl.go.jp/txt/121905261X00320251110/270" target="_blank" rel="noopener">同</a></li>
+  <li>高市内閣総理大臣 記者会見（2026年4月21日・靖国神社の春季例大祭について）— <a href="https://www.kantei.go.jp/jp/105/statement/2026/0421kaiken.html" target="_blank" rel="noopener">首相官邸</a></li>
+  <li class="g">■ 前史の文書</li>
+  <li>日本国政府と中華人民共和国政府の共同声明（1972年9月29日）— <a href="https://www.mofa.go.jp/mofaj/area/china/nc_seimei.html" target="_blank" rel="noopener">外務省</a></li>
+  <li>「歴史教科書」についての官房長官談話（1982年8月26日）— <a href="https://worldjpn.net/documents/texts/JPCH/19820826.S1J.html" target="_blank" rel="noopener">データベース「世界と日本」</a></li>
+  <li>慰安婦関係調査結果発表に関する河野内閣官房長官談話（1993年8月4日）— <a href="https://www.mofa.go.jp/mofaj/area/taisen/kono.html" target="_blank" rel="noopener">外務省</a></li>
+  <li>総理任命に際しての細川内閣総理大臣の記者会見（1993年8月10日）— <a href="https://worldjpn.net/documents/texts/PI/19930810.O2J.html" target="_blank" rel="noopener">データベース「世界と日本」</a>（底本: 細川内閣総理大臣演説集）</li>
+  <li>細川内閣総理大臣 所信表明演説（1993年8月23日）— <a href="https://kokkai.ndl.go.jp/txt/112705254X00419930823/3" target="_blank" rel="noopener">国会会議録検索システム（衆議院本会議）</a>／<a href="https://kokkai.ndl.go.jp/txt/112715254X00419930823/8" target="_blank" rel="noopener">参議院本会議</a></li>
+  <li>細川内閣総理大臣 答弁（1993年8月26日 衆議院本会議）— <a href="https://kokkai.ndl.go.jp/txt/112705254X00619930826/16" target="_blank" rel="noopener">国会会議録検索システム</a>／同日 参議院本会議 — <a href="https://kokkai.ndl.go.jp/txt/112715254X00519930826/3" target="_blank" rel="noopener">同</a>／1993年8月27日 参議院本会議 — <a href="https://kokkai.ndl.go.jp/txt/112715254X00619930827/11" target="_blank" rel="noopener">同</a>／1993年9月24日 参議院本会議 — <a href="https://kokkai.ndl.go.jp/txt/112815254X00319930924/30" target="_blank" rel="noopener">同</a></li>
 </ul>
 
 <div class="col">
   <h3>更新履歴</h3>
   <ul class="srclist">
-    <li>2026-08-04 — 初版公開</li>
+    <li>2026-08-15 — 初版公開</li>
   </ul>
 </div>
 
 <footer class="next">
-  <span class="cite">考証メモ：現状パート（①）の事実関係は、安保理決議2803の本文・国連機関（OCHA/OHCHR/IPC）の発表・外務省資料と複数の報道で照合しています。死者数などの統計と要人の発言は、発表主体・報道元を本文に明記しました。前史（②）と歴史パート（③）は高校世界史の教科書標準の記述に拠っています。停戦と武装解除をめぐる状況は流動的であり、本ページの記述は更新日時点のものです。将来の見通しと是非の判断は書いていません。内容の誤りにお気づきの場合は、お問い合わせページからご指摘ください。</span>
-  <div class="credit">地図の海岸線・境界データ: Natural Earth（パブリックドメイン）から自前生成／帯年表: 実時間スケールで作図</div>
+  <span class="cite">考証メモ：本ページの引用はすべて、首相官邸・外務省・国会会議録検索システム・国立国会図書館WARP・データベース「世界と日本」の各ページから取得した本文に拠り、逐語で照合しています。文書の種類（内閣総理大臣談話／内閣官房長官談話／式辞／所感／共同声明／国会での演説・答弁）は、各文書自身の表題と掲載ページの表記に従って記しました。閣議決定の有無については、文書またはその掲載ページに表記があるものだけを記しています。公的な記録で確認できなかった発言は、本ページには載せていません。各文書に対する評価・是非の判断は書いていません。内容の誤りにお気づきの場合は、お問い合わせページからご指摘ください。</span>
+  <div class="credit">年表SVG: 年代順・等間隔で自前作図</div>
 </footer>
 
 </div>
+<!--sitesw-->
+<script>
+if ("serviceWorker" in navigator && location.protocol !== "file:") {
+  navigator.serviceWorker.register("../sw.js");
+}
+</script>
+<!--/sitesw-->
+<!--sitetotop-->
+<button id="totop" aria-label="トップへ戻る" title="トップへ戻る">↑</button>
+<script>
+(function(){
+  var b = document.getElementById("totop");
+  window.addEventListener("scroll", function(){
+    b.style.display = window.scrollY > 500 ? "block" : "none";
+  }, {passive:true});
+  b.addEventListener("click", function(){ window.scrollTo({top:0, behavior:"smooth"}); });
+})();
+</script>
+<!--/sitetotop-->
 <!--zoomui-->
 <style>
   .zm-target{cursor:zoom-in;}
@@ -522,24 +850,5 @@
 })();
 </script>
 <!--/zoomui-->
-<!--sitesw-->
-<script>
-if ("serviceWorker" in navigator && location.protocol !== "file:") {
-  navigator.serviceWorker.register("../sw.js");
-}
-</script>
-<!--/sitesw-->
-<!--sitetotop-->
-<button id="totop" aria-label="トップへ戻る" title="トップへ戻る">↑</button>
-<script>
-(function(){
-  var b = document.getElementById("totop");
-  window.addEventListener("scroll", function(){
-    b.style.display = window.scrollY > 500 ? "block" : "none";
-  }, {passive:true});
-  b.addEventListener("click", function(){ window.scrollTo({top:0, behavior:"smooth"}); });
-})();
-</script>
-<!--/sitetotop-->
 </body>
 </html>
