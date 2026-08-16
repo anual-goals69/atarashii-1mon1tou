@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>特集｜靖国神社 —— 毎年8月にニュースになる、あの神社のこと</title>
+<style>
+  :root{
+    --bg:#f7f3ec;
+    --fg:#25201a;
+    --panel:#efe8db;
+    --panel2:#e9e1d2;
+    --gold:#75610a;
+    --teal:#35625f;
+    --terra:#8f4a3b;
+    --green:#4f6b39;
+    --border:#d8cdb8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#12100e;
+      --fg:#efe9df;
+      --panel:#1c1814;
+      --panel2:#211c17;
+      --gold:#c9a227;
+      --teal:#6fa3a0;
+      --terra:#c47b6a;
+      --green:#7d9b6a;
+      --border:#3a332a;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:0 0 4em 0;
+    background:var(--bg); color:var(--fg);
+    font-family:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+    line-height:1.85;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:1.4em 1.1em;}
+  header.day{
+    text-align:center; padding:1.6em 1em 1.8em; border-bottom:1px solid var(--border);
+    margin-bottom:1.6em;
+  }
+  .daynum{color:var(--gold); letter-spacing:.15em; font-size:.85em;}
+  .date{opacity:.7; font-size:.85em; margin-top:.3em;}
+  h1.title{
+    font-size:1.35em; margin:.6em 0 .9em; font-weight:600; line-height:1.6;
+  }
+  .chips{display:flex; flex-wrap:wrap; gap:.5em; justify-content:center; margin-top:.6em;}
+  .chip{
+    font-size:.78em; border:1px solid var(--gold); color:var(--gold);
+    padding:.3em .7em; border-radius:999px; opacity:.9;
+  }
+  h2.section{
+    font-size:1.15em; color:var(--gold); border-bottom:2px solid var(--gold);
+    padding-bottom:.35em; margin-top:2.4em; letter-spacing:.05em;
+  }
+  h3.sub{
+    font-size:1em; color:var(--teal); margin:1.6em 0 .5em; font-weight:600;
+  }
+  .caution{
+    font-size:.82em; opacity:.85; margin:.8em 0 1.2em; padding:.6em .9em;
+    background:var(--panel2); border-radius:4px; border-left:3px solid var(--terra);
+  }
+  .src{font-size:.8em; opacity:.7;}
+  svg.tlsvg{width:100%; height:auto; display:block; margin:.6em auto;}
+  .col{
+    margin-top:2em; padding:1.2em 1.1em; background:var(--panel2);
+    border-radius:8px; border:1px solid var(--border);
+  }
+  .col h3{margin:0 0 .7em; font-size:1.02em; color:var(--terra);}
+  .col.linkcol h3{color:var(--teal);}
+  .col.bg{margin-top:1.4em; border-color:#7d8fa0;}
+  .col.bg h3{color:#7d8fa0;}
+  table.tl{width:100%; border-collapse:collapse; margin:.8em 0; font-size:.85em;}
+  table.tl th, table.tl td{border:1px solid var(--border); padding:.5em .5em; text-align:left; vertical-align:top;}
+  table.tl th{background:var(--panel); color:var(--gold); font-weight:600;}
+  table.tl td.d{color:var(--gold); font-weight:600;}
+  .tscroll{overflow-x:auto; -webkit-overflow-scrolling:touch;}
+  .tscroll table.tl{min-width:600px;}
+  .scrollhint{font-size:.75em; opacity:.6; margin:.2em 0 -.4em;}
+  @media (min-width:660px){ .scrollhint{display:none;} }
+  .quote{
+    margin:1em 0; padding:.9em 1.05em; background:var(--panel);
+    border-left:3px solid var(--gold); border-radius:6px; font-size:.92em;
+  }
+  .quote .who{display:block; color:var(--gold); font-size:.8em; margin-top:.55em;}
+  .quote.pre{border-left-color:var(--teal);}
+  .quote.pre .who{color:var(--teal);}
+  .quote.shrine{border-left-color:var(--green);}
+  .quote.shrine .who{color:var(--green);}
+  .cite{
+    display:block; font-size:.78em; opacity:.72; margin-top:.8em; line-height:1.7;
+  }
+  a{color:var(--teal);}
+  .srclist{font-size:.85em; line-height:2.0; padding-left:1.3em;}
+  .srclist .g{color:var(--gold); font-size:.9em; list-style:none; margin-left:-1.3em; margin-top:.6em;}
+  details.quiz{
+    margin:1em 0; background:var(--panel); border:1px solid var(--border);
+    border-radius:8px; overflow:hidden;
+  }
+  details.quiz summary{
+    padding:.9em 1.05em; cursor:pointer; font-size:.95em; list-style:none;
+    position:relative;
+  }
+  details.quiz summary::-webkit-details-marker{display:none;}
+  details.quiz summary::after{
+    content:"答えを見る ▾"; display:block; color:var(--gold); font-size:.78em; margin-top:.4em;
+  }
+  details.quiz[open] summary::after{content:"";}
+  details.quiz .qno{color:var(--gold); font-weight:600; margin-right:.5em;}
+  details.quiz .ans{
+    padding:.9em 1.05em; border-top:1px dashed var(--border); font-size:.9em;
+    background:var(--panel2);
+  }
+  details.quiz .ans .a1{color:var(--gold); font-weight:600;}
+  footer.next{
+    margin-top:2.4em; padding:1em; text-align:center; font-size:.85em;
+    border-top:1px solid var(--border); opacity:.85;
+  }
+  .credit{text-align:center; font-size:.75em; opacity:.5; margin-top:1.2em;}
+</style>
+<!--linkcss-->
+<style>
+  p a[rel="noopener"], .tl a[rel="noopener"], .quote a[rel="noopener"], div.caution a[rel="noopener"]{
+    color:var(--gold); text-decoration:underline; text-underline-offset:2px;
+  }
+</style>
+<!--/linkcss-->
+<!--lowstrain-->
+<style>
+  /* 低負荷UI一括適用（apply_low_strain.py）。文字サイズは判読性・眼精疲労の最重要因子 */
+  html{font-size:106.25%;}
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration:.01ms !important; animation-iteration-count:1 !important;
+      transition-duration:.01ms !important; scroll-behavior:auto !important;
+    }
+  }
+  :where(a, button, summary, [tabindex]):focus-visible{
+    outline:2px solid var(--gold, var(--amber-deep, #75610a)); outline-offset:2px; border-radius:2px;
+  }
+</style>
+<!--/lowstrain-->
+</head>
+<body>
+<div class="wrap">
+
+<header class="day">
+  <div class="daynum">特集 第1回</div>
+  <h1 class="title">靖国神社<br>—— 毎年8月にニュースになる、あの神社のこと</h1>
+  <div class="date">公開日: 2026年8月16日</div>
+  <div class="chips">
+    <span class="chip">過去と現在をつなぐ</span>
+    <span class="chip">日本史</span>
+    <span class="chip">一次資料で読む</span>
+  </div>
+</header>
+
+<div class="caution">
+  この特集は、靖国神社という場所の歴史と、それをめぐる公的な記録を、<strong>原文と出典つきでたどる</strong>ものです。
+  参拝すべきかどうか、祀り方が正しいかどうか —— そうした<strong>評価・是非の判断は一切書いていません</strong>。
+  この神社には、いまも多くのご遺族にとって大切な方々が祀られています。この特集は、その事実に敬意を払ったうえで、
+  「そもそもどういう場所なのか」を知るための入り口として書かれています。
+</div>
+
+<h2 class="section">① まず、3問だけ</h2>
+
+<p>毎年8月15日が近づくと、この神社の名前がニュースに流れます。でも、「そもそもどういう神社なのか」を聞かれて答えられる人は、実はそう多くありません。まず、3問だけ試してみてください。</p>
+
+<details class="quiz">
+  <summary><span class="qno">Q1</span>明治維新の立役者・<strong>西郷隆盛</strong>は、靖国神社に祀られている？</summary>
+  <div class="ans"><span class="a1">祀られていません。</span> 西郷は1877年の西南戦争で、政府と<em>戦った側</em>の指導者として亡くなりました。靖国神社が祀るのは、国の側で命を落とした人——同じ内戦でも、政府軍の戦没者は祀られ、政府と戦った側は祀られていません。詳しくは③で。</div>
+</details>
+
+<details class="quiz">
+  <summary><span class="qno">Q2</span>靖国神社に祀られている神霊（みたま）は、およそ<strong>何柱</strong>？</summary>
+  <div class="ans"><span class="a1">246万6千余柱（神社公式サイトによる）。</span> 幕末・維新期から先の大戦までの戦没者らが祀られています。軍人だけでなく、従軍看護婦や学徒、台湾・朝鮮半島出身者も含まれます。詳しくは③で。</div>
+</details>
+
+<details class="quiz">
+  <summary><span class="qno">Q3</span>空襲で亡くなった<strong>民間人</strong>は、靖国神社に祀られている？</summary>
+  <div class="ans"><span class="a1">原則として対象外です。</span> 靖国神社が祀るのは「公務に起因して亡くなられた方々」（神社公式サイトの説明による）。空襲などで亡くなった一般の戦争犠牲者のためには、<strong>千鳥ケ淵戦没者墓苑</strong>という国の施設が別にあります。詳しくは③で。</div>
+</details>
+
+<p>3問とも自信を持って答えられたなら、この特集は復習になります。ひとつでも「え、そうなの？」があったなら —— ここから先は、その「そうなの？」の連続です。</p>
+
+<h2 class="section">② そもそも、何の神社？</h2>
+
+<p>靖国神社は、東京・九段にある神社です。はじまりは明治2年（1869年）。「招魂社（しょうこんしゃ）」という名前で建てられ、明治12年（1879年）に「靖國神社」と改称されました。</p>
+
+<div class="col bg">
+  <h3>背景 —— なぜ1869年だったのか</h3>
+  <p style="font-size:.9em; margin:0">その前年まで、日本は内戦のさなかにありました。<strong>戊辰戦争</strong>（1868〜69年）——江戸幕府から天皇中心の新政府へと政権が移る明治維新の過程で、新政府軍と旧幕府側が戦った内戦です。教科書では鳥羽・伏見の戦いから五稜郭の戦いまでとして習います。神社の公式年表によれば、戊辰の役の終結は明治2年5月18日、招魂社の鎮座と第一回合祀祭は同年6月29日 —— <strong>内戦が終わった翌月に、その戦没者を祀るために建てられた</strong>のがこの神社です。</p>
+</div>
+
+<p>「靖國」という名前の意味を、神社の公式サイトはこう説明しています。</p>
+
+<div class="quote shrine">
+  明治天皇が命名された「靖國」という社号は、「国を靖（安）んずる」という意味で、靖國神社には「祖国を平安にする」「平和な国家を建設する」という願いが込められています。
+  <span class="who">靖国神社公式サイト「靖國神社の由緒」／出典: <a href="https://www.yasukuni.or.jp/history/detail.html" target="_blank" rel="noopener">靖國神社</a></span>
+</div>
+
+<p class="src">※ この特集では、神社の公式サイトによる説明を、緑の枠で引用します。政府の文書は青と金の枠です。<strong>どちらの説明が正しいかは書きません</strong>。誰の説明なのかを、枠の色で常に区別します。</p>
+
+<h2 class="section">③ 西郷隆盛は、祀られていない</h2>
+
+<p>では、誰が祀られているのか。神社の公式サイトは、祀られる対象をこう説明しています。</p>
+
+<div class="quote shrine">
+  靖國神社には、戊辰戦争（戊辰の役）やその後に起こった佐賀の乱、西南戦争（西南の役）といった国内の戦いで、近代日本の出発点となった明治維新の大事業遂行のために命を落とされた方々をはじめ、明治維新のさきがけとなって斃れた坂本龍馬・吉田松陰・高杉晋作・橋本左内といった歴史的に著名な幕末の志士達、さらには日清戦争・日露戦争・第一次世界大戦・満洲事変・支那事変・大東亜戦争（第二次世界大戦）などの対外事変や戦争に際して、国家防衛のためにひたすら「国安かれ」の一念のもと、尊い生命を捧げられた方々の神霊が祀られており、その数は246万6千余柱に及びます。
+  <span class="who">同・由緒（御祭神の説明）</span>
+</div>
+
+<p>ポイントは「明治維新の大事業<strong>遂行のために</strong>」という部分です。倒幕運動のさなかに斃れた坂本龍馬や吉田松陰は祀られている。同じ内戦で死んでも、祀られるのは<strong>維新を進めた側</strong>で命を落とした人です。戊辰戦争で新政府軍と戦った会津藩士や白虎隊、西南戦争で政府と戦った西郷隆盛は、祀られていません。<strong>龍馬は入って、西郷は入らない</strong>——この線の引き方に、この神社が何のために作られたかが表れています。</p>
+
+<div class="col bg">
+  <h3>背景 —— 西南戦争と「賊軍」</h3>
+  <p style="font-size:.9em; margin:0"><strong>西南戦争</strong>（1877年）は、明治維新の最大の功労者の一人だった西郷隆盛が、鹿児島の士族に擁されて挙兵し、政府軍に敗れた内戦です。教科書では士族反乱の最後のものとして習います。当時、政府側は自らを「官軍」、敵対した側を「賊軍」と呼びました。西郷自身は1889年（明治22年）の大日本帝国憲法発布に伴う大赦で名誉を回復し、上野公園には銅像も立ちましたが —— 靖国神社に祀られてはいません。「祀る神社」の側から見ると、この神社が何のために設計されたかが、この一点からよく見えます。</p>
+</div>
+
+<p>一方で、祀られている範囲は「軍人だけ」でもありません。神社の説明を続けて読みます。</p>
+
+<div class="quote shrine">
+  その中には軍人ばかりでなく、戦場で救護のために活躍した従軍看護婦や女学生、勤労動員中に軍需工場で亡くなられた学徒など、軍属・文官・民間の方々も数多く含まれており、その当時、日本人として戦い亡くなった台湾及び朝鮮半島出身者やシベリア抑留中に死亡した軍人・軍属、大東亜戦争終結時にいわゆる戦争犯罪人として処刑された方々なども同様に祀られています。
+  <span class="who">同・由緒（御祭神の説明）</span>
+</div>
+
+<div class="quote shrine">
+  つまり、靖國神社に祀られている246万6千余柱の神霊は、「祖国を守るという公務に起因して亡くなられた方々の神霊」であるという一点において共通しています。
+  <span class="who">同・由緒（御祭神の説明）</span>
+</div>
+
+<p>「公務に起因して」——ここにもう一つの線があります。空襲や原爆で亡くなった一般の市民は、この基準の対象外です。では、その方々の遺骨はどこにあるのか。</p>
+
+<h3 class="sub">もう一つの場所 —— 千鳥ケ淵戦没者墓苑</h3>
+
+<p>靖国神社から歩いて数分の場所に、国が設けた別の施設があります。環境省の公式説明を引用します。</p>
+
+<div class="quote pre">
+  先の大戦で海外における戦没軍人及び一般邦人のご遺骨を納めた「無名戦没者の墓」として昭和３４年３月２８日に創建されました。令和７年５月現在37万1,008柱が、六角堂内（写真）に安置されています。
+  <span class="who">環境省「千鳥ケ淵戦没者墓苑」／出典: <a href="https://www.env.go.jp/garden/chidorigafuchi/" target="_blank" rel="noopener">環境省</a></span>
+</div>
+
+<p>靖国神社は宗教法人が「神霊を祀る」神社、千鳥ケ淵戦没者墓苑は国が「遺骨を納める」墓苑 —— 性格の違う二つの場所が並んで存在している。この並び自体が、戦没者をどう悼むかという問いに日本がどう向き合ってきたかの、目に見える形です。</p>
+
+<h2 class="section">④ 神社なのに、軍の施設だった</h2>
+
+<p>いまの靖国神社は、ほかの神社と同じ一つの宗教法人です。でも戦前は違いました。1985年、国会で政府委員がこう説明しています。</p>
+
+<div class="quote">
+  靖国神社は、戦前におきましては、明治二年に東京招魂社として設立され、そして明治十二年に別格官幣社として靖国神社の名称が与えられたわけでございまして、当時は陸海軍省の所管の神社として存在をしたわけでございますが、戦後になりまして、宗教法人あるいはその後の宗教法人法に基づく宗教法人として、他の神社、仏閣、教会等と同様な立場におきます一つの単立宗教法人として存立しているということでございます。
+  <span class="who">加戸政府委員 答弁（1985年11月27日・衆議院外務委員会）／出典: <a href="https://kokkai.ndl.go.jp/txt/110303968X00219851127/89" target="_blank" rel="noopener">国会会議録検索システム</a></span>
+</div>
+
+<p><strong>神社を所管していたのが、神社行政の役所ではなく陸海軍省</strong>。これが戦前の靖国神社の制度上の姿です。経費についても、1955年の国会で「所管は陸海軍省の共管になっております。予算といたしましては陸軍省の予算に計上されております」と説明されています（<a href="https://kokkai.ndl.go.jp/txt/102203933X00819550704/7" target="_blank" rel="noopener">1955年7月4日・衆議院特別委員会</a>）。</p>
+
+<div class="col bg">
+  <h3>背景 —— 国家神道と、その終わり</h3>
+  <p style="font-size:.9em; margin:0">戦前の日本では、神社は宗教ではなく国家の祭祀（さいし）とされ、国の管理下に置かれていました。教科書で<strong>国家神道</strong>と呼ばれる体制です。敗戦後の1945年12月、連合国軍（GHQ）は国家と神道の分離を命じる指令 —— いわゆる<strong>神道指令</strong> —— を出しました（神社の公式年表にも「昭和20年12月 連合国軍による神道指令発出」とあります）。これを受けて靖国神社は国の手を離れ、一宗教法人になりました。1947年施行の日本国憲法は、第20条で信教の自由と<strong>政教分離</strong>を、第89条で宗教団体への公金支出の禁止を定めています。⑥で見る「総理大臣の参拝はどういう資格で行われるのか」という問題は、すべてこの条文から生まれてきます。</p>
+</div>
+
+<h2 class="section">⑤ 「いわゆる戦争犯罪人」——合祀をめぐる記録</h2>
+
+<p>③で引用した神社の説明のなかに、さらっと重要な一節がありました。「大東亜戦争終結時にいわゆる戦争犯罪人として処刑された方々なども同様に祀られています」——神社の公式サイトに、そう書かれています。</p>
+
+<div class="col bg">
+  <h3>背景 —— 東京裁判と「A級戦犯」</h3>
+  <p style="font-size:.9em; margin:0">敗戦後の1946〜48年、連合国は<strong>極東国際軍事裁判（東京裁判）</strong>で日本の戦争指導者を裁きました。起訴状の訴因のうち「平和に対する罪」（A項）で訴追された被告が「A級戦犯」と呼ばれます。「A級」は罪の重さのランクではなく、訴因の分類記号です。東条英機元首相ら7名が死刑判決を受け、1948年12月に執行されました。教科書では占領改革の一部として習います。</p>
+</div>
+
+<p>このA級戦犯が靖国神社に合祀されていることは、1979年春の国会で大きく議論されました。当時の会議録から引用します（<strong>質問者の発言であり、政府の認定ではありません</strong>）。</p>
+
+<div class="quote pre">
+  四月二十七日の本会議で元号法案の趣旨説明が行われました際に、私は総理に靖国参拝問題についてお伺いをいたしました。その時点でＡ級戦犯十四名が合祀されているということが明らかになった、そしてその上でなおかつ靖国神社に参拝されたことはＡ級戦犯の戦争犯罪を免罪するものであって、侵略戦争の肯定につながるものではないか、そういう立場に立っているのかどうかということをお伺いしました。
+  <span class="who">山中郁子 参議院議員の質問（1979年6月5日・参議院内閣委員会）／出典: <a href="https://kokkai.ndl.go.jp/txt/108714889X01419790605/178" target="_blank" rel="noopener">国会会議録検索システム</a></span>
+</div>
+
+<p>そして政府の側も、1986年の内閣官房長官談話のなかで、この事実に言及しています。</p>
+
+<div class="quote">
+  しかしながら、靖国神社がいわゆるＡ級戦犯を合祀していること等もあって、昨年実施した公式参拝は、過去における我が国の行為により多大の苦痛と損害を蒙った近隣諸国の国民の間に、そのような我が国の行為に責任を有するＡ級戦犯に対して礼拝したのではないかとの批判を生み、ひいては、我が国が様々な機会に表明してきた過般の戦争への反省とその上に立った平和友好への決意に対する誤解と不信さえ生まれるおそれがある。
+  <span class="who">内閣総理大臣その他の国務大臣による靖国神社公式参拝についての後藤田内閣官房長官談話（1986年8月14日）／出典: <a href="https://worldjpn.net/documents/texts/JPCH/19860814.S1J.html" target="_blank" rel="noopener">データベース「世界と日本」</a></span>
+</div>
+
+<p class="src">※ 合祀がいつ行われたのかについて、この特集は日付を書いていません。実施日を確定できる公的な一次資料を確認できなかったためです（⑨に記載）。ここに載せたのは、神社の公式サイトの現在の説明、1979年に国会で議論されたという記録、1986年の政府談話 —— いずれも出典に当たれる公的・公開の記録だけです。</p>
+
+<h2 class="section">⑥ 総理大臣は、どう参拝し、どう説明してきたか</h2>
+
+<p>④で見たとおり、憲法は政教分離を定めています。では、総理大臣が靖国神社に参拝するのはどういう資格なのか —— この問いに、歴代の政府と総理がどう答えてきたか。<strong>説明の言葉そのもの</strong>を時系列で並べます。</p>
+
+<p class="scrollhint">→ 表は横にスクロールできます</p>
+<div class="tscroll">
+<table class="tl">
+  <tr><th>総理・時期</th><th>当時の政府・本人の説明（原文）</th><th>出典</th></tr>
+  <tr><td class="d">三木武夫<br>1975年8月15日</td><td>「個人の資格でありましたけれども、八月十五日に参拝をいたした」（本人の国会答弁）</td><td><a href="https://kokkai.ndl.go.jp/txt/107615254X00419750919/14" target="_blank" rel="noopener">国会会議録</a></td></tr>
+  <tr><td class="d">政府統一見解<br>1978年10月17日</td><td>総理大臣等の参拝は「私人の立場で参拝するものであることをあらかじめ国民の前に明らかにし」「玉ぐし料は私費で支払われている」</td><td><a href="https://kokkai.ndl.go.jp/txt/108514889X00219781017/9" target="_blank" rel="noopener">国会会議録</a></td></tr>
+  <tr><td class="d">大平正芳<br>1979年</td><td>「私人として参拝いたしたまでのもの」（本人の国会答弁）</td><td><a href="https://kokkai.ndl.go.jp/txt/108715254X01319790427/36" target="_blank" rel="noopener">国会会議録</a></td></tr>
+  <tr><td class="d">鈴木善幸<br>1981年</td><td>「あくまで信教の自由に基づきまして私人として参拝する」（本人の国会答弁）</td><td><a href="https://kokkai.ndl.go.jp/txt/109415261X00419810309/36" target="_blank" rel="noopener">国会会議録</a></td></tr>
+  <tr><td class="d">中曽根康弘<br>1985年8月15日</td><td>「この日、内閣総理大臣は靖国神社に内閣総理大臣としての資格で参拝を行う」——いわゆる公式参拝。同談話は「今回の公式参拝の実施は、その限りにおいて、従来の政府統一見解を変更するものである」と明記</td><td><a href="https://worldjpn.net/documents/texts/JPCH/19850814.S2J.html" target="_blank" rel="noopener">藤波官房長官談話</a></td></tr>
+  <tr><td class="d">中曽根康弘<br>1986年8月14日</td><td>「明八月十五日には、内閣総理大臣の靖国神社への公式参拝は差し控えることとした」</td><td><a href="https://worldjpn.net/documents/texts/JPCH/19860814.S1J.html" target="_blank" rel="noopener">後藤田官房長官談話</a></td></tr>
+  <tr><td class="d">橋本龍太郎<br>1996年</td><td>「私的資格の参拝ということになるでありましょう」（本人の国会答弁）</td><td><a href="https://kokkai.ndl.go.jp/txt/114005261X00719970205/245" target="_blank" rel="noopener">国会会議録</a></td></tr>
+  <tr><td class="d">小泉純一郎<br>2001年8月13日</td><td>「総理大臣である小泉純一郎が心をこめて参拝した」（政府答弁書）。記帳は「内閣総理大臣 小泉純一郎」、献花代は私費、公用車を使用</td><td><a href="https://www.sangiin.go.jp/japanese/joho1/kousei/syuisyo/152/touh/t152005.htm" target="_blank" rel="noopener">参議院・答弁書</a></td></tr>
+  <tr><td class="d">小泉純一郎<br>2002年4月21日</td><td>「例大祭に合わせて参拝することによって、私の真情を素直に表すことができると考えた」（総理所感）</td><td><a href="https://worldjpn.net/documents/texts/exdpm/20020421.S1J.html" target="_blank" rel="noopener">小泉総理所感</a></td></tr>
+  <tr><td class="d">安倍晋三<br>2013年12月26日</td><td>参拝にあたり談話「恒久平和への誓い」を発表。後の政府答弁書は「私人としての立場で行われたものと承知している」</td><td><a href="https://worldjpn.net/documents/texts/exdpm/20131226.S1J.html" target="_blank" rel="noopener">安倍総理談話</a>／<a href="https://www.shugiin.go.jp/internet/itdb_shitsumon.nsf/html/shitsumon/b188008.htm" target="_blank" rel="noopener">答弁書</a></td></tr>
+  <tr><td class="d">高市早苗<br>2026年4月21日</td><td>参拝の予定を問われ「靖国神社の参拝に関しましては、これはもうプライベートな日程でございますので、本日ここで申し上げることはございません」（記者会見）。なお報道では、2026年春の例大祭に合わせて「内閣総理大臣 高市早苗」名で真榊（まさかき）と呼ばれる供物が奉納され、期間中の参拝は見送る見通しと伝えられました（<a href="https://www.jiji.com/jc/article?k=2026041700962&g=pol" target="_blank" rel="noopener">時事通信 2026年4月17日</a>・<a href="https://www.nikkei.com/article/DGXZQOUA201320Q6A420C2000000/" target="_blank" rel="noopener">日本経済新聞 2026年4月20日</a>）</td><td><a href="https://www.kantei.go.jp/jp/105/statement/2026/0421kaiken.html" target="_blank" rel="noopener">首相官邸</a></td></tr>
+</table>
+</div>
+
+<p class="src">※ この表は、公的な記録（国会会議録・政府答弁書・官房長官談話・官邸の会見記録）で説明の言葉を確認できたものだけを載せています。参拝そのものの日付を公的資料で確定できなかったものは、時期の表記を年のみにしています。歴代総理の参拝を網羅した表ではありません。</p>
+
+<p>この表、一見すると言葉がばらばらに揺れているように見えます。でも通して読むと、形はむしろはっきりしています。<strong>説明は「個人」「私人」で、ほぼ一貫している</strong>のです。言い回しは時代ごとに違っても——「個人の資格」「私人の立場」「私的資格」「プライベートな日程」——指している位置づけは同じ側です。</p>
+
+<p>例外は、一度だけ。<strong>1985年の「内閣総理大臣としての資格」での参拝</strong>、いわゆる公式参拝です。そしてそれは翌1986年に差し控えられました。2001年以降の小泉総理の参拝も、政府の位置づけは「公式参拝ではなく、私人としての立場でなされたもの」（2005年の政府答弁書）とされています。つまりこの半世紀の記録は、<strong>「私人としての参拝」という説明の線がずっと続き、公式参拝という一度の例外が、一年で元に戻った</strong>——そういう形をしています。</p>
+
+<div class="col bg">
+  <h3>背景 —— 1980年の統一見解という「土台」</h3>
+  <p style="font-size:.9em; margin:0">1985年の藤波官房長官談話は、それまでの政府の立場をこう要約しています。「昭和五十五年十一月十七日に、公式参拝の憲法適合性についてはいろいろな考え方があり、政府としては違憲とも合憲とも断定していないが、このような参拝が違憲ではないかとの疑いをなお否定できないので、事柄の性質上慎重な立場をとり、差し控えることを一貫した方針としてきたところである旨表明したところである」。つまり1980年時点の政府は、違憲の疑いを否定できないとして公式参拝を差し控える方針を取っており、1985年にそれを変更して公式参拝に踏み切り、1986年に再び差し控えた —— 表の3行はこの往復です。</p>
+</div>
+
+<div class="col bg">
+  <h3>背景 —— 1985年、中曽根内閣はなぜ踏み切り、なぜ翌年やめたのか</h3>
+  <p style="font-size:.9em; margin:0">踏み切った理由として、藤波官房長官談話は二つを挙げています。ひとつは、「国民や遺族の方々の多くが、靖国神社を我が国の戦没者追悼の中心的施設であるとし、同神社において公式参拝が実施されることを強く望んでいる」という事情。もうひとつは、政府が設けた「閣僚の靖国神社参拝問題に関する懇談会」の報告書を参考に、「今回のような方式によるならば、公式参拝を行っても、社会通念上、憲法が禁止する宗教的活動に該当しないと判断した」という、憲法判断の変更です。実施されたのは、戦後40年の節目にあたる1985年8月15日でした。そして翌1986年の後藤田官房長官談話は、⑤で見たとおりA級戦犯合祀への近隣諸国の反応に触れたうえで、「国際関係を重視し、近隣諸国の国民感情にも適切に配慮しなければならない」として、公式参拝の差し控えを表明します。ただし同談話には、公式参拝は「その都度、実施すべきか否かを判断すべきもの」であり今回の措置は公式参拝自体の否定ではない、という留保も付いています。以後、この表にある説明で「内閣総理大臣としての資格」を名乗った参拝はありません。</p>
+</div>
+
+<h2 class="section">⑦ 昭和50年11月21日</h2>
+
+<p>総理大臣の参拝が半世紀にわたって議論され続けてきた一方で、あまり知られていない事実がひとつあります。<strong>天皇の参拝です。</strong></p>
+
+<p>靖国神社の公式サイトには、創建からの歴史をまとめた年表があります。そこには天皇の参拝（行幸）が記載されています —— 明治天皇が初めて招魂社に行幸した明治7年（1874年）。大正天皇が行幸した大正8年（1919年）。昭和天皇は戦後も、昭和27年（1952年）、昭和44年（1969年）の御創立百年記念大祭など、たびたび参拝しています。</p>
+
+<p>そして、この年表で天皇の行幸として記載されている最後は——<strong>昭和50年（1975年）11月21日</strong>です。それから半世紀、神社の公式年表に、天皇の参拝は記載されていません。</p>
+
+<p class="src">※ ここに書いたのは「神社の公式年表にそう記載されている」という文書上の事実です（出典: <a href="https://www.yasukuni.or.jp/history/history.html" target="_blank" rel="noopener">靖國神社「靖國神社史」</a>）。参拝が行われなくなった理由については、さまざまな報道や研究がありますが、確定できる公的な記録を確認できなかったため、この特集では扱いません（⑨に記載）。</p>
+
+<h2 class="section">⑧ で、なぜ8月15日にニュースになるのか</h2>
+
+<p>ここまでの事実を並べ直すと、「毎年8月15日にこの神社がニュースになる」ことの背景が、一本の線になります。</p>
+
+<p>まず、<strong>8月15日という日付そのもの</strong>。この日が国の行事の日として制度になったのは、実はそれほど昔ではありません。</p>
+
+<div class="quote pre">
+  この式典は昭和38年から挙行していますが、昭和57年4月13日の閣議決定により、毎年8月15日を「戦没者を追悼し平和を祈念する日」とし、引き続きこの日に、「全国戦没者追悼式」を挙行することとされました。
+  <span class="who">厚生労働省「戦没者慰霊事業の実施」／出典: <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hokabunya/senbotsusha/seido01/index.html" target="_blank" rel="noopener">厚生労働省</a></span>
+</div>
+
+<p>そして、その3年後の1985年8月15日に行われたのが、⑥で見た「内閣総理大臣としての資格」での参拝 —— 従来の政府統一見解を変更した公式参拝でした。翌1986年8月14日、政府は「明八月十五日には、内閣総理大臣の靖国神社への公式参拝は差し控えることとした」と表明します。<strong>8月15日という同じ日付の上で、公式参拝の実施とその差し控えが1年をはさんで往復した</strong> —— 以来、この日付とこの神社の組み合わせは、毎年夏のニュースの定番になりました。</p>
+
+<p>この特集で見てきたのは、その線をかたちづくる一つ一つの出来事です。内戦の翌月に「国の側の戦没者」を祀るために建てられた神社（②③）。戦前は軍の所管で、戦後に一宗教法人となり、政教分離の憲法の下に置かれた（④）。「いわゆる戦争犯罪人として処刑された方々」も祀られていると公式サイトに書かれている（⑤）。総理の参拝は「私人として」という説明がほぼ一貫し、一度だけ行われた公式参拝は一年で差し控えに戻った（⑥）。天皇の参拝は神社の年表上1975年で止まっている（⑦）。——ニュースで流れる数十秒の映像の後ろには、この150年ぶんの積み重ねがあります。</p>
+
+<p>来年の8月15日、この神社の名前がニュースに流れたとき。あなたはもう、「そもそもどういう場所なのか」を知ったうえで、そのニュースを見ることができます。</p>
+
+<h2 class="section">⑨ 年表と、載せなかったもの</h2>
+
+<svg class="tlsvg" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="靖国神社をめぐる主な出来事の年表">
+  <defs>
+    <style>
+      .ax{stroke:currentColor; opacity:.25;}
+      .tk{stroke:currentColor; opacity:.35;}
+      .yr{fill:var(--gold); font-size:15px; font-weight:600;}
+      .lb{fill:currentColor; font-size:13.5px;}
+      .kd{fill:currentColor; font-size:11.5px; opacity:.62;}
+      .dot-sh{fill:var(--green);}
+      .dot-gv{fill:var(--teal);}
+      .dot-pm{fill:var(--gold);}
+      .lg{fill:currentColor; font-size:11.5px; opacity:.75;}
+    </style>
+  </defs>
+
+  <line class="ax" x1="96" y1="34" x2="96" y2="664" stroke-width="1.5"/>
+
+  <line class="tk" x1="90" y1="52" x2="102" y2="52" stroke-width="1"/>
+  <circle class="dot-sh" cx="96" cy="52" r="5.5"/>
+  <text class="yr" x="30" y="57">1869</text>
+  <text class="lb" x="114" y="49">招魂社が九段に鎮座・第一回合祀祭</text>
+  <text class="kd" x="114" y="67">戊辰戦争終結の翌月（神社年表）</text>
+
+  <line class="tk" x1="90" y1="104" x2="102" y2="104" stroke-width="1"/>
+  <circle class="dot-sh" cx="96" cy="104" r="5.5"/>
+  <text class="yr" x="30" y="109">1879</text>
+  <text class="lb" x="114" y="101">「靖國神社」と改称・別格官幣社に</text>
+  <text class="kd" x="114" y="119">戦前は陸海軍省の所管（1985年政府答弁）</text>
+
+  <line class="tk" x1="90" y1="156" x2="102" y2="156" stroke-width="1"/>
+  <circle class="dot-gv" cx="96" cy="156" r="5.5"/>
+  <text class="yr" x="30" y="161">1945</text>
+  <text class="lb" x="114" y="153">神道指令 —— 国の手を離れ宗教法人へ</text>
+  <text class="kd" x="114" y="171">1947年施行の憲法が政教分離を規定</text>
+
+  <line class="tk" x1="90" y1="208" x2="102" y2="208" stroke-width="1"/>
+  <circle class="dot-gv" cx="96" cy="208" r="5.5"/>
+  <text class="yr" x="30" y="213">1959</text>
+  <text class="lb" x="114" y="205">千鳥ケ淵戦没者墓苑が創建</text>
+  <text class="kd" x="114" y="223">「無名戦没者の墓」（環境省）</text>
+
+  <line class="tk" x1="90" y1="260" x2="102" y2="260" stroke-width="1"/>
+  <circle class="dot-sh" cx="96" cy="260" r="5.5"/>
+  <text class="yr" x="30" y="265">1975</text>
+  <text class="lb" x="114" y="257">昭和天皇の行幸（11月21日）</text>
+  <text class="kd" x="114" y="275">神社の年表に記載された最後の行幸</text>
+
+  <line class="tk" x1="90" y1="312" x2="102" y2="312" stroke-width="1"/>
+  <circle class="dot-gv" cx="96" cy="312" r="5.5"/>
+  <text class="yr" x="30" y="317">1978</text>
+  <text class="lb" x="114" y="309">政府統一見解「私人の立場で参拝」</text>
+  <text class="kd" x="114" y="327">翌1979年春、A級戦犯合祀が国会で議論に</text>
+
+  <line class="tk" x1="90" y1="364" x2="102" y2="364" stroke-width="1"/>
+  <circle class="dot-gv" cx="96" cy="364" r="5.5"/>
+  <text class="yr" x="30" y="369">1982</text>
+  <text class="lb" x="114" y="361">8月15日が「戦没者を追悼し平和を祈念する日」に</text>
+  <text class="kd" x="114" y="379">閣議決定（4月13日）</text>
+
+  <line class="tk" x1="90" y1="416" x2="102" y2="416" stroke-width="1"/>
+  <circle class="dot-pm" cx="96" cy="416" r="6.5"/>
+  <text class="yr" x="30" y="421">1985</text>
+  <text class="lb" x="114" y="413">「内閣総理大臣としての資格で」公式参拝</text>
+  <text class="kd" x="114" y="431">従来の統一見解を変更（藤波官房長官談話）</text>
+
+  <line class="tk" x1="90" y1="468" x2="102" y2="468" stroke-width="1"/>
+  <circle class="dot-pm" cx="96" cy="468" r="6.5"/>
+  <text class="yr" x="30" y="473">1986</text>
+  <text class="lb" x="114" y="465">公式参拝を差し控え</text>
+  <text class="kd" x="114" y="483">後藤田官房長官談話（8月14日）</text>
+
+  <line class="tk" x1="90" y1="520" x2="102" y2="520" stroke-width="1"/>
+  <circle class="dot-pm" cx="96" cy="520" r="6.5"/>
+  <text class="yr" x="30" y="525">2001</text>
+  <text class="lb" x="114" y="517">小泉総理が参拝（8月13日）</text>
+  <text class="kd" x="114" y="535">「総理大臣である小泉純一郎が心をこめて参拝した」（答弁書）</text>
+
+  <line class="tk" x1="90" y1="572" x2="102" y2="572" stroke-width="1"/>
+  <circle class="dot-pm" cx="96" cy="572" r="6.5"/>
+  <text class="yr" x="30" y="577">2013</text>
+  <text class="lb" x="114" y="569">安倍総理が参拝（12月26日）</text>
+  <text class="kd" x="114" y="587">談話「恒久平和への誓い」を発表</text>
+
+  <line class="tk" x1="90" y1="624" x2="102" y2="624" stroke-width="1"/>
+  <circle class="dot-pm" cx="96" cy="624" r="6.5"/>
+  <text class="yr" x="30" y="629">2026</text>
+  <text class="lb" x="114" y="621">高市総理、参拝を問われ「プライベートな日程」</text>
+  <text class="kd" x="114" y="639">記者会見（4月21日・官邸記録）</text>
+
+  <circle class="dot-sh" cx="474" cy="30" r="5.5"/>
+  <text class="lg" x="485" y="34">神社に関する出来事</text>
+  <circle class="dot-gv" cx="474" cy="52" r="5.5"/>
+  <text class="lg" x="485" y="56">政府の文書・制度</text>
+  <circle class="dot-pm" cx="474" cy="74" r="6"/>
+  <text class="lg" x="485" y="78">参拝とその説明</text>
+</svg>
+
+<p class="src">※ 上から下へ年代順です。行の間隔は年数に比例していません。この特集で出典を確認できた事項だけを載せています。</p>
+
+<h3 class="sub">この特集に載せなかったもの</h3>
+
+<p>調べたうえで、載せないと決めたものがあります。理由もあわせて書いておきます。</p>
+
+<table class="tl">
+  <tr><th>載せなかったもの</th><th>理由</th></tr>
+  <tr><td class="d">A級戦犯合祀の実施日</td><td>実施日を確定できる公的な一次資料を確認できなかったため。神社の公式サイトの現在の説明・1979年の国会での議論・1986年の政府談話という、出典に当たれる記録だけを載せました。</td></tr>
+  <tr><td class="d">天皇の参拝が行われなくなった理由</td><td>報道や研究はありますが、真贋や解釈に議論のある資料に依拠することになるため。神社の年表の記載という文書上の事実だけを書きました。</td></tr>
+  <tr><td class="d">現職総理の参拝の有無の断定</td><td>2026年4月の会見で問われた総理は「プライベートな日程」として答えていません。<strong>参拝の有無を確定できる公的な記録は確認できていません</strong>。報道が伝える内容（真榊の奉納・参拝を見送る見通し）は、公的記録と区別がつくよう<strong>報道である旨と報道元を明示したうえで</strong>⑥に記し、本文の事実としては断定していません。</td></tr>
+  <tr><td class="d">参拝日の一部</td><td>福田・大平・鈴木各総理などの個々の参拝日は、公的一次資料での裏付けが取れなかったため、⑥の表では時期を年のみにしています。</td></tr>
+  <tr><td class="d">いわゆる「分祀論」の是非</td><td>合祀された方の一部を分けて祀り直すべきだという議論が存在します。ただしその当否を扱うことは評価そのものになるため、議論が存在するという言及にとどめます。</td></tr>
+</table>
+
+<h2 class="section">⑩ 主な出典</h2>
+
+<ul class="srclist">
+  <li class="g">■ 靖国神社（公式サイト）</li>
+  <li>靖國神社の由緒 — <a href="https://www.yasukuni.or.jp/history/detail.html" target="_blank" rel="noopener">靖國神社</a>／靖國神社史（年表） — <a href="https://www.yasukuni.or.jp/history/history.html" target="_blank" rel="noopener">靖國神社</a></li>
+  <li class="g">■ 政府の文書・制度</li>
+  <li>千鳥ケ淵戦没者墓苑 — <a href="https://www.env.go.jp/garden/chidorigafuchi/" target="_blank" rel="noopener">環境省</a></li>
+  <li>戦没者慰霊事業の実施（全国戦没者追悼式・昭和57年閣議決定） — <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hokabunya/senbotsusha/seido01/index.html" target="_blank" rel="noopener">厚生労働省</a></li>
+  <li>内閣総理大臣その他の国務大臣による靖国神社公式参拝についての藤波内閣官房長官談話（1985年8月14日） — <a href="https://worldjpn.net/documents/texts/JPCH/19850814.S2J.html" target="_blank" rel="noopener">データベース「世界と日本」</a></li>
+  <li>同・後藤田内閣官房長官談話（1986年8月14日） — <a href="https://worldjpn.net/documents/texts/JPCH/19860814.S1J.html" target="_blank" rel="noopener">データベース「世界と日本」</a></li>
+  <li>小泉総理大臣所感（2002年4月21日） — <a href="https://worldjpn.net/documents/texts/exdpm/20020421.S1J.html" target="_blank" rel="noopener">データベース「世界と日本」</a>／安倍総理大臣談話（2013年12月26日） — <a href="https://worldjpn.net/documents/texts/exdpm/20131226.S1J.html" target="_blank" rel="noopener">同</a></li>
+  <li>政府答弁書（2001年・参拝の態様） — <a href="https://www.sangiin.go.jp/japanese/joho1/kousei/syuisyo/152/touh/t152005.htm" target="_blank" rel="noopener">参議院</a>／政府答弁書（2015年・公式参拝の定義等） — <a href="https://www.shugiin.go.jp/internet/itdb_shitsumon.nsf/html/shitsumon/b188008.htm" target="_blank" rel="noopener">衆議院</a></li>
+  <li class="g">■ 国会会議録</li>
+  <li>三木総理答弁（1975年9月19日） — <a href="https://kokkai.ndl.go.jp/txt/107615254X00419750919/14" target="_blank" rel="noopener">国会会議録検索システム</a>／政府統一見解（1978年10月17日） — <a href="https://kokkai.ndl.go.jp/txt/108514889X00219781017/9" target="_blank" rel="noopener">同</a>／大平総理答弁（1979年4月27日） — <a href="https://kokkai.ndl.go.jp/txt/108715254X01319790427/36" target="_blank" rel="noopener">同</a></li>
+  <li>A級戦犯合祀をめぐる質疑（1979年6月5日） — <a href="https://kokkai.ndl.go.jp/txt/108714889X01419790605/178" target="_blank" rel="noopener">同</a>／鈴木総理答弁（1981年3月9日） — <a href="https://kokkai.ndl.go.jp/txt/109415261X00419810309/36" target="_blank" rel="noopener">同</a>／戦前の所管に関する政府答弁（1985年11月27日） — <a href="https://kokkai.ndl.go.jp/txt/110303968X00219851127/89" target="_blank" rel="noopener">同</a></li>
+  <li>戦前の経費に関する説明（1955年7月4日） — <a href="https://kokkai.ndl.go.jp/txt/102203933X00819550704/7" target="_blank" rel="noopener">同</a>／橋本総理答弁（1997年2月5日） — <a href="https://kokkai.ndl.go.jp/txt/114005261X00719970205/245" target="_blank" rel="noopener">同</a></li>
+  <li class="g">■ 記者会見</li>
+  <li>高市内閣総理大臣 記者会見（2026年4月21日） — <a href="https://www.kantei.go.jp/jp/105/statement/2026/0421kaiken.html" target="_blank" rel="noopener">首相官邸</a></li>
+</ul>
+
+<div class="col">
+  <h3>更新履歴</h3>
+  <ul class="srclist">
+    <li>2026-08-16 — 初版公開</li>
+  </ul>
+</div>
+
+<footer class="next">
+  <span class="cite">考証メモ：本ページの引用は、靖国神社公式サイト・環境省・厚生労働省・国会会議録検索システム・データベース「世界と日本」・首相官邸の各ページから取得した本文に拠っています。神社の公式サイトの説明（緑の枠）と政府の文書（青・金の枠）は常に区別して示し、どちらの説明が正しいかの判断は書いていません。参拝の是非・祀り方の当否についての評価は一切書いていません。公的な記録で確認できなかった事項は、本ページには載せていません（⑨に一覧）。内容の誤りにお気づきの場合は、お問い合わせページからご指摘ください。</span>
+  <div class="credit">年表SVG: 自前作図</div>
+</footer>
+
+</div>
+</body>
+</html>
