@@ -17,8 +17,8 @@
   :root{
     --bg:#faf6ee; --fg:#33302a; --sub:#6f695e;
     --card:#ffffff; --card2:#fff8ea;
-    --amber:#e8a020; --amber-deep:#c9861a;
-    --teal:#2f9e94; --coral:#e0584f; --navy:#3d5a80;
+    --amber:#e8a020; --amber-deep:#8f5e0e;
+    --teal:#1f756d; --coral:#c2413a; --navy:#3d5a80;
     --line:#eadfc8; --shadow:0 2px 10px rgba(120,95,40,.10);
   }
   @media (prefers-color-scheme: dark){
@@ -54,7 +54,7 @@
   nav.topnav a:hover{color:var(--teal);}
   nav.topnav a.active{color:var(--amber-deep); border-bottom:3px solid var(--amber);}
   nav.topnav span.soon{opacity:.4; cursor:default;}
-  nav.topnav span.soon small{font-size:.7em; margin-left:.2em;}
+  nav.topnav span.soon small{font-size:.75em; margin-left:.2em;}
   header.page{text-align:center; padding:1.6em 1em .6em;}
   h1{font-size:1.4em; font-weight:800; margin:.2em 0;}
   .lead{color:var(--sub); font-size:.9em;}
@@ -65,7 +65,7 @@
     display:flex; flex-wrap:wrap; align-items:center; gap:.8em;
   }
   ul.archive .day{
-    background:var(--navy); color:#fff; font-weight:800; font-size:.72em;
+    background:var(--navy); color:var(--card); font-weight:800; font-size:.75em;
     padding:.3em .7em; border-radius:8px; letter-spacing:.08em; white-space:nowrap;
   }
   ul.archive .latest{background:var(--coral);}
@@ -89,7 +89,7 @@
   }
   #totop{
     position:fixed; right:1em; bottom:1.2em; z-index:30; width:2.9em; height:2.9em;
-    border-radius:50%; border:none; background:var(--amber); color:#fff; font-size:1em;
+    border-radius:50%; border:none; background:var(--amber); color:#2b2214; font-size:1em;
     font-weight:800; cursor:pointer; box-shadow:0 3px 8px rgba(0,0,0,.25); display:none;
   }
 </style>
@@ -102,6 +102,21 @@
   gtag('config', 'G-4KTE2VWX4P');
 </script>
 <!--/ga4-->
+<!--lowstrain-->
+<style>
+  /* 低負荷UI一括適用（apply_low_strain.py）。文字サイズは判読性・眼精疲労の最重要因子 */
+  html{font-size:106.25%;}
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration:.01ms !important; animation-iteration-count:1 !important;
+      transition-duration:.01ms !important; scroll-behavior:auto !important;
+    }
+  }
+  :where(a, button, summary, [tabindex]):focus-visible{
+    outline:2px solid var(--gold, var(--amber-deep, #75610a)); outline-offset:2px; border-radius:2px;
+  }
+</style>
+<!--/lowstrain-->
 </head>
 <body>
 <div class="topbar"></div>
@@ -146,7 +161,7 @@
   window.addEventListener("scroll", function(){
     b.style.display = window.scrollY > 500 ? "block" : "none";
   }, {passive:true});
-  b.addEventListener("click", function(){ window.scrollTo({top:0, behavior:"smooth"}); });
+  b.addEventListener("click", function(){ window.scrollTo({top:0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"}); });
 })();
 </script>
 <!--sitesw-->
