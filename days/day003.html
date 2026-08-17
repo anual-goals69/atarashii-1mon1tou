@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>歴史テスト Day 003 — 神になった王と、壊された土偶</title>
+<!--sitepwa-->
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="../icons/logo.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="../icons/favicon-48.png">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<meta name="theme-color" content="#f7f3ec" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#12100e" media="(prefers-color-scheme: dark)">
+<!--/sitepwa-->
+<style>
+  :root{
+    --bg:#f7f3ec;
+    --fg:#25201a;
+    --panel:#efe8db;
+    --panel2:#e9e1d2;
+    --gold:#75610a;
+    --teal:#35625f;
+    --terra:#8f4a3b;
+    --green:#4f6b39;
+    --border:#d8cdb8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#12100e;
+      --fg:#efe9df;
+      --panel:#1c1814;
+      --panel2:#211c17;
+      --gold:#c9a227;
+      --teal:#6fa3a0;
+      --terra:#c47b6a;
+      --green:#7d9b6a;
+      --border:#3a332a;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:0 0 4em 0;
+    background:var(--bg); color:var(--fg);
+    font-family:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+    line-height:1.85;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:1.4em 1.1em;}
+  header.day{
+    text-align:center; padding:1.6em 1em 1.8em; border-bottom:1px solid var(--border);
+    margin-bottom:1.6em;
+  }
+  .daynum{color:var(--gold); letter-spacing:.15em; font-size:.85em;}
+  .date{opacity:.7; font-size:.85em; margin-top:.3em;}
+  h1.title{
+    font-size:1.35em; margin:.6em 0 .9em; font-weight:600; line-height:1.6;
+  }
+  .chips{display:flex; flex-wrap:wrap; gap:.5em; justify-content:center; margin-top:.6em;}
+  .chip{
+    font-size:.78em; border:1px solid var(--gold); color:var(--gold);
+    padding:.3em .7em; border-radius:999px; opacity:.9;
+  }
+  h2.section{
+    font-size:1.15em; color:var(--gold); border-bottom:2px solid var(--gold);
+    padding-bottom:.35em; margin-top:2.4em; letter-spacing:.05em;
+  }
+  .progress{
+    font-size:.82em; opacity:.75; margin:.5em 0 1.4em; padding:.5em .8em;
+    background:var(--panel2); border-radius:4px; border-left:3px solid var(--teal);
+  }
+  .q{
+    margin:1.1em 0; padding:1em 1.1em; background:var(--panel);
+    border-left:3px solid var(--gold); border-radius:6px;
+  }
+  .qhead{display:flex; align-items:baseline; gap:.5em; margin-bottom:.5em; flex-wrap:wrap;}
+  .qn{font-weight:700; color:var(--gold); font-size:1.05em;}
+  .badge{font-size:.75em; padding:.15em .55em; border-radius:3px; color:var(--bg); letter-spacing:.03em;}
+  .badge.basic{background:var(--teal);}
+  .badge.adv{background:var(--terra);}
+  .badge.doc{background:var(--gold);}
+  .badge.map{background:#7d8fa0; color:#182430;}
+  .qtext{margin:.2em 0 .3em;}
+  details{margin-top:.5em;}
+  summary{
+    cursor:pointer; color:var(--teal); font-weight:600; font-size:.92em;
+    padding:.3em 0;
+  }
+  .answer{margin-top:.5em; font-weight:700; color:var(--gold);}
+  .explanation{margin-top:.4em; font-size:.88em; opacity:.88; line-height:1.8;}
+  svg.mapsvg{width:100%; height:auto; max-width:280px; display:block; margin:.6em auto;}
+  .col{
+    margin-top:2em; padding:1.2em 1.1em; background:var(--panel2);
+    border-radius:8px; border:1px solid var(--border);
+  }
+  .col.fieldnote{border-color:var(--green);}
+  .col h3{
+    margin:0 0 .7em; font-size:1.02em; color:var(--terra);
+  }
+  .col.fieldnote h3{color:var(--green);}
+  .col.linkcol h3{color:var(--teal);}
+  .col.story h3{color:var(--gold);}
+  .col.geo{border-color:#7d8fa0;}
+  .col.geo h3{color:#7d8fa0;}
+  table.tl{width:100%; border-collapse:collapse; margin:.8em 0; font-size:.85em;}
+  table.tl th, table.tl td{border:1px solid var(--border); padding:.5em .5em; text-align:left; vertical-align:top;}
+  table.tl th{background:var(--panel); color:var(--gold); font-weight:600;}
+  .viewpoint{margin-top:.8em; padding-top:.6em; border-top:1px dashed var(--border); font-size:.9em; color:var(--teal);}
+  footer.next{
+    margin-top:2.4em; padding:1em; text-align:center; font-size:.85em;
+    border-top:1px solid var(--border); opacity:.85;
+  }
+  .credit{text-align:center; font-size:.75em; opacity:.5; margin-top:1.2em;}
+
+  /* --- 統一テンプレート互換追加（Day001/002由来の要素・2026-08-03） --- */
+  blockquote{margin:.8em 0; padding:.7em .9em; border-left:2px solid var(--teal); background:var(--panel2); font-size:.92em;}
+  blockquote cite{display:block; margin-top:.5em; font-size:.8em; opacity:.7; font-style:normal;}
+  .caution{display:block; margin-top:.5em; color:var(--terra); font-size:.92em;}
+  .cite{margin-top:.8em; padding-top:.6em; border-top:1px dashed var(--border); font-size:.78em; opacity:.7;}
+  .note{margin-top:.8em; padding:.6em .8em; background:var(--panel); border-radius:6px; font-size:.88em; border-left:3px solid var(--teal);}
+  .col table{width:100%; border-collapse:collapse; margin:.8em 0; font-size:.85em;}
+  .col table th, .col table td{border:1px solid var(--border); padding:.5em; text-align:left; vertical-align:top;}
+  .col table th{background:var(--panel); color:var(--gold); font-weight:600;}
+  .col .sub{font-weight:700; color:var(--teal); margin-top:1em; font-size:.9em;}
+  .col .keys{font-size:.8em; opacity:.75; border-top:1px dotted var(--border); padding-top:.7em; margin-top:1em;}
+  .col .hook{color:var(--teal); font-style:italic;}
+  footer.next .label{color:var(--gold); font-weight:600;}
+  .q > svg:not(.mapsvg), .col > svg:not(.mapsvg){width:100%; height:auto; display:block; margin:.8em auto;}
+  /* Day001の実測SVG互換エイリアス */
+  :root{--ink:var(--fg); --sea:var(--teal); --rose:var(--terra); --leaf:var(--green); --line:var(--border); --dim:#a89c8c;}
+  @media (prefers-color-scheme: dark){ :root{--dim:#a89c8c;} }
+  @media (prefers-color-scheme: light){ :root{--dim:#7a6f60;} }
+</style>
+<!--gradecss-->
+<style>
+  :root{
+    --sg-panel:#fffdf9; --sg-track:#f0e9dc; --sg-border:#e0d8c9; --sg-ink:#25201a;
+    --sg-gold:#9c7d13; --sg-goldbright:#c9a227; --sg-green:#527040; --sg-terra:#a4523f; --sg-teal:#3f6f6c;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --sg-panel:#1b1815; --sg-track:#12100e; --sg-border:#332e28; --sg-ink:#efe9df;
+      --sg-gold:#c9a227; --sg-goldbright:#c9a227; --sg-green:#7d9b6a; --sg-terra:#c47b6a; --sg-teal:#6fa3a0;
+    }
+  }
+  .grade, #scorebar, #resultfx{
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Noto Sans JP",sans-serif;
+  }
+  .grade{display:flex; align-items:center; gap:.6em; margin:.6em 0 .4em; font-size:.8em; color:var(--sg-ink); opacity:.92;}
+  .grade > span{opacity:.65;}
+  .grade button{
+    font-family:inherit; font-size:.95em; padding:.32em 1em; border-radius:999px;
+    background:transparent; color:var(--sg-ink); border:1.5px solid var(--sg-border); cursor:pointer;
+  }
+  .grade button.on-ok{background:var(--sg-green); border-color:var(--sg-green); color:#fff;}
+  .grade button.on-ng{background:var(--sg-terra); border-color:var(--sg-terra); color:#fff;}
+  #scorebar{
+    position:fixed; left:0; right:0; bottom:0; z-index:9;
+    background:var(--sg-panel); border-top:1px solid var(--sg-border);
+    padding:.45em 1em .55em; font-size:.82em; color:var(--sg-ink);
+    box-shadow:0 -2px 10px rgba(0,0,0,.08);
+  }
+  #scorebar .inner{max-width:720px; margin:0 auto; display:flex; align-items:center; gap:.8em; flex-wrap:wrap;}
+  #scorebar .num{color:var(--sg-gold); font-weight:700;}
+  #scorebar .track{flex:1; min-width:90px; height:7px; background:var(--sg-track); border-radius:99px; overflow:hidden; border:1px solid var(--sg-border);}
+  #scorebar .fill{height:100%; width:0; background:linear-gradient(90deg, var(--sg-teal), var(--sg-goldbright)); transition:width .25s;}
+  #scorebar button{
+    font-family:inherit; font-size:.78em; padding:.2em .8em; border-radius:999px;
+    background:transparent; color:var(--sg-ink); opacity:.7; border:1px solid var(--sg-border); cursor:pointer;
+  }
+  #scorebar .sb-sec{white-space:nowrap; font-weight:700;}
+  .fx-p{position:fixed; pointer-events:none; z-index:60; will-change:transform,opacity;}
+  .q.shake{animation:qshake .4s;}
+  @keyframes qshake{
+    0%,100%{transform:translateX(0);}
+    20%{transform:translateX(-5px);} 40%{transform:translateX(4px);}
+    60%{transform:translateX(-3px);} 80%{transform:translateX(2px);}
+  }
+  #resultfx{
+    position:fixed; inset:0; z-index:50; display:flex; align-items:center; justify-content:center;
+    background:rgba(0,0,0,.45); cursor:pointer;
+  }
+  #resultfx[hidden]{display:none;}
+  .rf-card{
+    background:var(--sg-panel); border:1px solid var(--sg-gold); border-radius:14px;
+    padding:1.6em 2.2em; text-align:center; max-width:85vw;
+    animation:rfpop .45s cubic-bezier(.2,1.6,.4,1);
+  }
+  @keyframes rfpop{0%{transform:scale(.6); opacity:0;} 100%{transform:scale(1); opacity:1;}}
+  .rf-title{color:var(--sg-gold); font-size:1.05em; letter-spacing:.12em;}
+  .rf-score{font-size:2.1em; font-weight:700; color:var(--sg-ink); margin:.25em 0;}
+  .rf-score .rf-den{font-size:.5em; opacity:.6;}
+  .rf-msg{font-size:.95em; color:var(--sg-teal); margin-bottom:.6em;}
+  .rf-close{font-size:.72em; opacity:.5; color:var(--sg-ink);}
+</style>
+<!--/gradecss-->
+<!--linkcss-->
+<style>
+  /* 本文中のリンクはすべて金色にする。コンテナ列挙だと漏れた場所が既定の青になり、
+     暗い背景で読めなくなる（2026-08-04 オーナー指摘）。#77-3 参照 */
+  .wrap a{
+    color:var(--gold); text-decoration:underline; text-underline-offset:2px;
+  }
+  /* ライトテーマでは --gold(#c9a227) が背景(#f7f3ec)に対して 2.2:1 しかなく沈む
+     （2026-08-16 オーナー指摘「背景色に対して見やすい色を」）。濃い金に差し替えて
+     約5.1:1 を確保する。採点UIが --sg-gold で同じ手当てをしているのと同じ方針 */
+  @media (prefers-color-scheme: light){
+    .wrap a{ color:#75610a; }
+  }
+</style>
+<!--/linkcss-->
+<!--lowstrain-->
+<style>
+  /* 低負荷UI一括適用（apply_low_strain.py）。文字サイズは判読性・眼精疲労の最重要因子 */
+  html{font-size:106.25%;}
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration:.01ms !important; animation-iteration-count:1 !important;
+      transition-duration:.01ms !important; scroll-behavior:auto !important;
+    }
+  }
+  :where(a, button, summary, [tabindex]):focus-visible{
+    outline:2px solid var(--gold, var(--amber-deep, #75610a)); outline-offset:2px; border-radius:2px;
+  }
+</style>
+<!--/lowstrain-->
+</head>
+<body>
+<!--sitenav-->
+<style>
+  /* サイト共通ナビ（トップページと同一仕様・自己完結。2026-08-03 UI統一） */
+  :root{
+    --nv-card:#ffffff; --nv-line:#eadfc8; --nv-fg:#33302a; --nv-teal:#1f756d;
+    --nv-amber:#e8a020; --nv-coral:#e0584f; --nv-shadow:0 2px 10px rgba(120,95,40,.10);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --nv-card:#221e18; --nv-line:#3a332a; --nv-fg:#efe9df; --nv-teal:#4db8ae;
+      --nv-amber:#e8a020; --nv-coral:#e8776f; --nv-shadow:0 2px 10px rgba(0,0,0,.35);
+    }
+  }
+  .sitebar{height:6px; background:linear-gradient(90deg, var(--nv-coral), var(--nv-amber), var(--nv-teal));}
+  nav.topnav{
+    position:sticky; top:0; z-index:40; background:var(--nv-card);
+    border-bottom:1px solid var(--nv-line); box-shadow:var(--nv-shadow);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Noto Sans JP",sans-serif;
+  }
+  nav.topnav .ninner{
+    max-width:720px; margin:0 auto; display:flex; gap:.2em;
+    overflow-x:auto; white-space:nowrap; padding:0 .6em; -webkit-overflow-scrolling:touch;
+  }
+  nav.topnav a, nav.topnav span.soon{
+    display:inline-block; padding:.7em .8em; font-size:.85em; font-weight:700;
+    color:var(--nv-fg); text-decoration:none;
+  }
+  nav.topnav a:hover{color:var(--nv-teal);}
+  nav.topnav span.soon{opacity:.4; cursor:default;}
+  nav.topnav span.soon small{font-size:.75em; margin-left:.2em;}
+  #totop{
+    position:fixed; right:1em; bottom:5.5em; z-index:30; width:2.9em; height:2.9em;
+    border-radius:50%; border:none; background:var(--nv-amber); color:#2b2214; font-size:1em;
+    font-weight:800; cursor:pointer; box-shadow:0 3px 8px rgba(0,0,0,.25); display:none;
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Noto Sans JP",sans-serif;
+  }
+</style>
+<div class="sitebar"></div>
+<nav class="topnav"><div class="ninner">
+  <a href="../index.html">ホーム</a>
+  <a href="../daily.html">毎日の一問一答</a>
+  <a href="../culture.html">文化史</a>
+  <a href="../atlas.html">資料集</a>
+  <a href="../features.html">特集</a>
+  <a href="../links.html">リンク集</a>
+  <a href="../contact.html">お問い合わせ</a>
+</div></nav>
+<!--/sitenav-->
+<div class="wrap">
+
+<header class="day">
+  <div class="daynum">DAY 003</div>
+  <div class="date">2026年8月17日（月）</div>
+  <h1 class="title">神になった王と、壊された土偶</h1>
+  <div class="chips">
+    <span class="chip">世界史：古代オリエント文明とその周辺</span>
+    <span class="chip">日本史：文化の始まり（旧石器・縄文）</span>
+  </div>
+</header>
+
+<h2 class="section">世界史（16問）</h2>
+<div class="progress">単元：古代オリエント文明とその周辺（ナイルの谷に生まれた王国）</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">1</span><span class="badge basic">基本</span></div>
+  <div class="qtext">古代エジプトで、太陽神の子とされ、神そのものとして国土と人民を支配した王の称号を何というか。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：ファラオ</div>
+    <div class="explanation">解説：もとは「大きな家（王宮）」を意味する語が、やがて王その人を指すようになった。二つの大河の流域では王が神の代理人にとどまったのに対し、こちらは王自身が神とされる。この違いが王権の安定度と神官団の位置づけの差を生み、比較問題の定番になっている。なお「王が神そのもの」という言い方は教科書の要約で、現行の研究では王の神性は職掌と儀礼に由来し、主要な神々のそれとは同格でないとされる。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">2</span><span class="badge basic">基本</span></div>
+  <div class="qtext">前27世紀頃から、ナイル川下流域を中心に栄え、巨大な王墓が築かれたエジプトの時代区分を何というか。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：古王国</div>
+    <div class="explanation">解説：王の権力が最も強く、神である王のための王墓の造営に国家の力が注がれた時代。時代区分は〈古王国・中王国・新王国〉の三つと、そのあいだにはさまる混乱期（中間期）をセットで覚えると、王朝の入れ替わりが整理できる。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">3</span><span class="badge basic">基本</span></div>
+  <div class="qtext">混乱期をはさんで前21世紀頃にエジプトが再び統一されて成立し、前18世紀頃まで続いた時代区分を何というか。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：中王国</div>
+    <div class="explanation">解説：都は上流の都市に置かれたが、続く王朝はさらに北へ都を移している。
+      <span class="caution">注意：「この時代の都は上流の都市」と単純化した記述は、王朝によって都が異なるため不正確になる。終わりの年代も定義に依存し、第12王朝までとみれば前18世紀、第13王朝の前半までを含める近年の区分では前17世紀（前1650年頃）となる。この時代の末期に西アジア系の人々が流入し、次の転換につながる。</span></div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">4</span><span class="badge basic">基本</span></div>
+  <div class="qtext">前17世紀頃、馬と戦車をたずさえてシリア・パレスチナ方面からエジプトへ入り、一時デルタ地帯を支配した西アジア系の人々を何というか。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：ヒクソス</div>
+    <div class="explanation">解説：教科書は「侵入」と記すが、近年の研究では、数世代かけて移り住んだすえに内部から権力を握った過程とみる見解が有力である（デルタの遺跡の出土人骨のストロンチウム同位体分析は、権力を握る以前から外来者の流入が多く、支配期にはその地で生まれた人が増えるという、この見方と整合的な傾向を示した）。人の流入そのものは前18世紀頃から始まっている。彼らがもたらした馬と戦車は、のちにエジプト自身の軍事力の柱になる——外から来た技術が、追い出したあとに残るという型で覚える。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">5</span><span class="badge basic">基本</span></div>
+  <div class="qtext">前16世紀に西アジア系の支配を排して成立し、シリアへ進出してエジプト史上最大の版図を築いた時代区分を何というか。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：新王国</div>
+    <div class="explanation">解説：それまで守りに徹していた国が、外へ攻め出る国に変わった時代。戦車を主力とする軍が編成され、シリアをめぐって小アジアの強国と衝突する。閉じた谷の文明が、初めて国際政治の主役になった段階と押さえる。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">6</span><span class="badge doc">史料</span></div>
+  <div class="qtext">次は、前5世紀のギリシアの歴史家が著した書物の一節である（現代語訳・大意）。
+    <blockquote>
+      ギリシア人が船で行くエジプトは、エジプト人にとって後から得られた土地であり、川の賜物である。
+      <cite>『歴史』第2巻5節（原文からの訳）</cite>
+    </blockquote>
+    (1) この書物を著した歴史家は誰か。(2) この一句が言い表している内容を、ナイル川の氾濫にふれて簡潔に説明せよ。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：(1) ヘロドトス　(2) ナイル川が毎年ほぼ決まった時期に氾濫し、上流から運ばれた肥沃な土が流域に積もることで豊かな農業が可能になり、その恵みの上にエジプトの文明が成り立っていたということ。</div>
+    <div class="explanation">解説：氾濫の時期が予測できたことが決定的だった。水が引いたあとに種を蒔けばよく、いつ水が来るかを知るために天体の観測と暦が発達する。恵みが「暴れ川」ではなく「時計」だったことが、この文明の性格を決めた。
+      <span class="caution">注意：原文はさらに「この湖より上流、船で三日の行程までの土地もそうだ」と範囲を広げており、下流のデルタだけを指した言葉ではない。また原文は「ナイル」ではなく「川」と書いている——「エジプトはナイルの賜物」という短い形は後世に縮められた言い回しであって、原文そのままの一文ではない。</span></div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">7</span><span class="badge map">地図</span></div>
+  <div class="qtext">図は大河の流域である。Aは下流寄りに位置し、伝承ではエジプト最初の統一王朝の都とされる都市、Bは上流域にあり、対岸に王家の谷をひかえた都市である。A・Bの都市名をそれぞれ答えよ。</div>
+  <!--MAP_W:begin--><svg class="mapsvg" style="max-width:300px" viewBox="0 0 400 633" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="大河の流域にある都市AとBの位置">
+      <path d="M398 421 L397 421 L394 418 L392 416 L391 414 L383 411 L382 409 L383 407 L384 409 L385 410 L392 413 L399 419 L400 420 L398 421 Z M385 406 L383 405 L383 401 L385 399 L385 402 L385 405 L385 406 Z M-391 -1177 L-374 -1179 L-370 -1175 L-386 -1164 L-413 -1155 L-461 -1146 L-445 -1143 L-444 -1129 L-451 -1106 L-447 -1088 L-455 -1064 L-474 -1031 L-494 -1029 L-526 -1022 L-546 -1015 L-550 -992 L-601 -996 L-601 -1011 L-620 -1034 L-612 -1038 L-604 -1049 L-634 -1078 L-646 -1099 L-664 -1120 L-671 -1137 L-675 -1164 L-667 -1166 L-689 -1170 L-699 -1194 L-707 -1186 L-714 -1164 L-731 -1160 L-737 -1162 L-749 -1152 L-769 -1141 L-813 -1118 L-854 -1119 L-859 -1121 L-866 -1123 L-870 -1127 L-908 -1144 L-897 -1160 L-878 -1162 L-893 -1168 L-883 -1182 L-884 -1185 L-909 -1175 L-925 -1183 L-911 -1195 L-882 -1200 L-901 -1200 L-886 -1215 L-867 -1226 L-858 -1230 L-885 -1225 L-899 -1210 L-922 -1195 L-928 -1196 L-924 -1213 L-905 -1216 L-927 -1230 L-914 -1238 L-932 -1253 L-912 -1258 L-859 -1262 L-846 -1254 L-832 -1266 L-838 -1269 L-858 -1265 L-868 -1267 L-914 -1261 L-933 -1276 L-926 -1281 L-936 -1297 L-890 -1293 L-886 -1296 L-929 -1304 L-915 -1313 L-895 -1322 L-867 -1322 L-885 -1322 L-876 -1332 L-837 -1331 L-827 -1331 L-806 -1339 L-858 -1336 L-849 -1348 L-813 -1355 L-782 -1344 L-796 -1363 L-788 -1370 L-779 -1379 L-762 -1372 L-737 -1379 L-723 -1368 L-695 -1372 L-692 -1380 L-668 -1389 L-663 -1397 L-686 -1393 L-722 -1374 L-738 -1383 L-730 -1393 L-689 -1420 L-661 -1432 L-670 -1436 L-628 -1448 L-611 -1457 L-630 -1456 L-629 -1471 L-600 -1488 L-583 -1500 L-558 -1506 L-594 -1502 L-586 -1524 L-559 -1528 L-565 -1536 L-543 -1546 L-497 -1550 L-539 -1551 L-517 -1565 L-492 -1555 L-495 -1562 L-501 -1573 L-523 -1573 L-499 -1581 L-503 -1587 L-473 -1596 L-461 -1580 L-460 -1590 L-448 -1604 L-412 -1605 L-414 -1608 L-450 -1613 L-412 -1627 L-387 -1643 L-375 -1653 L-359 -1650 L-354 -1657 L-340 -1668 L-322 -1652 L-301 -1675 L-293 -1664 L-302 -1648 L-279 -1660 L-272 -1675 L-247 -1680 L-228 -1680 L-250 -1690 L-214 -1694 L-188 -1695 L-171 -1679 L-168 -1689 L-128 -1711 L-129 -1718 L-97 -1723 L-80 -1722 L-66 -1718 L-92 -1695 L-81 -1690 L-29 -1724 L-30 -1705 L-15 -1703 L8 -1717 L10 -1731 L43 -1720 L27 -1711 L34 -1696 L45 -1703 L73 -1720 L99 -1711 L120 -1709 L149 -1698 L107 -1684 L95 -1673 L110 -1667 L125 -1672 L140 -1670 L180 -1666 L192 -1675 L236 -1666 L201 -1664 L220 -1655 L235 -1650 L253 -1647 L249 -1637 L292 -1647 L331 -1645 L462 -1602 L520 -1588 L529 -1586 L559 -1573 L580 -1548 L549 -1512 L440 -1496 L376 -1505 L297 -1517 L273 -1524 L242 -1531 L210 -1545 L215 -1538 L232 -1524 L252 -1514 L251 -1507 L306 -1489 L307 -1475 L305 -1452 L315 -1432 L337 -1413 L376 -1397 L429 -1392 L442 -1412 L410 -1416 L383 -1437 L404 -1453 L454 -1437 L488 -1431 L530 -1433 L539 -1444 L518 -1469 L560 -1491 L620 -1516 L653 -1511 L676 -1499 L692 -1496 L698 -1502 L712 -1535 L685 -1550 L704 -1589 L670 -1614 L696 -1611 L784 -1599 L785 -1577 L734 -1555 L777 -1531 L801 -1530 L852 -1551 L873 -1569 L890 -1579 L942 -1588 L990 -1602 L1034 -1610 L1042 -1601 L1055 -1609 L1087 -1628 L1106 -1629 L1109 -1623 L1109 -1606 L1082 -1600 L1110 -1596 L1135 -1598 L1171 -1612 L1221 -1614 L1288 -1624 L1325 -1627 L1325 -1614 L1355 -1603 L1356 -1614 L1396 -1627 L1369 -1660 L1404 -1672 L1554 -1653 L1593 -1640 L1644 -1627 L1702 -1604 L1743 -1630 L1710 -1635 L1680 -1660 L1647 -1661 L1657 -1680 L1661 -1693 L1647 -1717 L1648 -1729 L1665 -1743 L1721 -1774 L1766 -1820 L1774 -1815 L1860 -1812 L1895 -1796 L1874 -1759 L1866 -1741 L1890 -1698 L1888 -1655 L1891 -1626 L1929 -1608 L1911 -1584 L1856 -1539 L1843 -1523 L1803 -1517 L1808 -1526 L1783 -1527 L1741 -1529 L1746 -1518 L1827 -1508 L1876 -1507 L1937 -1538 L1978 -1574 L1967 -1599 L2012 -1628 L2060 -1622 L2078 -1575 L2103 -1565 L2148 -1568 L2094 -1586 L2111 -1603 L2085 -1630 L1990 -1638 L1937 -1642 L1928 -1670 L1959 -1710 L1911 -1745 L1966 -1773 L1992 -1793 L1982 -1813 L2013 -1801 L2019 -1787 L1999 -1772 L1999 -1747 L2060 -1736 L2126 -1723 L2150 -1726 L2129 -1731 L2076 -1746 L2034 -1765 L2074 -1774 L2119 -1776 L2090 -1781 L2122 -1791 L2225 -1778 L2266 -1760 L2326 -1760 L2318 -1746 L2290 -1726 L2287 -1703 L2299 -1712 L2324 -1718 L2308 -1690 L2326 -1685 L2342 -1696 L2346 -1715 L2344 -1751 L2336 -1765 L2291 -1778 L2263 -1790 L2226 -1804 L2228 -1822 L2214 -1834 L2221 -1847 L2381 -1855 L2430 -1859 L2490 -1859 L2438 -1842 L2459 -1830 L2445 -1837 L2453 -1846 L2512 -1859 L2470 -1879 L2469 -1889 L2484 -1889 L2442 -1903 L2483 -1901 L2494 -1918 L2516 -1921 L2621 -1943 L2722 -1951 L2763 -1960 L2742 -1958 L2743 -1963 L2785 -1968 L2837 -1968 L2849 -1957 L2886 -1958 L2926 -1961 L2955 -1970 L2997 -1970 L3018 -1960 L3020 -1956 L2993 -1980 L3028 -1985 L3097 -1983 L3073 -1991 L3072 -2008 L3161 -2038 L3232 -2040 L3280 -2030 L3211 -2015 L3274 -2009 L3320 -2011 L3308 -1989 L3315 -1984 L3362 -1993 L3422 -1997 L3515 -1991 L3529 -1980 L3560 -1972 L3566 -1965 L3573 -1973 L3597 -1957 L3597 -1942 L3578 -1948 L3562 -1949 L3596 -1938 L3526 -1903 L3441 -1883 L3428 -1872 L3330 -1848 L3256 -1813 L3288 -1821 L3338 -1828 L3379 -1835 L3433 -1842 L3481 -1856 L3436 -1856 L3459 -1869 L3513 -1869 L3523 -1856 L3571 -1860 L3587 -1854 L3594 -1837 L3578 -1813 L3603 -1804 L3586 -1815 L3600 -1833 L3603 -1838 L3649 -1849 L3818 -1846 L3797 -1838 L3862 -1819 L3944 -1819 L3980 -1816 L3990 -1819 L4012 -1829 L4005 -1840 L4024 -1850 L4065 -1854 L4120 -1845 L4126 -1840 L4155 -1845 L4200 -1839 L4223 -1833 L4243 -1826 L4224 -1816 L4246 -1805 L4222 -1797 L4252 -1778 L4187 -1793 L4242 -1763 L4253 -1766 L4237 -1755 L4283 -1730 L4317 -1723 L4342 -1718 L4365 -1740 L4389 -1769 L4401 -1762 L4479 -1745 L4528 -1756 L4592 -1741 L4615 -1734 L4620 -1741 L4613 -1747 L4629 -1755 L4667 -1747 L4687 -1759 L4693 -1781 L4679 -1783 L4678 -1795 L4741 -1803 L4733 -1815 L4853 -1805 L4938 -1797 L4917 -1792 L4873 -1786 L4985 -1787 L4950 -1771 L4940 -1784 L4940 -1771 L4910 -1769 L4911 -1760 L4987 -1783 L5074 -1785 L5117 -1769 L5073 -1761 L5111 -1755 L5143 -1750 L5127 -1739 L5190 -1737 L5234 -1719 L5350 -1728 L5480 -1723 L5532 -1699 L5527 -1679 L5572 -1661 L5589 -1631 L5580 -1612 L5599 -1635 L5624 -1661 L5689 -1665 L5783 -1658 L5862 -1667 L5880 -1645 L5927 -1629 L5993 -1639 L5960 -1664 L5987 -1684 L6079 -1673 L6116 -1673 L6198 -1674 L6282 -1656 L6325 -1646 L6368 -1447 L6314 -1427 L6257 -1441 L6219 -1447 L6245 -1444 L6236 -1437 L6176 -1434 L6174 -1432 L6209 -1439 L6211 -1427 L6245 -1431 L6261 -1418 L6292 -1411 L6305 -1401 L6315 -1381 L6312 -1376 L6318 -1371 L6328 -1363 L6337 -1350 L6350 -1335 L6332 -1318 L6258 -1330 L6257 -1340 L6244 -1339 L6251 -1331 L6215 -1319 L6168 -1304 L6130 -1294 L6082 -1275 L6072 -1270 L6064 -1267 L6051 -1259 L6028 -1248 L5977 -1229 L5968 -1209 L5947 -1216 L5921 -1235 L5873 -1236 L5803 -1206 L5790 -1208 L5799 -1231 L5754 -1215 L5741 -1201 L5719 -1212 L5702 -1209 L5683 -1205 L5670 -1186 L5657 -1167 L5644 -1152 L5617 -1114 L5634 -1102 L5647 -1112 L5664 -1094 L5651 -1072 L5656 -1054 L5671 -1041 L5658 -1022 L5658 -1041 L5642 -1042 L5623 -1026 L5606 -990 L5622 -962 L5581 -954 L5537 -935 L5530 -908 L5535 -885 L5490 -881 L5470 -881 L5471 -861 L5455 -823 L5417 -795 L5395 -796 L5383 -849 L5371 -879 L5349 -983 L5368 -1056 L5408 -1089 L5402 -1104 L5437 -1115 L5469 -1122 L5511 -1147 L5564 -1190 L5611 -1220 L5658 -1245 L5682 -1257 L5701 -1274 L5702 -1289 L5726 -1325 L5752 -1322 L5744 -1327 L5673 -1329 L5668 -1318 L5660 -1293 L5663 -1283 L5649 -1289 L5634 -1287 L5554 -1243 L5542 -1243 L5534 -1256 L5530 -1267 L5547 -1293 L5522 -1291 L5500 -1299 L5457 -1292 L5412 -1287 L5387 -1265 L5343 -1234 L5296 -1201 L5293 -1184 L5332 -1178 L5313 -1168 L5279 -1167 L5245 -1165 L5214 -1163 L5164 -1165 L5207 -1175 L5173 -1188 L5153 -1184 L5139 -1186 L5102 -1198 L5082 -1186 L5063 -1183 L5064 -1174 L5013 -1174 L4961 -1172 L4931 -1181 L4833 -1179 L4766 -1145 L4720 -1108 L4684 -1089 L4644 -1066 L4603 -1027 L4566 -1006 L4514 -979 L4505 -959 L4562 -956 L4563 -929 L4575 -919 L4580 -935 L4593 -932 L4609 -924 L4584 -906 L4627 -913 L4640 -918 L4635 -904 L4646 -933 L4671 -935 L4710 -926 L4750 -895 L4737 -883 L4752 -863 L4758 -843 L4747 -819 L4726 -784 L4726 -742 L4721 -727 L4714 -698 L4709 -680 L4686 -648 L4641 -599 L4625 -571 L4581 -521 L4543 -487 L4513 -454 L4487 -428 L4432 -400 L4404 -399 L4378 -403 L4364 -413 L4363 -422 L4336 -398 L4314 -393 L4309 -374 L4290 -366 L4272 -348 L4270 -320 L4245 -290 L4220 -273 L4193 -262 L4179 -238 L4178 -228 L4204 -211 L4225 -181 L4258 -122 L4257 -94 L4260 -79 L4258 -55 L4232 -36 L4218 -28 L4203 -29 L4185 -28 L4184 -17 L4173 -20 L4171 -6 L4167 -20 L4147 -9 L4137 -5 L4133 -17 L4140 -23 L4129 -34 L4136 -55 L4136 -62 L4145 -74 L4140 -84 L4138 -101 L4125 -111 L4133 -124 L4150 -119 L4156 -124 L4148 -140 L4140 -157 L4141 -163 L4120 -161 L4102 -169 L4089 -161 L4082 -175 L4070 -178 L4069 -189 L4094 -205 L4081 -211 L4089 -245 L4063 -255 L4055 -257 L4047 -268 L4016 -260 L4000 -252 L3958 -233 L3943 -220 L3935 -215 L3916 -208 L3918 -218 L3941 -238 L3919 -241 L3928 -250 L3943 -269 L3960 -293 L3941 -313 L3914 -309 L3897 -295 L3840 -255 L3822 -229 L3801 -226 L3773 -226 L3772 -188 L3821 -175 L3827 -159 L3823 -139 L3860 -138 L3877 -157 L3909 -160 L3941 -147 L3956 -147 L3973 -141 L3970 -126 L3959 -119 L3946 -124 L3906 -107 L3903 -102 L3894 -95 L3880 -82 L3873 -88 L3877 -78 L3861 -64 L3845 -49 L3832 -20 L3864 -6 L3886 29 L3903 70 L3921 90 L3935 107 L3939 124 L3906 116 L3869 111 L3886 109 L3909 123 L3942 154 L3924 167 L3899 187 L3875 192 L3903 196 L3935 205 L3945 214 L3941 222 L3942 245 L3927 242 L3934 255 L3929 264 L3928 283 L3911 284 L3896 297 L3893 313 L3888 330 L3869 355 L3860 360 L3856 353 L3848 358 L3858 371 L3852 381 L3833 387 L3844 392 L3846 411 L3841 417 L3830 422 L3822 429 L3811 446 L3809 457 L3785 457 L3775 464 L3784 475 L3766 494 L3759 499 L3752 500 L3736 503 L3727 518 L3720 533 L3707 537 L3683 540 L3669 544 L3652 550 L3640 547 L3632 553 L3628 560 L3621 564 L3615 558 L3601 543 L3599 527 L3587 537 L3593 548 L3596 570 L3584 576 L3571 585 L3558 589 L3549 582 L3546 591 L3529 587 L3519 597 L3499 604 L3490 607 L3469 618 L3464 619 L3463 635 L3469 650 L3453 662 L3447 656 L3440 641 L3436 625 L3445 605 L3431 596 L3421 606 L3412 602 L3397 598 L3390 587 L3386 596 L3378 595 L3363 604 L3345 612 L3330 630 L3320 629 L3310 627 L3305 656 L3280 677 L3269 716 L3273 738 L3291 758 L3296 780 L3328 813 L3348 836 L3362 847 L3373 859 L3381 869 L3399 892 L3410 931 L3416 954 L3418 983 L3424 1017 L3415 1021 L3417 1053 L3415 1052 L3413 1067 L3399 1083 L3372 1102 L3342 1122 L3326 1122 L3321 1125 L3306 1123 L3313 1129 L3306 1134 L3309 1146 L3300 1148 L3305 1162 L3278 1147 L3289 1171 L3247 1206 L3232 1202 L3243 1150 L3234 1140 L3222 1133 L3194 1115 L3178 1117 L3183 1095 L3171 1102 L3160 1081 L3153 1063 L3146 1051 L3132 1043 L3120 1030 L3103 1019 L3067 1017 L3070 987 L3053 980 L3033 996 L3030 1043 L3015 1076 L2999 1127 L2996 1158 L3003 1182 L3027 1187 L3037 1219 L3050 1266 L3047 1261 L3044 1253 L3046 1273 L3064 1287 L3093 1293 L3128 1325 L3160 1361 L3173 1429 L3174 1463 L3191 1498 L3208 1551 L3201 1544 L3194 1548 L3174 1549 L3137 1520 L3089 1484 L3085 1463 L3061 1429 L3056 1410 L3045 1334 L3018 1292 L3014 1270 L3000 1257 L2988 1241 L2971 1223 L2960 1229 L2963 1179 L2975 1137 L2967 1113 L2976 1092 L2978 1070 L2976 1064 L2976 1053 L2972 1040 L2975 1020 L2968 990 L2956 958 L2951 949 L2948 926 L2937 895 L2932 851 L2931 838 L2914 821 L2904 801 L2902 814 L2885 839 L2874 827 L2877 842 L2865 849 L2845 870 L2837 863 L2825 870 L2818 856 L2808 867 L2810 844 L2807 848 L2790 862 L2797 822 L2805 789 L2791 740 L2782 715 L2779 722 L2764 713 L2773 710 L2776 698 L2767 687 L2757 674 L2747 679 L2743 666 L2739 658 L2732 661 L2728 648 L2713 641 L2699 619 L2690 570 L2686 561 L2672 543 L2648 546 L2639 508 L2637 513 L2638 521 L2633 534 L2634 548 L2639 563 L2626 585 L2616 582 L2612 579 L2609 562 L2603 584 L2595 581 L2591 589 L2576 586 L2573 588 L2566 592 L2559 593 L2557 575 L2543 593 L2532 595 L2530 568 L2537 575 L2517 597 L2482 622 L2482 649 L2465 670 L2459 677 L2426 689 L2424 679 L2420 690 L2394 719 L2368 755 L2321 794 L2293 821 L2291 836 L2250 847 L2237 874 L2226 868 L2199 906 L2202 943 L2207 972 L2199 976 L2202 1030 L2186 1071 L2189 1086 L2182 1131 L2165 1137 L2153 1174 L2172 1183 L2121 1197 L2096 1233 L2055 1200 L2047 1183 L2041 1150 L2049 1167 L2037 1138 L2023 1095 L2001 1053 L1979 1005 L1971 964 L1962 934 L1948 912 L1940 887 L1933 877 L1914 806 L1903 756 L1900 732 L1897 723 L1904 709 L1893 694 L1899 648 L1897 622 L1893 605 L1905 594 L1887 586 L1886 573 L1887 567 L1875 571 L1866 587 L1873 596 L1837 634 L1784 623 L1745 581 L1743 561 L1765 561 L1787 553 L1800 529 L1790 535 L1765 545 L1713 506 L1716 498 L1703 493 L1696 494 L1681 492 L1673 484 L1666 469 L1642 434 L1626 411 L1629 416 L1607 419 L1556 430 L1531 420 L1508 425 L1473 427 L1456 430 L1435 433 L1408 430 L1379 424 L1339 416 L1292 412 L1267 405 L1241 375 L1229 341 L1193 343 L1166 355 L1133 364 L1091 352 L1055 327 L1022 305 L998 288 L981 257 L973 244 L961 219 L944 194 L903 186 L912 181 L898 188 L889 202 L867 202 L862 211 L863 223 L855 234 L865 241 L878 268 L894 300 L899 315 L915 330 L951 361 L945 363 L951 387 L948 394 L964 419 L978 449 L977 418 L991 388 L1008 407 L1012 432 L1003 456 L1002 464 L1010 473 L1018 474 L1039 486 L1103 483 L1131 469 L1139 453 L1171 421 L1198 389 L1209 377 L1212 387 L1210 412 L1227 470 L1271 498 L1303 503 L1321 527 L1349 555 L1349 578 L1323 614 L1293 656 L1286 647 L1270 677 L1269 710 L1255 724 L1218 761 L1173 776 L1165 801 L1135 814 L1095 827 L1042 849 L1032 882 L1012 894 L952 917 L905 935 L886 955 L855 959 L811 982 L764 988 L738 1013 L705 1021 L679 1016 L664 971 L653 934 L649 916 L638 899 L644 892 L641 836 L634 818 L613 784 L579 737 L566 699 L553 683 L511 650 L492 603 L487 571 L486 544 L477 531 L456 490 L432 473 L410 448 L409 425 L389 390 L354 342 L322 294 L306 285 L318 225 L296 281 L279 306 L244 265 L228 232 L213 207 L217 233 L226 261 L244 288 L258 316 L273 343 L306 418 L345 483 L340 494 L352 540 L395 576 L406 612 L411 624 L412 648 L417 717 L441 742 L456 755 L487 812 L507 885 L520 900 L527 891 L540 911 L577 928 L628 994 L653 1009 L667 1034 L655 1059 L635 1075 L659 1072 L701 1119 L765 1107 L801 1110 L849 1093 L899 1086 L949 1073 L994 1059 L990 1082 L990 1122 L994 1120 L1002 1127 L982 1133 L971 1187 L939 1241 L913 1297 L860 1404 L733 1531 L641 1624 L620 1651 L605 1673 L580 1708 L567 1713 L565 1723 L539 1740 L532 1769 L520 1794 L513 1810 L495 1836 L489 1859 L478 1902 L491 1925 L507 1951 L500 1981 L498 2014 L513 2049 L518 2083 L531 2094 L546 2108 L548 2123 L550 2137 L546 2165 L549 2196 L551 2217 L551 2227 L552 2246 L552 2281 L554 2294 L562 2297 L562 2312 L554 2326 L541 2358 L527 2380 L512 2397 L481 2418 L460 2424 L424 2443 L399 2467 L378 2496 L368 2504 L334 2534 L304 2544 L306 2577 L324 2614 L332 2664 L336 2660 L341 2666 L340 2708 L339 2736 L330 2766 L258 2802 L221 2835 L227 2851 L233 2852 L221 2916 L192 2976 L153 3024 L109 3091 L63 3136 L0 3187 L-65 3204 L-91 3215 L-132 3220 L-185 3220 L-232 3234 L-266 3234 L-306 3254 L-336 3246 L-342 3236 L-356 3231 L-361 3220 L-371 3233 L-371 3211 L-384 3187 L-397 3161 L-380 3153 L-384 3106 L-434 3000 L-473 2945 L-507 2887 L-511 2860 L-523 2810 L-536 2755 L-540 2703 L-536 2690 L-562 2633 L-597 2559 L-643 2476 L-650 2410 L-651 2361 L-638 2334 L-603 2229 L-570 2187 L-568 2122 L-585 2087 L-596 2051 L-596 2037 L-584 2019 L-606 1943 L-628 1903 L-596 1892 L-619 1899 L-632 1887 L-633 1867 L-642 1849 L-650 1831 L-681 1796 L-710 1758 L-724 1738 L-734 1730 L-744 1718 L-746 1708 L-755 1700 L-753 1693 L-747 1687 L-751 1678 L-763 1677 L-778 1644 L-764 1646 L-752 1611 L-749 1607 L-732 1610 L-746 1599 L-743 1585 L-740 1579 L-747 1563 L-739 1542 L-732 1508 L-728 1464 L-740 1442 L-735 1433 L-741 1426 L-747 1430 L-755 1428 L-769 1411 L-774 1401 L-780 1403 L-784 1392 L-793 1389 L-806 1402 L-828 1397 L-843 1396 L-849 1409 L-858 1394 L-855 1410 L-866 1406 L-878 1413 L-882 1410 L-895 1409 L-914 1383 L-917 1372 L-912 1363 L-924 1356 L-915 1351 L-921 1350 L-931 1343 L-996 1314 L-986 1305 L-1028 1316 L-1092 1329 L-1110 1345 L-1162 1362 L-1210 1382 L-1241 1384 L-1277 1375 L-1269 1373 L-1279 1373 L-1323 1366 L-1310 1370 L-1362 1371 L-1352 1375 L-1427 1396 L-1456 1411 L-1532 1369 L-1588 1321 L-1621 1291 L-1662 1268 L-1663 1251 L-1679 1246 L-1692 1224 L-1687 1219 L-1682 1210 L-1693 1203 L-1695 1193 L-1700 1178 L-1711 1162 L-1715 1151 L-1727 1139 L-1751 1116 L-1757 1105 L-1766 1107 L-1769 1092 L-1778 1091 L-1782 1080 L-1785 1075 L-1777 1066 L-1788 1062 L-1771 1055 L-1785 1054 L-1805 1055 L-1823 1049 L-1827 1042 L-1837 1025 L-1828 1022 L-1838 1023 L-1841 1010 L-1840 984 L-1826 991 L-1808 985 L-1785 981 L-1827 987 L-1840 964 L-1837 955 L-1849 938 L-1868 923 L-1844 896 L-1828 834 L-1811 758 L-1829 708 L-1827 699 L-1823 655 L-1832 646 L-1849 624 L-1848 585 L-1822 541 L-1809 513 L-1803 496 L-1800 488 L-1761 445 L-1747 396 L-1723 369 L-1694 324 L-1662 297 L-1604 264 L-1552 213 L-1549 175 L-1551 137 L-1527 83 L-1457 32 L-1390 -64 L-1366 -75 L-1354 -54 L-1299 -43 L-1269 -47 L-1261 -40 L-1234 -37 L-1197 -49 L-1156 -72 L-1128 -86 L-1059 -105 L-994 -116 L-925 -111 L-881 -123 L-843 -123 L-816 -120 L-763 -133 L-732 -138 L-729 -138 L-710 -119 L-692 -123 L-680 -118 L-704 -91 L-691 -68 L-677 -43 L-716 -1 L-717 22 L-694 38 L-676 45 L-673 51 L-648 58 L-587 67 L-547 77 L-501 102 L-486 137 L-417 153 L-351 190 L-306 166 L-306 137 L-302 99 L-247 72 L-209 68 L-176 88 L-144 104 L-103 110 L-89 132 L-5 139 L48 154 L80 163 L116 145 L127 135 L140 138 L155 128 L189 131 L189 137 L198 152 L204 143 L229 151 L251 150 L293 134 L316 81 L327 50 L346 4 L356 -25 L357 -48 L359 -79 L368 -110 L357 -119 L341 -107 L307 -117 L264 -87 L227 -80 L195 -104 L137 -119 L129 -91 L102 -87 L73 -103 L64 -110 L35 -111 L19 -113 L8 -114 L36 -126 L-2 -125 L7 -134 L-6 -144 L-5 -160 L-20 -175 L-35 -181 L-39 -190 L-35 -203 L-28 -189 L-11 -192 L-23 -202 L-14 -215 L-23 -221 L-27 -236 L-36 -244 L-50 -251 L-26 -286 L-1 -285 L16 -290 L25 -288 L58 -285 L62 -291 L104 -302 L73 -311 L75 -325 L163 -319 L216 -352 L308 -359 L324 -356 L360 -347 L382 -326 L405 -323 L467 -311 L528 -313 L568 -324 L601 -353 L590 -392 L549 -414 L507 -443 L452 -475 L420 -490 L388 -508 L394 -518 L401 -520 L430 -523 L430 -533 L447 -548 L461 -553 L440 -569 L451 -582 L462 -588 L498 -600 L483 -605 L476 -609 L437 -601 L400 -588 L372 -581 L330 -559 L328 -560 L322 -562 L315 -544 L342 -517 L368 -524 L379 -513 L355 -503 L339 -507 L307 -493 L267 -474 L258 -487 L246 -510 L217 -519 L255 -542 L253 -552 L214 -553 L185 -565 L194 -570 L182 -576 L217 -577 L193 -583 L187 -604 L190 -583 L176 -586 L144 -576 L132 -554 L106 -538 L94 -531 L97 -510 L72 -493 L66 -501 L62 -485 L56 -473 L50 -432 L26 -419 L17 -394 L26 -363 L41 -336 L67 -315 L24 -314 L-16 -294 L-48 -271 L-42 -285 L-42 -296 L-56 -303 L-94 -314 L-120 -312 L-150 -302 L-146 -287 L-126 -274 L-147 -284 L-141 -272 L-154 -278 L-154 -265 L-169 -277 L-185 -295 L-197 -284 L-185 -250 L-168 -228 L-175 -232 L-184 -225 L-195 -215 L-191 -211 L-158 -196 L-139 -179 L-139 -158 L-159 -174 L-180 -168 L-173 -155 L-163 -149 L-175 -142 L-188 -151 L-182 -127 L-175 -100 L-191 -116 L-206 -101 L-217 -121 L-226 -121 L-241 -135 L-251 -157 L-259 -169 L-238 -181 L-200 -178 L-185 -173 L-174 -179 L-185 -182 L-206 -194 L-232 -190 L-249 -192 L-258 -189 L-274 -211 L-261 -215 L-264 -221 L-283 -227 L-307 -253 L-332 -280 L-330 -285 L-333 -304 L-330 -334 L-329 -354 L-364 -379 L-367 -381 L-408 -401 L-402 -401 L-427 -418 L-468 -432 L-476 -439 L-510 -467 L-496 -468 L-520 -494 L-541 -519 L-555 -499 L-573 -508 L-572 -528 L-580 -536 L-603 -531 L-618 -528 L-631 -514 L-621 -495 L-628 -476 L-587 -441 L-560 -401 L-508 -358 L-466 -352 L-473 -335 L-392 -298 L-373 -266 L-396 -280 L-423 -290 L-446 -274 L-432 -243 L-434 -217 L-451 -192 L-485 -170 L-478 -196 L-466 -209 L-480 -249 L-503 -270 L-518 -289 L-534 -297 L-539 -303 L-555 -305 L-576 -325 L-597 -327 L-638 -358 L-672 -381 L-675 -383 L-693 -404 L-703 -411 L-714 -448 L-758 -471 L-804 -452 L-842 -439 L-867 -418 L-899 -413 L-928 -425 L-936 -428 L-942 -426 L-965 -431 L-978 -435 L-1014 -404 L-1006 -379 L-1010 -369 L-1010 -355 L-1076 -323 L-1108 -305 L-1115 -296 L-1144 -261 L-1143 -215 L-1157 -193 L-1172 -168 L-1174 -154 L-1216 -137 L-1244 -118 L-1273 -114 L-1323 -113 L-1357 -99 L-1367 -86 L-1384 -83 L-1403 -104 L-1405 -119 L-1412 -124 L-1432 -135 L-1473 -126 L-1510 -129 L-1509 -154 L-1509 -187 L-1511 -197 L-1525 -198 L-1516 -211 L-1515 -221 L-1534 -206 L-1534 -225 L-1527 -240 L-1512 -275 L-1503 -310 L-1509 -340 L-1512 -353 L-1507 -371 L-1507 -378 L-1508 -389 L-1514 -397 L-1527 -407 L-1512 -424 L-1485 -429 L-1475 -441 L-1450 -441 L-1411 -436 L-1363 -434 L-1304 -432 L-1268 -426 L-1233 -423 L-1203 -435 L-1189 -491 L-1189 -519 L-1170 -507 L-1172 -521 L-1192 -539 L-1187 -546 L-1196 -565 L-1229 -590 L-1233 -604 L-1217 -607 L-1246 -611 L-1248 -621 L-1258 -626 L-1276 -629 L-1288 -632 L-1324 -638 L-1324 -650 L-1332 -657 L-1321 -660 L-1338 -661 L-1311 -677 L-1276 -683 L-1228 -674 L-1217 -673 L-1207 -700 L-1219 -723 L-1194 -719 L-1173 -708 L-1124 -712 L-1136 -719 L-1083 -742 L-1075 -773 L-1039 -788 L-998 -803 L-970 -802 L-987 -806 L-993 -813 L-963 -807 L-967 -814 L-973 -829 L-954 -847 L-939 -876 L-911 -892 L-857 -900 L-843 -894 L-837 -911 L-799 -899 L-789 -905 L-786 -916 L-752 -917 L-753 -920 L-770 -926 L-781 -940 L-768 -951 L-781 -975 L-793 -997 L-802 -1035 L-784 -1047 L-770 -1055 L-757 -1058 L-775 -1054 L-796 -1059 L-768 -1074 L-732 -1090 L-704 -1098 L-702 -1079 L-712 -1057 L-687 -1043 L-698 -1030 L-715 -1021 L-728 -1013 L-732 -1004 L-739 -989 L-742 -975 L-735 -964 L-727 -950 L-709 -947 L-682 -935 L-666 -924 L-634 -937 L-603 -946 L-565 -927 L-537 -911 L-534 -918 L-561 -923 L-564 -932 L-527 -927 L-464 -942 L-432 -957 L-368 -962 L-372 -961 L-332 -944 L-309 -961 L-285 -973 L-263 -996 L-264 -990 L-270 -969 L-257 -989 L-263 -1024 L-251 -1068 L-226 -1096 L-180 -1086 L-138 -1070 L-127 -1104 L-118 -1128 L-128 -1130 L-152 -1135 L-155 -1150 L-164 -1158 L-160 -1167 L-138 -1179 L-80 -1186 L-65 -1191 L-1 -1183 L29 -1192 L41 -1194 L58 -1200 L72 -1207 L118 -1207 L92 -1218 L49 -1231 L51 -1239 L13 -1232 L-12 -1233 L-35 -1231 L-36 -1235 L-58 -1231 L-63 -1223 L-79 -1221 L-115 -1214 L-152 -1207 L-181 -1200 L-173 -1210 L-187 -1219 L-194 -1210 L-204 -1216 L-199 -1219 L-199 -1227 L-230 -1232 L-247 -1237 L-250 -1254 L-243 -1275 L-243 -1280 L-240 -1284 L-255 -1302 L-258 -1322 L-257 -1340 L-242 -1357 L-210 -1364 L-209 -1371 L-201 -1380 L-161 -1399 L-139 -1415 L-113 -1435 L-86 -1437 L-83 -1447 L-84 -1467 L-116 -1480 L-123 -1481 L-157 -1482 L-185 -1481 L-207 -1485 L-212 -1473 L-217 -1470 L-227 -1465 L-243 -1461 L-242 -1456 L-242 -1454 L-257 -1438 L-249 -1423 L-264 -1405 L-298 -1381 L-324 -1373 L-337 -1370 L-355 -1360 L-365 -1358 L-377 -1350 L-380 -1343 L-386 -1342 L-393 -1340 L-390 -1332 L-405 -1324 L-416 -1323 L-411 -1311 L-415 -1291 L-427 -1283 L-424 -1270 L-424 -1253 L-413 -1239 L-401 -1234 L-380 -1226 L-358 -1212 L-350 -1197 L-374 -1185 L-392 -1178 Z" fill="var(--fg)" fill-opacity="0.07" stroke="var(--fg)" stroke-width="0.9" stroke-opacity="0.6" stroke-linejoin="round"/><path d="M231 618 L230 482 L220 406 L206 364 L187 336 L160 293 L161 237 L162 201 L154 166 L148 140" stroke="var(--teal)" stroke-width="2.0" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.75"/><circle cx="162" cy="211" r="4.5" fill="var(--gold)" fill-opacity="0.9" stroke="var(--fg)" stroke-width="0.7"/><text x="149" y="203" font-size="15" fill="var(--gold)" font-weight="bold" font-family="serif" text-anchor="end">A</text><circle cx="220" cy="405" r="4.5" fill="var(--gold)" fill-opacity="0.9" stroke="var(--fg)" stroke-width="0.7"/><text x="231" y="414" font-size="15" fill="var(--gold)" font-weight="bold" font-family="serif" text-anchor="start">B</text><text x="260" y="524" font-size="9" fill="var(--teal)" font-family="serif" opacity="0.85" text-anchor="middle" transform="rotate(78 260 524)">ナイル川（模式）</text><text x="94" y="44" font-size="9" fill="#6fa3a0" font-family="serif" opacity="0.8" text-anchor="middle">地中海</text><text x="365" y="496" font-size="9" fill="#6fa3a0" font-family="serif" opacity="0.8" text-anchor="middle">紅海</text><rect x="8" y="581" width="214" height="34" rx="4" fill="var(--panel2)" fill-opacity="0.92" stroke="var(--gold)" stroke-width="1"/><text x="16" y="595" font-size="10" fill="var(--gold)" font-family="serif">● A・B＝設問の都市</text><text x="16" y="608" font-size="10" fill="var(--gold)" font-family="serif">青線＝大河（流路は模式）</text><text x="392" y="626" font-size="8.5" fill="var(--fg)" opacity="0.55" text-anchor="end">※海岸線は実測データ（簡略化）。河川の流路は模式</text>
+    </svg><!--MAP_W:end-->
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：A＝メンフィス　B＝テーベ</div>
+    <div class="explanation">解説：Aは上流域と下流域の境目にあたる位置にあり、統一国家の都として選ばれた。Bは上流域の中心で、主神の大神殿が置かれ、王たちは対岸の谷に岩を掘って葬られた。〈下流＝古い都／上流＝のちの都〉と流れの向きで整理する。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">8</span><span class="badge basic">基本</span></div>
+  <div class="qtext">前14世紀、それまでの多神教の信仰を禁じ、一つの神だけをまつらせる改革を行ったエジプトの王について答えよ。(1) この王の名（改称後の名でもよい）。(2) この王がまつらせた神。(3) この王が新たに都を移した地。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：(1) アメンホテプ4世（イクナートン）　(2) アトン　(3) テル＝エル＝アマルナ</div>
+    <div class="explanation">解説：王は自らの名を「この神にとって有益な者」を意味する名に改め、旧来の主神の名を含む元の名を捨てた。名を変えることが改革の宣言そのものだったわけである。実際に行われたのは全神の禁止というより、旧来の主神とその配偶神の名と像を各地の記念物から削り取ることだった。改革は一代で終わり、まもなく旧来の信仰が復活して、王宮もアマルナから下流のメンフィスへ移る。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">9</span><span class="badge basic">基本</span></div>
+  <div class="qtext">前13世紀のエジプトの王で、シリアの地で小アジアの王国と大規模な戦いを交え、のちに和平の条約を結んだ人物は誰か。またその戦いを何というか。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：ラメス2世（ラメセス2世）／カデシュの戦い</div>
+    <div class="explanation">解説：相手は前号で扱った小アジアの王国。エジプト側は神殿の壁に大々的に勝利として記録したが、研究では引き分け、あるいはエジプト側の失敗とみる見方が有力で、結局この地は相手側に残った。のちに結ばれた条約の文はエジプト側とヒッタイト側の双方の記録に残っており、内容を突き合わせられる古い外交文書として知られる。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">10</span><span class="badge basic">基本</span></div>
+  <div class="qtext">古代エジプトで用いられた文字のうち、(1) 石碑や墓室に刻まれた絵文字風のもの、(2) 日常の記録に使われた簡略な書体を、それぞれ何というか。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：(1) 神聖文字（ヒエログリフ）　(2) 民用文字（デモティック）</div>
+    <div class="explanation">解説：この二つの中間に神官文字（ヒエラティック）がある。〈神聖＝石に刻む正式体／神官＝筆で書く速記体／民用＝日常の略体〉と用途で三つを並べると混同しない。なお民用文字は、書体の違いであると同時に、より後の時代のエジプト語をうつしてもいる。次の問で扱う石碑に刻まれた3種は〈神聖文字・民用文字・ギリシア文字〉で、神官文字は含まれない。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">11</span><span class="badge basic">基本</span></div>
+  <div class="qtext">1799年、ナポレオンのエジプト遠征のさいにナイル川河口の町で発見され、同じ内容が3種の文字で記されていたことから古代エジプトの文字の解読の鍵となった石碑を何というか。また、これをもとに解読を成し遂げたフランス人は誰か。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：ロゼッタ＝ストーン／シャンポリオン</div>
+    <div class="explanation">解説：3種のうち一つがギリシア文字だったため、読める文と読めない文を突き合わせることができた。石そのものはその後イギリスの手に渡り、現在は大英博物館にある。〈発見はフランス、所蔵はイギリス、解読はフランス人〉という、ややこしいが問われやすい組み合わせ。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">12</span><span class="badge basic">基本</span></div>
+  <div class="qtext">ナイル川の増水の時期を知るために天体の観測が重ねられ、1年を365日とする暦がつくられた。この暦を何というか。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：太陽暦</div>
+    <div class="explanation">解説：月の満ち欠けを基準とする暦を用いた二つの大河の地域と対比すると覚えやすい。氾濫が毎年ほぼ同じ季節にくり返されたため、暦の目盛りは月ではなく1年の側に必要だった。実際に年の始まりの目印とされたのは、シリウスが日の出の直前に姿を現す時期で、これが増水の時期とほぼ重なった。のちにローマへ伝わってユリウス暦のもとになり、現在の暦につながっていく。<span class="caution">注意：この暦は1年を365日ちょうどとし、閏日を置かなかった。そのため日付と実際の季節は4年に1日ずつずれていき、もとに戻るまでに約1460年かかる。「太陽暦」と分類されるが、太陽の運行に合わせ続ける仕組みは持っていない——閏日はユリウス暦で加えられた。</span></div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">13</span><span class="badge adv">発展</span></div>
+  <div class="qtext">前15世紀のエジプトの王で、たびたびシリア方面へ遠征してエジプトの領土を最大に広げた人物は誰か。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：トトメス3世</div>
+    <div class="explanation">解説：即位の当初は先代の女性の王が実権をにぎっており、その死後に親政を始めて遠征を重ねた。征服地の首長の子弟をエジプトへ連れてきて、父の死後にその子を後継として立てる方式をとり、力だけでなく人を介した支配のしくみを整えている。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">14</span><span class="badge adv">発展</span></div>
+  <div class="qtext">ミイラとともに墓におさめられた、死後の審判を無事に通過して来世に入るための呪文と挿絵を、パピルスなどに記したものを何というか。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：『死者の書』</div>
+    <div class="explanation">解説：審判は冥界の「二つの真理の広間」で行われ、心臓が真理の女神の羽根と釣り合えば来世に迎えられ、釣り合わなければ怪物に心臓を食われて消滅するとされた。定まった一冊があるわけではなく、注文に応じて必要な章を選んで作られた。名前の欄を空けたまま先に作っておき、あとから書き入れる既製品も広く出回っていた。来世を具体的に思い描き、そこへ到達する手順を書き残すという発想は、この文明の死生観をよく表している。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">15</span><span class="badge adv">発展</span></div>
+  <div class="qtext">前13〜12世紀頃、東地中海一帯を移動して各地の王国を動揺させ、エジプトにも二度にわたって来襲した諸集団の総称を何というか。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：「海の民」</div>
+    <div class="explanation">解説：単一の民族ではなく、出自の異なる複数の集団の総称とされ、実体には諸説ある。この時期に小アジアの王国も滅んだが、滅亡の要因は干ばつ・飢饉・内部の動揺など複数が挙げられ、この集団が果たした役割の大きさには議論がある。エジプトは2度の来襲をいずれも撃退したが、この混乱のなかでシリア・パレスチナの領土を失った。
+      <span class="caution">注意：前号で扱った「鉄器が広まるのは前1200年頃以降」という年代は、この東地中海の秩序崩壊と時期が重なる。ただし「鉄の技術が小アジアの王国に独占されていて、滅亡によって流出した」という説明は、現在の研究では否定されている。</span></div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">16</span><span class="badge adv">発展</span></div>
+  <div class="qtext">前14世紀のエジプトでは、それまでの信仰を禁じて一つの神だけをまつらせる宗教改革が行われた。この改革が目指したものを、王と神官団の関係にふれて簡潔に説明せよ。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：領土の拡大とともに強大化し、王権をおびやかすまでになっていた従来の主神の神官団の勢力を抑え、信仰と権威を王のもとに一元化して王権を強化しようとした。</div>
+    <div class="explanation">解説：宗教の話に見えて、権力の配分の問題が背後にあったとみる説明が広く採られている。遠征で得た富が神殿へ流れこむほど神官団が力を持つ、という構造をつかむと、改革が「なぜその時期に」起きたのかが説明できる。改革が一代で崩れた事実は、神官団の力がそれだけ強かったことの裏返しでもある。</div>
+  </details>
+</div>
+
+<h2 class="section">日本史（10問）</h2>
+<div class="progress">単元：文化の始まり（旧石器・縄文）（縄文の祈りと葬り、そして交わり）</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">17</span><span class="badge basic">基本</span></div>
+  <div class="qtext">多くは女性をかたどり、豊かな実りや出産を祈る呪術に用いられたと考えられている、縄文時代の土製品を何というか。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：土偶</div>
+    <div class="explanation">解説：完全な形ではなく、壊された状態で出土することが多い。わざと壊すことで災いを身代わりに引き受けさせた、あるいは壊して再生を願ったとする説がある。弥生時代以降はほとんど作られなくなり、祈りの形が変わったことを示す。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">18</span><span class="badge basic">基本</span></div>
+  <div class="qtext">男性の生殖器をかたどったとみられる、縄文時代の石製品を何というか。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：石棒</div>
+    <div class="explanation">解説：土偶と対をなす、生命の再生産にかかわる祈りの道具と考えられている。住居や広場に立てられた例も知られ、日常の空間と祈りの空間が分かれていなかったことをうかがわせる。長いものは1メートルを超え、長野県佐久穂町の北沢大石棒は全長2.2メートルを超える。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">19</span><span class="badge basic">基本</span></div>
+  <div class="qtext">縄文時代に、特定の歯を抜いた風習を何というか。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：抜歯</div>
+    <div class="explanation">解説：抜く歯の位置や本数に集団ごとの決まりがあり、通過儀礼として、また集団への帰属を示す印として行われたと考えられている。晩期には歯を叉のように削る叉状研歯も現れる。痛みをともなう不可逆な加工である点が、儀礼としての重さを物語る。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">20</span><span class="badge doc">図版</span></div>
+  <div class="qtext">図は、縄文時代の墓に多い埋葬の姿勢（A）と、のちの時代に一般化する姿勢（B）を模式的に示したものである。(1) Aのような葬法を何というか。(2) Aの姿勢がとられた理由として考えられていることを、簡潔に述べよ。</div>
+  <!--FIG_BURIAL:begin--><svg role="img" aria-label="埋葬の姿勢Aと、のちに一般化する姿勢Bの人骨の模式図" viewBox="0 0 460 245" xmlns="http://www.w3.org/2000/svg" style="max-width:420px; display:block; margin:.9em auto;">
+    <rect x="28" y="88" width="192" height="122" rx="24" fill="none" stroke="var(--border)" stroke-width="1.4" stroke-dasharray="5 4"/><line x1="94" y1="124" x2="158" y2="144" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" stroke-opacity="0.45"/><line x1="95.8" y1="118.3" x2="92.2" y2="129.7" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"/><line x1="106.5" y1="121.6" x2="102.9" y2="133.1" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"/><line x1="117.1" y1="124.9" x2="113.5" y2="136.4" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"/><line x1="127.8" y1="128.3" x2="124.2" y2="139.7" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"/><line x1="138.5" y1="131.6" x2="134.9" y2="143.1" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"/><line x1="149.1" y1="134.9" x2="145.5" y2="146.4" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"/><line x1="159.8" y1="138.3" x2="156.2" y2="149.7" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"/><path d="M100.4 126.0 Q108.1 101.3 113.1 121.8" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" fill="none" opacity="0.95"/><path d="M115.8 130.8 Q124.8 101.7 130.7 125.9" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" fill="none" opacity="0.95"/><path d="M131.1 135.6 Q139.7 108.0 145.3 130.9" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" fill="none" opacity="0.95"/><path d="M146.5 140.4 Q153.7 117.2 158.4 136.5" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" fill="none" opacity="0.95"/><g transform="rotate(22 70 112)"><path d="M53 112 a17 17 0 1 1 34 0 l0 5.1 q0 5.8 -7.1 5.8 l-19.7 0 q-7.1 0 -7.1 -5.8 Z" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" fill="var(--bg)"/><path d="M61.2 122.9 q8.8 7.1 17.7 0" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" fill="none"/><ellipse cx="75.8" cy="109.3" rx="4.4" ry="5.1" fill="var(--fg)" fill-opacity="0.6" stroke="none"/><ellipse cx="64.9" cy="109.3" rx="3.7" ry="4.4" fill="var(--fg)" fill-opacity="0.35" stroke="none"/></g><g transform="rotate(30 166 150)"><path d="M153.0 140.0 q13.0 -6.0 26 0 q-3.1 17.0 -8.8 19.0 q-4.2 2.4 -8.3 0 q-5.7 -2.0 -8.8 -19.0 Z" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" fill="var(--bg)"/></g><line x1="166" y1="150" x2="108" y2="176" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="5.0" stroke="var(--fg)"/><circle cx="166" cy="150" r="3.9" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.6"/><circle cx="108" cy="176" r="3.9" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.6"/><line x1="108" y1="176" x2="152" y2="194" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="5.0" stroke="var(--fg)"/><circle cx="108" cy="176" r="3.9" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.6"/><circle cx="152" cy="194" r="3.9" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.6"/><line x1="100" y1="132" x2="128" y2="152" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" stroke="var(--fg)"/><circle cx="100" cy="132" r="3.1" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.6"/><circle cx="128" cy="152" r="3.1" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.6"/><line x1="128" y1="152" x2="104" y2="164" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" stroke="var(--fg)"/><circle cx="128" cy="152" r="3.1" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.6"/><circle cx="104" cy="164" r="3.1" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.6"/><text x="120" y="56" font-size="15" fill="var(--gold)" font-weight="bold" text-anchor="middle" font-family="serif" opacity="1.0">A</text><text x="120" y="232" font-size="10.5" fill="var(--fg)" font-weight="normal" text-anchor="middle" font-family="serif" opacity="0.65">縄文時代の墓に多い</text><rect x="222" y="110" width="230" height="80" rx="22" fill="none" stroke="var(--border)" stroke-width="1.4" stroke-dasharray="5 4"/><line x1="266" y1="142" x2="330" y2="146" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" stroke-opacity="0.45"/><line x1="266.4" y1="136.0" x2="265.6" y2="148.0" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"/><line x1="277.0" y1="136.7" x2="276.3" y2="148.7" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"/><line x1="287.7" y1="137.3" x2="287.0" y2="149.3" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"/><line x1="298.4" y1="138.0" x2="297.6" y2="150.0" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"/><line x1="309.0" y1="138.7" x2="308.3" y2="150.7" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"/><line x1="319.7" y1="139.3" x2="319.0" y2="151.3" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"/><line x1="330.4" y1="140.0" x2="329.6" y2="152.0" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"/><path d="M272.4 142.4 Q274.0 116.6 283.7 135.3" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" fill="none" opacity="0.95"/><path d="M287.8 143.4 Q289.7 113.0 301.1 135.0" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" fill="none" opacity="0.95"/><path d="M303.1 144.3 Q304.9 115.4 315.8 136.4" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" fill="none" opacity="0.95"/><path d="M318.5 145.3 Q320.0 121.0 329.1 138.6" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" fill="none" opacity="0.95"/><g transform="rotate(0 246 140)"><path d="M229 140 a17 17 0 1 1 34 0 l0 5.1 q0 5.8 -7.1 5.8 l-19.7 0 q-7.1 0 -7.1 -5.8 Z" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" fill="var(--bg)"/><path d="M237.2 150.9 q8.8 7.1 17.7 0" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" fill="none"/><ellipse cx="251.8" cy="137.3" rx="4.4" ry="5.1" fill="var(--fg)" fill-opacity="0.6" stroke="none"/><ellipse cx="240.9" cy="137.3" rx="3.7" ry="4.4" fill="var(--fg)" fill-opacity="0.35" stroke="none"/></g><g transform="rotate(96 340 148)"><path d="M327.0 138.0 q13.0 -6.0 26 0 q-3.1 17.0 -8.8 19.0 q-4.2 2.4 -8.3 0 q-5.7 -2.0 -8.8 -19.0 Z" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" fill="var(--bg)"/></g><line x1="340" y1="148" x2="392" y2="150" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="5.0" stroke="var(--fg)"/><circle cx="340" cy="148" r="3.9" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.6"/><circle cx="392" cy="150" r="3.9" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.6"/><line x1="392" y1="150" x2="436" y2="152" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="5.0" stroke="var(--fg)"/><circle cx="392" cy="150" r="3.9" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.6"/><circle cx="436" cy="152" r="3.9" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.6"/><line x1="272" y1="156" x2="316" y2="162" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" stroke="var(--fg)"/><circle cx="272" cy="156" r="3.1" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.6"/><circle cx="316" cy="162" r="3.1" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.6"/><line x1="316" y1="162" x2="346" y2="165" stroke="var(--fg)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" stroke="var(--fg)"/><circle cx="316" cy="162" r="3.1" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.6"/><circle cx="346" cy="165" r="3.1" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.6"/><text x="342" y="56" font-size="15" fill="var(--gold)" font-weight="bold" text-anchor="middle" font-family="serif" opacity="1.0">B</text><text x="342" y="232" font-size="10.5" fill="var(--fg)" font-weight="normal" text-anchor="middle" font-family="serif" opacity="0.65">のちの時代に一般化する</text><text x="452" y="22" font-size="8.5" fill="var(--fg)" opacity="0.5" text-anchor="end" font-family="serif">※模式図（破線は墓の穴。人骨の配置は模式）</text>
+  </svg><!--FIG_BURIAL:end-->
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：(1) 屈葬　(2) 死者の霊が外へ出て災いをもたらすのを防ぐためとする説や、母胎の中の姿勢に戻すことで再生を願ったとする説などが唱えられている。</div>
+    <div class="explanation">解説：ほかに、穴を掘る労力を減らすためという現実的な説もあり、理由は一つに定まっていない。答案では「〜と考えられている」と留保をつけて書くのが安全である。胸の上に石を置いた例（抱石葬）も見つかっており、霊を封じる意図を読む根拠とされる。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">21</span><span class="badge map">地図</span></div>
+  <div class="qtext">図中Aは千葉市にある国内最大級の貝塚で、環状の北貝塚と馬蹄形の南貝塚が8の字形に連なる。この遺跡名を答えよ。</div>
+  <!--MAP_J:begin--><svg class="mapsvg" style="max-width:330px" viewBox="0 0 430 309" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="縄文時代の遺跡Aの位置">
+      <path d="M364 -97 L365 -96 L371 -98 L370 -92 L369 -87 L369 -77 L370 -73 L371 -69 L373 -66 L377 -63 L381 -57 L384 -48 L385 -44 L387 -40 L387 -38 L387 -36 L387 -34 L387 -31 L387 -25 L385 -17 L384 -13 L383 -12 L381 -10 L381 -9 L380 -9 L378 -9 L377 -8 L377 -6 L376 -4 L375 -2 L374 0 L373 5 L372 10 L371 13 L368 14 L365 14 L360 16 L359 17 L356 23 L355 26 L355 30 L356 35 L357 39 L358 48 L357 61 L356 65 L354 68 L352 69 L351 71 L349 75 L346 84 L345 86 L345 88 L344 91 L344 94 L344 97 L345 100 L350 108 L351 110 L353 113 L346 115 L345 116 L340 121 L339 125 L339 130 L338 131 L337 133 L336 134 L331 136 L328 138 L325 141 L324 143 L322 143 L320 141 L322 139 L321 137 L322 131 L321 128 L324 127 L325 124 L327 121 L329 119 L329 118 L328 116 L326 115 L324 115 L321 115 L320 117 L319 119 L319 120 L319 121 L316 124 L316 128 L317 129 L319 130 L318 131 L316 134 L315 134 L313 130 L310 128 L307 128 L303 129 L301 132 L300 134 L299 136 L300 141 L298 145 L296 149 L295 151 L293 153 L291 154 L290 152 L289 151 L290 144 L290 140 L293 139 L290 136 L287 135 L283 136 L282 138 L281 140 L279 143 L276 145 L273 149 L271 154 L265 153 L261 152 L258 153 L251 152 L245 153 L237 155 L237 153 L244 150 L243 148 L242 148 L238 148 L236 148 L235 146 L234 146 L233 146 L233 150 L232 150 L231 149 L231 147 L230 143 L230 140 L232 138 L230 137 L229 138 L227 139 L225 140 L222 147 L221 151 L223 155 L230 159 L231 160 L231 162 L230 164 L228 165 L221 167 L214 170 L212 173 L207 185 L202 193 L195 196 L188 193 L186 190 L184 187 L182 184 L179 180 L178 176 L178 170 L177 166 L178 165 L182 162 L183 161 L186 158 L186 156 L187 154 L185 152 L180 152 L175 153 L172 152 L167 149 L166 148 L161 148 L158 149 L154 150 L151 150 L150 151 L146 155 L142 157 L140 158 L133 158 L130 159 L127 161 L126 160 L123 162 L119 164 L117 165 L113 164 L106 167 L102 167 L99 166 L95 163 L92 164 L90 168 L88 175 L87 179 L87 182 L85 182 L75 175 L74 175 L66 176 L64 176 L62 178 L59 178 L56 177 L54 176 L52 176 L49 177 L48 167 L49 165 L50 164 L52 162 L56 161 L60 162 L63 161 L65 159 L67 156 L70 154 L74 152 L78 150 L81 147 L84 143 L87 141 L90 139 L95 134 L101 128 L104 124 L105 123 L110 120 L118 119 L121 119 L124 122 L126 122 L128 121 L132 120 L135 121 L139 121 L143 121 L150 119 L154 118 L157 116 L170 115 L179 112 L181 112 L182 113 L182 115 L181 118 L182 119 L184 120 L192 120 L195 121 L198 119 L201 117 L205 114 L207 111 L205 107 L205 103 L206 98 L209 94 L212 92 L215 89 L221 81 L226 75 L227 67 L226 58 L230 51 L234 50 L241 47 L245 46 L245 47 L245 49 L239 55 L236 57 L234 58 L233 59 L232 61 L235 64 L235 67 L235 69 L235 71 L239 74 L242 74 L244 74 L245 74 L250 68 L251 67 L263 63 L269 60 L272 59 L275 57 L282 51 L285 48 L287 45 L289 41 L290 37 L292 34 L303 28 L307 25 L308 23 L309 18 L310 13 L312 10 L314 6 L316 2 L319 -1 L320 -4 L323 -13 L324 -17 L324 -19 L326 -20 L327 -22 L327 -24 L328 -26 L328 -32 L328 -37 L326 -41 L325 -42 L323 -42 L321 -41 L318 -43 L319 -44 L321 -45 L323 -45 L324 -47 L326 -51 L327 -56 L327 -58 L325 -61 L324 -66 L324 -68 L325 -71 L327 -73 L329 -74 L331 -74 L333 -75 L334 -76 L335 -77 L336 -81 L337 -83 L336 -89 L337 -90 L338 -91 L340 -91 L342 -91 L344 -91 L346 -90 L346 -89 L347 -79 L348 -78 L349 -77 L351 -77 L352 -78 L353 -80 L355 -81 L360 -79 L362 -80 L364 -83 L365 -87 L364 -91 L363 -92 L362 -92 L360 -91 L359 -90 L351 -88 L351 -92 L353 -99 L354 -101 L355 -102 L358 -101 L360 -100 L364 -97 Z M154 167 L158 169 L163 168 L163 175 L163 177 L165 179 L164 182 L166 183 L160 187 L155 191 L153 194 L151 197 L150 201 L149 204 L147 203 L142 197 L139 195 L134 194 L132 195 L122 200 L120 204 L117 210 L116 213 L114 213 L113 214 L112 219 L109 223 L107 223 L103 222 L102 222 L104 217 L101 217 L97 217 L97 213 L95 211 L97 209 L97 207 L98 206 L98 204 L98 203 L96 202 L95 201 L95 198 L94 197 L91 198 L85 201 L83 201 L86 199 L91 196 L93 195 L99 190 L102 188 L104 184 L104 182 L105 180 L106 177 L108 176 L111 173 L112 173 L114 177 L117 179 L119 179 L122 178 L123 177 L127 178 L131 176 L132 174 L132 172 L131 167 L133 168 L134 168 L138 165 L142 164 L146 163 L150 165 L154 167 Z M57 191 L61 192 L63 192 L65 192 L67 190 L70 189 L71 190 L73 191 L74 193 L73 195 L71 199 L68 203 L74 204 L79 204 L78 207 L78 209 L79 210 L81 212 L80 213 L80 215 L83 217 L82 218 L82 219 L74 229 L72 233 L70 239 L69 242 L68 246 L67 251 L66 255 L66 259 L66 263 L62 273 L59 273 L56 271 L54 272 L53 274 L55 278 L49 284 L42 287 L42 286 L43 284 L44 283 L44 282 L45 278 L45 274 L43 268 L43 266 L44 266 L45 265 L46 265 L46 263 L45 262 L43 261 L41 261 L40 263 L38 267 L37 271 L38 273 L39 275 L41 278 L40 280 L39 281 L31 278 L29 278 L27 277 L26 273 L29 272 L30 271 L31 270 L31 265 L29 262 L28 261 L27 259 L28 256 L27 252 L27 247 L28 246 L31 245 L33 243 L35 239 L38 234 L41 228 L38 227 L36 226 L39 223 L38 220 L35 215 L33 210 L30 208 L29 207 L27 208 L25 210 L27 213 L26 216 L27 219 L28 219 L30 219 L31 219 L32 221 L32 223 L32 225 L30 226 L29 226 L27 224 L26 223 L23 222 L20 224 L17 228 L14 229 L15 227 L16 224 L15 222 L12 218 L11 216 L11 214 L11 211 L14 214 L16 218 L18 219 L21 219 L19 214 L18 213 L15 210 L11 207 L8 205 L9 201 L11 200 L12 200 L17 202 L17 200 L16 199 L16 197 L19 196 L23 194 L24 194 L25 192 L26 191 L30 191 L32 190 L35 186 L35 184 L36 183 L42 180 L43 179 L47 180 L50 181 L52 185 L54 189 L57 191 Z M154 159 L153 159 L151 161 L151 159 L149 158 L149 157 L153 157 L155 157 L154 159 Z M51 310 L48 310 L48 308 L50 303 L50 300 L52 295 L53 294 L54 294 L54 295 L54 301 L52 305 L51 310 Z M24 242 L21 243 L21 242 L20 242 L22 240 L22 239 L21 238 L22 233 L22 231 L26 231 L27 232 L27 238 L24 242 Z M33 235 L30 235 L29 235 L29 233 L32 231 L35 232 L34 234 L33 235 Z M124 95 L123 96 L120 96 L119 94 L119 91 L122 90 L124 93 L124 95 Z M276 35 L273 35 L272 35 L274 34 L274 32 L275 29 L273 28 L273 25 L275 22 L279 17 L281 17 L281 19 L279 24 L279 25 L283 26 L281 32 L276 35 Z M322 211 L321 212 L320 211 L319 210 L320 209 L321 209 L323 210 L322 211 Z M310 150 L309 151 L308 151 L307 150 L307 148 L309 148 L310 150 Z M172 166 L168 169 L166 169 L164 167 L164 166 L166 163 L169 159 L171 157 L173 156 L174 156 L171 162 L172 166 Z M6 205 L4 207 L2 207 L3 205 L4 204 L5 201 L7 200 L8 200 L6 203 L6 205 Z M15 186 L13 187 L11 186 L12 183 L13 182 L14 183 L15 186 Z M100 172 L99 174 L96 173 L97 172 L98 170 L99 170 L99 172 L100 172 Z M90 179 L92 180 L95 179 L96 180 L95 181 L93 182 L90 181 L89 181 L88 179 L89 178 L90 179 Z M13 263 L12 264 L12 261 L15 259 L15 260 L13 263 Z M49 48 L48 49 L46 48 L46 46 L47 45 L49 45 L50 46 L49 48 Z M-3397 -762 L-3388 -764 L-3382 -765 L-3377 -762 L-3385 -757 L-3393 -752 L-3403 -749 L-3416 -742 L-3437 -737 L-3447 -736 L-3436 -735 L-3432 -730 L-3434 -721 L-3439 -710 L-3439 -700 L-3438 -692 L-3442 -681 L-3445 -669 L-3452 -658 L-3462 -644 L-3472 -646 L-3494 -645 L-3498 -640 L-3506 -638 L-3512 -629 L-3513 -617 L-3539 -615 L-3550 -622 L-3549 -630 L-3561 -644 L-3564 -650 L-3555 -649 L-3559 -655 L-3551 -658 L-3557 -664 L-3574 -684 L-3582 -695 L-3587 -703 L-3593 -713 L-3599 -727 L-3601 -731 L-3604 -747 L-3604 -753 L-3598 -753 L-3607 -755 L-3615 -757 L-3621 -766 L-3622 -779 L-3625 -770 L-3626 -767 L-3633 -752 L-3638 -751 L-3646 -751 L-3651 -753 L-3652 -748 L-3658 -743 L-3665 -739 L-3685 -724 L-3700 -719 L-3726 -715 L-3735 -717 L-3735 -719 L-3739 -716 L-3745 -718 L-3741 -722 L-3747 -723 L-3763 -729 L-3777 -740 L-3774 -751 L-3758 -746 L-3752 -751 L-3765 -752 L-3763 -757 L-3761 -764 L-3749 -770 L-3757 -768 L-3771 -762 L-3778 -758 L-3789 -759 L-3783 -774 L-3776 -777 L-3766 -777 L-3756 -781 L-3767 -780 L-3769 -784 L-3759 -792 L-3751 -800 L-3746 -795 L-3740 -803 L-3732 -806 L-3757 -800 L-3765 -793 L-3771 -788 L-3782 -778 L-3787 -774 L-3789 -777 L-3786 -786 L-3785 -790 L-3772 -792 L-3780 -793 L-3788 -804 L-3773 -813 L-3785 -808 L-3792 -819 L-3790 -827 L-3777 -826 L-3749 -827 L-3735 -828 L-3730 -823 L-3730 -828 L-3719 -833 L-3718 -840 L-3722 -832 L-3733 -830 L-3743 -833 L-3746 -833 L-3760 -830 L-3783 -828 L-3793 -838 L-3785 -841 L-3788 -844 L-3795 -851 L-3793 -858 L-3768 -855 L-3740 -857 L-3758 -856 L-3784 -859 L-3788 -867 L-3782 -867 L-3776 -873 L-3765 -877 L-3760 -874 L-3743 -877 L-3754 -877 L-3757 -879 L-3751 -884 L-3739 -885 L-3717 -881 L-3711 -883 L-3715 -886 L-3700 -890 L-3728 -889 L-3740 -888 L-3733 -896 L-3714 -902 L-3705 -903 L-3692 -897 L-3691 -900 L-3695 -907 L-3682 -911 L-3686 -914 L-3689 -918 L-3675 -922 L-3668 -917 L-3661 -920 L-3649 -922 L-3642 -916 L-3638 -914 L-3622 -915 L-3618 -918 L-3616 -923 L-3603 -927 L-3600 -931 L-3601 -934 L-3600 -937 L-3612 -933 L-3612 -927 L-3642 -918 L-3647 -924 L-3653 -925 L-3644 -932 L-3633 -942 L-3612 -957 L-3599 -961 L-3592 -966 L-3600 -966 L-3574 -979 L-3564 -976 L-3554 -984 L-3566 -979 L-3571 -982 L-3575 -986 L-3569 -996 L-3554 -1008 L-3549 -1010 L-3537 -1016 L-3521 -1019 L-3528 -1020 L-3538 -1018 L-3545 -1030 L-3539 -1036 L-3530 -1039 L-3521 -1040 L-3526 -1044 L-3517 -1049 L-3508 -1053 L-3494 -1054 L-3478 -1056 L-3503 -1056 L-3502 -1059 L-3489 -1068 L-3475 -1064 L-3469 -1060 L-3467 -1067 L-3480 -1069 L-3477 -1074 L-3492 -1071 L-3494 -1077 L-3479 -1082 L-3469 -1082 L-3479 -1085 L-3467 -1090 L-3456 -1092 L-3449 -1080 L-3448 -1085 L-3447 -1088 L-3451 -1096 L-3431 -1097 L-3416 -1099 L-3409 -1100 L-3413 -1102 L-3441 -1102 L-3437 -1107 L-3415 -1113 L-3405 -1125 L-3394 -1129 L-3388 -1138 L-3381 -1134 L-3368 -1133 L-3377 -1139 L-3369 -1140 L-3365 -1144 L-3344 -1151 L-3346 -1140 L-3339 -1148 L-3330 -1154 L-3324 -1155 L-3325 -1144 L-3333 -1133 L-3320 -1141 L-3315 -1143 L-3318 -1152 L-3305 -1155 L-3297 -1158 L-3281 -1154 L-3277 -1158 L-3292 -1164 L-3288 -1167 L-3272 -1168 L-3262 -1168 L-3248 -1171 L-3242 -1162 L-3233 -1157 L-3235 -1162 L-3223 -1173 L-3204 -1182 L-3201 -1186 L-3199 -1191 L-3188 -1194 L-3174 -1189 L-3169 -1192 L-3161 -1190 L-3162 -1187 L-3176 -1176 L-3183 -1163 L-3170 -1167 L-3145 -1187 L-3129 -1190 L-3132 -1181 L-3134 -1175 L-3122 -1177 L-3116 -1185 L-3104 -1189 L-3111 -1195 L-3097 -1197 L-3079 -1190 L-3092 -1184 L-3084 -1184 L-3085 -1174 L-3085 -1167 L-3078 -1176 L-3068 -1189 L-3054 -1189 L-3041 -1184 L-3036 -1182 L-3023 -1181 L-3017 -1178 L-3001 -1171 L-3022 -1163 L-3066 -1161 L-3041 -1153 L-3039 -1148 L-3027 -1147 L-3023 -1153 L-3017 -1148 L-3008 -1150 L-2986 -1146 L-2975 -1151 L-2968 -1152 L-2957 -1153 L-2938 -1148 L-2941 -1143 L-2966 -1144 L-2957 -1139 L-2938 -1138 L-2939 -1134 L-2924 -1137 L-2926 -1131 L-2934 -1123 L-2919 -1132 L-2897 -1132 L-2872 -1129 L-2851 -1128 L-2775 -1099 L-2764 -1097 L-2730 -1086 L-2731 -1089 L-2718 -1082 L-2705 -1075 L-2692 -1063 L-2686 -1055 L-2686 -1044 L-2722 -1021 L-2774 -1012 L-2807 -1018 L-2835 -1021 L-2883 -1032 L-2896 -1032 L-2903 -1036 L-2920 -1039 L-2934 -1041 L-2942 -1049 L-2972 -1053 L-2958 -1049 L-2948 -1040 L-2940 -1036 L-2933 -1031 L-2923 -1027 L-2924 -1022 L-2921 -1022 L-2887 -1008 L-2884 -1001 L-2889 -991 L-2891 -983 L-2883 -969 L-2880 -963 L-2876 -952 L-2858 -950 L-2838 -937 L-2817 -932 L-2797 -932 L-2784 -939 L-2791 -949 L-2807 -950 L-2823 -961 L-2831 -967 L-2823 -972 L-2812 -980 L-2782 -967 L-2772 -966 L-2754 -962 L-2730 -960 L-2719 -965 L-2713 -969 L-2728 -982 L-2731 -992 L-2709 -1004 L-2692 -1010 L-2661 -1027 L-2650 -1028 L-2633 -1025 L-2615 -1020 L-2617 -1014 L-2607 -1015 L-2600 -1010 L-2600 -1018 L-2588 -1035 L-2590 -1047 L-2607 -1054 L-2607 -1063 L-2596 -1086 L-2596 -1093 L-2622 -1107 L-2619 -1109 L-2570 -1105 L-2537 -1095 L-2521 -1078 L-2556 -1075 L-2575 -1062 L-2555 -1054 L-2542 -1041 L-2528 -1040 L-2521 -1040 L-2490 -1048 L-2483 -1064 L-2472 -1071 L-2454 -1074 L-2458 -1080 L-2445 -1079 L-2407 -1092 L-2387 -1097 L-2359 -1104 L-2350 -1101 L-2351 -1097 L-2344 -1098 L-2339 -1103 L-2348 -1106 L-2304 -1121 L-2286 -1120 L-2304 -1117 L-2300 -1114 L-2305 -1107 L-2303 -1098 L-2318 -1096 L-2316 -1093 L-2299 -1092 L-2286 -1094 L-2276 -1091 L-2262 -1102 L-2239 -1107 L-2218 -1107 L-2192 -1108 L-2165 -1118 L-2143 -1120 L-2134 -1111 L-2142 -1107 L-2127 -1097 L-2119 -1098 L-2116 -1103 L-2110 -1110 L-2090 -1117 L-2094 -1125 L-2106 -1145 L-2087 -1152 L-2034 -1148 L-1974 -1137 L-1961 -1131 L-1940 -1126 L-1919 -1119 L-1896 -1112 L-1866 -1099 L-1845 -1105 L-1842 -1119 L-1854 -1120 L-1868 -1136 L-1882 -1142 L-1903 -1143 L-1907 -1145 L-1903 -1158 L-1894 -1162 L-1896 -1169 L-1894 -1187 L-1910 -1188 L-1908 -1194 L-1912 -1198 L-1893 -1208 L-1862 -1220 L-1845 -1247 L-1821 -1268 L-1820 -1267 L-1813 -1265 L-1764 -1266 L-1745 -1263 L-1724 -1258 L-1729 -1235 L-1740 -1221 L-1752 -1214 L-1731 -1201 L-1727 -1175 L-1734 -1168 L-1730 -1139 L-1732 -1124 L-1724 -1114 L-1700 -1104 L-1710 -1095 L-1713 -1083 L-1719 -1073 L-1759 -1044 L-1762 -1038 L-1777 -1032 L-1792 -1030 L-1796 -1034 L-1790 -1038 L-1801 -1035 L-1813 -1041 L-1838 -1040 L-1837 -1036 L-1827 -1029 L-1799 -1022 L-1762 -1022 L-1739 -1022 L-1707 -1040 L-1691 -1050 L-1667 -1072 L-1664 -1083 L-1672 -1095 L-1670 -1112 L-1623 -1120 L-1608 -1117 L-1589 -1101 L-1591 -1076 L-1578 -1071 L-1566 -1067 L-1538 -1069 L-1560 -1072 L-1579 -1084 L-1569 -1092 L-1568 -1102 L-1582 -1117 L-1626 -1130 L-1655 -1125 L-1688 -1125 L-1691 -1136 L-1701 -1147 L-1689 -1168 L-1678 -1182 L-1702 -1205 L-1715 -1211 L-1678 -1230 L-1657 -1237 L-1654 -1248 L-1660 -1258 L-1659 -1264 L-1642 -1257 L-1639 -1249 L-1634 -1243 L-1640 -1238 L-1649 -1225 L-1644 -1213 L-1647 -1208 L-1604 -1202 L-1578 -1201 L-1549 -1192 L-1532 -1195 L-1543 -1194 L-1554 -1198 L-1574 -1206 L-1600 -1212 L-1620 -1220 L-1623 -1229 L-1594 -1232 L-1560 -1229 L-1565 -1235 L-1583 -1236 L-1577 -1239 L-1558 -1246 L-1506 -1240 L-1481 -1235 L-1458 -1223 L-1427 -1223 L-1410 -1222 L-1410 -1216 L-1428 -1206 L-1436 -1197 L-1433 -1188 L-1438 -1177 L-1436 -1176 L-1425 -1191 L-1412 -1191 L-1412 -1179 L-1422 -1166 L-1414 -1161 L-1409 -1164 L-1404 -1170 L-1391 -1175 L-1395 -1186 L-1405 -1205 L-1396 -1215 L-1396 -1220 L-1420 -1228 L-1435 -1236 L-1440 -1242 L-1465 -1245 L-1480 -1251 L-1484 -1260 L-1481 -1270 L-1490 -1275 L-1492 -1282 L-1487 -1288 L-1449 -1294 L-1370 -1296 L-1346 -1296 L-1322 -1301 L-1292 -1301 L-1310 -1292 L-1327 -1286 L-1327 -1281 L-1306 -1274 L-1318 -1280 L-1323 -1286 L-1316 -1289 L-1282 -1295 L-1275 -1300 L-1300 -1313 L-1321 -1318 L-1305 -1323 L-1284 -1320 L-1300 -1326 L-1328 -1330 L-1318 -1334 L-1295 -1333 L-1276 -1344 L-1293 -1346 L-1286 -1350 L-1238 -1357 L-1194 -1365 L-1143 -1370 L-1091 -1375 L-1087 -1377 L-1095 -1377 L-1106 -1377 L-1112 -1380 L-1100 -1384 L-1082 -1384 L-1062 -1384 L-1036 -1385 L-1014 -1383 L-1024 -1376 L-998 -1380 L-989 -1378 L-970 -1380 L-958 -1384 L-945 -1387 L-925 -1388 L-906 -1383 L-904 -1379 L-908 -1373 L-899 -1378 L-911 -1390 L-931 -1398 L-896 -1398 L-862 -1398 L-843 -1398 L-866 -1401 L-863 -1409 L-864 -1417 L-848 -1425 L-792 -1441 L-766 -1444 L-732 -1438 L-712 -1434 L-730 -1426 L-766 -1421 L-720 -1417 L-701 -1419 L-682 -1419 L-675 -1411 L-694 -1402 L-690 -1399 L-661 -1399 L-652 -1405 L-639 -1407 L-590 -1407 L-546 -1406 L-530 -1401 L-530 -1394 L-515 -1395 L-505 -1387 L-508 -1382 L-495 -1385 L-498 -1389 L-486 -1387 L-471 -1377 L-479 -1365 L-482 -1366 L-494 -1369 L-514 -1374 L-499 -1364 L-487 -1363 L-479 -1354 L-532 -1334 L-578 -1323 L-593 -1317 L-595 -1312 L-644 -1295 L-675 -1291 L-705 -1281 L-737 -1261 L-709 -1267 L-701 -1273 L-669 -1275 L-645 -1279 L-632 -1281 L-609 -1287 L-576 -1292 L-565 -1297 L-586 -1295 L-599 -1299 L-586 -1306 L-557 -1304 L-542 -1307 L-549 -1302 L-523 -1295 L-502 -1298 L-499 -1304 L-487 -1295 L-493 -1286 L-483 -1274 L-490 -1265 L-492 -1259 L-476 -1256 L-488 -1259 L-485 -1267 L-480 -1278 L-472 -1281 L-476 -1283 L-471 -1289 L-426 -1295 L-331 -1291 L-316 -1287 L-333 -1283 L-301 -1271 L-266 -1268 L-231 -1268 L-215 -1265 L-200 -1266 L-207 -1270 L-187 -1267 L-178 -1274 L-173 -1276 L-181 -1284 L-180 -1293 L-164 -1295 L-145 -1297 L-113 -1286 L-98 -1288 L-90 -1288 L-92 -1284 L-75 -1285 L-48 -1287 L-39 -1284 L-32 -1280 L-17 -1278 L-12 -1273 L-8 -1271 L-21 -1265 L-2 -1261 L-15 -1254 L-27 -1252 L-1 -1248 L-1 -1235 L-34 -1244 L-45 -1243 L-12 -1223 L-5 -1228 L0 -1226 L-11 -1221 L-5 -1217 L14 -1199 L38 -1191 L47 -1193 L57 -1185 L69 -1191 L83 -1204 L85 -1213 L99 -1228 L106 -1225 L117 -1217 L146 -1209 L174 -1214 L201 -1218 L238 -1210 L255 -1203 L265 -1200 L261 -1203 L268 -1206 L266 -1208 L265 -1212 L272 -1217 L286 -1218 L302 -1211 L326 -1213 L318 -1228 L315 -1232 L332 -1239 L311 -1240 L300 -1242 L314 -1250 L359 -1254 L346 -1263 L351 -1265 L389 -1259 L458 -1256 L494 -1252 L517 -1248 L485 -1247 L466 -1243 L457 -1239 L528 -1243 L528 -1237 L510 -1230 L511 -1237 L501 -1240 L502 -1233 L487 -1228 L480 -1228 L479 -1224 L485 -1221 L521 -1229 L548 -1244 L600 -1241 L630 -1232 L628 -1226 L600 -1223 L600 -1221 L627 -1217 L633 -1214 L652 -1212 L634 -1203 L661 -1209 L685 -1203 L685 -1194 L737 -1190 L785 -1196 L835 -1198 L897 -1193 L931 -1180 L937 -1169 L931 -1161 L931 -1150 L964 -1143 L968 -1124 L977 -1117 L963 -1104 L978 -1114 L984 -1123 L983 -1135 L1009 -1145 L1043 -1147 L1063 -1147 L1119 -1141 L1152 -1141 L1179 -1147 L1188 -1137 L1199 -1129 L1224 -1118 L1258 -1114 L1269 -1131 L1247 -1144 L1257 -1153 L1268 -1161 L1320 -1157 L1342 -1151 L1356 -1154 L1388 -1153 L1422 -1154 L1453 -1145 L1499 -1138 L1514 -1133 L1543 -1121 L1547 -975 L1530 -966 L1502 -958 L1473 -964 L1461 -973 L1437 -975 L1444 -973 L1459 -971 L1457 -965 L1438 -967 L1406 -965 L1385 -961 L1415 -964 L1426 -969 L1434 -965 L1431 -959 L1447 -959 L1467 -964 L1468 -957 L1484 -944 L1491 -947 L1497 -945 L1500 -936 L1507 -930 L1505 -923 L1506 -919 L1506 -913 L1509 -917 L1514 -911 L1528 -904 L1524 -899 L1532 -893 L1531 -884 L1520 -876 L1515 -875 L1466 -883 L1465 -887 L1464 -890 L1458 -891 L1454 -887 L1461 -883 L1446 -880 L1413 -868 L1402 -865 L1386 -859 L1372 -855 L1352 -851 L1335 -839 L1328 -838 L1327 -836 L1324 -834 L1315 -830 L1309 -824 L1300 -819 L1287 -814 L1260 -803 L1257 -797 L1252 -786 L1239 -791 L1237 -797 L1220 -808 L1201 -808 L1173 -806 L1149 -799 L1128 -782 L1124 -786 L1129 -800 L1125 -805 L1102 -795 L1092 -791 L1088 -781 L1079 -787 L1070 -789 L1063 -787 L1052 -789 L1046 -784 L1039 -779 L1036 -761 L1027 -755 L1027 -750 L1017 -743 L999 -723 L999 -710 L1010 -705 L1012 -704 L1020 -711 L1035 -701 L1027 -694 L1021 -685 L1022 -671 L1026 -666 L1036 -664 L1038 -648 L1030 -641 L1017 -648 L1027 -656 L1024 -657 L1013 -654 L1008 -646 L995 -633 L989 -615 L997 -602 L997 -590 L976 -584 L960 -585 L939 -572 L932 -557 L935 -548 L937 -538 L930 -536 L905 -530 L895 -528 L889 -526 L892 -516 L891 -505 L879 -484 L861 -471 L840 -454 L836 -458 L830 -468 L826 -504 L819 -518 L813 -555 L803 -597 L804 -631 L815 -667 L837 -682 L844 -697 L839 -704 L845 -707 L865 -714 L884 -713 L897 -724 L915 -736 L932 -755 L958 -772 L981 -788 L998 -803 L1019 -812 L1042 -819 L1045 -825 L1055 -833 L1058 -840 L1055 -848 L1061 -863 L1077 -879 L1093 -877 L1096 -878 L1101 -880 L1076 -886 L1038 -882 L1037 -875 L1033 -871 L1029 -857 L1036 -850 L1031 -845 L1026 -846 L1020 -850 L1013 -849 L968 -823 L951 -815 L942 -811 L943 -818 L942 -826 L930 -823 L934 -833 L942 -844 L946 -855 L942 -858 L921 -853 L912 -859 L892 -854 L878 -852 L856 -852 L839 -844 L829 -832 L810 -816 L783 -801 L765 -783 L762 -775 L760 -768 L771 -770 L789 -760 L779 -757 L765 -757 L750 -754 L731 -754 L719 -748 L705 -751 L695 -747 L666 -753 L692 -756 L696 -761 L677 -770 L663 -772 L658 -768 L650 -769 L652 -771 L638 -774 L610 -777 L606 -770 L599 -768 L593 -764 L598 -761 L578 -766 L556 -760 L526 -767 L511 -756 L502 -764 L452 -765 L424 -764 L388 -750 L367 -733 L347 -721 L326 -702 L315 -693 L301 -686 L272 -662 L268 -655 L247 -638 L229 -628 L210 -615 L182 -600 L182 -592 L200 -586 L226 -588 L229 -582 L225 -562 L231 -559 L243 -566 L239 -572 L255 -575 L247 -569 L254 -564 L255 -560 L242 -549 L257 -549 L277 -561 L283 -563 L274 -550 L279 -548 L287 -560 L287 -573 L299 -573 L320 -574 L334 -565 L357 -546 L368 -539 L362 -528 L353 -529 L365 -515 L362 -504 L372 -497 L365 -486 L352 -469 L346 -453 L343 -421 L345 -419 L341 -410 L340 -392 L337 -385 L337 -379 L332 -362 L319 -349 L307 -338 L283 -307 L277 -296 L269 -278 L248 -255 L227 -234 L212 -219 L204 -210 L189 -190 L178 -177 L148 -159 L131 -151 L115 -147 L109 -149 L97 -154 L92 -169 L81 -161 L83 -167 L76 -167 L64 -151 L57 -143 L44 -145 L44 -132 L39 -131 L28 -127 L21 -120 L14 -109 L14 -97 L13 -80 L-2 -70 L-14 -59 L-24 -51 L-37 -47 L-53 -38 L-54 -26 L-57 -23 L-55 -15 L-46 -12 L-35 -1 L-28 5 L-8 40 L4 68 L4 85 L3 95 L4 102 L8 101 L4 121 L-7 135 L-20 135 L-27 139 L-28 144 L-37 142 L-44 141 L-51 144 L-48 150 L-54 145 L-58 149 L-58 156 L-65 156 L-62 150 L-73 160 L-78 158 L-85 165 L-86 158 L-92 150 L-85 149 L-83 146 L-88 146 L-92 134 L-87 123 L-82 118 L-86 115 L-79 111 L-81 105 L-80 101 L-84 94 L-84 85 L-88 77 L-95 77 L-90 67 L-83 65 L-75 71 L-72 69 L-74 66 L-78 58 L-81 49 L-83 41 L-82 37 L-83 36 L-96 37 L-103 33 L-111 31 L-119 39 L-122 34 L-132 31 L-125 25 L-134 24 L-135 20 L-132 10 L-119 3 L-116 1 L-126 -2 L-119 -21 L-126 -30 L-138 -37 L-140 -32 L-145 -38 L-150 -46 L-154 -43 L-172 -42 L-177 -37 L-185 -34 L-197 -31 L-219 -14 L-225 -10 L-231 -9 L-233 -5 L-244 -2 L-248 1 L-248 -7 L-234 -17 L-228 -23 L-242 -23 L-245 -28 L-239 -33 L-239 -37 L-227 -48 L-217 -61 L-217 -68 L-228 -82 L-231 -77 L-248 -79 L-256 -71 L-269 -54 L-296 -42 L-306 -30 L-315 -16 L-322 -15 L-336 -11 L-349 -16 L-358 3 L-352 17 L-325 24 L-314 32 L-312 38 L-315 42 L-314 55 L-301 61 L-288 54 L-274 42 L-275 40 L-252 38 L-238 46 L-224 49 L-219 46 L-208 50 L-205 54 L-209 63 L-207 67 L-214 71 L-217 68 L-225 67 L-249 78 L-257 79 L-257 82 L-258 87 L-263 90 L-268 98 L-274 98 L-276 94 L-281 98 L-275 103 L-283 110 L-288 116 L-296 122 L-304 135 L-308 149 L-297 155 L-278 164 L-271 181 L-265 195 L-256 219 L-254 230 L-241 237 L-238 246 L-228 254 L-230 262 L-245 256 L-260 249 L-278 252 L-283 253 L-269 250 L-260 257 L-247 264 L-229 282 L-230 293 L-241 295 L-255 307 L-265 310 L-278 316 L-273 316 L-256 319 L-243 314 L-229 327 L-220 330 L-236 342 L-228 339 L-224 344 L-229 353 L-237 353 L-237 357 L-234 365 L-234 370 L-239 375 L-235 388 L-245 391 L-250 388 L-257 399 L-261 400 L-263 408 L-266 414 L-267 424 L-275 432 L-281 448 L-287 450 L-289 446 L-290 442 L-294 445 L-295 448 L-290 453 L-288 459 L-293 464 L-303 471 L-310 469 L-302 475 L-295 476 L-298 488 L-296 496 L-304 494 L-310 495 L-306 501 L-315 502 L-317 513 L-325 516 L-323 520 L-332 525 L-342 524 L-347 530 L-350 531 L-343 535 L-350 547 L-356 553 L-362 555 L-363 561 L-365 558 L-371 562 L-378 560 L-384 571 L-385 574 L-389 578 L-395 586 L-400 587 L-410 592 L-419 591 L-425 595 L-434 592 L-440 598 L-445 594 L-449 597 L-452 602 L-459 601 L-457 605 L-458 609 L-466 607 L-470 605 L-469 602 L-477 592 L-480 583 L-482 580 L-484 586 L-487 589 L-483 596 L-479 608 L-482 614 L-487 616 L-495 614 L-499 625 L-506 625 L-510 630 L-515 624 L-517 622 L-517 630 L-524 628 L-530 630 L-535 632 L-540 638 L-552 640 L-557 639 L-562 644 L-572 650 L-576 646 L-578 652 L-584 660 L-577 666 L-579 671 L-574 680 L-585 686 L-592 680 L-590 679 L-595 672 L-597 664 L-598 656 L-596 646 L-594 640 L-599 639 L-604 633 L-609 642 L-617 642 L-616 636 L-624 635 L-629 632 L-631 626 L-635 628 L-635 635 L-639 633 L-642 638 L-651 640 L-659 643 L-668 648 L-670 656 L-678 658 L-682 659 L-688 659 L-690 660 L-694 676 L-699 688 L-711 698 L-718 718 L-722 730 L-719 742 L-714 751 L-704 761 L-697 774 L-700 779 L-683 798 L-670 814 L-662 823 L-655 832 L-650 831 L-645 838 L-642 840 L-638 848 L-629 863 L-623 874 L-617 891 L-614 908 L-612 916 L-612 923 L-611 945 L-607 957 L-608 967 L-613 968 L-613 989 L-612 995 L-613 992 L-615 998 L-614 1004 L-619 1012 L-629 1022 L-642 1031 L-650 1039 L-666 1048 L-673 1051 L-679 1045 L-681 1043 L-683 1052 L-693 1049 L-688 1050 L-688 1055 L-697 1055 L-687 1061 L-691 1066 L-693 1071 L-707 1058 L-694 1077 L-696 1082 L-713 1068 L-706 1081 L-706 1088 L-732 1111 L-745 1119 L-747 1111 L-744 1073 L-739 1068 L-743 1062 L-749 1059 L-754 1056 L-764 1046 L-776 1042 L-785 1046 L-784 1039 L-783 1027 L-788 1026 L-794 1032 L-800 1021 L-802 1007 L-805 1002 L-806 1000 L-813 986 L-817 988 L-825 977 L-829 976 L-836 970 L-850 969 L-867 968 L-866 954 L-865 942 L-874 936 L-887 937 L-894 946 L-895 963 L-894 986 L-900 1001 L-907 1021 L-916 1045 L-919 1056 L-920 1076 L-916 1090 L-913 1095 L-898 1096 L-894 1118 L-889 1124 L-887 1124 L-879 1165 L-882 1160 L-885 1157 L-884 1151 L-889 1155 L-881 1170 L-873 1174 L-859 1182 L-848 1182 L-830 1205 L-817 1219 L-803 1232 L-790 1257 L-790 1289 L-789 1306 L-789 1328 L-778 1341 L-765 1373 L-764 1385 L-769 1383 L-772 1378 L-772 1383 L-781 1383 L-790 1384 L-806 1370 L-829 1353 L-848 1337 L-855 1330 L-854 1316 L-868 1297 L-871 1288 L-874 1280 L-880 1250 L-884 1215 L-890 1198 L-903 1173 L-908 1169 L-911 1165 L-917 1154 L-923 1149 L-928 1139 L-936 1129 L-941 1131 L-946 1132 L-948 1112 L-942 1085 L-934 1059 L-939 1062 L-941 1041 L-937 1034 L-932 1020 L-932 1010 L-928 1002 L-934 1002 L-936 997 L-934 990 L-936 984 L-934 979 L-935 967 L-937 955 L-942 937 L-948 920 L-952 928 L-952 912 L-958 894 L-957 890 L-961 874 L-964 848 L-966 834 L-963 823 L-970 824 L-977 816 L-979 803 L-987 795 L-988 795 L-990 810 L-997 823 L-1005 824 L-1009 815 L-1009 820 L-1007 829 L-1015 831 L-1023 837 L-1030 850 L-1037 853 L-1036 840 L-1041 850 L-1050 844 L-1050 838 L-1051 842 L-1057 844 L-1056 835 L-1056 825 L-1058 832 L-1064 840 L-1071 839 L-1066 820 L-1063 802 L-1059 786 L-1064 762 L-1072 742 L-1075 736 L-1076 723 L-1078 733 L-1083 734 L-1093 719 L-1085 723 L-1078 720 L-1081 714 L-1084 708 L-1089 704 L-1090 699 L-1097 693 L-1102 699 L-1108 693 L-1106 688 L-1107 680 L-1111 690 L-1112 685 L-1112 680 L-1117 675 L-1120 678 L-1129 666 L-1136 652 L-1141 626 L-1142 610 L-1144 610 L-1153 595 L-1156 592 L-1164 599 L-1179 583 L-1180 568 L-1182 563 L-1182 569 L-1187 571 L-1181 577 L-1185 582 L-1185 589 L-1185 596 L-1183 601 L-1181 612 L-1188 620 L-1194 628 L-1197 623 L-1195 616 L-1202 617 L-1200 604 L-1203 615 L-1207 624 L-1212 630 L-1215 611 L-1214 624 L-1221 632 L-1227 626 L-1229 624 L-1228 630 L-1233 634 L-1237 637 L-1239 631 L-1239 619 L-1243 628 L-1247 636 L-1252 633 L-1258 633 L-1254 616 L-1262 607 L-1258 615 L-1259 621 L-1270 634 L-1292 645 L-1294 660 L-1293 672 L-1298 682 L-1308 692 L-1314 693 L-1313 698 L-1334 707 L-1335 705 L-1338 699 L-1346 710 L-1338 708 L-1359 728 L-1364 737 L-1379 759 L-1401 777 L-1425 796 L-1435 809 L-1432 815 L-1435 823 L-1452 831 L-1467 834 L-1474 851 L-1478 852 L-1483 848 L-1495 854 L-1501 888 L-1499 905 L-1500 916 L-1497 929 L-1497 932 L-1501 935 L-1497 966 L-1505 983 L-1512 1008 L-1514 1017 L-1509 1022 L-1512 1055 L-1519 1054 L-1527 1060 L-1537 1082 L-1534 1091 L-1524 1094 L-1535 1093 L-1559 1107 L-1563 1126 L-1580 1137 L-1597 1125 L-1612 1100 L-1614 1095 L-1617 1078 L-1616 1073 L-1614 1084 L-1619 1065 L-1620 1060 L-1623 1051 L-1635 1016 L-1644 999 L-1651 990 L-1663 956 L-1667 933 L-1672 916 L-1675 903 L-1679 894 L-1686 883 L-1693 866 L-1693 861 L-1696 856 L-1703 842 L-1711 799 L-1716 773 L-1720 756 L-1722 744 L-1718 732 L-1723 733 L-1724 723 L-1724 719 L-1724 713 L-1728 703 L-1721 675 L-1723 660 L-1725 654 L-1727 642 L-1730 641 L-1717 632 L-1723 633 L-1729 624 L-1732 622 L-1727 614 L-1730 611 L-1743 611 L-1740 618 L-1745 624 L-1745 629 L-1741 634 L-1748 653 L-1778 668 L-1795 664 L-1817 640 L-1834 622 L-1840 607 L-1834 609 L-1823 606 L-1815 605 L-1804 600 L-1794 584 L-1796 581 L-1799 586 L-1806 586 L-1820 593 L-1851 577 L-1857 561 L-1851 554 L-1860 561 L-1865 552 L-1868 554 L-1872 554 L-1881 554 L-1884 552 L-1887 546 L-1891 541 L-1896 519 L-1911 513 L-1914 496 L-1922 488 L-1927 492 L-1917 494 L-1924 493 L-1950 496 L-1972 503 L-1988 498 L-1993 497 L-2006 497 L-2014 502 L-2033 500 L-2042 504 L-2047 502 L-2056 505 L-2069 504 L-2081 503 L-2097 495 L-2114 496 L-2126 495 L-2144 495 L-2166 489 L-2177 484 L-2196 481 L-2200 467 L-2205 443 L-2212 433 L-2228 429 L-2247 437 L-2254 444 L-2270 452 L-2282 451 L-2303 447 L-2314 438 L-2337 424 L-2344 413 L-2363 405 L-2373 402 L-2385 383 L-2388 370 L-2393 362 L-2399 356 L-2400 346 L-2413 329 L-2417 317 L-2437 320 L-2450 311 L-2444 311 L-2446 306 L-2453 310 L-2453 320 L-2460 324 L-2467 327 L-2478 323 L-2481 327 L-2476 339 L-2479 340 L-2489 346 L-2483 348 L-2478 352 L-2473 365 L-2469 375 L-2465 386 L-2456 403 L-2456 409 L-2445 416 L-2442 424 L-2428 438 L-2416 449 L-2419 448 L-2416 456 L-2415 469 L-2418 468 L-2416 479 L-2411 489 L-2403 507 L-2395 518 L-2396 504 L-2395 492 L-2389 474 L-2377 473 L-2373 485 L-2373 496 L-2371 508 L-2376 522 L-2379 526 L-2378 529 L-2375 536 L-2371 535 L-2367 537 L-2363 547 L-2351 547 L-2327 542 L-2301 544 L-2285 537 L-2281 527 L-2277 521 L-2258 501 L-2251 492 L-2234 471 L-2231 465 L-2226 461 L-2223 461 L-2225 480 L-2227 486 L-2225 511 L-2213 535 L-2199 550 L-2172 558 L-2160 560 L-2150 570 L-2144 579 L-2132 597 L-2120 602 L-2121 613 L-2129 629 L-2143 648 L-2159 677 L-2167 681 L-2168 673 L-2177 683 L-2182 697 L-2184 710 L-2182 727 L-2185 734 L-2207 739 L-2220 763 L-2237 772 L-2259 785 L-2258 792 L-2265 805 L-2280 805 L-2299 810 L-2319 817 L-2345 829 L-2353 845 L-2356 859 L-2366 864 L-2379 872 L-2409 883 L-2433 891 L-2449 901 L-2457 913 L-2467 918 L-2483 917 L-2499 930 L-2518 938 L-2535 939 L-2556 946 L-2569 957 L-2580 964 L-2595 968 L-2605 969 L-2618 966 L-2625 931 L-2630 917 L-2633 900 L-2635 889 L-2635 885 L-2638 876 L-2641 870 L-2639 867 L-2639 830 L-2642 819 L-2647 812 L-2652 802 L-2662 782 L-2679 760 L-2687 741 L-2691 729 L-2701 709 L-2706 702 L-2728 685 L-2740 668 L-2751 642 L-2754 630 L-2754 614 L-2753 599 L-2757 591 L-2760 585 L-2764 573 L-2777 550 L-2788 540 L-2797 537 L-2806 524 L-2808 512 L-2812 499 L-2824 482 L-2831 469 L-2846 440 L-2860 420 L-2875 396 L-2889 397 L-2884 380 L-2878 344 L-2882 346 L-2894 386 L-2898 403 L-2915 397 L-2931 378 L-2934 363 L-2944 347 L-2949 332 L-2954 330 L-2957 342 L-2949 355 L-2945 370 L-2941 378 L-2927 397 L-2921 410 L-2917 423 L-2911 434 L-2898 472 L-2882 505 L-2863 541 L-2858 549 L-2862 553 L-2860 574 L-2851 592 L-2834 607 L-2820 621 L-2814 646 L-2808 656 L-2812 655 L-2811 668 L-2810 691 L-2805 729 L-2798 743 L-2783 754 L-2778 760 L-2768 767 L-2754 803 L-2746 847 L-2738 861 L-2731 876 L-2731 869 L-2725 866 L-2722 875 L-2711 882 L-2700 890 L-2674 918 L-2652 947 L-2639 960 L-2631 961 L-2624 975 L-2622 989 L-2632 998 L-2648 1008 L-2644 1010 L-2632 1007 L-2620 1016 L-2598 1046 L-2574 1050 L-2547 1035 L-2528 1039 L-2504 1025 L-2489 1025 L-2463 1017 L-2452 1019 L-2431 1012 L-2404 999 L-2383 998 L-2382 1005 L-2385 1026 L-2386 1046 L-2388 1050 L-2383 1046 L-2378 1048 L-2381 1051 L-2391 1054 L-2394 1077 L-2400 1099 L-2411 1121 L-2427 1153 L-2439 1178 L-2449 1208 L-2481 1270 L-2540 1345 L-2593 1385 L-2619 1414 L-2647 1449 L-2657 1464 L-2666 1476 L-2672 1490 L-2682 1506 L-2692 1510 L-2696 1513 L-2697 1516 L-2700 1523 L-2712 1532 L-2719 1541 L-2721 1557 L-2728 1568 L-2732 1582 L-2734 1588 L-2740 1603 L-2748 1610 L-2751 1621 L-2753 1631 L-2761 1655 L-2759 1671 L-2751 1680 L-2741 1692 L-2742 1704 L-2746 1725 L-2742 1734 L-2746 1750 L-2741 1767 L-2736 1786 L-2732 1801 L-2729 1808 L-2722 1813 L-2713 1821 L-2711 1825 L-2708 1834 L-2709 1842 L-2708 1847 L-2712 1857 L-2710 1876 L-2709 1886 L-2710 1900 L-2707 1910 L-2711 1916 L-2707 1921 L-2708 1930 L-2708 1938 L-2707 1960 L-2703 1964 L-2705 1972 L-2701 1971 L-2699 1977 L-2699 1985 L-2704 1993 L-2706 1997 L-2708 2010 L-2721 2029 L-2725 2038 L-2729 2046 L-2748 2059 L-2757 2067 L-2764 2069 L-2774 2073 L-2784 2079 L-2809 2094 L-2818 2104 L-2824 2115 L-2834 2130 L-2839 2131 L-2843 2135 L-2857 2147 L-2881 2172 L-2888 2167 L-2885 2175 L-2886 2196 L-2878 2208 L-2869 2239 L-2867 2262 L-2865 2267 L-2863 2257 L-2861 2261 L-2862 2277 L-2862 2296 L-2865 2320 L-2861 2318 L-2864 2333 L-2878 2350 L-2922 2370 L-2945 2387 L-2951 2401 L-2945 2408 L-2942 2405 L-2940 2410 L-2943 2441 L-2953 2482 L-2968 2506 L-2976 2509 L-2999 2545 L-3015 2575 L-3035 2602 L-3056 2623 L-3084 2651 L-3110 2673 L-3139 2688 L-3162 2691 L-3168 2698 L-3185 2699 L-3207 2699 L-3233 2700 L-3251 2697 L-3266 2700 L-3294 2712 L-3305 2711 L-3319 2714 L-3337 2726 L-3354 2719 L-3355 2715 L-3361 2712 L-3368 2710 L-3371 2706 L-3373 2700 L-3380 2700 L-3382 2710 L-3386 2700 L-3382 2689 L-3388 2676 L-3396 2666 L-3401 2654 L-3395 2652 L-3386 2642 L-3390 2613 L-3406 2587 L-3428 2527 L-3443 2498 L-3460 2480 L-3479 2448 L-3484 2425 L-3485 2416 L-3492 2390 L-3493 2373 L-3499 2347 L-3503 2313 L-3505 2292 L-3504 2286 L-3502 2278 L-3519 2244 L-3535 2212 L-3547 2179 L-3576 2124 L-3586 2104 L-3587 2076 L-3585 2049 L-3587 2024 L-3580 2016 L-3570 1979 L-3562 1935 L-3544 1906 L-3528 1886 L-3523 1847 L-3527 1831 L-3533 1817 L-3542 1796 L-3546 1779 L-3547 1767 L-3547 1769 L-3537 1756 L-3537 1747 L-3554 1695 L-3569 1666 L-3567 1662 L-3548 1656 L-3553 1654 L-3563 1659 L-3569 1655 L-3573 1649 L-3573 1639 L-3578 1623 L-3580 1620 L-3585 1611 L-3589 1601 L-3606 1582 L-3614 1569 L-3629 1548 L-3649 1528 L-3639 1532 L-3644 1527 L-3652 1525 L-3654 1517 L-3661 1507 L-3655 1508 L-3662 1504 L-3666 1493 L-3661 1497 L-3655 1496 L-3658 1493 L-3662 1492 L-3662 1487 L-3669 1485 L-3674 1472 L-3678 1460 L-3671 1460 L-3666 1458 L-3661 1432 L-3659 1425 L-3656 1431 L-3646 1435 L-3642 1429 L-3656 1423 L-3661 1414 L-3654 1415 L-3651 1413 L-3653 1399 L-3657 1395 L-3655 1384 L-3651 1377 L-3647 1360 L-3644 1335 L-3643 1317 L-3647 1302 L-3654 1296 L-3648 1294 L-3651 1288 L-3652 1288 L-3656 1286 L-3658 1291 L-3661 1290 L-3671 1285 L-3673 1275 L-3674 1267 L-3678 1267 L-3680 1268 L-3685 1267 L-3684 1261 L-3688 1261 L-3693 1254 L-3692 1268 L-3712 1269 L-3716 1265 L-3723 1268 L-3729 1262 L-3727 1269 L-3736 1272 L-3738 1262 L-3738 1267 L-3739 1276 L-3743 1275 L-3745 1276 L-3753 1277 L-3754 1275 L-3756 1278 L-3763 1276 L-3775 1265 L-3779 1253 L-3779 1247 L-3781 1244 L-3779 1238 L-3776 1234 L-3787 1232 L-3781 1230 L-3782 1228 L-3783 1226 L-3789 1228 L-3791 1222 L-3810 1201 L-3840 1199 L-3831 1193 L-3841 1195 L-3863 1201 L-3896 1206 L-3911 1212 L-3916 1221 L-3937 1223 L-3960 1237 L-3978 1245 L-3999 1256 L-4014 1256 L-4036 1250 L-4044 1247 L-4037 1247 L-4042 1244 L-4044 1239 L-4063 1243 L-4078 1240 L-4071 1242 L-4087 1245 L-4098 1244 L-4109 1246 L-4100 1247 L-4130 1253 L-4156 1265 L-4172 1275 L-4189 1270 L-4231 1243 L-4263 1208 L-4274 1203 L-4290 1189 L-4303 1174 L-4326 1163 L-4327 1153 L-4329 1151 L-4337 1147 L-4340 1135 L-4348 1128 L-4348 1122 L-4342 1121 L-4339 1116 L-4346 1118 L-4349 1112 L-4344 1108 L-4351 1101 L-4351 1095 L-4355 1088 L-4362 1079 L-4363 1069 L-4367 1070 L-4373 1062 L-4378 1061 L-4391 1043 L-4393 1041 L-4396 1032 L-4401 1031 L-4404 1035 L-4404 1024 L-4410 1028 L-4413 1023 L-4415 1017 L-4415 1014 L-4416 1011 L-4405 1007 L-4412 1004 L-4418 1002 L-4416 997 L-4406 995 L-4406 993 L-4418 995 L-4432 1000 L-4432 993 L-4443 990 L-4441 983 L-4455 979 L-4457 972 L-4448 970 L-4447 969 L-4453 967 L-4456 970 L-4457 966 L-4457 953 L-4456 939 L-4452 942 L-4442 944 L-4438 941 L-4422 938 L-4416 937 L-4437 938 L-4450 938 L-4453 926 L-4456 919 L-4454 917 L-4458 914 L-4466 900 L-4474 891 L-4480 890 L-4459 870 L-4450 833 L-4444 809 L-4434 774 L-4438 743 L-4448 722 L-4445 717 L-4442 703 L-4440 687 L-4448 670 L-4451 673 L-4460 655 L-4464 657 L-4464 644 L-4454 611 L-4443 590 L-4440 581 L-4432 564 L-4427 553 L-4433 559 L-4427 549 L-4404 527 L-4398 502 L-4391 480 L-4385 464 L-4371 455 L-4357 441 L-4347 412 L-4336 400 L-4298 387 L-4283 372 L-4256 348 L-4242 326 L-4240 308 L-4246 298 L-4244 272 L-4229 242 L-4215 217 L-4198 200 L-4156 178 L-4127 114 L-4117 109 L-4106 106 L-4105 117 L-4086 132 L-4061 130 L-4049 132 L-4036 124 L-4034 129 L-4029 134 L-4013 136 L-3996 133 L-3982 121 L-3958 108 L-3947 109 L-3936 96 L-3916 86 L-3874 80 L-3854 73 L-3800 69 L-3787 77 L-3770 73 L-3752 64 L-3734 68 L-3725 62 L-3707 70 L-3683 68 L-3666 58 L-3645 54 L-3645 60 L-3644 56 L-3634 58 L-3631 73 L-3623 70 L-3608 63 L-3608 71 L-3620 87 L-3626 96 L-3619 110 L-3610 119 L-3606 131 L-3619 151 L-3636 166 L-3639 174 L-3626 189 L-3618 195 L-3611 190 L-3602 202 L-3603 204 L-3597 205 L-3585 210 L-3556 221 L-3532 220 L-3513 224 L-3502 232 L-3477 245 L-3472 263 L-3462 274 L-3433 280 L-3398 293 L-3367 314 L-3347 309 L-3332 289 L-3332 277 L-3337 257 L-3331 243 L-3303 222 L-3285 216 L-3268 217 L-3251 223 L-3239 234 L-3235 243 L-3212 249 L-3192 250 L-3182 255 L-3176 268 L-3138 269 L-3105 280 L-3092 284 L-3061 293 L-3052 293 L-3032 279 L-3023 278 L-3019 273 L-3002 267 L-3008 273 L-2998 269 L-2993 266 L-2974 268 L-2965 275 L-2973 272 L-2969 280 L-2963 283 L-2962 277 L-2953 284 L-2943 283 L-2934 283 L-2918 283 L-2902 276 L-2893 266 L-2880 228 L-2874 210 L-2870 199 L-2859 175 L-2849 158 L-2850 145 L-2849 131 L-2850 124 L-2850 105 L-2853 91 L-2841 78 L-2843 71 L-2853 74 L-2858 78 L-2872 79 L-2886 72 L-2907 90 L-2922 97 L-2940 99 L-2957 96 L-2968 83 L-2992 72 L-3012 73 L-3015 91 L-3021 92 L-3036 96 L-3054 90 L-3058 81 L-3061 76 L-3069 76 L-3085 77 L-3090 78 L-3101 77 L-3107 75 L-3093 72 L-3084 65 L-3101 65 L-3113 66 L-3110 61 L-3109 54 L-3115 51 L-3119 41 L-3114 33 L-3123 26 L-3131 21 L-3136 22 L-3143 18 L-3139 12 L-3138 4 L-3133 10 L-3131 16 L-3128 14 L-3117 11 L-3126 8 L-3129 2 L-3121 -5 L-3125 -6 L-3126 -11 L-3131 -20 L-3124 -28 L-3137 -28 L-3149 -28 L-3147 -41 L-3137 -53 L-3118 -63 L-3111 -60 L-3097 -59 L-3098 -65 L-3091 -63 L-3092 -60 L-3068 -60 L-3061 -63 L-3067 -66 L-3045 -72 L-3036 -74 L-3057 -81 L-3058 -87 L-3051 -91 L-3005 -86 L-2985 -95 L-2952 -113 L-2927 -121 L-2877 -122 L-2874 -118 L-2868 -110 L-2847 -109 L-2838 -95 L-2829 -95 L-2817 -93 L-2793 -86 L-2769 -81 L-2731 -82 L-2721 -81 L-2700 -90 L-2682 -99 L-2671 -113 L-2674 -125 L-2681 -147 L-2699 -159 L-2719 -169 L-2739 -184 L-2766 -206 L-2790 -220 L-2801 -220 L-2808 -228 L-2827 -236 L-2820 -241 L-2824 -244 L-2820 -247 L-2810 -241 L-2796 -247 L-2798 -250 L-2791 -261 L-2783 -269 L-2782 -268 L-2774 -271 L-2783 -283 L-2792 -288 L-2787 -291 L-2775 -293 L-2772 -298 L-2751 -306 L-2746 -309 L-2755 -315 L-2769 -311 L-2763 -315 L-2779 -309 L-2800 -308 L-2815 -301 L-2826 -297 L-2838 -293 L-2852 -291 L-2871 -275 L-2877 -272 L-2868 -280 L-2875 -278 L-2882 -271 L-2877 -257 L-2863 -243 L-2852 -246 L-2842 -248 L-2829 -246 L-2834 -237 L-2845 -232 L-2854 -234 L-2863 -235 L-2875 -224 L-2893 -221 L-2911 -209 L-2925 -215 L-2922 -219 L-2921 -235 L-2933 -238 L-2950 -243 L-2944 -253 L-2924 -262 L-2920 -272 L-2930 -273 L-2945 -273 L-2968 -278 L-2976 -280 L-2969 -282 L-2973 -285 L-2982 -289 L-2965 -287 L-2952 -290 L-2965 -290 L-2970 -297 L-2973 -309 L-2974 -309 L-2972 -295 L-2979 -292 L-2984 -296 L-2995 -291 L-3008 -282 L-3014 -272 L-3024 -263 L-3035 -258 L-3042 -257 L-3038 -244 L-3040 -237 L-3043 -225 L-3058 -226 L-3061 -231 L-3063 -224 L-3065 -218 L-3064 -215 L-3071 -205 L-3073 -185 L-3081 -173 L-3091 -166 L-3094 -148 L-3107 -137 L-3096 -128 L-3091 -115 L-3080 -100 L-3059 -88 L-3067 -82 L-3088 -85 L-3106 -82 L-3122 -67 L-3142 -50 L-3145 -51 L-3144 -58 L-3130 -66 L-3141 -68 L-3150 -71 L-3156 -77 L-3175 -80 L-3189 -78 L-3198 -81 L-3210 -73 L-3221 -71 L-3218 -64 L-3212 -61 L-3202 -51 L-3211 -57 L-3221 -58 L-3215 -52 L-3213 -46 L-3223 -54 L-3230 -50 L-3223 -43 L-3233 -49 L-3247 -61 L-3246 -68 L-3255 -64 L-3255 -56 L-3248 -39 L-3240 -27 L-3233 -15 L-3240 -14 L-3244 -21 L-3247 -15 L-3241 -10 L-3253 -5 L-3255 -3 L-3243 1 L-3232 9 L-3218 16 L-3212 23 L-3211 37 L-3214 40 L-3226 28 L-3231 29 L-3242 32 L-3239 36 L-3235 43 L-3231 45 L-3228 49 L-3238 53 L-3243 47 L-3250 44 L-3248 55 L-3241 74 L-3239 86 L-3244 83 L-3252 73 L-3259 86 L-3262 78 L-3269 69 L-3274 65 L-3276 73 L-3287 62 L-3284 51 L-3294 40 L-3300 34 L-3295 27 L-3288 22 L-3279 16 L-3257 24 L-3248 29 L-3247 26 L-3239 25 L-3241 21 L-3245 21 L-3251 18 L-3262 14 L-3275 13 L-3285 15 L-3293 13 L-3294 13 L-3301 14 L-3308 -1 L-3311 -6 L-3301 -5 L-3301 -10 L-3307 -10 L-3314 -11 L-3326 -21 L-3335 -35 L-3339 -48 L-3354 -59 L-3353 -60 L-3352 -63 L-3354 -75 L-3351 -92 L-3350 -104 L-3348 -112 L-3360 -118 L-3377 -134 L-3376 -136 L-3380 -136 L-3401 -150 L-3425 -158 L-3404 -152 L-3410 -156 L-3429 -172 L-3449 -177 L-3457 -176 L-3459 -181 L-3472 -191 L-3482 -204 L-3476 -205 L-3479 -208 L-3491 -224 L-3499 -239 L-3508 -244 L-3515 -231 L-3521 -225 L-3529 -235 L-3533 -249 L-3527 -253 L-3531 -260 L-3544 -259 L-3551 -254 L-3564 -248 L-3564 -251 L-3571 -245 L-3567 -233 L-3565 -225 L-3571 -225 L-3567 -202 L-3551 -191 L-3531 -178 L-3520 -152 L-3502 -129 L-3475 -117 L-3452 -116 L-3456 -109 L-3457 -99 L-3418 -82 L-3395 -67 L-3381 -50 L-3385 -39 L-3400 -56 L-3419 -61 L-3421 -65 L-3432 -58 L-3441 -37 L-3427 -27 L-3421 -9 L-3434 -5 L-3439 10 L-3453 25 L-3465 30 L-3466 19 L-3461 5 L-3455 1 L-3454 -10 L-3461 -32 L-3470 -48 L-3489 -55 L-3488 -60 L-3492 -69 L-3501 -69 L-3508 -68 L-3509 -76 L-3516 -75 L-3522 -88 L-3532 -92 L-3543 -93 L-3548 -94 L-3573 -113 L-3590 -131 L-3602 -135 L-3606 -135 L-3604 -140 L-3617 -151 L-3620 -156 L-3624 -160 L-3626 -171 L-3634 -192 L-3662 -206 L-3678 -210 L-3699 -191 L-3717 -186 L-3736 -173 L-3742 -167 L-3753 -162 L-3768 -161 L-3783 -170 L-3790 -171 L-3793 -173 L-3797 -172 L-3799 -171 L-3811 -174 L-3818 -176 L-3822 -179 L-3830 -174 L-3852 -154 L-3848 -137 L-3845 -133 L-3849 -130 L-3847 -124 L-3849 -115 L-3880 -95 L-3908 -87 L-3923 -76 L-3919 -71 L-3926 -69 L-3940 -50 L-3955 -28 L-3949 -8 L-3939 0 L-3957 12 L-3965 23 L-3968 34 L-3967 42 L-3974 44 L-4000 57 L-4012 75 L-4024 72 L-4034 75 L-4050 76 L-4078 76 L-4088 84 L-4105 89 L-4109 97 L-4112 100 L-4122 99 L-4133 90 L-4136 81 L-4141 75 L-4135 69 L-4143 67 L-4155 55 L-4164 58 L-4184 65 L-4204 62 L-4215 63 L-4218 59 L-4213 38 L-4214 21 L-4210 13 L-4216 9 L-4225 12 L-4227 4 L-4220 1 L-4218 -9 L-4227 2 L-4234 1 L-4233 -7 L-4231 -19 L-4227 -25 L-4215 -50 L-4216 -55 L-4210 -74 L-4209 -86 L-4214 -104 L-4215 -109 L-4213 -118 L-4216 -124 L-4212 -131 L-4213 -133 L-4214 -137 L-4214 -144 L-4221 -145 L-4221 -150 L-4227 -156 L-4223 -165 L-4210 -169 L-4200 -172 L-4198 -177 L-4189 -183 L-4177 -184 L-4167 -179 L-4147 -179 L-4131 -179 L-4107 -178 L-4077 -172 L-4060 -175 L-4049 -174 L-4033 -174 L-4012 -169 L-4000 -172 L-3986 -195 L-3978 -220 L-3982 -220 L-3980 -244 L-3970 -245 L-3965 -233 L-3965 -235 L-3972 -251 L-3982 -260 L-3977 -260 L-3980 -276 L-3983 -280 L-4000 -287 L-4009 -300 L-4009 -309 L-4011 -314 L-4004 -315 L-4005 -317 L-4022 -317 L-4019 -323 L-4027 -325 L-4029 -328 L-4036 -328 L-4043 -331 L-4049 -332 L-4064 -336 L-4077 -336 L-4088 -344 L-4079 -347 L-4083 -351 L-4083 -354 L-4075 -354 L-4079 -356 L-4089 -356 L-4089 -362 L-4063 -368 L-4051 -373 L-4030 -365 L-4009 -366 L-4003 -368 L-3989 -366 L-3993 -372 L-4000 -398 L-4002 -405 L-3987 -406 L-3983 -398 L-3974 -394 L-3950 -390 L-3932 -396 L-3941 -398 L-3939 -406 L-3907 -416 L-3898 -425 L-3897 -444 L-3891 -451 L-3868 -457 L-3843 -468 L-3832 -467 L-3820 -467 L-3823 -470 L-3836 -470 L-3838 -475 L-3827 -475 L-3815 -471 L-3821 -474 L-3818 -477 L-3824 -485 L-3819 -491 L-3808 -502 L-3801 -523 L-3796 -524 L-3779 -536 L-3760 -543 L-3737 -544 L-3730 -539 L-3730 -542 L-3725 -552 L-3701 -553 L-3695 -544 L-3692 -549 L-3686 -547 L-3686 -553 L-3682 -560 L-3661 -558 L-3647 -548 L-3664 -561 L-3673 -564 L-3675 -576 L-3681 -576 L-3676 -581 L-3674 -587 L-3681 -601 L-3681 -608 L-3691 -621 L-3695 -638 L-3696 -661 L-3687 -660 L-3681 -657 L-3674 -666 L-3666 -667 L-3663 -676 L-3674 -672 L-3687 -664 L-3693 -669 L-3682 -680 L-3669 -682 L-3654 -685 L-3632 -699 L-3625 -700 L-3624 -693 L-3627 -682 L-3631 -669 L-3628 -660 L-3613 -657 L-3614 -650 L-3624 -646 L-3630 -647 L-3635 -634 L-3643 -633 L-3640 -629 L-3647 -624 L-3651 -617 L-3651 -609 L-3653 -603 L-3648 -601 L-3643 -594 L-3639 -586 L-3636 -583 L-3629 -581 L-3609 -579 L-3615 -568 L-3606 -565 L-3588 -569 L-3574 -573 L-3561 -582 L-3548 -580 L-3526 -571 L-3520 -557 L-3503 -553 L-3501 -554 L-3507 -560 L-3520 -560 L-3522 -566 L-3523 -570 L-3510 -562 L-3479 -570 L-3451 -576 L-3446 -581 L-3426 -589 L-3393 -596 L-3373 -590 L-3381 -592 L-3376 -581 L-3353 -579 L-3342 -585 L-3336 -596 L-3323 -600 L-3309 -610 L-3303 -620 L-3301 -623 L-3309 -609 L-3311 -600 L-3299 -599 L-3298 -615 L-3303 -632 L-3304 -649 L-3297 -674 L-3292 -685 L-3276 -698 L-3255 -700 L-3239 -688 L-3215 -676 L-3201 -685 L-3204 -705 L-3199 -717 L-3196 -724 L-3203 -727 L-3209 -723 L-3222 -729 L-3228 -738 L-3223 -742 L-3228 -743 L-3228 -750 L-3228 -754 L-3220 -760 L-3208 -764 L-3186 -770 L-3167 -772 L-3158 -774 L-3126 -768 L-3094 -766 L-3089 -771 L-3089 -779 L-3081 -776 L-3075 -782 L-3064 -780 L-3060 -784 L-3040 -786 L-3025 -786 L-3034 -792 L-3049 -794 L-3071 -801 L-3072 -805 L-3073 -811 L-3097 -807 L-3105 -805 L-3115 -807 L-3130 -804 L-3136 -805 L-3133 -811 L-3138 -805 L-3151 -805 L-3151 -801 L-3157 -799 L-3162 -800 L-3174 -796 L-3187 -793 L-3199 -788 L-3221 -786 L-3233 -784 L-3245 -781 L-3238 -786 L-3241 -789 L-3247 -795 L-3250 -790 L-3254 -788 L-3261 -791 L-3260 -795 L-3256 -796 L-3258 -798 L-3257 -801 L-3276 -806 L-3282 -809 L-3291 -809 L-3292 -816 L-3293 -826 L-3289 -835 L-3289 -842 L-3288 -844 L-3286 -845 L-3288 -849 L-3293 -858 L-3294 -870 L-3299 -877 L-3301 -887 L-3290 -897 L-3287 -903 L-3280 -907 L-3264 -910 L-3267 -915 L-3264 -916 L-3258 -920 L-3243 -929 L-3228 -937 L-3217 -945 L-3204 -955 L-3196 -965 L-3184 -968 L-3174 -967 L-3174 -972 L-3172 -976 L-3173 -986 L-3187 -997 L-3195 -1001 L-3195 -1004 L-3206 -1003 L-3222 -1003 L-3237 -1002 L-3246 -1002 L-3257 -1002 L-3263 -1004 L-3266 -999 L-3271 -995 L-3269 -993 L-3277 -991 L-3278 -988 L-3288 -987 L-3286 -984 L-3287 -982 L-3291 -983 L-3287 -979 L-3295 -970 L-3298 -964 L-3292 -956 L-3290 -950 L-3312 -931 L-3324 -925 L-3342 -918 L-3347 -916 L-3350 -914 L-3358 -911 L-3372 -907 L-3371 -906 L-3377 -905 L-3384 -900 L-3381 -898 L-3382 -895 L-3391 -891 L-3393 -892 L-3400 -894 L-3397 -888 L-3398 -885 L-3398 -883 L-3407 -878 L-3414 -880 L-3413 -874 L-3409 -869 L-3414 -860 L-3414 -852 L-3420 -851 L-3422 -843 L-3421 -838 L-3421 -834 L-3420 -823 L-3419 -813 L-3410 -811 L-3406 -807 L-3397 -809 L-3388 -801 L-3380 -793 L-3370 -788 L-3366 -781 L-3374 -775 L-3384 -768 L-3389 -766 L-3397 -762 Z" fill="var(--fg)" fill-opacity="0.07" stroke="var(--fg)" stroke-width="0.9" stroke-opacity="0.6" stroke-linejoin="round"/><circle cx="331" cy="116" r="4.5" fill="var(--gold)" fill-opacity="0.9" stroke="var(--fg)" stroke-width="0.7"/><text x="343" y="110" font-size="15" fill="var(--gold)" font-weight="bold" font-family="serif" text-anchor="start">A</text><text x="381" y="199" font-size="9.5" fill="#6fa3a0" font-family="serif" opacity="0.8" text-anchor="middle">太平洋</text><text x="58" y="50" font-size="9.5" fill="#6fa3a0" font-family="serif" opacity="0.8" text-anchor="middle">日本海</text><rect x="8" y="8" width="190" height="21" rx="4" fill="var(--panel2)" fill-opacity="0.92" stroke="var(--gold)" stroke-width="1"/><text x="16" y="22" font-size="10" fill="var(--gold)" font-family="serif">● A＝設問の遺跡</text><text x="422" y="302" font-size="8.5" fill="var(--fg)" opacity="0.55" text-anchor="end">※海岸線は実測データ（簡略化）</text>
+    </svg><!--MAP_J:end-->
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：加曽利貝塚</div>
+    <div class="explanation">解説：二つの貝塚が重なる形で、縄文時代中期から後期・晩期にかけて長く営まれた。貝塚は捨て場であると同時に、土器・骨角器・人骨・獣骨が層をなして残る記録でもある。〈貝殻のカルシウムが土を中和し、ふつうは溶けてしまう骨が残る〉という保存の理屈まで押さえると、なぜ貝塚から縄文人の暮らしが読めるのかが説明できる。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">22</span><span class="badge adv">発展</span></div>
+  <div class="qtext">縄文時代の遺跡では、人と同じように穴を掘って丁重に葬られた犬の骨が見つかることがある。この埋葬の仕方から、当時の人々が犬をどのような存在として扱っていたと考えられるか、簡潔に述べよ。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：解体されて捨てられた食用の動物とは区別され、狩りをともにする働き手として飼われて、死んだあとも人と同じように葬るべき存在とみなされていたと考えられる。</div>
+    <div class="explanation">解説：イノシシやシカの骨がばらばらの状態で捨てられるのに対し、犬は全身の骨がそろった状態で、人の墓域に穴を掘って葬られた例が各地の貝塚から知られる（宮城県の田柄貝塚では22基、千葉県でも草刈・根田祇園原・西広の各貝塚で確認されている）。生前に抜けた歯や折れた骨が治っている個体もあり、働けなくなったあとも世話をされていたことがうかがえる。同じ動物の骨でも、捨て方が違えば意味が違う——出土の「され方」から当時の扱いを読む見方は、貝塚の資料を考えるときの基本になる。なお弥生時代になると埋葬例は激減し、ばらばらの状態で出土する例が多くなる。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">23</span><span class="badge basic">基本</span></div>
+  <div class="qtext">縄文時代の遺跡から出土する、網を使った漁が行われていたことを示す、小さな石や土の製品を何というか。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：石錘・土錘</div>
+    <div class="explanation">解説：網の下端に付けて沈めるために使われた。個々は地味な出土品だが、大量に見つかれば「網を張る規模の漁が組織的に行われていた」ことの証拠になる。銛や釣針が個人の漁を示すのに対し、こちらは集団の漁を示す——道具から人数を読む、という考え方の練習になる。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">24</span><span class="badge adv">発展</span></div>
+  <div class="qtext">縄文時代の石器の材料として、奈良県と大阪府の境にある二上山や瀬戸内海沿岸の一部で産出し、割ると鋭い刃ができることから近畿・瀬戸内一帯へ広く運ばれた安山岩の一種を何というか。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：サヌカイト（讃岐石）</div>
+    <div class="explanation">解説：もう一つの主要な産地である香川県の旧国名「讃岐」にちなむ名で、和名は讃岐岩。黒曜石とならぶ石器の材料で、産地が限られるため、出土した分布から運ばれた範囲をたどることができる。東日本の黒曜石、西日本のこの石、という対応で押さえると、交易の話が地理と結びつく。</div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">25</span><span class="badge adv">発展</span></div>
+  <div class="qtext">遺跡の数などから推計された縄文時代の列島の人口は、中期をピークとして後期以降は減少したと考えられている。この減少の背景として指摘されている当時の気候の変化と、それが人々の暮らしに与えた影響を簡潔に説明せよ。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：中期の末ごろから気候が寒冷化し、それにともなう環境の悪化で得られる食料が減ったため、東日本を中心に集落が縮小・移動し、それまでの人口を支えきれなくなったと考えられている。</div>
+    <div class="explanation">解説：温暖な時期に東日本の内陸へ広がった集落が、後期以降は縮小・移動する傾向を見せる。〈温暖なあいだに増え、寒冷化とともに減る〉と、気候と人口を一本の線でつないで押さえる。
+      <span class="caution">注意：寒冷化は減少の引き金として指摘されるもので、原因を寒冷化だけに帰す説明は単純化にあたる。食料資源の構成の変化や集落のあり方の変化など、複数の要因が議論されている。また人口推計は遺跡の数からの推定であり、値の幅は大きい。</span></div>
+  </details>
+</div>
+
+<div class="q">
+  <div class="qhead"><span class="qn">26</span><span class="badge adv">発展</span></div>
+  <div class="qtext">縄文時代の人々は、自然の背後に霊的な力を認め、儀礼を重んじていたと考えられている。その根拠となる出土品や習俗を2つ挙げ、それぞれがどのような理由でそう解釈されるのかを簡潔に説明せよ。</div>
+  <details><summary>解答を見る</summary>
+    <div class="answer">解答：（例）土偶——完全な形ではなく、意図的に壊された状態の破片で出土する例が多く、日用品としては説明がつかないことから、呪術に用いられたと解釈される。抜歯——健康な歯をわざわざ抜く行為で、実用の利益がなく、抜く歯の位置に集団ごとの決まりがあることから、通過儀礼として行われたと解釈される。（石棒、屈葬、犬の埋葬なども可）</div>
+    <div class="explanation">解説：〈祈りの道具（土偶・石棒）／死者の扱い（屈葬）／身体への加工（抜歯）〉と、根拠を三つの型に分けておくと、どんな出題でも二つは選び出せる。答案の質を分けるのは事例の数ではなく、「実用では説明がつかない」という論の運び方のほうである。いずれも「そう解釈されている」段階の話なので、断定せずに書くこと。</div>
+  </details>
+</div>
+
+<div class="col">
+  <h3>コラム｜歴史の裏話</h3>
+  <p><strong>解読の鍵は、戦利品として海を渡った</strong></p>
+  <p>今日の設問に出た石碑は、1799年にナポレオンのエジプト遠征に従軍した兵士が、要塞の工事中に見つけたとされる。ところがフランス軍はまもなくイギリス軍に敗れ、1801年の降伏の条件として、集めた古物の多くを引き渡すことになった。石碑はこうして海を渡り、翌年から<a href="https://www.britishmuseum.org/collection/object/Y_EA24" target="_blank" rel="noopener">大英博物館</a>に置かれて今日に至る。</p>
+  <p>もっとも、フランスは実物を失っても解読では勝った。石碑の文面は、カイロで石そのものを版としてインクで刷り取った複製や、ロンドンで作られた石膏の複製、ギリシア語部分の版画といった形でヨーロッパ各地の学者のもとへ渡っており、そこから読み解いていったのがシャンポリオンだった。彼はイギリスのヤングらの成果を踏まえつつ、この文字が絵の意味だけでなく音も表していることを突き止める。実物を目にしたのは、1824年にロンドンを訪れた一度きりだったという。<b>「読めない文字」を「読める文字」に変えたのは、石そのものの所有ではなく、写しの流通だった</b>という点は、資料と知識の関係を考えるうえで示唆に富む。</p>
+  <p>ちなみに、石碑に刻まれているのは王への感謝を述べた祭司たちの布告である。当時の反乱の経緯なども記されてはいるが、この石碑の価値がとびぬけて大きいのは、書かれていた内容よりも、<b>同じことが三通りに書かれていた</b>ことのほうだった。</p>
+</div>
+
+<div class="col linkcol">
+  <h3>コラム｜世界史 ↔ 日本史</h3>
+  <p><strong>王が神になった谷と、誰も神にならなかった森</strong></p>
+  <p>今日の二つの範囲を、同じ時間軸に置いてみる。</p>
+  <!--TIMELINE:begin--><svg class="tlsvg" style="max-width:100%" viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg" font-family="serif" role="img" aria-label="エジプトの王国の交替と縄文時代の列島の対照年表（前3200年〜前500年）">
+      <line x1="34" y1="146" x2="646" y2="146" stroke="var(--border)" stroke-width="1.5"/>
+      <line x1="79.3" y1="143" x2="79.3" y2="149" stroke="var(--border)" stroke-width="1"/>
+      <text x="79.3" y="138" font-size="8.5" fill="var(--fg)" opacity="0.55" text-anchor="middle">前3000</text>
+      <line x1="192.7" y1="143" x2="192.7" y2="149" stroke="var(--border)" stroke-width="1"/>
+      <text x="192.7" y="138" font-size="8.5" fill="var(--fg)" opacity="0.55" text-anchor="middle">前2500</text>
+      <line x1="306.0" y1="143" x2="306.0" y2="149" stroke="var(--border)" stroke-width="1"/>
+      <text x="306.0" y="138" font-size="8.5" fill="var(--fg)" opacity="0.55" text-anchor="middle">前2000</text>
+      <line x1="419.3" y1="143" x2="419.3" y2="149" stroke="var(--border)" stroke-width="1"/>
+      <text x="419.3" y="138" font-size="8.5" fill="var(--fg)" opacity="0.55" text-anchor="middle">前1500</text>
+      <line x1="532.7" y1="143" x2="532.7" y2="149" stroke="var(--border)" stroke-width="1"/>
+      <text x="532.7" y="138" font-size="8.5" fill="var(--fg)" opacity="0.55" text-anchor="middle">前1000</text>
+      <line x1="646.0" y1="143" x2="646.0" y2="149" stroke="var(--border)" stroke-width="1"/>
+      <text x="646.0" y="138" font-size="8.5" fill="var(--fg)" opacity="0.55" text-anchor="middle">前500</text>
+      <defs><linearGradient id="transit3r2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="var(--green)" stop-opacity="0.22"/><stop offset="1" stop-color="var(--teal)" stop-opacity="0.30"/></linearGradient></defs>
+      <rect x="34.0" y="190" width="510.0" height="26" fill="var(--green)" opacity="0.22"/>
+      <text x="289.0" y="206.5" font-size="10" fill="var(--fg)" text-anchor="middle">縄文</text>
+      <rect x="544.0" y="190" width="102.0" height="26" fill="url(#transit3r2)"/>
+      <text x="646" y="228" font-size="8" fill="var(--teal)" text-anchor="end">弥生開始は両説並立（歴博説 前10世紀〜従来説 前5〜4世紀）</text>
+      <line x1="150.5" y1="52" x2="150.5" y2="142" stroke="var(--gold)" stroke-width="1" opacity="0.45" stroke-dasharray="2 3"/>
+      <circle cx="150.5" cy="142" r="3.5" fill="var(--gold)"/>
+      <text x="150.5" y="38" font-size="10" fill="var(--gold)" text-anchor="middle" font-weight="bold">古王国</text>
+      <text x="150.5" y="50" font-size="9" fill="var(--fg)" opacity="0.8" text-anchor="middle">メンフィスを都に、巨大な王墓が築かれる（前27世紀〜）</text>
+      <line x1="296.9" y1="88" x2="296.9" y2="142" stroke="var(--gold)" stroke-width="1" opacity="0.45" stroke-dasharray="2 3"/>
+      <circle cx="296.9" cy="142" r="3.5" fill="var(--gold)"/>
+      <text x="296.9" y="74" font-size="10" fill="var(--gold)" text-anchor="middle" font-weight="bold">中王国</text>
+      <text x="296.9" y="86" font-size="9" fill="var(--fg)" opacity="0.8" text-anchor="middle">テーベを都に再統一（のち北のイチタウイへ）（前21世紀〜）</text>
+      <line x1="408.0" y1="124" x2="408.0" y2="142" stroke="var(--gold)" stroke-width="1" opacity="0.45" stroke-dasharray="2 3"/>
+      <circle cx="408.0" cy="142" r="3.5" fill="var(--gold)"/>
+      <text x="408.0" y="110" font-size="10" fill="var(--gold)" text-anchor="middle" font-weight="bold">新王国</text>
+      <text x="408.0" y="122" font-size="9" fill="var(--fg)" opacity="0.8" text-anchor="middle">西アジア系の支配を排し、シリアへ進出（前16世紀〜）</text>
+      <line x1="487.3" y1="52" x2="487.3" y2="142" stroke="var(--gold)" stroke-width="1" opacity="0.45" stroke-dasharray="2 3"/>
+      <circle cx="487.3" cy="142" r="3.5" fill="var(--gold)"/>
+      <text x="487.3" y="38" font-size="10" fill="var(--gold)" text-anchor="middle" font-weight="bold">「海の民」の来襲</text>
+      <text x="487.3" y="50" font-size="9" fill="var(--fg)" opacity="0.8" text-anchor="middle">東地中海の秩序が崩れる（前13〜12世紀）</text>
+      <line x1="192.7" y1="216" x2="192.7" y2="241" stroke="var(--terra)" stroke-width="1" opacity="0.55" stroke-dasharray="2 3"/>
+      <circle cx="192.7" cy="216" r="3.5" fill="var(--terra)"/>
+      <text x="192.7" y="250" font-size="9.5" fill="var(--terra)" text-anchor="middle" font-weight="bold">縄文後期の始まり（前2500年頃）</text>
+      <line x1="532.7" y1="216" x2="532.7" y2="263" stroke="var(--terra)" stroke-width="1" opacity="0.55" stroke-dasharray="2 3"/>
+      <circle cx="532.7" cy="216" r="3.5" fill="var(--terra)"/>
+      <text x="532.7" y="272" font-size="9.5" fill="var(--terra)" text-anchor="middle" font-weight="bold">縄文晩期の東北に精巧な土器（前1000年頃）</text>
+      <line x1="487.3" y1="40" x2="487.3" y2="216" stroke="var(--teal)" stroke-width="1.1" stroke-dasharray="5 4" opacity="0.8"/>
+      <text x="481.3" y="26" font-size="9" fill="var(--teal)" text-anchor="end">海の民が東地中海を揺らしたころ、列島は縄文晩期に入る</text>
+      <circle cx="38" cy="306" r="3.5" fill="var(--gold)"/>
+      <text x="46" y="310" font-size="8.5" fill="var(--fg)" opacity="0.75">世界史（エジプト）</text>
+      <circle cx="199" cy="306" r="3.5" fill="var(--terra)"/>
+      <text x="207" y="310" font-size="8.5" fill="var(--fg)" opacity="0.75">日本列島（縄文）</text>
+      <text x="646" y="310" font-size="8" fill="var(--fg)" opacity="0.5" text-anchor="end">※横軸は実時間スケール。年代は概数で、王国の区分年代には諸説がある</text>
+      </svg><!--TIMELINE:end-->
+  <p style="margin-top:14px">ナイルの谷で王が神とされ、巨大な王墓が築かれていたころ、列島は縄文時代の中期から後期にさしかかるあたりにあたる。人口が最も多かったと推計される、いわば縄文の絶頂期である。だがそこには王の墓も、王の名を記した碑もない。豊かだったのに、突出した一人の存在を示すものは見つかっていない。</p>
+  <p>両者を分けたのは、余剰を<b>誰か一人に集められる形で</b>蓄えられたかどうかだろう。穀物は量が測れて倉に積め、他人に預けられる。木の実や貝も蓄えられはするが、氾濫が毎年運んでくる肥沃な土のように、大量かつ計算できる形では増えない。<b>測れて、積めて、預けられるもの</b>が現れたとき、それを管理する者が現れ、やがて神の名で正当化される。</p>
+  <p class="viewpoint">論述の視点：「なぜ王が生まれたか」と問うと富の量の話になりがちだが、「なぜ生まれなかったか」と問うと富の<em>性質</em>の話になる。同じ現象を裏から問い直す構えは、比較史の答案でそのまま使える。</p>
+</div>
+
+<div class="col fieldnote">
+  <h3>フィールドノート</h3>
+  <p><strong>毎年おなじ川が氾濫することの、意味のほう</strong></p>
+  <p>今日の史料で、ナイルの氾濫が農業を支えたことを確かめた。答案では「肥沃な土が堆積した」と書けば正解になる。<b>だが、毎年きまって同じことが起きるという経験そのものが、人の時間の感じ方をつくり変えた可能性は、答案の外にこぼれ落ちる。</b></p>
+  <p>宗教学者<a href="https://ja.wikipedia.org/wiki/%E3%83%9F%E3%83%AB%E3%83%81%E3%83%A3%E3%83%BB%E3%82%A8%E3%83%AA%E3%82%A2%E3%83%BC%E3%83%87" target="_blank" rel="noopener">ミルチャ・エリアーデ</a>は『永遠回帰の神話』『聖と俗』で、多くの古い社会にとって時間は一直線に進むものではなく、<b>祭りのたびに始まりの時へ立ち返る円環</b>だったと論じた。新年の儀礼は「一年が過ぎた」ことを記念するのではなく、世界が創られたその瞬間をもう一度なぞり、汚れた時間を捨てて世界を新しくするのだという。氾濫が毎年すべてを洗い流し、また新しい土を敷いていく土地では、この感覚は比喩ではなく目に見える事実だっただろう。</p>
+  <p class="keys">今日の鍵語：エリアーデ／聖なる時間・円環する時間／始まりへの回帰　＊直線的な時間の観念がどこから来たのかは、のちにヘブライ人の歴史意識を扱う回で改めて考える。</p>
+</div>
+
+<div class="col story">
+  <h3>連載「時の回廊」第3話｜神になった王と、壊された土偶</h3>
+  <p>ナイルの西岸、日の沈む側。石を切り出す音が谷にこだましていた。ここでは死者の家は西に築かれる。太陽が毎日沈み、毎朝また昇るように、王もまた沈んで昇る者とされたからだ。若い書記が名簿を抱えて働く者たちのあいだを歩く。パンとビールの支給量、休んだ日、道具の貸し出し。石を積むのは奴隷ではない。氾濫で畑が水につかるあいだ、村々から人が集められたのだという。<b>川が仕事を止める季節に、王が仕事を与える。</b>それもまた、この谷の暦のうちだったのだろう。</p>
+  <p>同じころ、東の島々の森。<a href="https://www.city.chiba.jp/kasori/" target="_blank" rel="noopener">加曽利貝塚</a>のような、貝と土の層を積み上げてきた集落の広場で、女が一体の土偶を手にしていた。腹のふくらんだ、掌ほどの土の像である。祈りが済むと、女はそれを地面に打ちつけて割った。破片は広場の縁の穴へ、他の破片と一緒に落とされる。誰かの墓に副えるのでもなく、宝として仕舞われるのでもない。<b>壊すところまでが、その像の使い道だったのかもしれない。</b>王もおらず、文字もなく、記録は残らない。それでも祈りは毎年繰り返され、森は毎年実をつけた。</p>
+  <p class="hook">——やがて東地中海に、海から来る者たちの影が差す。大国が揺らいだあとの隙間で、小さな民が文字と交易の網を広げはじめる。（第4話へ続く）</p>
+  <p style="font-size:.78em; opacity:.7; border-top:1px dashed var(--line); padding-top:.7em; margin-top:1em;">※史実に取材した創作コラムです。人物や情景は創作を含みます。王墓の造営に従事した人々への食料の支給が記録に残ること、墓が西岸に営まれたことは考古学・文献の知見に拠ります（造営の労働力の編成については研究に幅があり、「氾濫期の農民が動員された」という説明は有力な見方の一つです）。土偶が意図的に破損された状態で出土することは考古学の知見に、その理由の解釈は諸説あります。破片が広場の縁の穴に捨てられたという情景は本コラムの見立てです。</p>
+</div>
+
+<footer class="next">
+  <span class="label">次回予告：</span>世界史は東地中海へ——大国が揺らいだ隙間で、交易と文字で生きた小さな民が現れる。日本史はいよいよ単元が変わり、大陸から水稲農耕が伝わって列島の風景が一変する。連載「時の回廊」は海へ出る。
+</footer>
+
+<div class="credit">高校歴史探究・大学受験レベル｜Day 003</div>
+
+</div>
+<!--gradeui-->
+<div id="scorebar" hidden>
+  <div class="inner">
+    <span class="sb-sec">世界史 <span class="num" id="sb-s0">0</span>/<span class="sb-n"></span></span>
+    <div class="track"><div class="fill" id="sb-f0"></div></div>
+    <span class="sb-sec">日本史 <span class="num" id="sb-s1">0</span>/<span class="sb-n"></span></span>
+    <div class="track"><div class="fill" id="sb-f1"></div></div>
+    <button id="sb-reset" type="button">リセット</button>
+  </div>
+</div>
+<div id="resultfx" hidden>
+  <div class="rf-card">
+    <div class="rf-title" id="rf-title"></div>
+    <div class="rf-score" id="rf-score"></div>
+    <div class="rf-msg" id="rf-msg"></div>
+    <div class="rf-close">タップで閉じる</div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = "selfgrade-v4:" + location.pathname;
+  // 科目の帰属は h2.section 見出し（世界史/日本史）で判定する（問数可変対応・2026-08-04）
+  var qs = [], secOf = [], counts = [0, 0], cur = -1;
+  Array.prototype.forEach.call(document.querySelectorAll("h2.section, .q"), function(el){
+    if (el.tagName === "H2") {
+      var t = el.textContent;
+      cur = t.indexOf("世界史") !== -1 ? 0 : (t.indexOf("日本史") !== -1 ? 1 : -1);
+    } else if (cur >= 0) {
+      secOf.push(cur); counts[cur]++; qs.push(el);
+    }
+  });
+  if (!counts[0] || !counts[1]) return;
+  var SEC = [
+    { name: "世界史", n: counts[0] },
+    { name: "日本史", n: counts[1] }
+  ];
+  var sbn = document.querySelectorAll(".sb-n");
+  sbn[0].textContent = counts[0];
+  sbn[1].textContent = counts[1];
+  var COLORS = ["#c9a227", "#6fa3a0", "#c47b6a", "#7d9b6a", "#e8a020"];
+  var state = { g: {}, c: [false, false] };
+  try {
+    var raw = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (raw && raw.g) state = raw;
+  } catch(e){}
+
+  var bar = document.getElementById("scorebar");
+  bar.hidden = false;
+  document.body.style.paddingBottom = "5.5em";
+  var fx = document.getElementById("resultfx");
+  fx.hidden = true;
+
+  function save(){
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){}
+    // 「前回の続きから」用の最終採点ページ記録（ホームが読む・2026-08-04）
+    try {
+      var done = 0, ok = 0;
+      for (var i = 0; i < qs.length; i++){
+        if (state.g[i] === 1){ ok++; done++; }
+        else if (state.g[i] === 0){ done++; }
+      }
+      localStorage.setItem("selfgrade-last", JSON.stringify({
+        path: location.pathname, title: document.title,
+        done: done, ok: ok, total: qs.length, ts: Date.now()
+      }));
+    } catch(e){}
+  }
+
+  function secStats(si){
+    var ok = 0, done = 0;
+    for (var i = 0; i < qs.length; i++){
+      if (secOf[i] !== si) continue;
+      if (state.g[i] === 1){ ok++; done++; }
+      else if (state.g[i] === 0){ done++; }
+    }
+    return { ok: ok, done: done };
+  }
+
+  function render(){
+    qs.forEach(function(q, i){
+      var btns = q.querySelectorAll(".grade button");
+      if (btns.length === 2){
+        btns[0].className = (state.g[i] === 1) ? "on-ok" : "";
+        btns[1].className = (state.g[i] === 0) ? "on-ng" : "";
+      }
+    });
+    SEC.forEach(function(s, si){
+      var st = secStats(si);
+      document.getElementById("sb-s" + si).textContent = st.ok;
+      document.getElementById("sb-f" + si).style.width = (st.done / s.n * 100) + "%";
+    });
+  }
+
+  function burst(x, y, n, spread){
+    for (var i = 0; i < n; i++){
+      var p = document.createElement("div");
+      p.className = "fx-p";
+      var sz = 5 + Math.random() * 6;
+      p.style.cssText = "left:" + x + "px;top:" + y + "px;width:" + sz + "px;height:" + (sz * (Math.random() > .5 ? 1 : .45)) + "px;background:" + COLORS[i % COLORS.length] + ";border-radius:" + (Math.random() > .5 ? "50%" : "2px") + ";";
+      document.body.appendChild(p);
+      var ang = Math.random() * Math.PI * 2;
+      var dist = spread * (0.4 + Math.random() * 0.9);
+      var dx = Math.cos(ang) * dist;
+      var dy = Math.sin(ang) * dist - spread * 0.5;
+      p.animate([
+        { transform: "translate(0,0) rotate(0deg)", opacity: 1 },
+        { transform: "translate(" + dx + "px," + (dy + spread) + "px) rotate(" + (Math.random() * 540 - 270) + "deg)", opacity: 0 }
+      ], { duration: 700 + Math.random() * 500, easing: "cubic-bezier(.15,.6,.4,1)" }).onfinish = function(){ this.effect.target.remove(); };
+    }
+  }
+
+  function missFx(q, btn){
+    q.classList.remove("shake");
+    void q.offsetWidth;
+    q.classList.add("shake");
+    var r = btn.getBoundingClientRect();
+    var p = document.createElement("div");
+    p.className = "fx-p";
+    p.style.cssText = "left:" + (r.left + r.width / 2) + "px;top:" + (r.top) + "px;color:#7d8fa0;font-size:14px;font-weight:bold;";
+    p.textContent = "ドンマイ";
+    document.body.appendChild(p);
+    p.animate([
+      { transform: "translate(-50%,0)", opacity: 1 },
+      { transform: "translate(-50%,-34px)", opacity: 0 }
+    ], { duration: 900, easing: "ease-out" }).onfinish = function(){ p.remove(); };
+  }
+
+  function tier(ok, total){
+    if (ok === total)                  return { t: "全問正解！", m: "完璧。今日の範囲は君のものだ", n: 160 };
+    if (ok >= Math.ceil(total * 0.8)) return { t: "素晴らしい！", m: "合格ライン余裕。取りこぼしだけ復習しよう", n: 90 };
+    if (ok >= Math.ceil(total * 0.5)) return { t: "よく健闘！", m: "土台はできてる。×の問題を明日もう一度", n: 40 };
+    return                              { t: "伸びしろしかない", m: "今日のまちがいは明日の得点。解説を読み直そう", n: 0 };
+  }
+
+  function celebrate(si){
+    var s = SEC[si], st = secStats(si), tr = tier(st.ok, s.n);
+    document.getElementById("rf-title").textContent = s.name + " 採点完了";
+    document.getElementById("rf-score").innerHTML = st.ok + '<span class="rf-den">/' + s.n + '</span>';
+    document.getElementById("rf-msg").textContent = tr.t + "　" + tr.m;
+    fx.hidden = false;
+    var cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+    if (tr.n){
+      burst(cx, cy - 60, tr.n, Math.min(260, window.innerWidth * 0.45));
+      if (st.ok === s.n) setTimeout(function(){ burst(cx - 100, cy, 60, 180); burst(cx + 100, cy, 60, 180); }, 350);
+    }
+  }
+  fx.addEventListener("click", function(){ fx.hidden = true; });
+
+  function onGrade(i, val, btn, q){
+    var prev = state.g[i];
+    state.g[i] = (prev === val) ? undefined : val;
+    var si = secOf[i];
+    if (state.g[i] === 1){
+      var r = btn.getBoundingClientRect();
+      burst(r.left + r.width / 2, r.top + r.height / 2, 22, 90);
+    } else if (state.g[i] === 0){
+      missFx(q, btn);
+    }
+    var st = secStats(si);
+    if (st.done === SEC[si].n && !state.c[si]){
+      state.c[si] = true;
+      setTimeout(function(){ celebrate(si); }, state.g[i] === 1 ? 500 : 250);
+    }
+    if (st.done < SEC[si].n) state.c[si] = false;
+    save(); render();
+  }
+
+  qs.forEach(function(q, i){
+    var box = q.querySelector("details");
+    if (!box) return;
+    var g = document.createElement("div");
+    g.className = "grade";
+    g.innerHTML = '<span>自己採点：</span><button type="button">○ 正解</button><button type="button">× 不正解</button>';
+    var btns = g.querySelectorAll("button");
+    btns[0].addEventListener("click", function(){ onGrade(i, 1, btns[0], q); });
+    btns[1].addEventListener("click", function(){ onGrade(i, 0, btns[1], q); });
+    box.appendChild(g);
+  });
+  document.getElementById("sb-reset").addEventListener("click", function(){
+    state = { g: {}, c: [false, false] }; save(); render();
+  });
+  render();
+})();
+</script>
+<!--/gradeui-->
+<!--zoomui-->
+<style>
+  .zm-target{cursor:zoom-in;}
+  #zmov{position:fixed; inset:0; z-index:80; display:none; background:rgba(14,12,9,.93);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Noto Sans JP",sans-serif;}
+  #zmov.on{display:block;}
+  #zmstage{position:absolute; inset:0; overflow:hidden; touch-action:none; cursor:grab;}
+  #zmstage.drag{cursor:grabbing;}
+  #zminner{position:absolute; left:0; top:0; transform-origin:0 0; will-change:transform;}
+  /* 図の背景はページのテーマに合わせる。白に固定すると、SVGの文字色が var(--fg) を
+     参照しているダークモードで淡色文字×白背景になり読めなくなる（2026-08-04 オーナー指摘） */
+  #zminner svg, #zminner img{display:block; background:#1c1814; border-radius:8px;
+    box-shadow:0 0 0 1px rgba(255,255,255,.14);}
+  @media (prefers-color-scheme: light){
+    #zminner svg, #zminner img{background:#fdfaf3; box-shadow:0 0 0 1px rgba(0,0,0,.12);}
+  }
+  #zmcap{position:absolute; left:.9em; top:.8em; right:4em; color:#f2ede3; font-size:.82em;
+    text-shadow:0 1px 3px rgba(0,0,0,.6); pointer-events:none; line-height:1.5;}
+  #zmclose{position:absolute; right:.6em; top:.6em; width:2.6em; height:2.6em; border-radius:50%;
+    border:none; background:rgba(255,255,255,.14); color:#fff; font-size:1.1em; font-weight:800;
+    cursor:pointer; z-index:2;}
+  #zmclose:hover{background:rgba(255,255,255,.28);}
+  #zmbar{position:absolute; left:50%; bottom:1em; transform:translateX(-50%); z-index:2;
+    display:flex; align-items:center; gap:.4em; background:rgba(24,20,16,.78);
+    border:1px solid rgba(255,255,255,.18); border-radius:999px; padding:.3em .5em;}
+  #zmbar button{width:2.3em; height:2.3em; border-radius:50%; border:none; cursor:pointer;
+    background:rgba(255,255,255,.12); color:#fff; font-size:1em; font-weight:800;}
+  #zmbar button:hover{background:rgba(255,255,255,.26);}
+  #zmpct{color:#e8dfd0; font-size:.78em; min-width:3.4em; text-align:center;}
+  #zmhint{position:absolute; left:50%; bottom:3.8em; transform:translateX(-50%); color:#cfc6b6;
+    font-size:.72em; pointer-events:none; opacity:.85; white-space:nowrap;}
+</style>
+<div id="zmov" role="dialog" aria-modal="true" aria-label="図版の拡大表示">
+  <div id="zmstage"><div id="zminner"></div></div>
+  <div id="zmcap"></div>
+  <button id="zmclose" aria-label="閉じる">×</button>
+  <div id="zmhint">ピンチ／ホイールで拡大縮小・ドラッグで移動・ダブルタップで切替</div>
+  <div id="zmbar">
+    <button id="zmminus" aria-label="縮小">−</button>
+    <span id="zmpct">100%</span>
+    <button id="zmplus" aria-label="拡大">＋</button>
+    <button id="zmreset" aria-label="全体表示" style="width:auto; border-radius:999px; padding:0 .8em; font-size:.78em; white-space:nowrap;">全体</button>
+  </div>
+</div>
+<script>
+(function(){
+  var SEL = 'svg.mapsvg, svg.tlsvg, svg[role="img"], img.zoomable';
+  var targets = Array.prototype.slice.call(document.querySelectorAll(SEL))
+    .filter(function(el){ return !el.closest('#zmov'); });
+  if (!targets.length) return;
+
+  var ov = document.getElementById('zmov'), stage = document.getElementById('zmstage'),
+      inner = document.getElementById('zminner'), cap = document.getElementById('zmcap'),
+      pct = document.getElementById('zmpct');
+  var s = 1, tx = 0, ty = 0, baseW = 0, baseH = 0;
+  var MAXS = 8;
+
+  function apply(){
+    inner.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + s + ')';
+    pct.textContent = Math.round(s * 100) + '%';
+  }
+  function center(){
+    tx = (stage.clientWidth - baseW * s) / 2;
+    ty = (stage.clientHeight - baseH * s) / 2;
+    apply();
+  }
+  function reset(){ s = 1; fit(); }
+  function fit(){
+    var vw = stage.clientWidth * 0.92, vh = stage.clientHeight * 0.86;
+    var r = Math.min(vw / rawW, vh / rawH);
+    baseW = rawW * r; baseH = rawH * r;
+    var node = inner.firstChild;
+    if (node){ node.style.width = baseW + 'px'; node.style.height = baseH + 'px'; node.style.maxWidth = 'none'; }
+    center();
+  }
+  var rawW = 0, rawH = 0;
+
+  function dims(el){
+    if (el.tagName.toLowerCase() === 'svg'){
+      var vb = (el.getAttribute('viewBox') || '').split(/[ ,]+/);
+      if (vb.length === 4) return [parseFloat(vb[2]), parseFloat(vb[3])];
+      var bb = el.getBoundingClientRect(); return [bb.width || 600, bb.height || 400];
+    }
+    return [el.naturalWidth || 800, el.naturalHeight || 600];
+  }
+
+  function open(el){
+    var clone = el.cloneNode(true);
+    clone.classList.remove('zm-target');
+    clone.removeAttribute('id');
+    var d = dims(el); rawW = d[0]; rawH = d[1];
+    inner.innerHTML = '';
+    inner.appendChild(clone);
+    cap.textContent = el.getAttribute('aria-label') || '';
+    ov.classList.add('on');
+    document.body.style.overflow = 'hidden';
+    s = 1; fit();
+  }
+  function close(){
+    ov.classList.remove('on');
+    inner.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+
+  targets.forEach(function(el){
+    el.classList.add('zm-target');
+    el.addEventListener('click', function(){ open(el); });
+  });
+
+  document.getElementById('zmclose').addEventListener('click', close);
+  document.getElementById('zmplus').addEventListener('click', function(){ zoomAt(stage.clientWidth/2, stage.clientHeight/2, 1.4); });
+  document.getElementById('zmminus').addEventListener('click', function(){ zoomAt(stage.clientWidth/2, stage.clientHeight/2, 1/1.4); });
+  document.getElementById('zmreset').addEventListener('click', reset);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && ov.classList.contains('on')) close(); });
+
+  function zoomAt(px, py, f){
+    var s2 = Math.min(MAXS, Math.max(1, s * f));
+    if (s2 === s) return;
+    tx = px - (px - tx) * (s2 / s);
+    ty = py - (py - ty) * (s2 / s);
+    s = s2;
+    if (s === 1){ center(); } else { apply(); }
+  }
+
+  stage.addEventListener('wheel', function(e){
+    e.preventDefault();
+    zoomAt(e.clientX, e.clientY, e.deltaY < 0 ? 1.18 : 1/1.18);
+  }, {passive:false});
+
+  // ポインタ操作: 1本=ドラッグ移動 / 2本=ピンチ
+  var pts = new Map(), lastTap = 0, tapX = 0, tapY = 0, moved = false;
+  stage.addEventListener('pointerdown', function(e){
+    stage.setPointerCapture(e.pointerId);
+    pts.set(e.pointerId, {x: e.clientX, y: e.clientY});
+    moved = false;
+    if (pts.size === 1) stage.classList.add('drag');
+  });
+  stage.addEventListener('pointermove', function(e){
+    if (!pts.has(e.pointerId)) return;
+    var p = pts.get(e.pointerId);
+    if (pts.size === 1){
+      var dx = e.clientX - p.x, dy = e.clientY - p.y;
+      if (Math.abs(dx) + Math.abs(dy) > 3) moved = true;
+      tx += dx; ty += dy; apply();
+      p.x = e.clientX; p.y = e.clientY;
+    } else if (pts.size === 2){
+      moved = true;
+      var arr = Array.from(pts.values());
+      var other = (arr[0] === p) ? arr[1] : arr[0];
+      var d0 = Math.hypot(p.x - other.x, p.y - other.y);
+      p.x = e.clientX; p.y = e.clientY;
+      var d1 = Math.hypot(p.x - other.x, p.y - other.y);
+      if (d0 > 0){
+        zoomAt((p.x + other.x)/2, (p.y + other.y)/2, d1 / d0);
+      }
+    }
+  });
+  function up(e){
+    if (!pts.has(e.pointerId)) return;
+    pts.delete(e.pointerId);
+    if (!pts.size) stage.classList.remove('drag');
+    if (!moved && !pts.size){
+      var now = Date.now();
+      if (now - lastTap < 320 && Math.hypot(e.clientX - tapX, e.clientY - tapY) < 40){
+        // ダブルタップ: 2.5倍⇔全体
+        if (s > 1.01){ reset(); } else { zoomAt(e.clientX, e.clientY, 2.5); }
+        lastTap = 0;
+      } else {
+        lastTap = now; tapX = e.clientX; tapY = e.clientY;
+        // シングルタップ（背景）で閉じる: 等倍時のみ
+        if (s <= 1.01 && e.target === stage) setTimeout(function(){ if (lastTap) close(); }, 330);
+      }
+    }
+  }
+  stage.addEventListener('pointerup', up);
+  stage.addEventListener('pointercancel', function(e){ pts.delete(e.pointerId); if(!pts.size) stage.classList.remove('drag'); });
+  window.addEventListener('resize', function(){ if (ov.classList.contains('on')) fit(); });
+})();
+</script>
+<!--/zoomui-->
+<!--sitesw-->
+<script>
+if ("serviceWorker" in navigator && location.protocol !== "file:") {
+  navigator.serviceWorker.register("../sw.js");
+}
+</script>
+<!--/sitesw-->
+<!--sitetotop-->
+<button id="totop" aria-label="トップへ戻る" title="トップへ戻る">↑</button>
+<script>
+(function(){
+  var b = document.getElementById("totop");
+  window.addEventListener("scroll", function(){
+    b.style.display = window.scrollY > 500 ? "block" : "none";
+  }, {passive:true});
+  b.addEventListener("click", function(){ window.scrollTo({top:0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"}); });
+})();
+</script>
+<!--/sitetotop-->
+</body>
+</html>
