@@ -180,17 +180,22 @@
 <!--/gradecss-->
 <!--linkcss-->
 <style>
-  /* 本文中のリンクはすべて金色にする。コンテナ列挙だと漏れた場所が既定の青になり、
-     暗い背景で読めなくなる（2026-08-04 オーナー指摘）。#77-3 参照 */
-  .wrap a{
-    color:var(--gold); text-decoration:underline; text-underline-offset:2px;
+  /* 本文中のリンク。コンテナ列挙だと漏れた場所が既定の青になり、
+     暗い背景で読めなくなる（2026-08-04 オーナー指摘）。#77-3 参照。
+     2026-08-18 改訂（オーナー指示「リンク付き文字が見にくい問題が解決してない」）:
+     文字を金色にする方式は、AA(4.5:1)を満たしても本文より沈んで読みにくい——
+     ライトの濃金 #75610a(約5.1:1) でも本文 #25201a(約13:1) との差で暗色地味に見える。
+     リンクの文字色は本文と同じ（inherit＝最大コントラスト）にし、
+     リンクであることは**金色の下線だけ**で示す方式に変更。金色の意匠は下線に残る。
+     specificity は body 付きで page 側の .fieldnote a 等より強くしてある */
+  body .wrap a{
+    color:inherit;
+    text-decoration:underline;
+    text-decoration-color:var(--gold);
+    text-decoration-thickness:2px;
+    text-underline-offset:3px;
   }
-  /* ライトテーマでは --gold(#c9a227) が背景(#f7f3ec)に対して 2.2:1 しかなく沈む
-     （2026-08-16 オーナー指摘「背景色に対して見やすい色を」）。濃い金に差し替えて
-     約5.1:1 を確保する。採点UIが --sg-gold で同じ手当てをしているのと同じ方針 */
-  @media (prefers-color-scheme: light){
-    .wrap a{ color:#75610a; }
-  }
+  body .wrap a:hover{ color:var(--gold); }
 </style>
 <!--/linkcss--><!--lowstrain-->
 <style>
@@ -288,7 +293,7 @@
   <div class="qtext">ウルクの王を主人公とし、大洪水の物語を含むメソポタミアの英雄叙事詩を何というか。</div>
   <details><summary>解答を見る</summary>
     <div class="answer">解答：『ギルガメシュ叙事詩』</div>
-    <div class="explanation">解説：楔形文字の粘土板で伝わる現存最古級の文学作品。作中の大洪水の物語は、『旧約聖書』「ノアの箱舟」の洪水伝説との類似が指摘されている。ニネヴェのアッシュルバニパル王の図書館跡から標準版の粘土板が発見された。</div>
+    <div class="explanation">解説：<ruby>楔形文字<rt>くさびがたもじ</rt></ruby>の粘土板で伝わる現存最古級の文学作品。作中の大洪水の物語は、『旧約聖書』「ノアの箱舟」の洪水伝説との類似が指摘されている。ニネヴェのアッシュルバニパル王の図書館跡から標準版の粘土板が発見された。</div>
   </details>
 </div>
 
@@ -370,7 +375,7 @@
   <div class="qtext">メソポタミアで発達した、月の満ち欠けに基づく暦を何というか。また、そこで用いられた、60を基準とする記数法を何というか。</div>
   <details><summary>解答を見る</summary>
     <div class="answer">解答：太陰暦／六十進法</div>
-    <div class="explanation">解説：太陰暦は季節とのずれを閏月で調整して用いられた（太陰太陽暦）。六十進法は現在の時間の単位（60分・60秒）や角度（360度）に受け継がれている。1週7日の制度もメソポタミアに起源をもつとされる。ナイルの氾濫周期から太陽暦を生んだエジプト（Day001既出）と対で、「二つの暦」として整理しておきたい。</div>
+    <div class="explanation">解説：太陰暦は季節とのずれを閏月で調整して用いられた（太陰太陽暦）。六十進法は現在の時間の単位（60分・60秒）や角度（360度）に受け継がれている。1週7日の制度もメソポタミアに起源をもつとされる。ナイルの<ruby>氾濫<rt>はんらん</rt></ruby>周期から太陽暦を生んだエジプト（Day001既出）と対で、「二つの暦」として整理しておきたい。</div>
   </details>
 </div>
 
@@ -378,17 +383,17 @@
   <div class="qhead"><span class="qn">12</span><span class="badge basic">基本</span></div>
   <div class="qtext">エジプトで測地術が発達した理由を、ナイル川の自然条件と関連づけて簡潔に説明せよ。</div>
   <details><summary>解答を見る</summary>
-    <div class="answer">解答：ナイル川の定期的な氾濫のあと、流失した農地の境界を測り直す必要があったから</div>
-    <div class="explanation">解説：氾濫は肥沃な土壌をもたらす恵みでもあり、その周期を予測する必要から太陽暦（Day001既出）が、農地の測量から測地術（のちの幾何学の基礎）が発達した。「エジプトはナイルのたまもの」（ヘロドトス『歴史』に由来する言葉・Day001既出）は、この恵みと文明の関係を言い表したものとして知られる。</div>
+    <div class="answer">解答：ナイル川の定期的な<ruby>氾濫<rt>はんらん</rt></ruby>のあと、流失した農地の境界を測り直す必要があったから</div>
+    <div class="explanation">解説：<ruby>氾濫<rt>はんらん</rt></ruby>は肥沃な土壌をもたらす恵みでもあり、その周期を予測する必要から太陽暦（Day001既出）が、農地の測量から測地術（のちの幾何学の基礎）が発達した。「エジプトはナイルのたまもの」（ヘロドトス『歴史』に由来する言葉・Day001既出）は、この恵みと文明の関係を言い表したものとして知られる。</div>
   </details>
 </div>
 
 <div class="q">
   <div class="qhead"><span class="qn">13</span><span class="badge basic">基本</span></div>
-  <div class="qtext">バビロン捕囚からの解放後に確立した、ヤハウェを唯一神とするヘブライ人（ユダヤ人）の宗教を何というか。また、その教典をキリスト教側からの呼称で何というか。</div>
+  <div class="qtext">バビロン<ruby>捕囚<rt>ほしゅう</rt></ruby>からの解放後に確立した、ヤハウェを唯一神とするヘブライ人（ユダヤ人）の宗教を何というか。また、その教典をキリスト教側からの呼称で何というか。</div>
   <details><summary>解答を見る</summary>
     <div class="answer">解答：ユダヤ教／『旧約聖書』</div>
-    <div class="explanation">解説：唯一神ヤハウェへの信仰を核に、ユダヤ人だけが神に選ばれたとする選民思想、救世主（メシア）の到来への待望、律法の重視を特色とする。バビロン捕囚（Day002既出）の苦難の中で信仰が深められ、帰還後に教団として確立した。「旧約」とは「神との古い契約」の意で、キリスト教の立場からの呼び名である点に注意。</div>
+    <div class="explanation">解説：唯一神ヤハウェへの信仰を核に、ユダヤ人だけが神に選ばれたとする選民思想、救世主（メシア）の到来への待望、律法の重視を特色とする。バビロン<ruby>捕囚<rt>ほしゅう</rt></ruby>（Day002既出）の苦難の中で信仰が深められ、帰還後に教団として確立した。「旧約」とは「神との古い契約」の意で、キリスト教の立場からの呼び名である点に注意。</div>
   </details>
 </div>
 
@@ -403,7 +408,7 @@
 
 <div class="col fieldnote">
   <h3>ほんものに会いに行こう！</h3>
-  <p>この集に出てきたモノ、実は日本にいながら実物に会えるんです。東京・池袋の<a href="https://aom-tokyo.com/" target="_blank" rel="noopener">古代オリエント博物館</a>は、日本で最初のオリエント専門博物館。メソポタミアやシリアの出土品を間近で見られて、楔形文字の粘土板も収蔵されています。実物は驚くほど小さくて、手のひらサイズの粘土板にびっしり楔形の記号が詰まっています。しかもその多くは神話でも文学でもなく、穀物や家畜を記録した「事務書類」。文字の発明を支えたのは詩人ではなく倉庫番だった——というのが考古学の見立てです。上野の<a href="https://www.tnm.jp/" target="_blank" rel="noopener">東京国立博物館</a>・東洋館では、国内で常時公開されている唯一の古代エジプトのミイラとされる「パシェリエンプタハのミイラ」に会えます。『死者の書』の死生観を、実物の前で考えてみてください。ガラス越しに向き合うと、「死後の復活を信じて肉体を保存した」という一行の重さが変わりますよ。展示は入れ替わることがあるので、おでかけ前に各館の公式サイトをチェック！（リンク集のページにも各館をまとめてあります）</p>
+  <p>この集に出てきたモノ、実は日本にいながら実物に会えるんです。東京・池袋の<a href="https://aom-tokyo.com/" target="_blank" rel="noopener">古代オリエント博物館</a>は、日本で最初のオリエント専門博物館。メソポタミアやシリアの出土品を間近で見られて、<ruby>楔形文字<rt>くさびがたもじ</rt></ruby>の粘土板も収蔵されています。実物は驚くほど小さくて、手のひらサイズの粘土板にびっしり楔形の記号が詰まっています。しかもその多くは神話でも文学でもなく、穀物や家畜を記録した「事務書類」。文字の発明を支えたのは詩人ではなく倉庫番だった——というのが考古学の見立てです。上野の<a href="https://www.tnm.jp/" target="_blank" rel="noopener">東京国立博物館</a>・東洋館では、国内で常時公開されている唯一の古代エジプトのミイラとされる「パシェリエンプタハのミイラ」に会えます。『死者の書』の死生観を、実物の前で考えてみてください。ガラス越しに向き合うと、「死後の復活を信じて肉体を保存した」という一行の重さが変わりますよ。展示は入れ替わることがあるので、おでかけ前に各館の公式サイトをチェック！（リンク集のページにも各館をまとめてあります）</p>
 </div>
 
 <h2 class="section">日本史の文化史（13問）</h2>
@@ -422,9 +427,9 @@
   <div class="qhead"><span class="qn">16</span><span class="badge basic">基本</span></div>
   <div class="qtext">石の表面を磨いて仕上げた石器を何というか。世界史では、この石器の使用が始まった時代を旧石器時代と区別して何と呼ぶか。</div>
   <details><summary>解答を見る</summary>
-    <div class="answer">解答：磨製石器／新石器時代</div>
-    <div class="explanation">解説：打製石器（打ち欠いて作る）との対比で押さえる。日本列島の縄文時代は磨製石器・土器・弓矢を特徴とし、世界史の区分では新石器文化にあたる。
-      <span class="caution">注意：岩宿遺跡などでは世界的にも古い局部磨製石斧が後期旧石器時代の地層から出土しており、「磨製石器＝縄文以降」と機械的に覚えるのは不正確。</span></div>
+    <div class="answer">解答：<ruby>磨製石器<rt>ませいせっき</rt></ruby>／新石器時代</div>
+    <div class="explanation">解説：<ruby>打製石器<rt>だせいせっき</rt></ruby>（打ち欠いて作る）との対比で押さえる。日本列島の縄文時代は<ruby>磨製石器<rt>ませいせっき</rt></ruby>・土器・弓矢を特徴とし、世界史の区分では新石器文化にあたる。
+      <span class="caution">注意：<ruby>岩宿<rt>いわじゅく</rt></ruby>遺跡などでは世界的にも古い<ruby>局部磨製石斧<rt>きょくぶませいせきふ</rt></ruby>が後期旧石器時代の地層から出土しており、「<ruby>磨製石器<rt>ませいせっき</rt></ruby>＝縄文以降」と機械的に覚えるのは不正確。</span></div>
   </details>
 </div>
 
@@ -433,7 +438,7 @@
   <div class="qtext">あらゆる自然物や自然現象に霊威（精霊）が宿るとする考え方を何というか。縄文時代の信仰の基盤にあったと考えられている。</div>
   <details><summary>解答を見る</summary>
     <div class="answer">解答：アニミズム</div>
-    <div class="explanation">解説：土偶・石棒などの呪術的な道具や、抜歯・屈葬などの習俗（いずれもDay001既出）の背景にある観念とされる。自然の恵みへの祈りと畏れが一体になった信仰で、のちの日本の民俗的な神観念との連続性を指摘する見方もある。</div>
+    <div class="explanation">解説：土偶・<ruby>石棒<rt>せきぼう</rt></ruby>などの<ruby>呪術<rt>じゅじゅつ</rt></ruby>的な道具や、<ruby>抜歯<rt>ばっし</rt></ruby>・<ruby>屈葬<rt>くっそう</rt></ruby>などの習俗（いずれもDay001既出）の背景にある観念とされる。自然の恵みへの祈りと畏れが一体になった信仰で、のちの日本の民俗的な神観念との連続性を指摘する見方もある。</div>
   </details>
 </div>
 
@@ -442,7 +447,7 @@
   <div class="qtext">縄文時代晩期に東北地方を中心に発達した、精巧な作りで知られる土器の様式を、青森県つがる市の遺跡名から何と呼ぶか。</div>
   <details><summary>解答を見る</summary>
     <div class="answer">解答：亀ヶ岡式土器</div>
-    <div class="explanation">解説：薄手で装飾性が高く、漆を塗った例もある。同じ亀ヶ岡遺跡からは、雪中で目を守る道具に似た大きな目の表現をもつ遮光器土偶が出土しており、晩期の東北に高度な造形文化が栄えたことを示す。</div>
+    <div class="explanation">解説：薄手で装飾性が高く、漆を塗った例もある。同じ亀ヶ岡遺跡からは、雪中で目を守る道具に似た大きな目の表現をもつ<ruby>遮光器土偶<rt>しゃこうきどぐう</rt></ruby>が出土しており、晩期の東北に高度な造形文化が栄えたことを示す。</div>
   </details>
 </div>
 
@@ -451,7 +456,7 @@
   <div class="qtext">弥生時代の青銅製祭器のうち、釣鐘形のものを何というか。その表面には、当時の生活を知る手がかりとなる絵が描かれたものもある。</div>
   <details><summary>解答を見る</summary>
     <div class="answer">解答：銅鐸</div>
-    <div class="explanation">解説：近畿地方を中心に分布する（分布圏はDay003既出）。絵画銅鐸には脱穀・狩猟・高床の建物（倉庫とみられる）などの場面が線画で描かれ、文字のない時代の生活を伝える貴重な図像資料となっている。香川県出土と伝わる袈裟襷文銅鐸の絵画が有名。</div>
+    <div class="explanation">解説：近畿地方を中心に分布する（分布圏はDay003既出）。絵画銅鐸には脱穀・狩猟・高床の建物（倉庫とみられる）などの場面が線画で描かれ、文字のない時代の生活を伝える貴重な図像資料となっている。香川県出土と伝わる<ruby>袈裟襷文<rt>けさだすきもん</rt></ruby>銅鐸の絵画が有名。</div>
   </details>
 </div>
 
@@ -468,7 +473,7 @@
   <div class="qhead"><span class="qn">21</span><span class="badge basic">基本</span></div>
   <div class="qtext">畿内を中心とする前期古墳から多く出土する、縁の断面が三角形で神仙や獣の文様をもつ銅鏡を何というか。卑弥呼が魏から与えられた鏡にあてる説もある。</div>
   <details><summary>解答を見る</summary>
-    <div class="answer">解答：三角縁神獣鏡</div>
+    <div class="answer">解答：<ruby>三角縁神獣鏡<rt>さんかくぶちしんじゅうきょう</rt></ruby></div>
     <div class="explanation">解説：同じ鋳型で作られた同笵鏡が各地の古墳に分配されたように出土することから、初期ヤマト政権と各地の首長の結びつきを示すと考えられている。
       <span class="caution">注意：「卑弥呼の鏡」説には、中国本土からの出土例がないことなどから異論も強く、国産説も含めて確定していない。</span></div>
   </details>
@@ -478,26 +483,26 @@
   <div class="qhead"><span class="qn">22</span><span class="badge adv">発展</span></div>
   <div class="qtext">新潟県の信濃川流域を中心に出土する、燃え上がる炎のような立体的装飾をもつ縄文時代中期の土器を何と呼ぶか。</div>
   <details><summary>解答を見る</summary>
-    <div class="answer">解答：火焔型土器</div>
+    <div class="answer">解答：<ruby>火焔型土器<rt>かえんがたどき</rt></ruby></div>
     <div class="explanation">解説：十日町市の笹山遺跡出土品は縄文土器として初めて国宝に指定された。実用の煮炊きに使われた痕跡もあり、「実用品でありながら過剰なまでの装飾をもつ」点が縄文文化の造形力を象徴するものとして注目されてきた。</div>
   </details>
 </div>
 
 <div class="q">
   <div class="qhead"><span class="qn">23</span><span class="badge adv">発展</span></div>
-  <div class="qtext">古墳時代の呪術的な風習のうち、熱湯に手を入れさせ、ただれるかどうかで真偽を判定したものを何というか。</div>
+  <div class="qtext">古墳時代の<ruby>呪術<rt>じゅじゅつ</rt></ruby>的な風習のうち、熱湯に手を入れさせ、ただれるかどうかで真偽を判定したものを何というか。</div>
   <details><summary>解答を見る</summary>
-    <div class="answer">解答：盟神探湯（くかたち）</div>
-    <div class="explanation">解説：『日本書紀』に記述がみられる神判の一種。鹿の骨を焼いて吉凶を占う太占（ふとまに）とあわせて、古墳時代の呪術的風習として対で問われる。政治や裁判が神意と結びついていた社会を示す。</div>
+    <div class="answer">解答：<ruby>盟神探湯<rt>くかたち</rt></ruby>（くかたち）</div>
+    <div class="explanation">解説：『日本書紀』に記述がみられる神判の一種。鹿の骨を焼いて吉凶を占う<ruby>太占<rt>ふとまに</rt></ruby>（ふとまに）とあわせて、古墳時代の<ruby>呪術<rt>じゅじゅつ</rt></ruby>的風習として対で問われる。政治や裁判が神意と結びついていた社会を示す。</div>
   </details>
 </div>
 
 <div class="q">
   <div class="qhead"><span class="qn">24</span><span class="badge adv">発展</span></div>
-  <div class="qtext">福岡県宗像市の沖合に浮かび、4世紀後半から約500年間にわたり航海の安全を祈る国家的な祭祀が行われた島を何というか。2017年に世界文化遺産に登録された。</div>
+  <div class="qtext">福岡県宗像市の沖合に浮かび、4世紀後半から約500年間にわたり航海の安全を祈る国家的な<ruby>祭祀<rt>さいし</rt></ruby>が行われた島を何というか。2017年に世界文化遺産に登録された。</div>
   <details><summary>解答を見る</summary>
     <div class="answer">解答：沖ノ島</div>
-    <div class="explanation">解説：宗像大社の沖津宮が鎮座し、鏡・金製指輪など約8万点の奉献品が手つかずのまま伝えられたことから「海の正倉院」とも呼ばれる。朝鮮半島との航路上にあり、ヤマト政権の対外交渉と祭祀が結びついていたことを示す。島全体が御神体とされ、現在も上陸は厳しく制限されている。</div>
+    <div class="explanation">解説：宗像大社の沖津宮が鎮座し、鏡・金製指輪など約8万点の奉献品が手つかずのまま伝えられたことから「海の正倉院」とも呼ばれる。朝鮮半島との航路上にあり、ヤマト政権の対外交渉と<ruby>祭祀<rt>さいし</rt></ruby>が結びついていたことを示す。島全体が御神体とされ、現在も上陸は厳しく制限されている。</div>
   </details>
 </div>
 
@@ -505,17 +510,17 @@
   <div class="qhead"><span class="qn">25</span><span class="badge basic">基本</span></div>
   <div class="qtext">秋田県鹿角市にある、縄文時代後期の大規模な環状列石（ストーンサークル）で知られる遺跡を何というか。</div>
   <details><summary>解答を見る</summary>
-    <div class="answer">解答：大湯環状列石</div>
-    <div class="explanation">解説：万座・野中堂という二つの環状列石からなり、大きい万座環状列石は最大径約52mに達する。墓地や祭祀の場と考えられ、集落から離れた場所に築かれていることから、複数の集団が共同で営んだとみられる。2021年に「北海道・北東北の縄文遺跡群」の一つとして世界文化遺産に登録された（三内丸山遺跡・Day001既出と同じ遺跡群）。</div>
+    <div class="answer">解答：<ruby>大湯環状列石<rt>おおゆかんじょうれっせき</rt></ruby></div>
+    <div class="explanation">解説：万座・野中堂という二つの環状列石からなり、大きい万座環状列石は最大径約52mに達する。墓地や<ruby>祭祀<rt>さいし</rt></ruby>の場と考えられ、集落から離れた場所に築かれていることから、複数の集団が共同で営んだとみられる。2021年に「北海道・北東北の縄文遺跡群」の一つとして世界文化遺産に登録された（<ruby>三内丸山<rt>さんないまるやま</rt></ruby>遺跡・Day001既出と同じ遺跡群）。</div>
   </details>
 </div>
 
 <div class="q">
   <div class="qhead"><span class="qn">26</span><span class="badge basic">基本</span></div>
-  <div class="qtext">縄文時代に装身具の材料として珍重され、新潟県糸魚川周辺の産地から各地へ運ばれた宝石を何というか。</div>
+  <div class="qtext">縄文時代に装身具の材料として珍重され、新潟県<ruby>糸魚川<rt>いといがわ</rt></ruby>周辺の産地から各地へ運ばれた宝石を何というか。</div>
   <details><summary>解答を見る</summary>
     <div class="answer">解答：ヒスイ（硬玉）</div>
-    <div class="explanation">解説：大珠（たいしゅ）と呼ばれる装身具などに加工され、東日本を中心に広く分布する。産地が糸魚川周辺（姫川流域）にほぼ限られるため、黒曜石（Day001既出）やアスファルトと並んで、縄文時代の遠隔地交易を示す代表的な物資とされる。三内丸山遺跡でも出土している。</div>
+    <div class="explanation">解説：<ruby>大珠<rt>たいしゅ</rt></ruby>（たいしゅ）と呼ばれる装身具などに加工され、東日本を中心に広く分布する。産地が<ruby>糸魚川<rt>いといがわ</rt></ruby>周辺（姫川流域）にほぼ限られるため、<ruby>黒曜石<rt>こくようせき</rt></ruby>（Day001既出）やアスファルトと並んで、縄文時代の遠隔地交易を示す代表的な物資とされる。<ruby>三内丸山<rt>さんないまるやま</rt></ruby>遺跡でも出土している。</div>
   </details>
 </div>
 
@@ -523,14 +528,14 @@
   <div class="qhead"><span class="qn">27</span><span class="badge basic">基本</span></div>
   <div class="qtext">弥生文化が及ばなかった北海道と南西諸島では、食料採取に基づく文化がその後も続いた。それぞれの文化を何と呼ぶか。</div>
   <details><summary>解答を見る</summary>
-    <div class="answer">解答：北海道＝続縄文文化／南西諸島＝貝塚文化</div>
-    <div class="explanation">解説：水稲耕作は気候などの条件から北海道には広がらず、南西諸島でも本格化しなかった。同じ時期の列島に稲作の文化と採取の文化が並存したことは、「弥生時代」への移行が列島全体で一様に進んだのではないことを示す。北海道の続縄文文化は、のちに擦文文化へと移り変わっていく。</div>
+    <div class="answer">解答：北海道＝<ruby>続縄文<rt>ぞくじょうもん</rt></ruby>文化／南西諸島＝貝塚文化</div>
+    <div class="explanation">解説：水稲耕作は気候などの条件から北海道には広がらず、南西諸島でも本格化しなかった。同じ時期の列島に稲作の文化と採取の文化が並存したことは、「弥生時代」への移行が列島全体で一様に進んだのではないことを示す。北海道の<ruby>続縄文<rt>ぞくじょうもん</rt></ruby>文化は、のちに擦文文化へと移り変わっていく。</div>
   </details>
 </div>
 
 <div class="col fieldnote">
   <h3>ほんものに会いに行こう！</h3>
-  <p>縄文は、現地で「風景ごと」見るのがおすすめです！青森の<a href="https://sannaimaruyama.pref.aomori.jp/" target="_blank" rel="noopener">三内丸山遺跡</a>では大型掘立柱建物や竪穴住居が復元されていて、併設の施設で出土品も見られます。秋田・鹿角の<a href="https://oyustonecircles.explorekazuno.jp/" target="_blank" rel="noopener">大湯環状列石</a>は、環状列石のまわりを実際に歩けます。どちらも世界文化遺産「<a href="https://jomon-japan.jp/" target="_blank" rel="noopener">北海道・北東北の縄文遺跡群</a>」の構成資産で、見学環境もばっちり。ヒスイのふるさと・新潟県糸魚川市では、<a href="https://fmm.geo-itoigawa.com/" target="_blank" rel="noopener">フォッサマグナミュージアム</a>でヒスイの原石に会えますし、<a href="https://www.city.itoigawa.lg.jp/6194.htm" target="_blank" rel="noopener">長者ケ原遺跡</a>ではヒスイ加工のムラの跡も歩けます。そして国宝の火焔型土器（笹山遺跡出土）に会うなら<a href="https://www.tokamachi-museum.jp/" target="_blank" rel="noopener">十日町市博物館</a>へ！写真で知っているつもりの土器も、実物の前に立つと大きさと造形の迫力がまるで違います。現地に立つと、集落はどこ？お墓はどこ？水場は？——と、立地そのものを体で確かめられます。設問の一行一行が、風景として立ち上がってきますよ。</p>
+  <p>縄文は、現地で「風景ごと」見るのがおすすめです！青森の<a href="https://sannaimaruyama.pref.aomori.jp/" target="_blank" rel="noopener"><ruby>三内丸山<rt>さんないまるやま</rt></ruby>遺跡</a>では大型掘立柱建物や<ruby>竪穴住居<rt>たてあなじゅうきょ</rt></ruby>が復元されていて、併設の施設で出土品も見られます。秋田・鹿角の<a href="https://oyustonecircles.explorekazuno.jp/" target="_blank" rel="noopener"><ruby>大湯環状列石<rt>おおゆかんじょうれっせき</rt></ruby></a>は、環状列石のまわりを実際に歩けます。どちらも世界文化遺産「<a href="https://jomon-japan.jp/" target="_blank" rel="noopener">北海道・北東北の縄文遺跡群</a>」の構成資産で、見学環境もばっちり。ヒスイのふるさと・新潟県<ruby>糸魚川<rt>いといがわ</rt></ruby>市では、<a href="https://fmm.geo-itoigawa.com/" target="_blank" rel="noopener">フォッサマグナミュージアム</a>でヒスイの原石に会えますし、<a href="https://www.city.itoigawa.lg.jp/6194.htm" target="_blank" rel="noopener">長者ケ原遺跡</a>ではヒスイ加工のムラの跡も歩けます。そして国宝の<ruby>火焔型土器<rt>かえんがたどき</rt></ruby>（笹山遺跡出土）に会うなら<a href="https://www.tokamachi-museum.jp/" target="_blank" rel="noopener">十日町市博物館</a>へ！写真で知っているつもりの土器も、実物の前に立つと大きさと造形の迫力がまるで違います。現地に立つと、集落はどこ？お墓はどこ？水場は？——と、立地そのものを体で確かめられます。設問の一行一行が、風景として立ち上がってきますよ。</p>
 </div>
 
 <!--shareui-->
