@@ -720,7 +720,7 @@
     <button type="button" class="sh-btn" data-mode="invite" data-to="ig">Instagram</button>
     <button type="button" class="sh-btn" data-mode="invite" data-to="cp">文面をコピー</button>
   </div>
-  <p class="sh-note">Instagram は投稿画面に文面を直接渡せないため、ボタンを押すと文面をコピーします。ストーリーズ・ノート・DM に貼り付けてご利用ください。</p>
+  <p class="sh-note">Instagram のボタンはストーリーズを開きます（アプリのある端末）。文面は自動でコピーされるので、リンクスタンプやテキストに貼り付けてご利用ください。</p>
 </section>
 <div id="sh-toast" role="status" aria-live="polite"></div>
 <script>
@@ -761,7 +761,10 @@
     return { a: ok[0].textContent, an: n[0].textContent,
              b: ok[1].textContent, bn: n[1].textContent, graded: graded };
   }
-  function reveal(){ if (getBar()) document.getElementById("sh-row-result").hidden = false; }
+  function reveal(){
+    var rr = document.getElementById("sh-row-result");
+    if (rr && getBar()) rr.hidden = false;
+  }
   if (document.readyState === "loading"){
     document.addEventListener("DOMContentLoaded", reveal);
   } else { reveal(); }
@@ -780,7 +783,13 @@
     if (btn.dataset.to === "x"){
       window.open("https://x.com/intent/post?text=" + encodeURIComponent(full), "_blank", "noopener");
     } else if (btn.dataset.to === "ig"){
-      copy(full, function(){ toast("文面をコピーしました。Instagram のストーリーズ・ノート・DM に貼り付けてください"); });
+      // ストーリーズカメラを開く（アプリのある端末のみ有効・Webインテント非提供のため文面はコピーで渡す）
+      copy(full, function(){ toast("文面をコピーしました。ストーリーズのリンクスタンプやテキストに貼り付けてください"); });
+      var t = setTimeout(function(){
+        if (!document.hidden) window.open("https://www.instagram.com/", "_blank", "noopener");
+      }, 1500);
+      window.addEventListener("pagehide", function(){ clearTimeout(t); }, { once: true });
+      location.href = "instagram://story-camera";
     } else {
       copy(full, function(){ toast("文面とリンクをコピーしました"); });
     }
