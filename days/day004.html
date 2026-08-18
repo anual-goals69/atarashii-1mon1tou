@@ -664,6 +664,130 @@
   <p style="font-size:.78em; opacity:.7; border-top:1px dashed var(--line); padding-top:.7em; margin-top:1em;">※史実に取材した創作コラムです。人物や会話は創作を含みます。レバノン杉がエジプトへ輸出されたことはエジプト側の記録から、貝からとった染料と22字の子音文字は出土資料と碑文から知られます。書記が薄い板に記したという情景は、パピルスや木板の使用が推定されていることをふまえた見立てで、この地方は湿潤なため有機質の記録媒体そのものはほとんど残っていません。列島側では、菜畑遺跡・板付遺跡で縄文時代晩期〜弥生時代前期の水田跡と大陸系の農具・石器が確認されています。稲作を受け入れなかった人がいたという描写は、縄文的な生業が地域によって長く続いたことをふまえた創作です。</p>
 </div>
 
+<!--shareui-->
+<style>
+  /* 共有UI（make_share_ui.py・自己完結。低負荷UI基準: WCAG 4.5:1以上・reduced-motion・focus可視化） */
+  :root{
+    --sh-card:#ffffff; --sh-line:#eadfc8; --sh-fg:#33302a; --sh-sub:#5c564c;
+    --sh-teal:#1f756d; --sh-teal-fg:#ffffff; --sh-shadow:0 2px 10px rgba(120,95,40,.10);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --sh-card:#221e18; --sh-line:#3a332a; --sh-fg:#efe9df; --sh-sub:#c9c2b4;
+      --sh-teal:#4db8ae; --sh-teal-fg:#12100e; --sh-shadow:0 2px 10px rgba(0,0,0,.35);
+    }
+  }
+  .shareui{
+    max-width:720px; margin:2.2em auto 1.6em; padding:1.1em 1.2em 1em;
+    background:var(--sh-card); border:1px solid var(--sh-line); border-radius:12px;
+    box-shadow:var(--sh-shadow); color:var(--sh-fg);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Noto Sans JP",sans-serif;
+  }
+  .shareui h2{font-size:1em; margin:0 0 .7em; letter-spacing:.04em;}
+  .shareui .sh-row{display:flex; flex-wrap:wrap; align-items:center; gap:.5em; margin:.55em 0;}
+  .shareui .sh-lead{font-size:.85em; color:var(--sh-sub); min-width:9em;}
+  .shareui .sh-btn{
+    display:inline-block; padding:.55em .9em; font-size:.85em; font-weight:700;
+    border-radius:999px; border:1.5px solid var(--sh-teal); cursor:pointer;
+    background:var(--sh-card); color:var(--sh-teal); line-height:1;
+  }
+  .shareui .sh-btn.sh-x{background:var(--sh-teal); color:var(--sh-teal-fg);}
+  .shareui .sh-btn:hover{filter:brightness(1.06);}
+  .shareui .sh-btn:focus-visible{outline:2px solid var(--sh-teal); outline-offset:2px;}
+  .shareui .sh-note{font-size:.75em; color:var(--sh-sub); margin:.7em 0 0; line-height:1.6;}
+  #sh-toast{
+    position:fixed; left:50%; bottom:7em; transform:translateX(-50%); z-index:60;
+    background:var(--sh-fg); color:var(--sh-card); padding:.7em 1.1em; border-radius:8px;
+    font-size:.85em; max-width:86vw; line-height:1.5; box-shadow:var(--sh-shadow);
+    opacity:0; pointer-events:none; transition:opacity .25s;
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Noto Sans JP",sans-serif;
+  }
+  #sh-toast.on{opacity:1;}
+  @media (prefers-reduced-motion: reduce){ #sh-toast{transition:none;} }
+</style>
+<section class="shareui" id="shareui" data-url="https://atarashii-1mon1tou.pages.dev/days/day004" data-kind="day"
+  data-invite="毎朝ちょっと歴史に詳しくなろう" data-rtpl="「新しい一問一答」DAY 004、世界史 {a}/{an}・日本史 {b}/{bn} でした！">
+  <h2>この号をシェア</h2>
+  <div class="sh-row" id="sh-row-result" hidden>
+    <span class="sh-lead">採点結果を自慢する</span>
+    <button type="button" class="sh-btn sh-x" data-mode="result" data-to="x">X で投稿</button>
+    <button type="button" class="sh-btn" data-mode="result" data-to="ig">Instagram</button>
+    <button type="button" class="sh-btn" data-mode="result" data-to="cp">文面をコピー</button>
+  </div>
+  <div class="sh-row">
+    <span class="sh-lead">友達を誘う</span>
+    <button type="button" class="sh-btn sh-x" data-mode="invite" data-to="x">X で投稿</button>
+    <button type="button" class="sh-btn" data-mode="invite" data-to="ig">Instagram</button>
+    <button type="button" class="sh-btn" data-mode="invite" data-to="cp">文面をコピー</button>
+  </div>
+  <p class="sh-note">Instagram は投稿画面に文面を直接渡せないため、ボタンを押すと文面をコピーします。ストーリーズ・ノート・DM に貼り付けてご利用ください。</p>
+</section>
+<div id="sh-toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+  var root = document.getElementById("shareui");
+  if (!root) return;
+  var URLX = root.dataset.url, INVITE = root.dataset.invite, RTPL = root.dataset.rtpl;
+  var toastEl = document.getElementById("sh-toast"), toastT = null;
+  function toast(msg){
+    toastEl.textContent = msg; toastEl.classList.add("on");
+    clearTimeout(toastT); toastT = setTimeout(function(){ toastEl.classList.remove("on"); }, 3200);
+  }
+  function copy(text, done){
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done, function(){ fallback(); });
+    } else { fallback(); }
+    function fallback(){
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); } catch(e){}
+      document.body.removeChild(ta); done();
+    }
+  }
+  // 採点結果は #scorebar（採点UI）のDOMから読む。ロジックは複製しない。
+  // 採点UIのスクリプトは本ブロックより後で実行されるため、参照は遅延評価にする
+  function getBar(){ return document.getElementById("scorebar"); }
+  function scores(){
+    var bar = getBar();
+    if (!bar || bar.hidden) return null;
+    var ok = bar.querySelectorAll(".num"), n = bar.querySelectorAll(".sb-n"),
+        fills = bar.querySelectorAll(".fill");
+    if (ok.length < 2 || n.length < 2) return null;
+    var graded = 0;
+    for (var i = 0; i < fills.length; i++){
+      if (parseFloat(fills[i].style.width) > 0) graded++;
+    }
+    return { a: ok[0].textContent, an: n[0].textContent,
+             b: ok[1].textContent, bn: n[1].textContent, graded: graded };
+  }
+  function reveal(){ if (getBar()) document.getElementById("sh-row-result").hidden = false; }
+  if (document.readyState === "loading"){
+    document.addEventListener("DOMContentLoaded", reveal);
+  } else { reveal(); }
+  function buildText(mode){
+    if (mode === "invite") return INVITE;
+    var s = scores();
+    if (!s || !s.graded){ toast("まだ採点していません。◯×をつけてからどうぞ"); return null; }
+    return RTPL.replace("{a}", s.a).replace("{an}", s.an).replace("{b}", s.b).replace("{bn}", s.bn);
+  }
+  root.addEventListener("click", function(ev){
+    var btn = ev.target.closest ? ev.target.closest(".sh-btn") : null;
+    if (!btn) return;
+    var text = buildText(btn.dataset.mode);
+    if (text === null) return;
+    var full = text + "\n" + URLX;
+    if (btn.dataset.to === "x"){
+      window.open("https://x.com/intent/post?text=" + encodeURIComponent(full), "_blank", "noopener");
+    } else if (btn.dataset.to === "ig"){
+      copy(full, function(){ toast("文面をコピーしました。Instagram のストーリーズ・ノート・DM に貼り付けてください"); });
+    } else {
+      copy(full, function(){ toast("文面とリンクをコピーしました"); });
+    }
+  });
+})();
+</script>
+<!--/shareui-->
 <footer class="next">
   <span class="label">次回予告：</span>世界史は、小さな民の時代が終わるところから——鉄の軍隊を組織した大国が、オリエントをはじめて一つにまとめる。日本史は、水田の村に金属器が入り、蓄えを守るための構えが生まれる。連載「時の回廊」は、濠の内側と外側を歩く。
 </footer>
