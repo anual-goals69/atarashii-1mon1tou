@@ -190,7 +190,10 @@
   .rf-score{font-size:2.1em; font-weight:700; color:var(--sg-ink); margin:.25em 0;}
   .rf-score .rf-den{font-size:.5em; opacity:.6;}
   .rf-msg{font-size:.95em; color:var(--sg-teal); margin-bottom:.6em;}
-  .rf-close{font-size:.72em; opacity:.5; color:var(--sg-ink);}
+  /* 2026-08-19: .72em（約12.2px）は低負荷UIの下限12.8pxを割るため .75em に。
+     テンプレート側を直さないと、apply_low_strain.py で直した号も本スクリプトの
+     再実行で元に戻る（state.md の「day001 の退行リスク」の根）*/
+  .rf-close{font-size:.75em; opacity:.5; color:var(--sg-ink);}
 </style>
 <!--/gradecss-->
 <!--linkcss-->
@@ -213,6 +216,22 @@
   body .wrap a:hover{ color:var(--gold); }
 </style>
 <!--/linkcss-->
+<!--lowstrain-->
+<style>
+  /* 低負荷UI一括適用（apply_low_strain.py）。文字サイズは判読性・眼精疲労の最重要因子 */
+  html{font-size:106.25%;}
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration:.01ms !important; animation-iteration-count:1 !important;
+      transition-duration:.01ms !important; scroll-behavior:auto !important;
+    }
+  }
+  :where(a, button, summary, [tabindex]):focus-visible{
+    outline:2px solid var(--gold, var(--amber-deep, #75610a)); outline-offset:2px; border-radius:2px;
+  }
+</style>
+<!--/lowstrain-->
+</head>
 <body>
 <!--sitenav-->
 <style>
@@ -430,7 +449,7 @@
   <div class="qhead"><span class="qn">16</span><span class="badge basic">基本</span></div>
   <div class="qtext">地下の埋葬施設の上に大きな平石をのせた形の墓で、同じ形式が朝鮮半島南部に濃く分布することから、大陸との関係を示すとされる北部九州の墓を何というか。</div>
   <details><summary>解答を見る</summary>
-    <div class="answer">解答：支石墓</div>
+    <div class="answer">解答：<ruby>支石墓<rt>しせきぼ</rt></ruby></div>
     <div class="explanation">解説：玄界灘に面した一帯に集中し、石の下には甕を用いた棺や石の棺、木の棺などが納められる。同じ形式が海の向こうに広く分布することから、稲作とともに人と葬りかたが渡ってきた証拠とされる。〈墓の形は簡単には変わらない＝人の移動の手がかり〉。土器や道具より保守的な部分ほど、由来をよく語る。</div>
   </details>
 </div>
@@ -452,7 +471,7 @@
     </svg><!--MAP_J:end-->
   </div>
   <details><summary>解答を見る</summary>
-    <div class="answer">解答：イ＝平形銅剣　ウ＝銅矛・銅戈</div>
+    <div class="answer">解答：イ＝平形銅剣　ウ＝<ruby>銅矛<rt>どうほこ</rt></ruby>・<ruby>銅戈<rt>どうか</rt></ruby></div>
     <div class="explanation">解説：イは瀬戸内海の中部、とくに愛媛・香川を中心とする圏で、刃が広く平たい形に変わっている。ウは玄界灘に面した一帯で、海の向こうから入った武器の形が、そのまま祭りの道具になった。アの圏は近畿を中心に、東は伊勢・美濃・尾張、北は若狭・越前へも及ぶ。〈近畿＝鐘／瀬戸内＝広い剣／北部九州＝矛と戈〉と、地形とセットで覚える。三つの圏は接するあたりで重なり、境界は固定的ではない。</div>
   </details>
 </div>
@@ -465,8 +484,8 @@
     </svg><!--MAP_J2:end-->
   </div>
   <details><summary>解答を見る</summary>
-    <div class="answer">解答：荒神谷遺跡</div>
-    <div class="explanation">解説：出土した銅剣の数は、それまでに全国で見つかっていた総数を上回った。翌1985年には、同じ丘の別の坑から銅鐸6個と銅矛16本が出土している。なぜこれほどの量が一か所に埋められたのかは決着していない——祭りのあとの埋納、危機に際しての退蔵、祭りそのものの終わりを示す儀礼など、説が並ぶ。〈出雲に大量、しかも別々の圏の品が同居〉が謎の核心である。出土品は一括して国宝に指定され、<a href="https://www.izm.ed.jp/" target="_blank" rel="noopener">島根県立古代出雲歴史博物館</a>が保管している（同館は耐震改修のため2026年9月（予定）まで休館中）。遺跡そのものは史跡公園として整備され、隣接する<a href="https://www.kojindani.jp/" target="_blank" rel="noopener">荒神谷博物館</a>で発見のいきさつをたどることができる。</div>
+    <div class="answer">解答：<ruby>荒神谷<rt>こうじんだに</rt></ruby>遺跡</div>
+    <div class="explanation">解説：出土した銅剣の数は、それまでに全国で見つかっていた総数を上回った。翌1985年には、同じ丘の別の坑から銅鐸6個と<ruby>銅矛<rt>どうほこ</rt></ruby>16本が出土している。なぜこれほどの量が一か所に埋められたのかは決着していない——祭りのあとの埋納、危機に際しての退蔵、祭りそのものの終わりを示す儀礼など、説が並ぶ。〈出雲に大量、しかも別々の圏の品が同居〉が謎の核心である。出土品は一括して国宝に指定され、<a href="https://www.izm.ed.jp/" target="_blank" rel="noopener">島根県立古代出雲歴史博物館</a>が保管している（同館は耐震改修のため2026年9月（予定）まで休館中）。遺跡そのものは史跡公園として整備され、隣接する<a href="https://www.kojindani.jp/" target="_blank" rel="noopener"><ruby>荒神谷<rt>こうじんだに</rt></ruby>博物館</a>で発見のいきさつをたどることができる。</div>
   </details>
 </div>
 
@@ -474,7 +493,7 @@
   <div class="qhead"><span class="qn">20</span><span class="badge adv">発展</span></div>
   <div class="qtext">1996年、Aの遺跡からおよそ3km離れた地点で、39個の釣鐘形の銅製品が一括して出土した。一か所からの出土数として全国最多となったこの遺跡は何か。</div>
   <details><summary>解答を見る</summary>
-    <div class="answer">解答：加茂岩倉遺跡</div>
+    <div class="answer">解答：<ruby>加茂岩倉<rt>かもいわくら</rt></ruby>遺跡</div>
     <div class="explanation">解説：農道の工事中に偶然見つかった。大きなものの中に小さなものを入れた「入れ子」の状態で埋められた組が12組確認され、同じ型でつくられた関係にあるものが15組26個明らかになっている。近接する二つの遺跡から大量の青銅が出たことで、出雲が祭りの一大拠点だったことがはっきりした。〈358本の剣と39個の鐘が、数キロの範囲に眠っていた〉。現地には<a href="https://www.city.unnan.shimane.jp/unnan/kankou/spot/iseki/musium03.html" target="_blank" rel="noopener">遺跡のガイダンス施設</a>がある。</div>
   </details>
 </div>
@@ -492,8 +511,8 @@
   <div class="qhead"><span class="qn">22</span><span class="badge adv">発展</span></div>
   <div class="qtext">弥生時代の土器の表面や断面からは、成形のときに粘土へ紛れこんだ穀物の粒に由来する資料が見つかることがあり、その地で稲作が行われていた証拠として重視される。この資料を何というか。</div>
   <details><summary>解答を見る</summary>
-    <div class="answer">解答：籾の圧痕（籾圧痕）</div>
-    <div class="explanation">解説：焼成の際に籾そのものは燃え去り、あとに空間だけが残る。近年はここにシリコーンを流し込んで型を取り、電子顕微鏡で種を見分ける手法が広く用いられ、栽培植物の種類と時期の見直しが進んでいる。炭になった米（炭化米）とあわせて、稲作の広がりを地点ごとに確かめる手がかりになる。〈残ったのは籾ではなく、籾のあった空間〉。</div>
+    <div class="answer">解答：<ruby>籾<rt>もみ</rt></ruby>の<ruby>圧痕<rt>あっこん</rt></ruby>（<ruby>籾<rt>もみ</rt></ruby><ruby>圧痕<rt>あっこん</rt></ruby>）</div>
+    <div class="explanation">解説：焼成の際に<ruby>籾<rt>もみ</rt></ruby>そのものは燃え去り、あとに空間だけが残る。近年はここにシリコーンを流し込んで型を取り、電子顕微鏡で種を見分ける手法が広く用いられ、栽培植物の種類と時期の見直しが進んでいる。炭になった米（炭化米）とあわせて、稲作の広がりを地点ごとに確かめる手がかりになる。〈残ったのは<ruby>籾<rt>もみ</rt></ruby>ではなく、<ruby>籾<rt>もみ</rt></ruby>のあった空間〉。</div>
   </details>
 </div>
 
@@ -951,8 +970,10 @@
     background:rgba(255,255,255,.12); color:#fff; font-size:1em; font-weight:800;}
   #zmbar button:hover{background:rgba(255,255,255,.26);}
   #zmpct{color:#e8dfd0; font-size:.78em; min-width:3.4em; text-align:center;}
+  /* 2026-08-19: .72em（約12.2px）は低負荷UIの下限を割るので .75em に。
+     テンプレートを直さないと apply_low_strain.py で直した号も再注入で元に戻る */
   #zmhint{position:absolute; left:50%; bottom:3.8em; transform:translateX(-50%); color:#cfc6b6;
-    font-size:.72em; pointer-events:none; opacity:.85; white-space:nowrap;}
+    font-size:.75em; pointer-events:none; opacity:.85; white-space:nowrap;}
 </style>
 <div id="zmov" role="dialog" aria-modal="true" aria-label="図版の拡大表示">
   <div id="zmstage"><div id="zminner"></div></div>

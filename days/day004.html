@@ -190,7 +190,10 @@
   .rf-score{font-size:2.1em; font-weight:700; color:var(--sg-ink); margin:.25em 0;}
   .rf-score .rf-den{font-size:.5em; opacity:.6;}
   .rf-msg{font-size:.95em; color:var(--sg-teal); margin-bottom:.6em;}
-  .rf-close{font-size:.72em; opacity:.5; color:var(--sg-ink);}
+  /* 2026-08-19: .72em（約12.2px）は低負荷UIの下限12.8pxを割るため .75em に。
+     テンプレート側を直さないと、apply_low_strain.py で直した号も本スクリプトの
+     再実行で元に戻る（state.md の「day001 の退行リスク」の根）*/
+  .rf-close{font-size:.75em; opacity:.5; color:var(--sg-ink);}
 </style>
 <!--/gradecss-->
 <!--linkcss-->
@@ -1023,8 +1026,10 @@
     background:rgba(255,255,255,.12); color:#fff; font-size:1em; font-weight:800;}
   #zmbar button:hover{background:rgba(255,255,255,.26);}
   #zmpct{color:#e8dfd0; font-size:.78em; min-width:3.4em; text-align:center;}
+  /* 2026-08-19: .72em（約12.2px）は低負荷UIの下限を割るので .75em に。
+     テンプレートを直さないと apply_low_strain.py で直した号も再注入で元に戻る */
   #zmhint{position:absolute; left:50%; bottom:3.8em; transform:translateX(-50%); color:#cfc6b6;
-    font-size:.72em; pointer-events:none; opacity:.85; white-space:nowrap;}
+    font-size:.75em; pointer-events:none; opacity:.85; white-space:nowrap;}
 </style>
 <div id="zmov" role="dialog" aria-modal="true" aria-label="図版の拡大表示">
   <div id="zmstage"><div id="zminner"></div></div>
