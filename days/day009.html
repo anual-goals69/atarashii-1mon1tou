@@ -130,6 +130,26 @@
   @media (prefers-color-scheme: dark){ :root{--dim:#a89c8c;} }
   
 </style>
+<!--linkcss-->
+<style>
+  /* 本文中のリンク。コンテナ列挙だと漏れた場所が既定の青になり、
+     暗い背景で読めなくなる（2026-08-04 オーナー指摘）。#77-3 参照。
+     2026-08-18 改訂（オーナー指示「リンク付き文字が見にくい問題が解決してない」）:
+     文字を金色にする方式は、AA(4.5:1)を満たしても本文より沈んで読みにくい——
+     ライトの濃金 #75610a(約5.1:1) でも本文 #25201a(約13:1) との差で暗色地味に見える。
+     リンクの文字色は本文と同じ（inherit＝最大コントラスト）にし、
+     リンクであることは**金色の下線だけ**で示す方式に変更。金色の意匠は下線に残る。
+     specificity は body 付きで page 側の .fieldnote a 等より強くしてある */
+  body .wrap a{
+    color:inherit;
+    text-decoration:underline;
+    text-decoration-color:var(--gold);
+    text-decoration-thickness:2px;
+    text-underline-offset:3px;
+  }
+  body .wrap a:hover{ color:var(--gold); }
+</style>
+<!--/linkcss-->
 <!--gradecss-->
 <style>
   :root{
@@ -196,26 +216,6 @@
   .rf-close{font-size:.75em; opacity:.5; color:var(--sg-ink);}
 </style>
 <!--/gradecss-->
-<!--linkcss-->
-<style>
-  /* 本文中のリンク。コンテナ列挙だと漏れた場所が既定の青になり、
-     暗い背景で読めなくなる（2026-08-04 オーナー指摘）。#77-3 参照。
-     2026-08-18 改訂（オーナー指示「リンク付き文字が見にくい問題が解決してない」）:
-     文字を金色にする方式は、AA(4.5:1)を満たしても本文より沈んで読みにくい——
-     ライトの濃金 #75610a(約5.1:1) でも本文 #25201a(約13:1) との差で暗色地味に見える。
-     リンクの文字色は本文と同じ（inherit＝最大コントラスト）にし、
-     リンクであることは**金色の下線だけ**で示す方式に変更。金色の意匠は下線に残る。
-     specificity は body 付きで page 側の .fieldnote a 等より強くしてある */
-  body .wrap a{
-    color:inherit;
-    text-decoration:underline;
-    text-decoration-color:var(--gold);
-    text-decoration-thickness:2px;
-    text-underline-offset:3px;
-  }
-  body .wrap a:hover{ color:var(--gold); }
-</style>
-<!--/linkcss-->
 <!--lowstrain-->
 <style>
   /* 低負荷UI一括適用（apply_low_strain.py）。文字サイズは判読性・眼精疲労の最重要因子 */
@@ -320,10 +320,10 @@
 
 <div class="q">
   <div class="qhead"><span class="qn">3</span><span class="badge basic">基本</span></div>
-  <div class="qtext">前7〜前6世紀ごろ、聖典の伝統のなかから、祭式の次第を伝えることよりも祭式の背後にある意味を探究する思索が現れた。この思索を何というか。</div>
+  <div class="qtext">前7〜前6世紀ごろ、バラモン教の祭式万能主義に対して、祭式そのものよりもその背後にある真理を内面の思索によって探究する立場が現れ、ヴェーダ文献の最後の層をなした。この思索を何というか。</div>
   <details><summary>解答を見る</summary>
     <div class="answer">解答：ウパニシャッド哲学</div>
-    <div class="explanation">解説：この思索を記した文献群は、讃歌の本集・祭式の解説書・森林書に続くヴェーダ文献の第四の層にあたる。聖典の外から現れた対抗思想ではなく、聖典の末尾に位置づけられるものであることに注意したい。対比の軸は、祭式の次第を伝える本集と、祭式の意味を探究するこの層とのあいだにある。</div>
+    <div class="explanation">解説：讃歌の本集・祭式の解説書・森林書に続く第四の層にあたる文献群を指す。「ヴェーダーンタ（ヴェーダの終わり）」と呼ばれるのはそのためで、聖典の外から現れた対抗思想ではない点に注意したい。対比の軸は、祭式の次第を伝える本集と、祭式の意味を探究するこの層とのあいだにある。</div>
   </details>
 </div>
 
