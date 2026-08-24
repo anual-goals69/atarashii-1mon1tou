@@ -130,26 +130,6 @@
   @media (prefers-color-scheme: dark){ :root{--dim:#a89c8c;} }
   
 </style>
-<!--linkcss-->
-<style>
-  /* 本文中のリンク。コンテナ列挙だと漏れた場所が既定の青になり、
-     暗い背景で読めなくなる（2026-08-04 オーナー指摘）。#77-3 参照。
-     2026-08-18 改訂（オーナー指示「リンク付き文字が見にくい問題が解決してない」）:
-     文字を金色にする方式は、AA(4.5:1)を満たしても本文より沈んで読みにくい——
-     ライトの濃金 #75610a(約5.1:1) でも本文 #25201a(約13:1) との差で暗色地味に見える。
-     リンクの文字色は本文と同じ（inherit＝最大コントラスト）にし、
-     リンクであることは**金色の下線だけ**で示す方式に変更。金色の意匠は下線に残る。
-     specificity は body 付きで page 側の .fieldnote a 等より強くしてある */
-  body .wrap a{
-    color:inherit;
-    text-decoration:underline;
-    text-decoration-color:var(--gold);
-    text-decoration-thickness:2px;
-    text-underline-offset:3px;
-  }
-  body .wrap a:hover{ color:var(--gold); }
-</style>
-<!--/linkcss-->
 <!--gradecss-->
 <style>
   :root{
@@ -216,6 +196,26 @@
   .rf-close{font-size:.75em; opacity:.5; color:var(--sg-ink);}
 </style>
 <!--/gradecss-->
+<!--linkcss-->
+<style>
+  /* 本文中のリンク。コンテナ列挙だと漏れた場所が既定の青になり、
+     暗い背景で読めなくなる（2026-08-04 オーナー指摘）。#77-3 参照。
+     2026-08-18 改訂（オーナー指示「リンク付き文字が見にくい問題が解決してない」）:
+     文字を金色にする方式は、AA(4.5:1)を満たしても本文より沈んで読みにくい——
+     ライトの濃金 #75610a(約5.1:1) でも本文 #25201a(約13:1) との差で暗色地味に見える。
+     リンクの文字色は本文と同じ（inherit＝最大コントラスト）にし、
+     リンクであることは**金色の下線だけ**で示す方式に変更。金色の意匠は下線に残る。
+     specificity は body 付きで page 側の .fieldnote a 等より強くしてある */
+  body .wrap a{
+    color:inherit;
+    text-decoration:underline;
+    text-decoration-color:var(--gold);
+    text-decoration-thickness:2px;
+    text-underline-offset:3px;
+  }
+  body .wrap a:hover{ color:var(--gold); }
+</style>
+<!--/linkcss-->
 <!--lowstrain-->
 <style>
   /* 低負荷UI一括適用（apply_low_strain.py）。文字サイズは判読性・眼精疲労の最重要因子 */
