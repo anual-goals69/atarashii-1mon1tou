@@ -226,6 +226,35 @@
   <a href="contact.html">お問い合わせ</a>
 </div></nav>
 <div class="wrap">
+<!--noticebanner-->
+<style>
+  .nb{
+    --nb-bg:#2a1c18; --nb-line:#7a4030; --nb-tag:#d4785f; --nb-tagfg:#1b0f0b; --nb-fg:#f0e2d8;
+    display:flex; align-items:flex-start; gap:.7em; flex-wrap:wrap;
+    margin:0 0 1.4em; padding:.85em 1em; border-radius:10px;
+    background:var(--nb-bg); border:1px solid var(--nb-line);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic","Noto Sans JP",sans-serif;
+    font-size:.92em; line-height:1.75; color:var(--nb-fg);
+  }
+  @media (prefers-color-scheme: light){
+    .nb{--nb-bg:#fbeee9; --nb-line:#dda893; --nb-tag:#9c4a30; --nb-tagfg:#fff8f4; --nb-fg:#4a2c22;}
+  }
+  .nb-tag{
+    flex:none; background:var(--nb-tag); color:var(--nb-tagfg);
+    border-radius:999px; padding:.15em .85em; font-weight:800; font-size:.9em;
+    letter-spacing:.04em; white-space:nowrap;
+  }
+  .nb-txt{margin:0; flex:1 1 16em; min-width:0;}
+  .nb-txt strong{color:var(--nb-tag);}
+</style>
+<div class="nb" role="status">
+  <span class="nb-tag">お知らせ</span>
+  <p class="nb-txt"><strong>不具合のため配信が遅れております。申し訳ございません。</strong>
+  新しい号の公開までしばらくお時間をいただいております。復旧しだい、順次公開してまいります。
+  公開済みの号はこれまでどおりご利用いただけます。</p>
+</div>
+<!--/noticebanner-->
+
 
 
 
