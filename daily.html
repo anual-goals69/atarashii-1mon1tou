@@ -138,26 +138,190 @@
   <p class="lead">世界史と日本史を、同じ日に並べて解く。毎日1号ずつ公開します（新しい順）。</p>
 </header>
 
+<!--unitindex-->
+<style>
+  /* 単元インデックス（make_unit_index.py が唯一の正・手書きしない） */
+  ul.archive li[hidden]{display:none !important;}
+  .uipanel{
+    margin:.9em 0 0; background:var(--card); border:1px solid var(--line);
+    border-radius:12px; box-shadow:var(--shadow); padding:0 .95em .2em;
+  }
+  .uipanel > summary{
+    cursor:pointer; font-weight:700; font-size:.88em; padding:.75em 0; list-style:none;
+  }
+  .uipanel > summary::-webkit-details-marker{display:none;}
+  .uipanel > summary::after{content:"▾"; margin-left:.45em; color:var(--sub);}
+  .uipanel[open] > summary::after{content:"▴";}
+  .uirail{display:none;}
+  .ui-h{font-size:.74em; font-weight:700; color:var(--sub); letter-spacing:.06em; margin:.4em 0 .35em;}
+  .ui-list{list-style:none; display:flex; flex-wrap:wrap; gap:.35em; margin:0 0 .8em; padding:0;}
+  .ui-b{
+    font:inherit; font-size:.8em; line-height:1.6; cursor:pointer; text-align:left;
+    background:var(--card2); color:var(--fg); border:1px solid var(--line);
+    border-radius:999px; padding:.2em .85em; max-width:100%;
+  }
+  .ui-b .n{color:var(--sub); font-size:.85em; margin-left:.4em;}
+  .ui-b:hover{border-color:var(--teal);}
+  .ui-b:disabled{opacity:.35; cursor:default;}
+  .ui-b:disabled:hover{border-color:var(--line);}
+  .ui-b[aria-pressed="true"]{background:var(--amber); border-color:var(--amber); color:#2b2214; font-weight:700;}
+  .ui-b[aria-pressed="true"] .n{color:#2b2214;}
+  .uistatus{font-size:.8em; color:var(--sub); margin:.9em 0 -.4em;}
+  .uistatus b{color:var(--fg);}
+  @media (min-width:1200px){
+    .uipanel{display:none;}
+    .uirail{
+      display:block; position:fixed; top:5.4em; width:206px;
+      max-height:calc(100vh - 7.5em); overflow:auto;
+    }
+    .uirail-w{right:calc(50% + 374px);}
+    .uirail-j{left:calc(50% + 374px);}
+    .uirail .ui-list{flex-direction:column; gap:.25em;}
+    .uirail .ui-b{width:100%; border-radius:9px; padding:.3em .7em; display:flex; justify-content:space-between; gap:.5em;}
+    .uirail .ui-b .n{margin-left:0;}
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .ui-b{transition:border-color .15s ease, background .15s ease;}
+  }
+</style>
+<aside class="uirail uirail-w" aria-label="世界史の単元でしぼる">
+  <p class="ui-h">世界史の単元</p>
+  <ul class="ui-list">
+      <li><button type="button" class="ui-b" data-axis="w" data-unit="" aria-pressed="false"><span class="u">すべて</span></button></li>
+      <li><button type="button" class="ui-b" data-axis="w" data-unit="1" aria-pressed="false"><span class="u">1 文明の誕生</span><span class="n">1</span></button></li>
+      <li><button type="button" class="ui-b" data-axis="w" data-unit="2" aria-pressed="false"><span class="u">2 古代オリエント文明とその周辺</span><span class="n">5</span></button></li>
+      <li><button type="button" class="ui-b" data-axis="w" data-unit="3" aria-pressed="false"><span class="u">3 南アジアの古代文明</span><span class="n">3</span></button></li>
+      <li><button type="button" class="ui-b" data-axis="w" data-unit="4" aria-pressed="false"><span class="u">4 中国の古代文明</span><span class="n">1</span></button></li>
+  </ul>
+</aside>
+<aside class="uirail uirail-j" aria-label="日本史の単元でしぼる">
+  <p class="ui-h">日本史の単元</p>
+  <ul class="ui-list">
+      <li><button type="button" class="ui-b" data-axis="j" data-unit="" aria-pressed="false"><span class="u">すべて</span></button></li>
+      <li><button type="button" class="ui-b" data-axis="j" data-unit="1" aria-pressed="false"><span class="u">1 文化の始まり（旧石器・縄文）</span><span class="n">3</span></button></li>
+      <li><button type="button" class="ui-b" data-axis="j" data-unit="2" aria-pressed="false"><span class="u">2 農耕社会の成立（弥生・小国の分立）</span><span class="n">4</span></button></li>
+      <li><button type="button" class="ui-b" data-axis="j" data-unit="3" aria-pressed="false"><span class="u">3 古墳とヤマト政権</span><span class="n">3</span></button></li>
+  </ul>
+</aside>
+<details class="uipanel">
+  <summary>単元でしぼる</summary>
+  <p class="ui-h">世界史の単元</p>
+  <ul class="ui-list">
+      <li><button type="button" class="ui-b" data-axis="w" data-unit="" aria-pressed="false"><span class="u">すべて</span></button></li>
+      <li><button type="button" class="ui-b" data-axis="w" data-unit="1" aria-pressed="false"><span class="u">1 文明の誕生</span><span class="n">1</span></button></li>
+      <li><button type="button" class="ui-b" data-axis="w" data-unit="2" aria-pressed="false"><span class="u">2 古代オリエント文明とその周辺</span><span class="n">5</span></button></li>
+      <li><button type="button" class="ui-b" data-axis="w" data-unit="3" aria-pressed="false"><span class="u">3 南アジアの古代文明</span><span class="n">3</span></button></li>
+      <li><button type="button" class="ui-b" data-axis="w" data-unit="4" aria-pressed="false"><span class="u">4 中国の古代文明</span><span class="n">1</span></button></li>
+  </ul>
+  <p class="ui-h">日本史の単元</p>
+  <ul class="ui-list">
+      <li><button type="button" class="ui-b" data-axis="j" data-unit="" aria-pressed="false"><span class="u">すべて</span></button></li>
+      <li><button type="button" class="ui-b" data-axis="j" data-unit="1" aria-pressed="false"><span class="u">1 文化の始まり（旧石器・縄文）</span><span class="n">3</span></button></li>
+      <li><button type="button" class="ui-b" data-axis="j" data-unit="2" aria-pressed="false"><span class="u">2 農耕社会の成立（弥生・小国の分立）</span><span class="n">4</span></button></li>
+      <li><button type="button" class="ui-b" data-axis="j" data-unit="3" aria-pressed="false"><span class="u">3 古墳とヤマト政権</span><span class="n">3</span></button></li>
+  </ul>
+</details>
+<p class="uistatus" hidden></p>
+<script>
+(function(){
+  function boot(){
+    var list = document.querySelector('ul.archive');
+    if(!list) return;
+    var items = Array.prototype.slice.call(list.children);
+    var btns  = Array.prototype.slice.call(document.querySelectorAll('.ui-b'));
+    var out   = document.querySelector('.uistatus');
+    var sel = {w:'', j:''};
+    function has(li, axis, no){
+      if(!no) return true;
+      return (' ' + (li.getAttribute('data-' + axis) || '') + ' ').indexOf(' ' + no + ' ') >= 0;
+    }
+    function label(axis, no){
+      var b = btns.filter(function(x){ return x.dataset.axis === axis && x.dataset.unit === no; })[0];
+      return b ? b.querySelector('.u').textContent : no;
+    }
+    function apply(push){
+      var n = 0;
+      items.forEach(function(li){
+        var ok = has(li,'w',sel.w) && has(li,'j',sel.j);
+        li.hidden = !ok;
+        if(ok) n++;
+      });
+      btns.forEach(function(b){
+        b.setAttribute('aria-pressed', String(!!b.dataset.unit && b.dataset.unit === sel[b.dataset.axis]));
+        if(!b.dataset.unit) return;
+        // もう一方の軸の絞りこみを踏まえた件数に更新する。0件になる単元は押せなくする
+        var axis = b.dataset.axis, other = (axis === 'w') ? 'j' : 'w';
+        var c = 0;
+        items.forEach(function(li){
+          if(has(li, axis, b.dataset.unit) && has(li, other, sel[other])) c++;
+        });
+        var box = b.querySelector('.n');
+        if(box) box.textContent = c;
+        b.disabled = (c === 0 && b.dataset.unit !== sel[axis]);
+      });
+      if(out){
+        if(!sel.w && !sel.j){ out.hidden = true; out.textContent = ''; }
+        else{
+          var parts = [];
+          if(sel.w) parts.push('世界史 ' + label('w', sel.w));
+          if(sel.j) parts.push('日本史 ' + label('j', sel.j));
+          out.hidden = false;
+          out.innerHTML = parts.join(' ／ ') + ' でしぼりこみ中 — <b>' + n + '件</b>';
+        }
+      }
+      if(push){
+        var h = [];
+        if(sel.w) h.push('w=' + sel.w);
+        if(sel.j) h.push('j=' + sel.j);
+        var url = h.length ? '#' + h.join('&') : location.pathname + location.search;
+        if(history.replaceState) history.replaceState(null, '', url);
+        else if(h.length) location.hash = h.join('&');
+      }
+    }
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        var axis = b.dataset.axis, unit = b.dataset.unit;
+        sel[axis] = (!unit || sel[axis] === unit) ? '' : unit;
+        apply(true);
+      });
+    });
+    function fromHash(){
+      sel = {w:'', j:''};
+      location.hash.replace(/^#/, '').split('&').forEach(function(p){
+        var kv = p.split('=');
+        if(kv[0] === 'w') sel.w = (kv[1] || '').replace(/[^0-9]/g, '');
+        if(kv[0] === 'j') sel.j = (kv[1] || '').replace(/[^0-9]/g, '');
+      });
+      apply(false);
+    }
+    window.addEventListener('hashchange', fromHash);
+    fromHash();
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+</script>
+<!--/unitindex-->
 <ul class="archive">
-  <li><span class="day latest">DAY 010</span><span class="date">2026-08-24</span><a href="days/day010.html">骨に問うて決めた王と、名を与えて束ねた王</a>
+  <li data-w="4" data-j="3"><span class="day latest">DAY 010</span><span class="date">2026-08-24</span><a href="days/day010.html">骨に問うて決めた王と、名を与えて束ねた王</a>
     <span class="units">世界史：中国の古代文明　日本史：古墳とヤマト政権</span></li>
-  <li><span class="day">DAY 009</span><span class="date">2026-08-23</span><a href="days/day009.html">森で問うた人と、海の向こうに位を求めた王</a>
+  <li data-w="3" data-j="3"><span class="day">DAY 009</span><span class="date">2026-08-23</span><a href="days/day009.html">森で問うた人と、海の向こうに位を求めた王</a>
     <span class="units">世界史：南アジアの古代文明　日本史：古墳とヤマト政権</span></li>
-  <li><span class="day">DAY 008</span><span class="date">2026-08-22</span><a href="days/day008.html">声で継いだ順序と、土で示した順序</a>
+  <li data-w="3" data-j="3"><span class="day">DAY 008</span><span class="date">2026-08-22</span><a href="days/day008.html">声で継いだ順序と、土で示した順序</a>
     <span class="units">世界史：南アジアの古代文明　日本史：古墳とヤマト政権</span></li>
-  <li><span class="day">DAY 007</span><span class="date">2026-08-21</span><a href="days/day007.html">読めない文字の都市、他人の筆で残された国</a>
+  <li data-w="3" data-j="2"><span class="day">DAY 007</span><span class="date">2026-08-21</span><a href="days/day007.html">読めない文字の都市、他人の筆で残された国</a>
     <span class="units">世界史：南アジアの古代文明　日本史：農耕社会の成立（弥生・小国の分立）</span></li>
-  <li><span class="day">DAY 006</span><span class="date">2026-08-20</span><a href="days/day006.html">道でつないだ帝国、溝で区切った村</a>
+  <li data-w="2" data-j="2"><span class="day">DAY 006</span><span class="date">2026-08-20</span><a href="days/day006.html">道でつないだ帝国、溝で区切った村</a>
     <span class="units">世界史：古代オリエント文明とその周辺　日本史：農耕社会の成立（弥生・小国の分立）</span></li>
-  <li><span class="day">DAY 005</span><span class="date">2026-08-19</span><a href="days/day005.html">四つに割れた王国と、三つに分かれた祈り</a>
+  <li data-w="2" data-j="2"><span class="day">DAY 005</span><span class="date">2026-08-19</span><a href="days/day005.html">四つに割れた王国と、三つに分かれた祈り</a>
     <span class="units">世界史：古代オリエント文明とその周辺　日本史：農耕社会の成立（弥生・小国の分立）</span></li>
-  <li><span class="day">DAY 004</span><span class="date">2026-08-18</span><a href="days/day004.html">文字を運んだ船と、稲を運んだ舟</a>
+  <li data-w="2" data-j="2"><span class="day">DAY 004</span><span class="date">2026-08-18</span><a href="days/day004.html">文字を運んだ船と、稲を運んだ舟</a>
     <span class="units">世界史：古代オリエント文明とその周辺（東地中海の諸民族）　日本史：農耕社会の成立（弥生・小国の分立）</span></li>
-  <li><span class="day">DAY 003</span><span class="date">2026-08-17</span><a href="days/day003.html">神になった王と、壊された土偶</a>
+  <li data-w="2" data-j="1"><span class="day">DAY 003</span><span class="date">2026-08-17</span><a href="days/day003.html">神になった王と、壊された土偶</a>
     <span class="units">世界史：古代オリエント文明とその周辺（エジプト）　日本史：文化の始まり（旧石器・縄文）</span></li>
-  <li><span class="day">DAY 002</span><span class="date">2026-08-16</span><a href="days/day002.html">石に刻まれた法、貝に埋もれた暮らし</a>
+  <li data-w="2" data-j="1"><span class="day">DAY 002</span><span class="date">2026-08-16</span><a href="days/day002.html">石に刻まれた法、貝に埋もれた暮らし</a>
     <span class="units">世界史：古代オリエント文明とその周辺（メソポタミア）　日本史：文化の始まり（旧石器・縄文）</span></li>
-  <li><span class="day">DAY 001</span><span class="date">2026-08-15</span><a href="days/day001.html">文明が始まった日、列島は森だった</a>
+  <li data-w="1" data-j="1"><span class="day">DAY 001</span><span class="date">2026-08-15</span><a href="days/day001.html">文明が始まった日、列島は森だった</a>
     <span class="units">世界史：文明の誕生　日本史：文化の始まり（旧石器・縄文）</span></li>
 </ul>
 
